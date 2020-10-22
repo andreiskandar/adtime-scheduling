@@ -4,7 +4,7 @@ import {
   auth,
 } from 'services'
 import { Button, Grid, InputAdornment, TextField } from '@material-ui/core'
-import { AccountCircle, LockRounded } from '@material-ui/icons'
+import { Email, LockRounded } from '@material-ui/icons'
 
 export default () => {
   return (
@@ -22,13 +22,13 @@ export default () => {
         <Grid 
           container item xs={12} 
           sm={6} 
-          alignItems="center" 
-          direction="column" 
-          justify="space-between"
+          alignItems='center'
+          direction='column'
+          justify='space-between'
           style={{ padding: 10 }}
         >
           <div />
-          <div style={{ display: 'flex', flexDirection: "column", madWidth: 400, minWidth: 300}}>
+          <div style={{ display: 'flex', flexDirection: 'column', madWidth: 400, minWidth: 300}}>
             <Grid container justify="center">
               <img 
                 src="https://financesonline.com/uploads/2019/08/Acuity-Scheduling-logo1.png"
@@ -37,30 +37,34 @@ export default () => {
               />
             </Grid>
             <TextField 
-              label="Username" 
-              margin="normal" 
+              label='Email'
+              for='emailInput'
+              id='emailInput'
+              margin='normal'
               InputProps={{ 
                 startAdornment: (
-                  <InputAdornment position="start">
-                    <AccountCircle />
+                  <InputAdornment position='start'>
+                    <Email />
                   </InputAdornment> 
                 ),
               }} 
             />
             <TextField 
-              type="password"
-              label="Password" 
-              margin="normal" 
+              type='password'
+              label='Password'
+              for='passwordInput'
+              id='passwordInput' 
+              margin='normal'
               InputProps={{
                 startAdornment: (
-                  <InputAdornment position="start">
+                  <InputAdornment position='start'>
                     <LockRounded />
                   </InputAdornment> 
                 ),
               }}
             />
             <div style={{ height: 20}} />
-            <Button color="primary" variant="contained" 
+            <Button color='primary' variant='contained' 
             {...{
               onClick: () => auth.login(),
               type: 'submit'
@@ -70,12 +74,12 @@ export default () => {
             <div style={{ height: 20}} />
             <Button>Sign up</Button>
           </div>
-          <Grid container justify="center" spaceing={2}>
+          <Grid container justify='center' spaceing={2}>
             <Grid item>
-              <Button color="primary">Go to our GitHub Repos</Button>
+              <Button color='primary'><a href="https://github.com/andreiskandar/moment">Visit Our GitHub Repos</a></Button>
             </Grid>
             <Grid item>
-              <Button variant="outlined">Forgot pasword?</Button>
+              <Button variant='outlined'>Forgot pasword?</Button>
             </Grid>
           </Grid>
         </Grid>
