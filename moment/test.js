@@ -1,1 +1,0 @@
-"hello Andre / Thai!"
