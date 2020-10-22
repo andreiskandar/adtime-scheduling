@@ -3,6 +3,7 @@ import React from 'react'
 import history from 'app/history'
 import { Redirect, Route, Router as Router, Switch } from 'react-router-dom'
 import routes from 'routes'
+import './global.scss'
 
 
 export default () => (

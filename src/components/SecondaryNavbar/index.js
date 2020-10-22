@@ -1,10 +1,12 @@
 import React from 'react'
 import './styles.scss'
 
-export default function index() {
+import Typography from '@material-ui/core/Typography'
+
+export default () => {
   return (
-    <div>
+    <Typography variant="h5">
       Secondary Navbar
-    </div>
+    </Typography >
   )
 }
