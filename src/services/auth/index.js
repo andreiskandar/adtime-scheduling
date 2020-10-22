@@ -1,4 +1,5 @@
 import history from 'app/history'
+import axios from 'axios'
 
 export default {
   login,
