@@ -15,8 +15,8 @@ export default (props) => {
           <a href='#' src="" className="navbar logo__navbar"><img src="" alt="" className="logo_img__navbar"></img>Logo here</a>
         </Typography>
         <div className="navbar right_links__navbar">
-          <a href='#' src="" className="navbar link__navbar"><AccountCircleOutlinedIcon className="icon__navbar"/>username</a>
-          <a href='#' src="" className="navbar link__navbar"><LockOutlinedIcon className="icon__navbar"/>Logout</a>
+          <a href='#' src="" className="navbar link__navbar"><AccountCircleOutlinedIcon className="icon icon__navbar"/>username</a>
+          <a href='#' src="" className="navbar link__navbar"><LockOutlinedIcon className="icon icon__navbar"/>Logout</a>
         </div>
       </div>
     </div>

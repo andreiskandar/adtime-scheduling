@@ -1,12 +1,21 @@
 import React from 'react'
+import {default as SearchBar} from '../SearchBar'
+import {default as WeekNav} from '../WeekNav'
+
+import Button from '@material-ui/core/Button'
+import CheckIcon from '@material-ui/icons/Check';
+
 import './styles.scss'
 
-import Typography from '@material-ui/core/Typography'
 
-export default () => {
+export default (props) => {
+  // send props.success show green else yellow
   return (
-    <Typography variant="h5">
-      Secondary Navbar
-    </Typography >
+    <main className="secondary__navbar">
+      <SearchBar />
+
+      <WeekNav />
+      <Button className={props.success}><CheckIcon className="icon"/>Publish</Button>
+    </main>
   )
 }
