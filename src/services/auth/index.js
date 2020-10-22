@@ -1,4 +1,5 @@
 import history from 'app/history'
+import axios from 'axios'
 
 export default {
   login,
@@ -11,23 +12,21 @@ const data = {}
 
 function login(email, password) {
   console.log("EMAIL", email)
-  console.log("PASSOWRD", password)
-  // const requestOptions = {
-  //   method: 'POST',
-  //   headers: { 'Content-Type': 'application/json' },
-  //   body: JSON.stringify({ email, password })
-  // };
+  console.log("PASSOWRD", password)     
+  return axios
+    .post('/', {
+      email,
+      password,
+    })
+    .then(() => {
+      console.log("Post successful!");
+    })
 
-  // return fetch('/manager', requestOptions)
-  //   .then(user => {
-  //     localStorage.setItem('user', JSON.stringify(user))
 
-  //     return user
-  //   })
   // ping backend with the username/password
   // it should return true/false or a token
   // if is authenticated
-  history.push('/manager')
+  // history.push('/manager')
   // else
   // redirect to failed login page
 }
