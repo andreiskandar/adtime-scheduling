@@ -8,5 +8,9 @@
     display: block;
     border-left: solid $border-color-grey thin;
     border-right: solid $border-color-grey thin;
+    &:hover {
+      border: solid 3px $border-color-grey;
+      cursor: pointer;
+    }
   }
 }
