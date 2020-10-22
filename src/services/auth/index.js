@@ -7,13 +7,15 @@ export default {
 
 
 // v->s->|->c->m->db
+const data = {}
 
 function login() {
   let request = {
     email: document.getElementById('emailInput').value,
     password: document.getElementById('passwordInput').value,
   }
-  fetch('/login', {
+
+  fetch('/', {
     method: "POST",
     body: "MY DATA",
     headers: {
@@ -29,7 +31,7 @@ function login() {
   // ping backend with the username/password
   // it should return true/false or a token
   // if is authenticated
-  history.push('/manager')
+  // history.push('/manager')
   // else
   // redirect to failed login page
 }
