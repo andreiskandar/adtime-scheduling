@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "./styles.scss";
 import { auth, manager as managerService } from "services";
+import Button from '@material-ui/core/Button'
+import  { Navbar, SecondaryNavbar, Schedule }  from 'components'
 
 export default () => {
   const [managers, setManagers] = useState([]);
@@ -14,7 +16,10 @@ export default () => {
   
   return (
     <>
-      <h1>Manager Page</h1>
+      <Navbar/>
+      <SecondaryNavbar />
+      <Schedule />
+
       {managers.map((manager) => {
         return (
           <div>
@@ -23,14 +28,7 @@ export default () => {
           </div>
         );
       })}
-      <button
-        {...{
-          onClick: () => auth.logout(),
-          type: "submit",
-        }}
-      >
-        Logout
-      </button>
+    
     </>
   );
 };

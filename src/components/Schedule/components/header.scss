@@ -1,0 +1,64 @@
+@import '../../../styles/variables.scss';
+
+.header {
+  color: $font-grey;
+  display: flex;
+  padding: 0;
+  margin: 0;
+  overflow-x: auto;
+  background-color: $background-color-grey;
+
+  .empty__header {
+    width: 225px;
+    border: solid thin $border-color-grey;
+  }
+
+  .days__header {
+    offset-position: 225px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: solid thin $border-color-grey;
+    margin: 0;
+    padding: 0;
+    font-size: 0.9em;
+  }
+  .hours__header {
+    display: flex;
+    .hour {
+      border: solid thin $border-color-grey;
+      width: 15px;
+      font-size: 0.7em;
+      padding: 3px;
+    }
+  }
+}
+
+.employee {
+  color: $font-grey;
+  background-color: $background-color-grey;
+  border: solid thin $border-color-grey;
+  display: flex;
+  width: 14em;
+  .avatar__employee {
+    margin: 5px;
+    border-radius: 50%;
+    transform: scale(0.8);
+  }
+
+  .name_event__employee {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .events__employee,
+  .hours__employee {
+    font-size: 10px;
+    color: #9e9e9e;
+  }
+
+  &:hover {
+    opacity: 0.5;
+  }
+}
