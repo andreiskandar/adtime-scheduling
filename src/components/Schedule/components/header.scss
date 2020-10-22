@@ -10,7 +10,14 @@
   .row__header {
     display: block;
     border: solid thin $border-color-grey;
-    margin-left: 155px;
+    width: 155px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: $font-family;
+  }
+  .day_date__header {
+    padding: 2px 0;
   }
   .day__header {
     display: flex;

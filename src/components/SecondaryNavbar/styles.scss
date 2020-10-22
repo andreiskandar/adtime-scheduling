@@ -1,4 +1,7 @@
+@import '../../styles/variables.scss';
+
 .secondary__navbar {
+  font-family: $font-family;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -11,6 +14,11 @@
 
   .btn {
     font-size: 1em;
+    color: #717171;
+    background-color: yellow;
+    &:hover {
+      opacity: 0.8;
+    }
   }
 
   .isPublished {
@@ -21,11 +29,11 @@
     }
   }
 
-  .isPending {
-    color: #717171;
-    background-color: yellow;
-    &:hover {
-      opacity: 0.8;
-    }
-  }
+  // .isPending {
+  //   color: #717171;
+  //   background-color: yellow;
+  //   &:hover {
+  //     opacity: 0.8;
+  //   }
+  // }
 }

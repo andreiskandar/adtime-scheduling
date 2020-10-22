@@ -27,7 +27,8 @@ function Header() {
 
   const daysElement = days.map(day => {
     return (
-    <div className="days__header">{day}, Current Date
+    <div className="days__header">
+        <div className="day_date__header">{day}, Current Date</div>
         <div className="hours__header">
           {hourElement}
         </div>
@@ -37,7 +38,7 @@ function Header() {
 
   return (
     <div className="header">
-      <div className="row__header"></div>
+      <div className="row__header">Employee</div>
       <div className="day__header">{daysElement}</div>
     </div>
   )

@@ -11,8 +11,8 @@ import './styles.scss'
 export default (props) => {
   const buttonClass = classNames({
     btn: true, 
-    isPublished: true, 
-    isPending: false,
+    isPublished: false, 
+    // isPending: false,
   }) 
 
   console.log(buttonClass)
