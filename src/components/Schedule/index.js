@@ -9,7 +9,9 @@ export default function index() {
   return (
     <Card className="schedule">
       <Header />
-      <Employee />
+      <Employee name="Tristan Jacobs" avatar="https://randomuser.me/api/portraits/thumb/women/50.jpg" events="3"/>
+      <Employee name="Pierre Jackson" avatar="https://randomuser.me/api/portraits/thumb/men/51.jpg" hours='2'/>
+      <Employee name="Samantha Queen" avatar="https://randomuser.me/api/portraits/thumb/women/53.jpg" hours='10'/>
     </Card>
   )
 }

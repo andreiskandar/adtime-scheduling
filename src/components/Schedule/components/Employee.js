@@ -1,36 +1,31 @@
 import React from 'react'
+import EmployeeGrid from '../../Schedule/components/EmployeeGrid'
+
 import './employee.scss'
 
-const Employee = () => {
-  const n = 13 * 7;
-  const slotElement = () => {
+const Employee = ({name, avatar, events, hours}) => {
+  const num_event = events === 1 ? '1 event' 
+                    : events > 1 ? `${events} events` 
+                    : ''
 
-    return (
-      <div className="hour">test</div>
-    )
-  }
+  const num_hours = hours === 1 ? '1 hr' 
+                    : hours > 1 ? `${hours} hrs`
+                    : ''
+
   return (
-    <>
+    <main className="employee_row">
       <div className="employee">
         <img className="avatar__employee" 
-        src="https://randomuser.me/api/portraits/thumb/men/50.jpg" alt=""></img>
+        src={avatar} alt={name}></img>
         <div className="name_event__employee">
-          <div className="name__employee">Mark Jacobs</div>
-          <div className="events__employee">3 events</div>
-          <div className="hours__employee">10.5 hrs</div>
+          <div className="name__employee">{name}</div>
+  <div className="events__employee">{num_event}</div>
+  <div className="hours__employee">{num_hours}</div>
         </div>
       </div>
-      
-      <div className="employee">
-        <img className="avatar__employee" 
-        src="https://randomuser.me/api/portraits/thumb/women/74.jpg" alt=""></img>
-        <div className="name_event__employee">
-          <div className="name__employee">Stephanie Smith</div>
-          <div className="events__employee">3 events</div>
-          <div className="hours__employee">10.5 hrs</div>
-        </div>
-      </div>
-    </>
+      <EmployeeGrid />
+
+    </main>
 
   )
 }

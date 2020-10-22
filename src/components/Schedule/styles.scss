@@ -1,5 +1,8 @@
+@import '../../styles/variables.scss';
 .schedule {
   margin: 0 5px;
-
+  border: 2px solid $border-color-grey;
   border-radius: 5px;
+  min-width: 2110px;
+  display: grid;
 }

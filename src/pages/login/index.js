@@ -1,22 +1,21 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import './styles.scss';
-import {
-  auth,
-} from 'services'
+import { auth } from 'services'
 import { Button, Grid, InputAdornment, TextField } from '@material-ui/core'
 import { Email, LockRounded } from '@material-ui/icons'
 
 export default () => {
+
   return (
     <div>
       <Grid container style={{ minHeight: '100vh' }}>
         <Grid item xs={12} sm={6}>
           <img src="https://gearheart.io/media/images/shutterstock_1523635688.original.jpg" 
-               style={
-                 { width: '100%', 
-                 height: '100%', 
-                 objectFit: 'cover'}
-               } alt="" />
+                style={
+                  { width: '100%', 
+                    height: '100%', 
+                    objectFit: 'cover'}
+                  } alt="" />
 
         </Grid>
         <Grid 

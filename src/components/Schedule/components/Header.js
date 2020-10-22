@@ -4,7 +4,7 @@ import './header.scss'
 function Header() {
   const days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
   const hours = [
-    "09a",
+    "09a", 
     "10a",
     "11a",
     "12p",
@@ -37,6 +37,7 @@ function Header() {
 
   return (
     <div className="header">
+      <div className="row__header">ietm</div>
       {daysElement}
     </div>
   )

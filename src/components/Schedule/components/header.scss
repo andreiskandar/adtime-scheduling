@@ -5,23 +5,24 @@
   display: flex;
   padding: 0;
   margin: 0;
+  max-width: auto;
   overflow-x: auto;
   background-color: $background-color-grey;
 
-  .empty__header {
+  .row__header {
     width: 225px;
+    display: block;
     border: solid thin $border-color-grey;
   }
 
   .days__header {
-    offset-position: 225px;
     display: flex;
     flex-direction: column;
     align-items: center;
     border: solid thin $border-color-grey;
     margin: 0;
     padding: 0;
-    font-size: 0.9em;
+    font-size: 0.8em;
   }
   .hours__header {
     display: flex;
