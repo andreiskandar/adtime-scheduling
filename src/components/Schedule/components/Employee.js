@@ -4,6 +4,7 @@ import './employee.scss'
 const Employee = () => {
   const n = 13 * 7;
   const slotElement = () => {
+
     return (
       <div className="hour">test</div>
     )
@@ -19,7 +20,7 @@ const Employee = () => {
           <div className="hours__employee">10.5 hrs</div>
         </div>
       </div>
-      {slotElement}
+      
       <div className="employee">
         <img className="avatar__employee" 
         src="https://randomuser.me/api/portraits/thumb/women/74.jpg" alt=""></img>
