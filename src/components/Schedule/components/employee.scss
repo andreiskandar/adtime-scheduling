@@ -1,0 +1,11 @@
+.employee {
+  color: black;
+  // background-color: #eeeeee;
+  background-color: #bdbdbd;
+  border-color: #bdbdbd;
+  display: flex;
+  .avatar__employee {
+    border-radius: 500px;
+    transform: scale(0.6);
+  }
+}
