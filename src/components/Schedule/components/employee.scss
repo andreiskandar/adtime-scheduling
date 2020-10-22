@@ -1,11 +1,36 @@
+@import '../../../styles/variables.scss';
+
 .employee {
-  color: black;
-  // background-color: #eeeeee;
-  background-color: #bdbdbd;
-  border-color: #bdbdbd;
+  color: #757575;
+  background-color: #eeeeee;
+  border: solid thin #e0e0e0;
   display: flex;
+  width: 13em;
   .avatar__employee {
-    border-radius: 500px;
-    transform: scale(0.6);
+    margin: 5px;
+    border-radius: 50%;
+    transform: scale(0.8);
+  }
+
+  .name_event__employee {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .events__employee,
+  .hours__employee {
+    font-size: 10px;
+    color: #9e9e9e;
+  }
+
+  &:hover {
+    opacity: 0.5;
+  }
+  .hour {
+    border: solid thin $border-color-grey;
+    width: 15px;
+    font-size: 20em;
+    padding: 3px;
   }
 }
