@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import './styles.scss';
 import {
   auth,
@@ -7,6 +7,9 @@ import { Button, Grid, InputAdornment, TextField } from '@material-ui/core'
 import { Email, LockRounded } from '@material-ui/icons'
 
 export default () => {
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+
   return (
     <div>
       <Grid container style={{ minHeight: '100vh' }}>
@@ -40,6 +43,10 @@ export default () => {
               label='Email'
               for='emailInput'
               id='emailInput'
+              value={email}
+              onChange={(event) => {
+                setEmail(event.target.value)
+              }}            
               margin='normal'
               InputProps={{ 
                 startAdornment: (
@@ -54,6 +61,10 @@ export default () => {
               label='Password'
               for='passwordInput'
               id='passwordInput' 
+              value={password}
+              onChange={(event) => {
+                setPassword(event.target.value)
+              }}
               margin='normal'
               InputProps={{
                 startAdornment: (
@@ -66,7 +77,7 @@ export default () => {
             <div style={{ height: 20}} />
             <Button color='primary' variant='contained' 
             {...{
-              onClick: () => auth.login(),
+              onClick: () => auth.login(email, password),
               type: 'submit'
             }}>
               Log in

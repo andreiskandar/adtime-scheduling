@@ -10,6 +10,8 @@ export default {
 const data = {}
 
 function login(email, password) {
+  console.log("EMAIL", email)
+  console.log("PASSOWRD", password)
   // const requestOptions = {
   //   method: 'POST',
   //   headers: { 'Content-Type': 'application/json' },
