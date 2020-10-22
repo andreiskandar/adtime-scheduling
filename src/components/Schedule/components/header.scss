@@ -5,16 +5,16 @@
   display: flex;
   padding: 0;
   margin: 0;
-  max-width: auto;
-  overflow-x: auto;
   background-color: $background-color-grey;
 
   .row__header {
-    width: 225px;
     display: block;
     border: solid thin $border-color-grey;
+    margin-left: 155px;
   }
-
+  .day__header {
+    display: flex;
+  }
   .days__header {
     display: flex;
     flex-direction: column;
@@ -32,34 +32,5 @@
       font-size: 0.7em;
       padding: 3px;
     }
-  }
-}
-
-.employee {
-  color: $font-grey;
-  background-color: $background-color-grey;
-  border: solid thin $border-color-grey;
-  display: flex;
-  width: 14em;
-  .avatar__employee {
-    margin: 5px;
-    border-radius: 50%;
-    transform: scale(0.8);
-  }
-
-  .name_event__employee {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-
-  .events__employee,
-  .hours__employee {
-    font-size: 10px;
-    color: #9e9e9e;
-  }
-
-  &:hover {
-    opacity: 0.5;
   }
 }

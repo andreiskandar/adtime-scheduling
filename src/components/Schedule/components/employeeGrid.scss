@@ -1,0 +1,12 @@
+@import '../../../styles/variables.scss';
+.employee_grid {
+  display: grid;
+  grid-template-columns: repeat(91, 1fr);
+  border-bottom: thin $border-color-grey solid;
+  margin-left: 143px;
+  span {
+    display: block;
+    border-left: solid $border-color-grey thin;
+    border-right: solid $border-color-grey thin;
+  }
+}

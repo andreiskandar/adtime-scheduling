@@ -37,8 +37,8 @@ function Header() {
 
   return (
     <div className="header">
-      <div className="row__header">ietm</div>
-      {daysElement}
+      <div className="row__header"></div>
+      <div className="day__header">{daysElement}</div>
     </div>
   )
 }
