@@ -2,14 +2,19 @@ import React from 'react';
 import './employeeGrid.scss';
 
 const EmployeeGrid = () => {
-  // const length =
-  const renderSpan = [1, 2, 3, 4, 5].map((i, idx) => {
-    if (idx === 2) {
-      return <div>render block</div>;
-    } else {
-      return <span data-id={idx} />;
-    }
+  let array = [];
+  array.length = 91;
+  const renderSpan = Array.from({ length: 91 }, (x, i) => {
+    return <span data-id={i} />;
   });
+  // const renderSpan = array.map((i, idx) => {
+  //   console.log(object)
+  //   if (idx === 2) {
+  //     return <div>render block</div>;
+  //   } else {
+  //     return <span data-id={idx} />;
+  //   }
+  // });
 
   return (
     <div className='employee_grid'>
