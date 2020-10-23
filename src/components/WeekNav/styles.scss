@@ -1,0 +1,25 @@
+@import '../../styles/variables.scss';
+
+.week__navigator {
+  display: flex;
+  align-items: center;
+  border: solid 1px $border-color-grey;
+  border-radius: 15px;
+
+  .left__navigator {
+    border-right: solid 2px $border-color-grey;
+    border-radius: 15px 0 0 15px;
+  }
+  .right__navigator {
+    border-left: solid 1px $border-color-grey;
+  }
+}
+
+.weekCalendar {
+  display: flex;
+  align-items: center;
+
+  .weekCalendar__icon {
+    font-size: 15px;
+  }
+}
