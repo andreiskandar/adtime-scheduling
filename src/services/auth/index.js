@@ -13,14 +13,31 @@ const data = {}
 function login(email, password) {
   console.log("EMAIL", email)
   console.log("PASSOWRD", password)     
-  return axios
-    .post('/', {
-      email,
-      password,
-    })
-    .then(() => {
-      console.log("Post successful!");
-    })
+  axios({
+    method: 'post',
+    url: '/',
+    data: {
+      email: this.state.email,
+      password: this.state.password,
+    },
+    validateStatus: (status) => {
+      return true;
+    },
+  }).catch(error => {
+
+  }).then(response => {
+    console.log("Post successful!");
+  })
+
+  // axios
+  //   .post('/', {
+  //     email: email,
+  //     password: password,
+  //   })
+  //   .then(() => {
+  //     console.log("Post successful!");
+  //   })
+  //   .catch((e) => console.log("Error", e));
 
 
   // ping backend with the username/password
