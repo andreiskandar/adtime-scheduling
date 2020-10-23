@@ -35,7 +35,7 @@ export default (props) => {
   // setUser
   // pass the props to employee
   useEffect(() => {
-    const apiUsers = axios.get(`${REACT_APP_BASE_URL}api/users`);
+    const apiUsers = axios.get('/api/users');
 
     Promise.all([apiUsers])
       .then((all) => {

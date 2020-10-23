@@ -11,12 +11,53 @@ export default {
 const data = {};
 
 function login(email, password) {
+  // axios.post('http://localhost:3001/')
+  //   .then(res => console.log({message:'hello'}))
+
+  console.log('EMAIL', email);
+  console.log('PASSOWRD', password);
   const body = { email, password };
+  console.log('EMAIL?', body);
   axios
-    .post(`${REACT_APP_BASE_URL}`, body)
-    // .post(`/`, body)
-    .then((res) => console.log(res))
+    .post('/', body)
+    .then((res) => {
+      console.log(res);
+      history.push('/manager');
+    })
     .catch((err) => console.log(err));
+
+  // axios({
+  //   method: 'post',
+  //   url: '/',
+  //   data: {
+  //     email: email,
+  //     password: password,
+  //   },
+  //   validateStatus: (status) => {
+  //     return true;
+  //   },
+  // }).catch(error => {
+
+  // }).then(response => {
+  //   console.log("Post successful!");
+  // })
+
+  // axios
+  //   .post('/', {
+  //     email: email,
+  //     password: password,
+  //   })
+  //   .then(() => {
+  //     console.log("Post successful!");
+  //   })
+  //   .catch((e) => console.log("Error", e));
+
+  // ping backend with the username/password
+  // it should return true/false or a token
+  // if is authenticated
+  // history.push('/manager')
+  // else
+  // redirect to failed login page
 }
 
 function logout() {
