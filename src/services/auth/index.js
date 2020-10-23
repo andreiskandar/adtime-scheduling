@@ -11,23 +11,34 @@ export default {
 const data = {}
 
 function login(email, password) {
+
+  // axios.post('http://localhost:3001/')
+  //   .then(res => console.log({message:'hello'}))
+
   console.log("EMAIL", email)
   console.log("PASSOWRD", password)     
-  axios({
-    method: 'post',
-    url: '/',
-    data: {
-      email: this.state.email,
-      password: this.state.password,
-    },
-    validateStatus: (status) => {
-      return true;
-    },
-  }).catch(error => {
+  const body = { email, password }
+  console.log("EMAIL?", body)
+  axios.post('http://localhost:3001/', body )
+    .then(res => console.log(res))
+    .catch(err => console.log(err))
 
-  }).then(response => {
-    console.log("Post successful!");
-  })
+
+  // axios({
+  //   method: 'post',
+  //   url: '/',
+  //   data: {
+  //     email: email,
+  //     password: password,
+  //   },
+  //   validateStatus: (status) => {
+  //     return true;
+  //   },
+  // }).catch(error => {
+
+  // }).then(response => {
+  //   console.log("Post successful!");
+  // })
 
   // axios
   //   .post('/', {

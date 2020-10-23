@@ -20,14 +20,14 @@ export default () => {
       <SecondaryNavbar />
       <Schedule />
 
-      {managers.map((manager) => {
+      {/* {managers.map((manager) => {
         return (
           <div>
             {manager.firstName}
             {manager.lastName}
           </div>
         );
-      })}
+      })} */}
     
     </>
   );
