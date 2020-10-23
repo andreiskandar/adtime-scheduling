@@ -7,32 +7,45 @@ import ShiftBlock from '../Schedule/components/ShiftBlock';
 import Modal from '../Schedule/components/Modal';
 
 import './styles.scss';
+const { REACT_APP_BASE_URL } = process.env;
 
 export default (props) => {
   const [users, setUsers] = useState([]);
-  
+
+  const addShift = (user_id, shift) => {
+    return axios.put().then(() => {});
+  };
+  const cancelShift = () => {};
+  const transferShift = () => {};
+
   const employees = users.map((user) => {
-    return <Employee {...user} />;
+    return (
+      <Employee
+        key={user.id}
+        {...user}
+        addShift={addShift}
+        cancelShift={cancelShift}
+        transferShift={transferShift}
+        hours='2'
+        events='1'
+      />
+    );
   });
   // user get request from axios
   // setUser
   // pass the props to employee
   useEffect(() => {
-    const apiUsers = axios.get('http://localhost:3001/api/users');
+    const apiUsers = axios.get(`${REACT_APP_BASE_URL}api/users`);
 
     Promise.all([apiUsers])
       .then((all) => {
-        const newState = [...all[0].data.users]
-        console.log('newState', newState)
-        setUsers(newState)
-        // setUsers(prev => ({...prev, ...all[0].data[users]}))
-        // console.log('WHAT IS A', all[0].data.users);
+        const newState = [...all[0].data.users];
+        setUsers(newState);
       })
       .catch((e) => {
         console.log(e);
       });
-    }, []);
-    console.log("TESTING", users)
+  }, []);
 
   return (
     <div className='scroll'>
