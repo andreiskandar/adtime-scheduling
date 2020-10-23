@@ -5,13 +5,10 @@ import { Button, Grid, InputAdornment, TextField } from '@material-ui/core'
 import { Email, LockRounded } from '@material-ui/icons'
 
 export default () => {
-<<<<<<< HEAD
 
-=======
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   
->>>>>>> master
   return (
     <div>
       <Grid container style={{ minHeight: '100vh' }}>

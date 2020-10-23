@@ -1,5 +1,5 @@
 {
-  "name": "frontend",
+  "name": "moment",
   "version": "0.0.1",
   "private": true,
   "dependencies": {
@@ -36,6 +36,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "proxy": "http://localhost:3001"
+  }
 }

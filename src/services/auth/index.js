@@ -11,20 +11,16 @@ export default {
 const data = {}
 
 function login(email, password) {
-  console.log("EMAIL", email)
-  console.log("PASSOWRD", password)     
+  console.log('email:', email)
   axios({
     method: 'post',
     url: '/',
     data: {
-      email: this.state.email,
-      password: this.state.password,
+      email, password,
     },
     validateStatus: (status) => {
       return true;
     },
-  }).catch(error => {
-
   }).then(response => {
     console.log("Post successful!");
   })

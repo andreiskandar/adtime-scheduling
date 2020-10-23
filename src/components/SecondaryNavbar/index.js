@@ -12,10 +12,8 @@ export default (props) => {
   const buttonClass = classNames({
     btn: true, 
     isPublished: false, 
-    // isPending: false,
   }) 
 
-  console.log(buttonClass)
   // send props.success show green else yellow
   return (
     <main className="secondary__navbar">
