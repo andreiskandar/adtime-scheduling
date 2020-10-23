@@ -19,8 +19,11 @@ function login(email, password) {
   console.log("PASSOWRD", password)     
   const body = { email, password }
   console.log("EMAIL?", body)
-  axios.post('http://localhost:3001/', body )
-    .then(res => console.log(res))
+  axios.post('/', body )
+    .then(res => {
+      console.log(res)
+      history.push('/manager')
+    })
     .catch(err => console.log(err))
 
 

@@ -18,7 +18,7 @@ export default (props) => {
   // setUser
   // pass the props to employee
   useEffect(() => {
-    const apiUsers = axios.get('http://localhost:3001/api/users');
+    const apiUsers = axios.get('/api/users');
 
     Promise.all([apiUsers])
       .then((all) => {
