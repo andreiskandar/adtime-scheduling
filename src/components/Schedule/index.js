@@ -6,17 +6,24 @@ import Employee from '../Schedule/components/Employee';
 import ShiftBlock from '../Schedule/components/ShiftBlock';
 import Modal from '../Schedule/components/Modal';
 
+//import helper function addShift, transferShift, cancelShift
+
 import './styles.scss';
-const { REACT_APP_BASE_URL } = process.env;
+import addShift from 'helpers/addShift';
+import transferShift from 'helpers/transferShift';
+import cancelShift from 'helpers/cancelShift';
+import publishSchedule from 'helpers/publishSchedule';
+
+// const { addShift, transferShift, cancelShift } = require('../../helpers');
 
 export default (props) => {
   const [users, setUsers] = useState([]);
 
-  const addShift = (user_id, shift) => {
-    return axios.put().then(() => {});
-  };
-  const cancelShift = () => {};
-  const transferShift = () => {};
+  const staticData = {};
+  addShift();
+  transferShift();
+  cancelShift();
+  publishSchedule();
 
   const employees = users.map((user) => {
     return (
