@@ -12,6 +12,10 @@ const Employee = ({name, avatar, events, hours}) => {
                     : hours > '1' ? `${hours} hrs`
                     : ''
 
+  // receive props from the parents 
+  // pass appointment props to the grid to render appointment
+
+
   return (
     <main className="employee_row">
       <div className="employee">

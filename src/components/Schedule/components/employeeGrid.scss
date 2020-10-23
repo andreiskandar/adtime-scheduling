@@ -1,15 +1,19 @@
 @import '../../../styles/variables.scss';
 .employee_grid {
-  display: grid;
-  grid-template-columns: repeat(91, 1fr);
-  border-bottom: thin $border-color-grey solid;
+  display: flex;
+  border-bottom: 1px $border-color-grey solid;
   margin-left: 143px;
   span {
-    display: block;
-    border-left: solid $border-color-grey thin;
-    border-right: solid $border-color-grey thin;
+    display: inline-block;
+    width: 22.14px;
+    height: 51px;
+    border-left: solid $border-color-grey 1px;
+    border-right: solid $border-color-grey 1px;
+    border-top: none;
+    border-bottom: none;
+    border-radius: 2px;
     &:hover {
-      border: solid 3px $border-color-grey;
+      border: solid 1px #3f3f3f;
       cursor: pointer;
     }
   }
