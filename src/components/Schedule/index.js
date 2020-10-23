@@ -9,82 +9,8 @@ import Modal from '../Schedule/components/Modal';
 import './styles.scss';
 
 export default (props) => {
-  const [user, setUser] = useState({});
-  // console.log('user:', user);
-
-  const users = [
-    {
-      id: 1,
-      name: 'Alice',
-      user_type_id: 1,
-      email: 'alice@email.com',
-      password: 'password',
-      avatar: 'https://randomuser.me/api/portraits/thumb/women/70.jpg',
-      slack_user_id: null,
-      created_at: '2020-10-23T03:04:32.934Z',
-    },
-    {
-      id: 2,
-      name: 'Kira',
-      user_type_id: 2,
-      email: 'kira@email.com',
-      password: 'password',
-      avatar: 'https://randomuser.me/api/portraits/thumb/women/71.jpg',
-      slack_user_id: null,
-      created_at: '2020-10-23T03:04:32.934Z',
-    },
-    {
-      id: 3,
-      name: 'Jack Monroe',
-      user_type_id: 1,
-      email: 'Jack@email.com',
-      password: 'password',
-      avatar: 'https://randomuser.me/api/portraits/thumb/men/50.jpg',
-      slack_user_id: null,
-      created_at: '2020-10-23T03:04:32.934Z',
-    },
-    {
-      id: 4,
-      name: 'Lisa Terry',
-      user_type_id: 2,
-      email: 'Lisa@email.com',
-      password: 'password',
-      avatar: 'https://randomuser.me/api/portraits/thumb/women/30.jpg',
-      slack_user_id: null,
-      created_at: '2020-10-23T03:04:32.934Z',
-    },
-    {
-      id: 5,
-      name: 'Lacazette Luthor',
-      user_type_id: 2,
-      email: 'Lacazette@email.com',
-      password: 'password',
-      avatar: 'https://randomuser.me/api/portraits/thumb/men/54.jpg',
-      slack_user_id: null,
-      created_at: '2020-10-23T03:04:32.934Z',
-    },
-    {
-      id: 6,
-      name: 'Bonnie Yuro',
-      user_type_id: 1,
-      email: 'bonnie@email.com',
-      password: 'password',
-      avatar: 'https://randomuser.me/api/portraits/thumb/women/40.jpg',
-      slack_user_id: null,
-      created_at: '2020-10-23T03:04:32.934Z',
-    },
-    {
-      id: 7,
-      name: 'Poltio Hut',
-      user_type_id: 2,
-      email: 'hut@email.com',
-      password: 'password',
-      avatar: 'https://randomuser.me/api/portraits/thumb/women/32.jpg',
-      slack_user_id: null,
-      created_at: '2020-10-23T03:04:32.934Z',
-    },
-  ];
-
+  const [users, setUsers] = useState([]);
+  
   const employees = users.map((user) => {
     return <Employee {...user} />;
   });
@@ -95,22 +21,25 @@ export default (props) => {
     const apiUsers = axios.get('http://localhost:3001/api/users');
 
     Promise.all([apiUsers])
-      .then((res) => {
-        const [a] = res;
-        console.log('WHAT IS A', a);
-        // setUser(res);
+      .then((all) => {
+        const newState = [...all[0].data.users]
+        console.log('newState', newState)
+        setUsers(newState)
+        // setUsers(prev => ({...prev, ...all[0].data[users]}))
+        // console.log('WHAT IS A', all[0].data.users);
       })
       .catch((e) => {
         console.log(e);
       });
-  }, []);
+    }, []);
+    console.log("TESTING", users)
 
   return (
     <div className='scroll'>
       <Card className='schedule'>
         <Header />
         {employees}
-        <Employee
+        {/* <Employee
           name='Tristan Jacobs'
           avatar='https://randomuser.me/api/portraits/thumb/women/4.jpg'
           events='3'
@@ -118,7 +47,7 @@ export default (props) => {
         />
         <Employee name='Pierre Jackson' avatar='https://randomuser.me/api/portraits/thumb/men/51.jpg' hours='2' />
         <Employee name='Samantha Queen' avatar='https://randomuser.me/api/portraits/thumb/women/53.jpg' hours='10.5' />
-        <Employee name='Samantha Queen' avatar='https://randomuser.me/api/portraits/thumb/women/53.jpg' hours='10.5' />
+        <Employee name='Samantha Queen' avatar='https://randomuser.me/api/portraits/thumb/women/53.jpg' hours='10.5' /> */}
       </Card>
       <ShiftBlock />
       <Modal />
