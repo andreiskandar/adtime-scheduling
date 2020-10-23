@@ -11,6 +11,7 @@ export default {
 const data = {}
 
 function login(email, password) {
+<<<<<<< HEAD
   console.log('email:', email)
   axios({
     method: 'post',
@@ -24,6 +25,36 @@ function login(email, password) {
   }).then(response => {
     console.log("Post successful!");
   })
+=======
+
+  // axios.post('http://localhost:3001/')
+  //   .then(res => console.log({message:'hello'}))
+
+  console.log("EMAIL", email)
+  console.log("PASSOWRD", password)     
+  const body = { email, password }
+  console.log("EMAIL?", body)
+  axios.post('http://localhost:3001/', body )
+    .then(res => console.log(res))
+    .catch(err => console.log(err))
+
+
+  // axios({
+  //   method: 'post',
+  //   url: '/',
+  //   data: {
+  //     email: email,
+  //     password: password,
+  //   },
+  //   validateStatus: (status) => {
+  //     return true;
+  //   },
+  // }).catch(error => {
+
+  // }).then(response => {
+  //   console.log("Post successful!");
+  // })
+>>>>>>> 97e9f821303f04693b28e0166c70dbf19f198a7d
 
   // axios
   //   .post('/', {
