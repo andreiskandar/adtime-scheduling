@@ -52,8 +52,6 @@ export default () => {
         cancelShift={cancelShift}
         transferShift={transferShift}
         shift={shift}
-        hours='2'
-        events='1'
       />
     );
   });
