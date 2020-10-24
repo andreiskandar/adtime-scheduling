@@ -18,12 +18,32 @@ import publishSchedule from 'helpers/publishSchedule';
 
 export default (props) => {
   const [users, setUsers] = useState([]);
+  const [shift, setShift] = useState([]);
 
-  const staticData = {};
   addShift();
   transferShift();
   cancelShift();
   publishSchedule();
+
+  // user get request from axios
+  // setUser
+  // pass the props to employee
+  useEffect(() => {
+    const apiUsers = axios.get('/api/users');
+    const apiUserShift = axios.get('api/shifts/events');
+
+    Promise.all([apiUsers, apiUserShift])
+      .then((all) => {
+        const newUser = [...all[0].data.users];
+        const newShift = [...all[1].data.data];
+        setUsers(newUser);
+        setShift(newShift);
+        console.log('shift from very TOP:', shift);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  }, []);
 
   const employees = users.map((user) => {
     return (
@@ -33,26 +53,12 @@ export default (props) => {
         addShift={addShift}
         cancelShift={cancelShift}
         transferShift={transferShift}
+        shift={shift}
         hours='2'
         events='1'
       />
     );
   });
-  // user get request from axios
-  // setUser
-  // pass the props to employee
-  useEffect(() => {
-    const apiUsers = axios.get('/api/users');
-
-    Promise.all([apiUsers])
-      .then((all) => {
-        const newState = [...all[0].data.users];
-        setUsers(newState);
-      })
-      .catch((e) => {
-        console.log(e);
-      });
-  }, []);
 
   return (
     <div className='scroll'>

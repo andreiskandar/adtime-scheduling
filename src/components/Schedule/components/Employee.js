@@ -3,7 +3,7 @@ import EmployeeGrid from '../../Schedule/components/EmployeeGrid';
 
 import './employee.scss';
 
-const Employee = ({ name, avatar, events, hours }) => {
+const Employee = ({ name, avatar, events, hours, shift }) => {
   const num_event = events === '1' ? '1 event' : events > '1' ? `${events} events` : '';
 
   const num_hours = hours === '1' ? '1 hr' : hours > '1' ? `${hours} hrs` : '';
@@ -21,7 +21,7 @@ const Employee = ({ name, avatar, events, hours }) => {
           <div className='hours__employee'>{num_hours}</div>
         </div>
       </div>
-      <EmployeeGrid />
+      <EmployeeGrid shift={shift} />
     </main>
   );
 };
