@@ -11,7 +11,7 @@ import TextField from '@material-ui/core/TextField';
 const EmployeeGrid = (props) => {
   const { shift_id } = props;
   const [spanId, setSpanId] = useState(0);
-  const [endTime, setEndTime] = useState(0);
+  const [endTime, setEndTime] = useState('');
   const [open, setOpen] = useState(false);
 
   const handleClickOpen = (e) => {
