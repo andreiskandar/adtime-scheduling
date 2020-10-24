@@ -3,7 +3,8 @@ import EmployeeGrid from '../../Schedule/components/EmployeeGrid';
 
 import './employee.scss';
 
-const Employee = ({ name, avatar, events, hours, shift }) => {
+const Employee = ({ id, name, avatar, events, hours, shift }) => {
+  console.log('id:', id);
   const num_event = events === '1' ? '1 event' : events > '1' ? `${events} events` : '';
 
   const num_hours = hours === '1' ? '1 hr' : hours > '1' ? `${hours} hrs` : '';
@@ -18,14 +19,37 @@ const Employee = ({ name, avatar, events, hours, shift }) => {
     '2020-10-25T00:00:00.000Z',
   ];
 
+  // const shiftForUser = {
+  //   1: {
+  //   '2020-10-19T00:00:00.000Z': [3,4,5,6],
+  //   '2020-10-24T00:00:00.000Z': [3,4,5,6],
+  //   '2020-10-25T00:00:00.000Z': [3,4,5,6],
+  //   },
+  //   2: {
+  //   '2020-10-19T00:00:00.000Z': [3,4,5,6],
+  //   '2020-10-24T00:00:00.000Z': [3,4,5,6],
+  //   '2020-10-25T00:00:00.000Z': [3,4,5,6],
+  //   },
+  //   3: {
+  //   '2020-10-19T00:00:00.000Z': [3,4,5,6],
+  //   '2020-10-24T00:00:00.000Z': [3,4,5,6],
+  //   '2020-10-25T00:00:00.000Z': [3,4,5,6],
+  //   },
+
+  // }
+
   const slotMap = shift.reduce((acc, cur) => {
-    if (!acc[cur.event_date]) {
-      acc[cur.event_date] = [];
-      acc[cur.event_date].push(cur.shift_id);
+    if (cur.user_id && cur.user_id === id) {
+      if (!acc[cur.event_date]) {
+        acc[cur.event_date] = [];
+        acc[cur.event_date].push(cur.shift_id);
+      } else {
+        acc[cur.event_date].push(cur.shift_id);
+      }
+      return acc;
     } else {
-      acc[cur.event_date].push(cur.shift_id);
+      return acc;
     }
-    return acc;
   }, {});
 
   const renderEmployeeGridPerDay = date_from_calendar.map((date) => {
