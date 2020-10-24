@@ -13,16 +13,6 @@ const EmployeeGrid = ({ shift_id }) => {
     // end - time
   */
 
-  // const slotMap = shift.reduce((acc, cur) => {
-  //   if (!acc[cur.event_date]) {
-  //     acc[cur.event_date] = [];
-  //     acc[cur.event_date].push(cur.shift_id);
-  //   } else {
-  //     acc[cur.event_date].push(cur.shift_id);
-  //   }
-  //   return acc;
-  // }, {});
-
   const handleClick = (e) => {
     e.preventDefault();
 
@@ -32,9 +22,8 @@ const EmployeeGrid = ({ shift_id }) => {
   // found date with range of span- data-id
   let i = 1;
   const renderSpan = Array.from({ length: 12 }, (x, i) => {
-    return (
-      <span data-id={i} className={shift_id && shift_id.includes(i + 1) ? 'color' : 'default'} onClick={handleClick} />
-    );
+    const paintGrid = shift_id && shift_id.includes(i + 1) ? 'color' : 'default';
+    return <span data-id={i} className={paintGrid} onClick={handleClick} />;
   });
 
   return <div className='employee_grid'>{renderSpan}</div>;

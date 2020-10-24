@@ -28,21 +28,9 @@ const Employee = ({ name, avatar, events, hours, shift }) => {
     return acc;
   }, {});
 
-  console.log('slotMap: from eomployee', slotMap);
-
-  const renderEmployeeGridPerDay = () => {
-    return date_from_calendar.map((date) => {
-      return <EmployeeGrid shift_id={slotMap[date]} />;
-    });
-  };
-  // receive props from the parents
-  // pass appointment props to the grid to render appointment
-
-  // create grid element for each day instead of the whole week
-  // week date should match
-  // grid should accept props: shift_date, date_from_calendar, shift_id, user_id
-  //if shift_date doesnot match from date_from_calendar render empty grid
-  //else paint grid
+  const renderEmployeeGridPerDay = date_from_calendar.map((date) => {
+    return <EmployeeGrid shift_id={slotMap[date]} />;
+  });
 
   return (
     <main className='employee_row'>
@@ -54,7 +42,7 @@ const Employee = ({ name, avatar, events, hours, shift }) => {
           <div className='hours__employee'>{num_hours}</div>
         </div>
       </div>
-      {renderEmployeeGridPerDay()}
+      {renderEmployeeGridPerDay}
     </main>
   );
 };
