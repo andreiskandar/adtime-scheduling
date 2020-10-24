@@ -16,19 +16,18 @@ import publishSchedule from 'helpers/publishSchedule';
 
 // const { addShift, transferShift, cancelShift } = require('../../helpers');
 
-export default (props) => {
+export default () => {
   const [users, setUsers] = useState([]);
   const [shift, setShift] = useState([]);
-
-  addShift();
-  transferShift();
-  cancelShift();
-  publishSchedule();
 
   // user get request from axios
   // setUser
   // pass the props to employee
   useEffect(() => {
+    addShift();
+    transferShift();
+    cancelShift();
+    publishSchedule();
     const apiUsers = axios.get('/api/users');
     const apiUserShift = axios.get('api/shifts/events');
 
@@ -38,7 +37,6 @@ export default (props) => {
         const newShift = [...all[1].data.data];
         setUsers(newUser);
         setShift(newShift);
-        console.log('shift from very TOP:', shift);
       })
       .catch((e) => {
         console.log(e);
