@@ -3,7 +3,7 @@ import EmployeeGrid from '../../Schedule/components/EmployeeGrid';
 
 import './employee.scss';
 
-const Employee = ({ name, avatar, events, hours, shift }) => {
+const Employee = ({ id, name, avatar, events, hours, shift }) => {
   const num_event = events === '1' ? '1 event' : events > '1' ? `${events} events` : '';
 
   const num_hours = hours === '1' ? '1 hr' : hours > '1' ? `${hours} hrs` : '';
@@ -19,13 +19,17 @@ const Employee = ({ name, avatar, events, hours, shift }) => {
   ];
 
   const slotMap = shift.reduce((acc, cur) => {
-    if (!acc[cur.event_date]) {
-      acc[cur.event_date] = [];
-      acc[cur.event_date].push(cur.shift_id);
+    if (cur.user_id && cur.user_id === id) {
+      if (!acc[cur.event_date]) {
+        acc[cur.event_date] = [];
+        acc[cur.event_date].push(cur.shift_id);
+      } else {
+        acc[cur.event_date].push(cur.shift_id);
+      }
+      return acc;
     } else {
-      acc[cur.event_date].push(cur.shift_id);
+      return acc;
     }
-    return acc;
   }, {});
 
   const renderEmployeeGridPerDay = date_from_calendar.map((date) => {
