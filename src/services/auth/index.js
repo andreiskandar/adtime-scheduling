@@ -1,6 +1,5 @@
 import history from 'app/history';
 import axios from 'axios';
-const { REACT_APP_BASE_URL } = process.env;
 
 export default {
   login,

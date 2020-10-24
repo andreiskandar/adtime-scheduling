@@ -20,7 +20,6 @@ const EmployeeGrid = ({ shift_id }) => {
   };
 
   // found date with range of span- data-id
-  let i = 1;
   const renderSpan = Array.from({ length: 12 }, (x, i) => {
     const paintGrid = shift_id && shift_id.includes(i + 1) ? 'color' : 'default';
     return <span data-id={i} className={paintGrid} onClick={handleClick} />;
