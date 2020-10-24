@@ -14,13 +14,21 @@ const EmployeeGrid = () => {
     { id: 5, user_id: 1, shift_id: 5, ispublished: false, category_id: 1, date: '2020-10-26T12:00:00.000Z' },
     { id: 6, user_id: 1, shift_id: 6, ispublished: false, category_id: 1, date: '2020-10-26T09:00:00.000Z' },
   ];
+  /* david's pseudo code
+  
 
   // 10 - 15 = 6 hours
+  //user-id 
+  // span data-id range = that belongs the day = date
+  // start - time 
+  // end - time
+  
 
+*/
   const handleClick = (e) => {
     e.preventDefault();
 
-    console.log(e.target);
+    console.log(e.target.attributes[0].value);
   };
 
   const renderSpan = Array.from({ length: 91 }, (x, i) => {
