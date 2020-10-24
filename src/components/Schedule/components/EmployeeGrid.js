@@ -10,24 +10,19 @@ import TextField from '@material-ui/core/TextField';
 
 const EmployeeGrid = (props) => {
   const { shift_id } = props;
+  const [spanId, setSpanId] = useState(0);
+  const [endTime, setEndTime] = useState(0);
+  const [open, setOpen] = useState(false);
 
-  const [open, setOpen] = React.useState(false);
-
-  const handleClickOpen = () => {
+  const handleClickOpen = (e) => {
     setOpen(true);
+    setSpanId(parseInt(e.target.attributes[0].value) + 1);
   };
 
   const handleClose = () => {
     setOpen(false);
   };
 
-  const handleClick = (e) => {
-    e.preventDefault();
-
-    console.log(e.target.attributes[0].value);
-  };
-
-  // found date with range of span- data-id
   const renderSpan = Array.from({ length: 12 }, (x, i) => {
     const paintGrid = shift_id && shift_id.includes(i + 1) ? 'color' : 'default';
     return <span data-id={i} className={paintGrid} onClick={handleClickOpen} />;
@@ -38,8 +33,16 @@ const EmployeeGrid = (props) => {
       <div className='employee_grid'>{renderSpan}</div>
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle id='form-dialog-title'>{props.name}</DialogTitle>
-        <TextField autoFocus margin='dense' id='name' label='Start Time' type='email' />
-        <TextField autoFocus margin='dense' id='name' label='End Time' type='email' />
+        <TextField autoFocus margin='dense' id='name' label='Start Time' value={spanId} type='email' />
+        <TextField
+          autoFocus
+          margin='dense'
+          id='name'
+          label='End Time'
+          value={endTime}
+          onChange={(e) => setEndTime(e.target.value)}
+          type='email'
+        />
         <DialogActions>
           <Button onClick={handleClose} color='primary'>
             Transfer
