@@ -6,7 +6,8 @@ import { Email, LockRounded } from '@material-ui/icons';
 import history from 'app/history'
 
 export default () => {
-  const [isUnauthenticatedUser, setUnauthenticatedUser] = useState(true)
+  const [isInitialRender, setIsInitialRender] = useState(true)
+  const [isAuthenticated, setIsAuthenticated] = useState(false)
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('password');
 
@@ -17,10 +18,12 @@ export default () => {
         : '/employee'
       return history.push(redirectTo)
     }
-    setUnauthenticatedUser(false)
-  }, [])
+    if (isInitialRender && !isAuthenticated) {
+      setIsInitialRender(false)
+    }
+  })
 
-  if (isUnauthenticatedUser) return null
+  if (isInitialRender) return null
 
   return (
     <div>
@@ -91,7 +94,14 @@ export default () => {
               color='primary'
               variant='contained'
               {...{
-                onClick: () => user.login(email, password),
+                onClick: async () => {
+                  try {
+                    await user.login(email, password)
+                    setIsAuthenticated(true)
+                  } catch(err) {
+                    console.error(err)
+                  }
+                },
                 type: 'submit',
               }}
             >

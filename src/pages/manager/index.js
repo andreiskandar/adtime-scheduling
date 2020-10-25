@@ -2,27 +2,25 @@ import './styles.scss';
 import React, { useEffect, useState } from 'react';
 import history from 'app/history'
 import { Navbar, SecondaryNavbar, Schedule } from 'components';
+import { user } from 'controllers'
 
 export default () => {
-  const [isAdmin, setAdmin] = useState(false)
-
+  const [isInitialRender, setIsInitialRender] = useState(true)
+  const [isAuthenticated, setIsAuthenticated] = useState(false)
+  
   useEffect(() => {
-    const rawUser = localStorage.getItem('user')
-    if (rawUser) {
-      try {
-        const user = JSON.parse(rawUser)
-        const {name: role} = user
-        if (role !== 'admin') {
-          return history.push('/employee')
-        }
-        setAdmin(true)
-      } catch(err) {
-        console.log(err)
-      }
+    if (!user.isAuthenticated()) {
+      return history.push('/')
+    }
+    if (user.getRole() !== 'admin') {
+      return history.push('/employee')
+    }
+    if (isInitialRender && !isAuthenticated) {
+      setIsInitialRender(false)
     }
   })
 
-  if (!isAdmin) return null
+  if (isInitialRender) return null
 
   return (
     <>
