@@ -1,5 +1,5 @@
 import React from 'react';
-import EmployeeGrid from '../../Schedule/components/EmployeeGrid';
+import EmployeeGrid from './EmployeeGrid';
 
 import './employee.scss';
 
