@@ -61,15 +61,6 @@ export default () => {
       <Card className='schedule'>
         <Header />
         {employees}
-        {/* <Employee
-          name='Tristan Jacobs'
-          avatar='https://randomuser.me/api/portraits/thumb/women/4.jpg'
-          events='3'
-          hours='1'
-        />
-        <Employee name='Pierre Jackson' avatar='https://randomuser.me/api/portraits/thumb/men/51.jpg' hours='2' />
-        <Employee name='Samantha Queen' avatar='https://randomuser.me/api/portraits/thumb/women/53.jpg' hours='10.5' />
-        <Employee name='Samantha Queen' avatar='https://randomuser.me/api/portraits/thumb/women/53.jpg' hours='10.5' /> */}
       </Card>
       <ShiftBlock />
       <Modal />
