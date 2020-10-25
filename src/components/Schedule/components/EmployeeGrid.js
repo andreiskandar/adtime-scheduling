@@ -6,17 +6,19 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import HOURS_DICT from '../../../helpers/dictionary';
-import TransferShiftMenu from './TransferShiftMenu';
+import TransferShiftMenuButton from './TransferShiftMenuButton';
 import useStyles from './styles/formStyles';
 import Avatar from '@material-ui/core/Avatar';
+import useVisualMode from '../../../hooks/useVisualMode';
 
 const EmployeeGrid = (props) => {
   const classes = useStyles();
-
   const { shift_id, users } = props;
   const [spanId, setSpanId] = useState(0);
   const [endTime, setEndTime] = useState('');
   const [open, setOpen] = useState(false);
+  const [selected, setSelected] = useState('');
+  const [error, setError] = useState('');
 
   const handleClickOpen = (e) => {
     setOpen(true);
@@ -24,11 +26,22 @@ const EmployeeGrid = (props) => {
     setSpanId(start_time);
   };
 
-  const handleSubmit = () => {
+  const cancel = () => {
+    setError('');
+    setSelected('');
     setOpen(false);
   };
 
   const handleSubmitTransfer = () => {
+    if (endTime > '20:59') {
+      setError('End time can not be after 21:00');
+      return;
+    }
+
+    // call function to axios.post request using selected.user_id and endTime
+    setError('');
+    setSelected('');
+    setSelected('');
     setOpen(false);
   };
 
@@ -41,14 +54,29 @@ const EmployeeGrid = (props) => {
     return <span key={i} data-id={i} onClick={handleClickOpen} style={{ backgroundColor: `${background}` }} />;
   });
 
+  const transferShiftSelected = (
+    <>
+      <img src='images/swap.png' alt='swap' className={classes.swap_img__menu}></img>
+      <div className={classes.flex}>
+        <Avatar alt={selected.name} src={selected.avatar} />
+        <p className={classes.name}>{selected.name}</p>
+      </div>
+    </>
+  );
+
   return (
     <>
       <div className='employee_grid'>{renderSpan}</div>
       <Dialog open={open} onClose={handleClose} maxWidth='lg'>
-        <DialogTitle id='form-dialog-title'>
-          <Avatar alt={props.name} src={props.avatar} />
-          {props.name}
-        </DialogTitle>
+        <DialogTitle>Add / Transfer Shift</DialogTitle>
+        <div className={classes.flex}>
+          <div className={classes.flex}>
+            <Avatar alt={props.name} src={props.avatar} />
+            <p className={classes.name}>{props.name}</p>
+          </div>
+          {selected && transferShiftSelected}
+        </div>
+        <section className={classes.error}>{error}</section>
 
         <form>
           <div className={classes.root}>
@@ -61,13 +89,13 @@ const EmployeeGrid = (props) => {
               value={endTime}
               onChange={(e) => setEndTime(e.target.value)}
               type='text'
-              placeholder='09:00'
+              placeholder={parseInt(spanId) + 1 + ':00'}
             />
           </div>
         </form>
         <DialogActions>
-          <TransferShiftMenu users={users} />
-          <Button onClick={handleSubmit} color='secondary' variant='contained'>
+          <TransferShiftMenuButton users={users} setSelected={setSelected} />
+          <Button onClick={cancel} color='secondary' variant='contained'>
             Cancel
           </Button>
           <Button onClick={handleSubmitTransfer} color='primary' variant='contained'>

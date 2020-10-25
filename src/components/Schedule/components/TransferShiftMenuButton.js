@@ -6,7 +6,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 
-const TransferShiftMenu = ({ users }) => {
+const TransferShiftMenuButton = ({ users, setSelected }) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const openButton = Boolean(anchorEl);
 
@@ -22,6 +22,9 @@ const TransferShiftMenu = ({ users }) => {
       height: theme.spacing(3),
       marginRight: '10px',
     },
+    displayFlex: {
+      display: 'flex',
+    },
   }));
 
   const classes = useStyles();
@@ -30,16 +33,23 @@ const TransferShiftMenu = ({ users }) => {
     setAnchorEl(e.currentTarget);
   };
 
-  const handleCloseButton = () => {
+  const handleCloseButton = (e) => {
+    setAnchorEl(null);
+  };
+
+  const onProfileSelect = (user) => {
+    setSelected(user);
     setAnchorEl(null);
   };
 
   const transferTo = users.map((user) => {
     return (
-      <MenuItem onClick={handleCloseButton}>
-        <Avatar alt={user.name} src={user.avatar} className={classes.small} />
-        {user.name}
-      </MenuItem>
+      <form value={user.name}>
+        <MenuItem onClick={() => onProfileSelect(user)}>
+          <Avatar alt={user.name} src={user.avatar} className={classes.small} />
+          {user.name}
+        </MenuItem>
+      </form>
     );
   });
 
@@ -62,4 +72,4 @@ const TransferShiftMenu = ({ users }) => {
   );
 };
 
-export default TransferShiftMenu;
+export default TransferShiftMenuButton;
