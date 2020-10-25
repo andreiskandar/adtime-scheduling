@@ -3,6 +3,7 @@ import Typography from '@material-ui/core/Typography';
 import AccountCircleOutlinedIcon from '@material-ui/icons/AccountCircleOutlined';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import './styles.scss';
+import { user } from '../../controllers'
 
 export default (props) => {
   // this will receive props username then to show in the navbar
@@ -20,7 +21,12 @@ export default (props) => {
             <AccountCircleOutlinedIcon className='icon icon__navbar' />
             username
           </a>
-          <a href='#' src='' className='navbar link__navbar'>
+          <a href='#' src='' className='navbar link__navbar'
+          {...{
+            onClick: () => user.logout(),
+            type: 'submit'
+          }}
+          >
             <LockOutlinedIcon className='icon icon__navbar' />
             Logout
           </a>
