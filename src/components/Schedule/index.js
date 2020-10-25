@@ -20,9 +20,6 @@ export default () => {
   const [users, setUsers] = useState([]);
   const [shift, setShift] = useState([]);
 
-  // user get request from axios
-  // setUser
-  // pass the props to employee
   useEffect(() => {
     addShift();
     transferShift();
@@ -48,6 +45,7 @@ export default () => {
       <Employee
         key={user.id}
         {...user}
+        users={users}
         addShift={addShift}
         cancelShift={cancelShift}
         transferShift={transferShift}
@@ -62,8 +60,6 @@ export default () => {
         <Header />
         {employees}
       </Card>
-      <ShiftBlock />
-      <Modal />
     </div>
   );
 };
