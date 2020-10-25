@@ -48,8 +48,8 @@ const EmployeeGrid = (props) => {
   };
 
   const renderSpan = Array.from({ length: 12 }, (x, i) => {
-    const paintGrid = shift_id && shift_id.includes(i + 1) ? 'color' : 'default';
-    return <span key={i} data-id={i} className={paintGrid} onClick={handleClickOpen} />;
+    const background = shift_id && shift_id.includes(i + 1) ? props.color : '#eeeeee';
+    return <span key={i} data-id={i} onClick={handleClickOpen} style={{ backgroundColor: `${background}` }} />;
   });
 
   const transferTo = users.map((user) => {

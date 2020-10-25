@@ -4,7 +4,8 @@ import EmployeeGrid from '../../Schedule/components/EmployeeGrid';
 import './employee.scss';
 
 const Employee = (props) => {
-  const { id, name, avatar, shift } = props;
+  const { id, name, avatar, shift, color } = props;
+  console.log('color:', color);
 
   const date_from_calendar = [
     '2020-10-19T00:00:00.000Z',
@@ -41,7 +42,7 @@ const Employee = (props) => {
   const num_event = totalEvents === '1' ? '1 event' : totalEvents > '1' ? `${totalEvents} events` : '';
 
   const renderEmployeeGridPerDay = date_from_calendar.map((date) => {
-    return <EmployeeGrid shift_id={slotMap[date]} {...props} users={props.users} />;
+    return <EmployeeGrid shift_id={slotMap[date]} {...props} users={props.users} color={color} />;
   });
 
   return (
