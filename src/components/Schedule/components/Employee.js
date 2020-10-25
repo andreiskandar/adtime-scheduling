@@ -1,11 +1,11 @@
 import React from 'react';
 import EmployeeGrid from './EmployeeGrid';
+import EmployeeHeader from './EmployeeHeader';
 
 import './employee.scss';
 
 const Employee = (props) => {
   const { id, name, avatar, shift, color } = props;
-  console.log('color:', color);
 
   const date_from_calendar = [
     '2020-10-19T00:00:00.000Z',
@@ -47,14 +47,7 @@ const Employee = (props) => {
 
   return (
     <main className='employee_row'>
-      <div className='employee'>
-        <img className='avatar__employee' src={avatar} alt={name}></img>
-        <div className='name_event__employee'>
-          <div className='name__employee'>{name}</div>
-          <div className='events__employee'>{num_event}</div>
-          <div className='hours__employee'>{num_hours}</div>
-        </div>
-      </div>
+      <EmployeeHeader name={name} num_event={num_event} avatar={avatar} num_hours={num_hours} />
       {renderEmployeeGridPerDay}
     </main>
   );
