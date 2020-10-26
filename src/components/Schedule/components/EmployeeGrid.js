@@ -16,7 +16,7 @@ import axios from 'axios';
 
 const EmployeeGrid = (props) => {
   const classes = useStyles();
-  const { shift_id, users, date } = props;
+  const { shift_id, users, date, setShift, shift } = props;
   const event_date = date.split('T')[0];
   const [startTime, setStartTime] = useState(0);
   const [endTime, setEndTime] = useState('');
@@ -55,11 +55,8 @@ const EmployeeGrid = (props) => {
     const start_time = startTime;
     const end_time = endTime;
 
-    axios.post('/api/events/add', addShift(user_id, start_time, end_time, date))
-      .catch((e) => {
-        console.log("ShiftADD ERROR in AXIOS", e);
-      });
-    
+    props.submitShift(user_id, start_time, end_time, date);
+
     setError('');
     setSelected('');
     setSelected('');
