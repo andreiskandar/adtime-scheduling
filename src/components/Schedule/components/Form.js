@@ -1,15 +1,10 @@
 import React, { useState } from 'react';
 import useStyles from './styles/formStyles';
 import Avatar from '@material-ui/core/Avatar';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
-import Fade from '@material-ui/core/Fade';
-import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import HOURS_DICT from '../../../helpers/dictionary';
 
 const Form = (props) => {
   const classes = useStyles();
