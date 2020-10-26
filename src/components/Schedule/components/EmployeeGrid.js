@@ -33,6 +33,10 @@ const EmployeeGrid = (props) => {
   };
 
   const handleSubmitTransfer = () => {
+    if (!endTime) {
+      setError('End time cannot be blank');
+      return;
+    }
     if (endTime > '20:59') {
       setError('End time can not be after 21:00');
       return;
@@ -48,6 +52,8 @@ const EmployeeGrid = (props) => {
   const handleClose = () => {
     setOpen(false);
   };
+
+  const handleDelete = () => {};
 
   const renderSpan = Array.from({ length: 12 }, (x, i) => {
     const background = shift_id && shift_id.includes(i + 1) ? props.color : '#eeeeee';
@@ -95,8 +101,11 @@ const EmployeeGrid = (props) => {
         </form>
         <DialogActions>
           <TransferShiftMenuButton users={users} setSelected={setSelected} />
-          <Button onClick={cancel} color='secondary' variant='contained'>
-            Cancel
+          <Button onClick={cancel} variant='contained'>
+            Back
+          </Button>
+          <Button onClick={handleDelete} color='secondary' variant='contained'>
+            Delete
           </Button>
           <Button onClick={handleSubmitTransfer} color='primary' variant='contained'>
             Submit
