@@ -59,12 +59,12 @@ const EmployeeGrid = (props) => {
     }
 
     // convert end_time to shift_id
-    const endTimeShiftId = parseInt(endTime) - 8;
-
-    if (shift_id && shift_id.includes(endTimeShiftId - 1)) {
-      setError(ERROR_MESSAGES_DICT['DOUBLE_BOOKED']);
-      return;
-    }
+    // const endTimeShiftId = parseInt(endTime) - 8;
+    // FIX THIS LATER. BUG EXISTS
+    // if (shift_id.includes(endTimeShiftId)) {
+    //   setError(ERROR_MESSAGES_DICT['DOUBLE_BOOKED']);
+    //   return;
+    // }
     // check if end_time includes within shift_id
     // setError
 
@@ -76,7 +76,6 @@ const EmployeeGrid = (props) => {
     const user_id = props.id;
     const start_time = startTime;
     const end_time = endTime;
-
     props.submitShift(user_id, start_time, end_time, date);
 
     setError('');
@@ -89,11 +88,28 @@ const EmployeeGrid = (props) => {
   };
 
   const handleDelete = () => {
+    console.log("HELLO WORLD")
+    remove(date)
+    // const date = event_date.split('T')[0];
+    // const user_id = props.id;
+    // const start_time = startTime;
+    // const end_time = endTime;
+    // props.removeShift(user_id, start_time, end_time, date);
+  };
+
+  const remove = (event_date) => {
+    const date = event_date.split('T')[0];
     const user_id = props.id;
     const start_time = startTime;
     const end_time = endTime;
-    cancelShift(event_date);
-  };
+
+    props.removeShift(user_id, start_time, end_time, date);  
+
+    setError('');
+    setSelected('');
+    setOpen(false);
+  }
+
 
   const renderSpan = Array.from({ length: 12 }, (x, i) => {
     const background = shift_id && shift_id.includes(i + 1) ? props.color : '#eeeeee';

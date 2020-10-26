@@ -50,6 +50,19 @@ export default () => {
       });
   };
 
+  const removeShift = (user_id, startTime, endTime, date) => {
+    let payload = cancelShift(user_id, startTime, endTime, date)
+    axios.delete('/api/events/delete', { params: payload })
+    .then(() => {
+      axios.get('api/shifts/events').then((res) => {
+        setShift(res.data.data);
+      });
+    })
+    .catch((e) => {
+      console.log('Error from deleting shift(s)', e);
+    })
+  }  
+
   const employees = users.map((user) => {
     return (
       <Employee
@@ -57,7 +70,7 @@ export default () => {
         {...user}
         users={users}
         submitShift={submitShift}
-        cancelShift={cancelShift}
+        removeShift={removeShift}
         transferShift={transferShift}
         shift={shift}
         setShift={setShift}
