@@ -54,7 +54,7 @@ const EmployeeGrid = (props) => {
 
     // how to get event_date for addShift function
 
-    addShift();
+    addShift(user_id, start_time, end_time);
 
     // call function to axios.post request using selected.user_id, startTime(startTime), endTime, event_date
     setError('');
