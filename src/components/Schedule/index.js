@@ -3,8 +3,6 @@ import axios from 'axios';
 import Card from '@material-ui/core/Card';
 import Header from '../Schedule/components/Header';
 import Employee from '../Schedule/components/Employee';
-import ShiftBlock from '../Schedule/components/ShiftBlock';
-import Modal from '../Schedule/components/Modal';
 
 //import helper function addShift, transferShift, cancelShift
 
