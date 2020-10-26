@@ -41,7 +41,7 @@ const EmployeeGrid = (props) => {
       setError('End time cannot be blank');
       return;
     }
-    if (endTime > '20:59') {
+    if (endTime > '21:01') {
       setError('End time can not be after 21:00');
       return;
     }
