@@ -12,6 +12,7 @@ import Avatar from '@material-ui/core/Avatar';
 import useVisualMode from '../../../hooks/useVisualMode';
 import addShift from 'helpers/addShift';
 import cancelShift from 'helpers/cancelShift';
+import axios from 'axios';
 
 const EmployeeGrid = (props) => {
   const classes = useStyles();
@@ -40,7 +41,7 @@ const EmployeeGrid = (props) => {
       setError('End time cannot be blank');
       return;
     }
-    if (endTime > '20:59') {
+    if (endTime > '21:01') {
       setError('End time can not be after 21:00');
       return;
     }
@@ -54,11 +55,11 @@ const EmployeeGrid = (props) => {
     const start_time = startTime;
     const end_time = endTime;
 
-    // how to get event_date for addShift function
-
-    addShift();
-
-    // call function to axios.post request using selected.user_id, startTime(startTime), endTime, event_date
+    axios.post('/api/events/add', addShift(user_id, start_time, end_time, date))
+      .catch((e) => {
+        console.log("ShiftADD ERROR in AXIOS", e);
+      });
+    
     setError('');
     setSelected('');
     setSelected('');

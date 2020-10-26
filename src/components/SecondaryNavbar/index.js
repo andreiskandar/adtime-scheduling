@@ -19,13 +19,12 @@ const PublishButton = (props) => {
 
   const clickedMe = (e) => {
     if (publish === false) {
-      axios
-        .put('/api/events/publish', { publish: true, firstDay: '2020-10-19', lastDay: '2020-10-26' })
-        .then(setPublish(true))
-        .then(setWording('Unpublish'))
-        .catch((e) => {
-          console.log('ERROR in AXIOS', e);
-        });
+      axios.put('/api/events/publish', { publish: true, firstDay: '2020-10-19', lastDay: '2020-10-26' })
+      .then(setPublish(true))
+      .then(setWording('Unpublish'))
+      .catch((e) => {
+        console.log("Publish ERROR in AXIOS", e);
+      });
     } else {
       axios
         .put('/api/events/publish', { publish: false, firstDay: '2020-10-19', lastDay: '2020-10-26' })
