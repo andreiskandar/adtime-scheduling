@@ -58,6 +58,16 @@ const EmployeeGrid = (props) => {
       return;
     }
 
+    // convert end_time to shift_id
+    const endTimeShiftId = parseInt(endTime) - 8;
+    // FIX THIS LATER. BUG EXISTS
+    if (shift_id.includes(endTimeShiftId)) {
+      setError(ERROR_MESSAGES_DICT['DOUBLE_BOOKED']);
+      return;
+    }
+    // check if end_time includes within shift_id
+    // setError
+
     submit(date);
   };
 
