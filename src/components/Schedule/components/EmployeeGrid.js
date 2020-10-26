@@ -48,7 +48,7 @@ const EmployeeGrid = (props) => {
   };
 
   const submit = () => {
-    const user_id = selected.user_id;
+    const user_id = props.id;
     const start_time = startTime;
     const end_time = endTime;
 
@@ -68,7 +68,7 @@ const EmployeeGrid = (props) => {
   };
 
   const handleDelete = () => {
-    const user_id = selected.user_id;
+    const user_id = props.id;
     const start_time = startTime;
     const end_time = endTime;
     cancelShift();
