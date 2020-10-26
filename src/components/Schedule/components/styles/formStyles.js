@@ -31,8 +31,8 @@ const useStyles = makeStyles((theme) => ({
     fontFamily:
       "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans','Helvetica Neue';",
   },
-  transferShiftButton: {
-    marginRight: '20px',
+  delete: {
+    backgroundColor: '',
   },
 }));
 
