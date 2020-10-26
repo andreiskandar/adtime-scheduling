@@ -8,7 +8,7 @@ import './styles.scss';
 export default () => {
   return (
     <div className='week__navigator'>
-      <Button size='small' lassName='smaleft__navigator'>
+      <Button size='small' className='smaleft__navigator'>
         <ChevronLeftIcon />
       </Button>
       <Button>

@@ -40,7 +40,6 @@ export default () => {
   const submitShift = (user_id, startTime, endTime, date) => {
     axios
       .post('/api/events/add', addShift(user_id, startTime, endTime, date))
-
       .then(() => {
         axios.get('api/shifts/events').then((res) => {
           setShift(res.data.data);

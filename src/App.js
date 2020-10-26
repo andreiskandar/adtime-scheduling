@@ -8,8 +8,8 @@ import './global.scss';
 export default () => (
   <Router {...{ history }}>
     <Switch>
-      {routes.map(({ component, exact = true, path }) => (
-        <Route {...{ component, exact, path }} />
+      {routes.map(({ component, exact = true, path }, idx) => (
+        <Route key={idx} {...{ component, exact, path }} />
       ))}
       <Redirect {...{ to: '/' }} />
     </Switch>

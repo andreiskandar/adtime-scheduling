@@ -5,13 +5,17 @@ function Header() {
   const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
   const hours = ['09a', '10a', '11a', '12p', '01p', '02p', '03p', '04p', '05p', '06p', '07p', '08p'];
 
-  const hourElement = hours.map((hour) => {
-    return <div className='hour'>{hour}</div>;
+  const hourElement = hours.map((hour, idx) => {
+    return (
+      <div key={idx} className='hour'>
+        {hour}
+      </div>
+    );
   });
 
-  const daysElement = days.map((day) => {
+  const daysElement = days.map((day, idx) => {
     return (
-      <div className='days__header'>
+      <div key={idx} className='days__header'>
         <div className='day_date__header'>{day}, Current Date</div>
         <div className='hours__header'>{hourElement}</div>
       </div>

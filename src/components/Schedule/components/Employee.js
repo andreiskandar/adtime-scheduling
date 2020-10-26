@@ -41,8 +41,17 @@ const Employee = (props) => {
   const num_hours = totalHours === 1 ? '1 hr' : totalHours > 1 ? `${totalHours} hrs` : '';
   const num_event = totalEvents === '1' ? '1 event' : totalEvents > '1' ? `${totalEvents} events` : '';
 
-  const renderEmployeeGridPerDay = date_from_calendar.map((date) => {
-    return <EmployeeGrid date={date} shift_id={slotMap[date]} {...props} users={props.users} color={color} />;
+  const renderEmployeeGridPerDay = date_from_calendar.map((date, idx) => {
+    return (
+      <EmployeeGrid
+        key={idx + Date.now}
+        date={date}
+        shift_id={slotMap[date]}
+        {...props}
+        users={props.users}
+        color={color}
+      />
+    );
   });
 
   return (
