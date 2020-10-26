@@ -20,6 +20,7 @@ export default () => {
 
   useEffect(() => {
     transferShift();
+    cancelShift();
     publishSchedule();
     const apiUsers = axios.get('/api/users');
     const apiUserShift = axios.get('api/shifts/events');
@@ -51,18 +52,17 @@ export default () => {
   };
 
   const removeShift = (user_id, startTime, endTime, date) => {
-    axios
-      .delete('/api/shiftid/delete', cancelShift(user_id, startTime, endTime, date))
-
-      .then(() => {
-        axios.get('api/shifts/events').then((res) => {
-          setShift(res.data.data);
-        });
-      })
-      .catch((e) => {
-        console.log('Error from adding shift', e);
+    let payload = cancelShift(user_id, startTime, endTime, date)
+    axios.delete('/api/events/delete', { params: payload })
+    .then(() => {
+      axios.get('api/shifts/events').then((res) => {
+        setShift(res.data.data);
       });
-  };
+    })
+    .catch((e) => {
+      console.log('Error from deleting shift(s)', e);
+    })
+  }  
 
   const employees = users.map((user) => {
     return (
@@ -71,7 +71,7 @@ export default () => {
         {...user}
         users={users}
         submitShift={submitShift}
-        cancelShift={removeShift}
+        removeShift={removeShift}
         transferShift={transferShift}
         shift={shift}
         setShift={setShift}
