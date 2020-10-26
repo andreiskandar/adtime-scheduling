@@ -1,22 +1,21 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import './employeeGrid.scss';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import HOURS_DICT from '../../../helpers/dictionary';
+import { HOURS_DICT } from '../../../helpers/dictionary';
 import TransferShiftMenuButton from './TransferShiftMenuButton';
 import useStyles from './styles/formStyles';
 import Avatar from '@material-ui/core/Avatar';
 import useVisualMode from '../../../hooks/useVisualMode';
-import addShift from 'helpers/addShift';
 import cancelShift from 'helpers/cancelShift';
-import axios from 'axios';
+import { ERROR_MESSAGES_DICT } from '../../../helpers/dictionary';
 
 const EmployeeGrid = (props) => {
   const classes = useStyles();
-  const { shift_id, users, date, setShift, shift } = props;
+  const { shift_id, users, date } = props;
   const event_date = date.split('T')[0];
   const [startTime, setStartTime] = useState(0);
   const [endTime, setEndTime] = useState('');
@@ -24,10 +23,23 @@ const EmployeeGrid = (props) => {
   const [selected, setSelected] = useState('');
   const [error, setError] = useState('');
 
-  const handleClickOpen = (e) => {
+  const clickGrid = (e) => {
+    // getting grid_id from user selection
+    const grid_id = parseInt(e.target.attributes[0].value);
+
+    // open modal
     setOpen(true);
-    const start_time = HOURS_DICT[parseInt(e.target.attributes[0].value) + 1];
+
+    // convert grid_id to hours for database query
+    const start_time = HOURS_DICT[grid_id + 1];
+
     setStartTime(start_time);
+
+    // time validation when user selects time that has been booked
+    if (shift_id && shift_id.includes(grid_id)) {
+      setError(ERROR_MESSAGES_DICT['DOUBLE_BOOKED']);
+      return;
+    }
   };
 
   const cancel = () => {
@@ -36,15 +48,25 @@ const EmployeeGrid = (props) => {
     setOpen(false);
   };
 
-  const validate = () => {
+  const validate = (e) => {
     if (!endTime) {
-      setError('End time cannot be blank');
+      setError(ERROR_MESSAGES_DICT['CANNOT_BE_BLANK']);
       return;
     }
     if (endTime > '21:01') {
-      setError('End time can not be after 21:00');
+      setError(ERROR_MESSAGES_DICT['AFTER_9PM']);
       return;
     }
+
+    // convert end_time to shift_id
+    const endTimeShiftId = parseInt(endTime) - 8;
+    // FIX THIS LATER. BUG EXISTS
+    if (shift_id.includes(endTimeShiftId)) {
+      setError(ERROR_MESSAGES_DICT['DOUBLE_BOOKED']);
+      return;
+    }
+    // check if end_time includes within shift_id
+    // setError
 
     submit(date);
   };
@@ -58,7 +80,6 @@ const EmployeeGrid = (props) => {
     props.submitShift(user_id, start_time, end_time, date);
 
     setError('');
-    setSelected('');
     setSelected('');
     setOpen(false);
   };
@@ -76,8 +97,10 @@ const EmployeeGrid = (props) => {
 
   const renderSpan = Array.from({ length: 12 }, (x, i) => {
     const background = shift_id && shift_id.includes(i + 1) ? props.color : '#eeeeee';
-    return <span key={i} data-id={i} onClick={handleClickOpen} style={{ backgroundColor: `${background}` }} />;
+    return <span key={i} data-id={i} onClick={clickGrid} style={{ backgroundColor: `${background}` }} />;
   });
+
+  const errorElement = <section className={classes.error}>{error}</section>;
 
   const transferShiftSelected = (
     <>
@@ -101,7 +124,8 @@ const EmployeeGrid = (props) => {
           </div>
           {selected && transferShiftSelected}
         </div>
-        <section className={classes.error}>{error}</section>
+        {error && errorElement}
+        {/* <section className={classes.error}>{error && errorElement}</section> */}
         <section>{date}</section>
         <form>
           <div className={classes.root}>
@@ -126,9 +150,11 @@ const EmployeeGrid = (props) => {
           <Button onClick={handleDelete} color='secondary' variant='contained'>
             Delete
           </Button>
-          <Button onClick={validate} color='primary' variant='contained'>
-            Submit
-          </Button>
+          {!error && (
+            <Button onClick={validate} color='primary' variant='contained'>
+              Submit
+            </Button>
+          )}
         </DialogActions>
       </Dialog>
     </>

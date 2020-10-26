@@ -13,4 +13,9 @@ const HOURS_DICT = {
   12: '20:00',
 };
 
-export default HOURS_DICT;
+const ERROR_MESSAGES_DICT = {
+  CANNOT_BE_BLANK: 'End time cannot be blank',
+  AFTER_9PM: 'End time can not be after 21:00',
+  DOUBLE_BOOKED: 'The shift has been booked',
+};
+module.exports = { HOURS_DICT, ERROR_MESSAGES_DICT };

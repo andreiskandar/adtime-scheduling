@@ -24,6 +24,9 @@ const useStyles = makeStyles((theme) => ({
     margin: '0 5px',
   },
   error: {
+    border: 'solid thin red',
+    margin: '0 8px',
+    borderRadius: '3px',
     height: '20px',
     display: 'flex',
     justifyContent: 'center',
