@@ -15,7 +15,8 @@ import cancelShift from 'helpers/cancelShift';
 
 const EmployeeGrid = (props) => {
   const classes = useStyles();
-  const { shift_id, users } = props;
+  const { shift_id, users, date } = props;
+  const event_date = date.split('T')[0];
   const [startTime, setStartTime] = useState(0);
   const [endTime, setEndTime] = useState('');
   const [open, setOpen] = useState(false);
@@ -44,10 +45,11 @@ const EmployeeGrid = (props) => {
       return;
     }
 
-    submit();
+    submit(date);
   };
 
-  const submit = () => {
+  const submit = (event_date) => {
+    const date = event_date.split('T')[0];
     const user_id = props.id;
     const start_time = startTime;
     const end_time = endTime;
@@ -71,7 +73,7 @@ const EmployeeGrid = (props) => {
     const user_id = props.id;
     const start_time = startTime;
     const end_time = endTime;
-    cancelShift();
+    cancelShift(event_date);
   };
 
   const renderSpan = Array.from({ length: 12 }, (x, i) => {
@@ -102,7 +104,7 @@ const EmployeeGrid = (props) => {
           {selected && transferShiftSelected}
         </div>
         <section className={classes.error}>{error}</section>
-
+        <section>{date}</section>
         <form>
           <div className={classes.root}>
             <TextField autoFocus margin='dense' id='start_time' label='Start Time' value={startTime} type='time' />

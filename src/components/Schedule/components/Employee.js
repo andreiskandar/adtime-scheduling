@@ -42,7 +42,7 @@ const Employee = (props) => {
   const num_event = totalEvents === '1' ? '1 event' : totalEvents > '1' ? `${totalEvents} events` : '';
 
   const renderEmployeeGridPerDay = date_from_calendar.map((date) => {
-    return <EmployeeGrid shift_id={slotMap[date]} {...props} users={props.users} color={color} />;
+    return <EmployeeGrid date={date} shift_id={slotMap[date]} {...props} users={props.users} color={color} />;
   });
 
   return (
