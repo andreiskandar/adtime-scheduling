@@ -88,11 +88,13 @@ const EmployeeGrid = (props) => {
     setOpen(false);
   };
 
+
   const handleDelete = () => {
+    const date = event_date.split('T')[0];
     const user_id = props.id;
     const start_time = startTime;
     const end_time = endTime;
-    cancelShift(event_date);
+    props.removeShift(user_id, start_time, end_time, date);
   };
 
   const renderSpan = Array.from({ length: 12 }, (x, i) => {
