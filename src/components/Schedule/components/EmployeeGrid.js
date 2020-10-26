@@ -1,18 +1,12 @@
 import React, { useState } from 'react';
 import './employeeGrid.scss';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
+import { Dialog, DialogActions, DialogTitle, Button, TextField, Avatar } from '@material-ui/core';
 import { HOURS_DICT } from '../../../helpers/dictionary';
 import TransferShiftMenuButton from './TransferShiftMenuButton';
 import useStyles from './styles/formStyles';
-import Avatar from '@material-ui/core/Avatar';
 import useVisualMode from '../../../hooks/useVisualMode';
-import cancelShift from 'helpers/cancelShift';
 import { ERROR_MESSAGES_DICT } from '../../../helpers/dictionary';
-import axios from 'axios';
+
 const EmployeeGrid = (props) => {
   const classes = useStyles();
   const { shift_id, users, date } = props;
@@ -59,12 +53,12 @@ const EmployeeGrid = (props) => {
     }
 
     // convert end_time to shift_id
-    const endTimeShiftId = parseInt(endTime) - 8;
-    // FIX THIS LATER. BUG EXISTS
-    if (shift_id.includes(endTimeShiftId - 1)) {
-      setError(ERROR_MESSAGES_DICT['DOUBLE_BOOKED']);
-      return;
-    }
+    // const endTimeShiftId = parseInt(endTime) - 8;
+    // // FIX THIS LATER. BUG EXISTS
+    // if (shift_id.includes(endTimeShiftId)) {
+    //   setError(ERROR_MESSAGES_DICT['DOUBLE_BOOKED']);
+    //   return;
+    // }
 
     submit(date);
   };

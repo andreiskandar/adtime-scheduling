@@ -1,10 +1,6 @@
 import React, { useState } from 'react';
 import useStyles from './styles/formStyles';
-import Avatar from '@material-ui/core/Avatar';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
+import { DialogActions, DialogTitle, Button, TextField, Avatar } from '@material-ui/core/';
 
 const Form = (props) => {
   const classes = useStyles();
