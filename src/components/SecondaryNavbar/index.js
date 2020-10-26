@@ -24,7 +24,7 @@ const PublishButton = (props) => {
       .then(setPublish(true))
       .then(setWording('Unpublish'))
       .catch((e) => {
-        console.log("ERROR in AXIOS", e);
+        console.log("Publish ERROR in AXIOS", e);
       });
     } else {
       axios.put('/api/events/publish', { publish: false, firstDay: '2020-10-19', lastDay: '2020-10-26' })
