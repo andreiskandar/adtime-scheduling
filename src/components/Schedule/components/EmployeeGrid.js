@@ -16,6 +16,7 @@ import cancelShift from 'helpers/cancelShift';
 const EmployeeGrid = (props) => {
   const classes = useStyles();
   const { shift_id, users, date } = props;
+  const event_date = date.split('T')[0];
   const [startTime, setStartTime] = useState(0);
   const [endTime, setEndTime] = useState('');
   const [open, setOpen] = useState(false);
@@ -68,11 +69,11 @@ const EmployeeGrid = (props) => {
     setOpen(false);
   };
 
-  const handleDelete = (date) => {
+  const handleDelete = () => {
     const user_id = props.id;
     const start_time = startTime;
     const end_time = endTime;
-    cancelShift();
+    cancelShift(event_date);
   };
 
   const renderSpan = Array.from({ length: 12 }, (x, i) => {
