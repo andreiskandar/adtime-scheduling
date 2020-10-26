@@ -15,3 +15,4 @@ const addShift = (user_id, start_time, end_time, event_date) => {
 };
 
 export default addShift;
+
