@@ -10,11 +10,13 @@ import TransferShiftMenuButton from './TransferShiftMenuButton';
 import useStyles from './styles/formStyles';
 import Avatar from '@material-ui/core/Avatar';
 import useVisualMode from '../../../hooks/useVisualMode';
+import addShift from 'helpers/addShift';
+import cancelShift from 'helpers/cancelShift';
 
 const EmployeeGrid = (props) => {
   const classes = useStyles();
   const { shift_id, users } = props;
-  const [spanId, setSpanId] = useState(0);
+  const [startTime, setStartTime] = useState(0);
   const [endTime, setEndTime] = useState('');
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState('');
@@ -23,7 +25,7 @@ const EmployeeGrid = (props) => {
   const handleClickOpen = (e) => {
     setOpen(true);
     const start_time = HOURS_DICT[parseInt(e.target.attributes[0].value) + 1];
-    setSpanId(start_time);
+    setStartTime(start_time);
   };
 
   const cancel = () => {
@@ -32,7 +34,7 @@ const EmployeeGrid = (props) => {
     setOpen(false);
   };
 
-  const handleSubmitTransfer = () => {
+  const validate = () => {
     if (!endTime) {
       setError('End time cannot be blank');
       return;
@@ -42,7 +44,19 @@ const EmployeeGrid = (props) => {
       return;
     }
 
-    // call function to axios.post request using selected.user_id and endTime
+    submit();
+  };
+
+  const submit = () => {
+    const user_id = selected.user_id;
+    const start_time = startTime;
+    const end_time = endTime;
+
+    // how to get event_date for addShift function
+
+    addShift();
+
+    // call function to axios.post request using selected.user_id, startTime(startTime), endTime, event_date
     setError('');
     setSelected('');
     setSelected('');
@@ -53,7 +67,9 @@ const EmployeeGrid = (props) => {
     setOpen(false);
   };
 
-  const handleDelete = () => {};
+  const handleDelete = () => {
+    cancelShift();
+  };
 
   const renderSpan = Array.from({ length: 12 }, (x, i) => {
     const background = shift_id && shift_id.includes(i + 1) ? props.color : '#eeeeee';
@@ -86,7 +102,7 @@ const EmployeeGrid = (props) => {
 
         <form>
           <div className={classes.root}>
-            <TextField autoFocus margin='dense' id='start_time' label='Start Time' value={spanId} type='time' />
+            <TextField autoFocus margin='dense' id='start_time' label='Start Time' value={startTime} type='time' />
             <TextField
               autoFocus
               margin='dense'
@@ -95,7 +111,7 @@ const EmployeeGrid = (props) => {
               value={endTime}
               onChange={(e) => setEndTime(e.target.value)}
               type='text'
-              placeholder={parseInt(spanId) + 1 + ':00'}
+              placeholder={parseInt(startTime) + 1 + ':00'}
             />
           </div>
         </form>
@@ -107,7 +123,7 @@ const EmployeeGrid = (props) => {
           <Button onClick={handleDelete} color='secondary' variant='contained'>
             Delete
           </Button>
-          <Button onClick={handleSubmitTransfer} color='primary' variant='contained'>
+          <Button onClick={validate} color='primary' variant='contained'>
             Submit
           </Button>
         </DialogActions>
