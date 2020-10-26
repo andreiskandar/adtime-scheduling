@@ -68,6 +68,9 @@ const EmployeeGrid = (props) => {
   };
 
   const handleDelete = () => {
+    const user_id = selected.user_id;
+    const start_time = startTime;
+    const end_time = endTime;
     cancelShift();
   };
 
