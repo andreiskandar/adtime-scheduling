@@ -1,6 +1,6 @@
 import React from 'react';
 import TodayIcon from '@material-ui/icons/Today';
-import './styles.scss';
+import './WeekCalendar.scss';
 const WeekCalendar = () => {
   return (
     <div className='weekCalendar'>
