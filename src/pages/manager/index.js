@@ -1,33 +1,32 @@
-import React, { useEffect, useState } from 'react';
 import './styles.scss';
-import { auth, manager as managerService } from 'services';
-import Button from '@material-ui/core/Button';
+import React, { useEffect, useState } from 'react';
+import history from 'app/history'
 import { Navbar, SecondaryNavbar, Schedule } from 'components';
+import { user } from 'controllers'
 
 export default () => {
-  const [managers, setManagers] = useState([]);
+  const [isInitialRender, setIsInitialRender] = useState(true)
+  const [isAuthenticated, setIsAuthenticated] = useState(false)
+  
+  useEffect(() => {
+    if (!user.isAuthenticated()) {
+      return history.push('/')
+    }
+    if (user.getRole() !== 'admin') {
+      return history.push('/employee')
+    }
+    if (isInitialRender && !isAuthenticated) {
+      setIsInitialRender(false)
+    }
+  })
 
-  // useEffect(() => {
-  //   async function invoke() {
-  //     setManagers(await managerService.list());
-  //   }
-  //   invoke();
-  // }, []);
+  if (isInitialRender) return null
 
   return (
     <>
       <Navbar />
       <SecondaryNavbar />
       <Schedule />
-
-      {/* {managers.map((manager) => {
-        return (
-          <div>
-            {manager.firstName}
-            {manager.lastName}
-          </div>
-        );
-      })} */}
     </>
   );
 };

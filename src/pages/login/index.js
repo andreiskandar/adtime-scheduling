@@ -1,12 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './styles.scss';
-import { auth } from 'services';
+import { user } from 'controllers';
 import { Button, Grid, InputAdornment, TextField } from '@material-ui/core';
 import { Email, LockRounded } from '@material-ui/icons';
+import history from 'app/history'
 
 export default () => {
+  const [isInitialRender, setIsInitialRender] = useState(true)
+  const [isAuthenticated, setIsAuthenticated] = useState(false)
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [password, setPassword] = useState('password');
+
+  useEffect(() => {
+    if (user.isAuthenticated()) {
+      const redirectTo = user.getRole() === 'admin'
+        ? '/manager'
+        : '/employee'
+      return history.push(redirectTo)
+    }
+    if (isInitialRender && !isAuthenticated) {
+      setIsInitialRender(false)
+    }
+  })
+
+  if (isInitialRender) return null
 
   return (
     <div>
@@ -55,7 +72,7 @@ export default () => {
               }}
             />
             <TextField
-              type='password'
+              type='text  '
               label='Password'
               for='passwordInput'
               id='passwordInput'
@@ -77,7 +94,14 @@ export default () => {
               color='primary'
               variant='contained'
               {...{
-                onClick: () => auth.login(email, password),
+                onClick: async () => {
+                  try {
+                    await user.login(email, password)
+                    setIsAuthenticated(true)
+                  } catch(err) {
+                    console.error(err)
+                  }
+                },
                 type: 'submit',
               }}
             >
