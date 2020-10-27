@@ -95,13 +95,10 @@ export default (props) => {
         transferShiftId={transferShiftId}
         shift={shift}
         setShift={setShift}
-<<<<<<< HEAD
-        categories={categories}
-=======
+        categories={categories}        
         week = {props.week}
         setWeek = {props.setWeek}
         dateSelector = {dateSelector}
->>>>>>> david-fe
       />
     );
   });
