@@ -18,6 +18,7 @@ export default () => {
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
+    cancelShift();
     const apiUsers = axios.get('/api/users');
     const apiUserShift = axios.get('api/shifts/events');
     const apiCategories = axios.get('api/categories');
@@ -67,7 +68,9 @@ export default () => {
     axios
       .put('/api/events/transfer', payload)
       .then(() => {
-        console.log('Good');
+        axios.get('api/shifts/events').then((res) => {
+          setShift(res.data);
+        });        
       })
       .catch((e) => {
         console.log('Error from transfering shift(s)', e);
