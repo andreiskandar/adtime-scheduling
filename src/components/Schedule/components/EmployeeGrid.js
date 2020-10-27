@@ -12,7 +12,7 @@ import Avatar from '@material-ui/core/Avatar';
 import useVisualMode from '../../../hooks/useVisualMode';
 import cancelShift from 'helpers/cancelShift';
 import { ERROR_MESSAGES_DICT } from '../../../helpers/dictionary';
-
+import axios from 'axios';
 const EmployeeGrid = (props) => {
   const classes = useStyles();
   const { shift_id, users, date } = props;
@@ -100,13 +100,12 @@ const EmployeeGrid = (props) => {
     const start_time = startTime;
     const end_time = endTime;
 
-    props.removeShift(user_id, start_time, end_time, date);  
+    props.removeShift(user_id, start_time, end_time, date);
 
     setError('');
     setSelected('');
     setOpen(false);
-  }
-
+  };
 
   const renderSpan = Array.from({ length: 12 }, (x, i) => {
     const background = shift_id && shift_id.includes(i + 1) ? props.color : '#eeeeee';
