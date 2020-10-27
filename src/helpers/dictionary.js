@@ -18,4 +18,5 @@ const ERROR_MESSAGES_DICT = {
   AFTER_9PM: 'End time can not be after 21:00',
   DOUBLE_BOOKED: 'The shift has been booked',
 };
+
 module.exports = { HOURS_DICT, ERROR_MESSAGES_DICT };
