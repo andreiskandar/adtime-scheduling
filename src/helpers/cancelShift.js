@@ -1,4 +1,3 @@
-
 const cancelShift = (user_id, start_time, end_time, event_date) => {
   const shift_id = [];
   const startTime = parseInt(start_time);

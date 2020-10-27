@@ -65,6 +65,18 @@ export default () => {
       });
   };
 
+  const transferShiftId = (user_id, shift_id, start_time, end_time, category_id, transferToId) => {
+    let payload = transferShift(user_id, shift_id, start_time, end_time, category_id, transferToId)
+    axios.put('/api/events/transfer', payload)
+      .then(() => {
+        console.log("Good")
+      })
+      .catch((e) => {
+        console.log("Error from transfering shift(s)", e);
+      });
+   };
+  
+
   const employees = users.map((user) => {
     return (
       <Employee
@@ -73,7 +85,7 @@ export default () => {
         users={users}
         submitShift={submitShift}
         removeShift={removeShift}
-        transferShift={transferShift}
+        transferShiftId={transferShiftId}
         shift={shift}
         setShift={setShift}
         categories={categories}

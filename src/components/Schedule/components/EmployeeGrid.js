@@ -64,15 +64,17 @@ const EmployeeGrid = (props) => {
 
     submit(date);
   };
-
+  
   const submit = (event_date) => {
     const date = event_date.split('T')[0];
     const user_id = props.id;
     const start_time = startTime;
     const end_time = endTime;
-    const category_id = categorySelected.id;
-    props.submitShift(user_id, start_time, end_time, date);
-
+    if (!selected) {
+      props.submitShift(user_id, start_time, end_time, date);
+    } else {
+      props.transferShift();
+    }
     setError('');
     setSelected('');
     setOpen(false);
