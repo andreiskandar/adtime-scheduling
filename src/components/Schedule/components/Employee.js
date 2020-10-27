@@ -6,17 +6,17 @@ import './employee.scss';
 
 const Employee = (props) => {
   const { id, name, avatar, shift, color, users, categories } = props;
-
+  
   const date_from_calendar = [
-    '2020-10-19T00:00:00.000Z',
-    '2020-10-20T00:00:00.000Z',
-    '2020-10-21T00:00:00.000Z',
-    '2020-10-22T00:00:00.000Z',
-    '2020-10-23T00:00:00.000Z',
-    '2020-10-24T00:00:00.000Z',
-    '2020-10-25T00:00:00.000Z',
+    '2020-10-19T07:00:00.000Z',
+    '2020-10-20T07:00:00.000Z',
+    '2020-10-21T07:00:00.000Z',
+    '2020-10-22T07:00:00.000Z',
+    '2020-10-23T07:00:00.000Z',
+    '2020-10-24T07:00:00.000Z',
+    '2020-10-25T07:00:00.000Z',
   ];
-
+ 
   const slotMap = shift.reduce((acc, cur) => {
     if (cur.user_id && cur.user_id === id) {
       if (!acc[cur.event_date]) {

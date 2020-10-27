@@ -54,13 +54,13 @@ const EmployeeGrid = (props) => {
       return;
     }
 
-    // // convert end_time to shift_id
-    const endTimeShiftId = parseInt(endTime) - 8;
-    // // FIX THIS LATER. BUG EXISTS
-    if (shift_id.includes(endTimeShiftId)) {
-      setError(ERROR_MESSAGES_DICT['DOUBLE_BOOKED']);
-      return;
-    }
+    // // // convert end_time to shift_id
+    // const endTimeShiftId = parseInt(endTime) - 8;
+    // // // FIX THIS LATER. BUG EXISTS
+    // if (shift_id.includes(endTimeShiftId)) {
+    //   setError(ERROR_MESSAGES_DICT['DOUBLE_BOOKED']);
+    //   return;
+    // }
 
     submit(date);
   };
@@ -70,11 +70,13 @@ const EmployeeGrid = (props) => {
     const user_id = props.id;
     const start_time = startTime;
     const end_time = endTime;
+    const transferToUserId = selected.id;
     if (!selected) {
       props.submitShift(user_id, start_time, end_time, date);
     } else {
-      props.transferShift();
+      props.transferShiftId(user_id, start_time, end_time, date, transferToUserId);
     }
+
     setError('');
     setSelected('');
     setOpen(false);
