@@ -1,8 +1,7 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import 'antd/dist/antd.css';
 import './MiniCalendar.scss';
 import { Calendar } from 'antd';
+//import 'antd/dist/antd.css';
 
 
 const MiniCalendar = () => {

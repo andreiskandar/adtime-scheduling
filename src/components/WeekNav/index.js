@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
+import './WeekCalendar.scss';
 import WeekCalendar from './WeekCalendar';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import { Dialog, DialogActions, DialogTitle, Button, TextField, Avatar } from '@material-ui/core';
-//import MiniCalendar from './MiniCalendar/MiniCalendar'
-import './WeekCalendar.scss';
+import MiniCalendar from './MiniCalendar/MiniCalendar'
+
 
 export default () => {
   const [open, setOpen] = useState(false);
@@ -26,7 +27,7 @@ export default () => {
       <Button onClick={openCalendar}>
         <WeekCalendar />
         <Dialog open={open} onClose={handleClose} maxWidth='lg'>
-         
+         <MiniCalendar></MiniCalendar>
         </Dialog>
       </Button>
 
