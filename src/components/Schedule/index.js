@@ -57,7 +57,7 @@ export default () => {
       .delete('/api/events/delete', { params: payload })
       .then(() => {
         axios.get('api/shifts/events').then((res) => {
-          setShift(res.data.data);
+          setShift(res.data);
         });
       })
       .catch((e) => {
