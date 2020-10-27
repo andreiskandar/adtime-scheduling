@@ -19,12 +19,13 @@ const PublishButton = (props) => {
 
   const clickedMe = (e) => {
     if (publish === false) {
-      axios.put('/api/events/publish', { publish: true, firstDay: '2020-10-19', lastDay: '2020-10-26' })
-      .then(setPublish(true))
-      .then(setWording('Unpublish'))
-      .catch((e) => {
-        console.log("Publish ERROR in AXIOS", e);
-      });
+      axios
+        .put('/api/events/publish', { publish: true, firstDay: '2020-10-19', lastDay: '2020-10-26' })
+        .then(setPublish(true))
+        .then(setWording('Unpublish'))
+        .catch((e) => {
+          console.log('Publish ERROR in AXIOS', e);
+        });
     } else {
       axios
         .put('/api/events/publish', { publish: false, firstDay: '2020-10-19', lastDay: '2020-10-26' })
@@ -40,7 +41,7 @@ const PublishButton = (props) => {
   return (
     <main className='secondary__navbar'>
       <SearchBar />
-      <WeekNav clickLeftCalendar = {props.clickLeftCalendar} clickRightCalendar = {props.clickRightCalendar} />
+      <WeekNav clickLeftCalendar={props.clickLeftCalendar} clickRightCalendar={props.clickRightCalendar} />
       <Button onClick={clickedMe} className={buttonClass}>
         <CheckIcon className='icon icon__secondary_navbar' />
         {wording}

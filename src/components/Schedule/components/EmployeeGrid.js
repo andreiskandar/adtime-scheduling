@@ -55,23 +55,23 @@ const EmployeeGrid = (props) => {
     }
 
     // // // convert end_time to shift_id
-    // const endTimeShiftId = parseInt(endTime) - 8;
-    // // // FIX THIS LATER. BUG EXISTS
-    // if (shift_id.includes(endTimeShiftId)) {
-    //   setError(ERROR_MESSAGES_DICT['DOUBLE_BOOKED']);
-    //   return;
-    // }
+    const endTimeShiftId = parseInt(endTime) - 8;
+    if (shift_id.includes(endTimeShiftId - 1)) {
+      setError(ERROR_MESSAGES_DICT['DOUBLE_BOOKED']);
+      return;
+    }
 
     submit();
   };
+  console.log('selected:', selected);
 
   const submit = () => {
     const user_id = props.id;
     const start_time = startTime;
     const end_time = endTime;
-    const category_id = categorySelected.id;
+    const category_id = categorySelected.id || 1;
     const transferToUserId = selected.id;
-    
+
     if (!selected) {
       props.submitShift(user_id, start_time, end_time, event_date, category_id);
     } else {
@@ -159,11 +159,12 @@ const EmployeeGrid = (props) => {
           <Button onClick={handleDelete} color='secondary' variant='contained'>
             Delete
           </Button>
-          {!error && (
-            <Button onClick={validate} color='primary' variant='contained'>
-              Submit
-            </Button>
-          )}
+          {!error ||
+            (selected && (
+              <Button onClick={validate} color='primary' variant='contained'>
+                Submit
+              </Button>
+            ))}
         </DialogActions>
       </Dialog>
     </>
