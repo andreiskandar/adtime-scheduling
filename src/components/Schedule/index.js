@@ -12,10 +12,17 @@ import transferShift from 'helpers/transferShift';
 import cancelShift from 'helpers/cancelShift';
 import publishSchedule from 'helpers/publishSchedule';
 
-export default () => {
+// const { addShift, transferShift, cancelShift } = require('../../helpers');
+
+export default (props) => {
   const [users, setUsers] = useState([]);
   const [shift, setShift] = useState([]);
+  const [date, setDate] = useState('')
   const [categories, setCategories] = useState([]);
+  
+  const dateSelector = (date) => {
+    setDate(date)
+  }
 
   useEffect(() => {
     cancelShift();
@@ -88,7 +95,13 @@ export default () => {
         transferShiftId={transferShiftId}
         shift={shift}
         setShift={setShift}
+<<<<<<< HEAD
         categories={categories}
+=======
+        week = {props.week}
+        setWeek = {props.setWeek}
+        dateSelector = {dateSelector}
+>>>>>>> david-fe
       />
     );
   });
@@ -96,7 +109,7 @@ export default () => {
   return (
     <div className='scroll'>
       <Card className='schedule'>
-        <Header />
+        <Header date = {date}/>
         {employees}
       </Card>
     </div>
