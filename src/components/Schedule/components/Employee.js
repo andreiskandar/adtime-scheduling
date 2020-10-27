@@ -7,15 +7,40 @@ import './employee.scss';
 const Employee = (props) => {
   const { id, name, avatar, shift, color } = props;
 
-  const date_from_calendar = [
-    '2020-10-19T00:00:00.000Z',
-    '2020-10-20T00:00:00.000Z',
-    '2020-10-21T00:00:00.000Z',
-    '2020-10-22T00:00:00.000Z',
-    '2020-10-23T00:00:00.000Z',
-    '2020-10-24T00:00:00.000Z',
-    '2020-10-25T00:00:00.000Z',
-  ];
+  const date_from_calendar = {
+    1: [
+      '2020-10-12T00:00:00.000Z',
+      '2020-10-13T00:00:00.000Z',
+      '2020-10-14T00:00:00.000Z',
+      '2020-10-15T00:00:00.000Z',
+      '2020-10-16T00:00:00.000Z',
+      '2020-10-17T00:00:00.000Z',
+      '2020-10-18T00:00:00.000Z'
+    ],
+    2: [
+      '2020-10-19T00:00:00.000Z',
+      '2020-10-20T00:00:00.000Z',
+      '2020-10-21T00:00:00.000Z',
+      '2020-10-22T00:00:00.000Z',
+      '2020-10-23T00:00:00.000Z',
+      '2020-10-24T00:00:00.000Z',
+      '2020-10-25T00:00:00.000Z'
+    ],  
+    3: [
+      '2020-10-26T00:00:00.000Z',
+      '2020-10-27T00:00:00.000Z',
+      '2020-10-28T00:00:00.000Z',
+      '2020-10-29T00:00:00.000Z',
+      '2020-10-30T00:00:00.000Z',
+      '2020-10-31T00:00:00.000Z',
+      '2020-11-01T00:00:00.000Z'
+    ],  
+  };
+
+  const weekSelector = () => {
+    return date_from_calendar[2];
+  } 
+  const weekPicked = weekSelector();
 
   const slotMap = shift.reduce((acc, cur) => {
     if (cur.user_id && cur.user_id === id) {
@@ -41,7 +66,7 @@ const Employee = (props) => {
   const num_hours = totalHours === 1 ? '1 hr' : totalHours > 1 ? `${totalHours} hrs` : '';
   const num_event = totalEvents === '1' ? '1 event' : totalEvents > '1' ? `${totalEvents} events` : '';
 
-  const renderEmployeeGridPerDay = date_from_calendar.map((date, idx) => {
+  const renderEmployeeGridPerDay = weekPicked.map((date, idx) => {
     return (
       <EmployeeGrid
         key={idx + Date.now}
