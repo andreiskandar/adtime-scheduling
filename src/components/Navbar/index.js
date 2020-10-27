@@ -13,13 +13,10 @@ const useStyles = makeStyles((theme) => ({
   },
 })); 
 
-    {/* <AccountCircleOutlinedIcon className='icon icon__navbar' /> */}
 export default (props) => {
   const classes = useStyles();
   const { username, avatar } = JSON.parse(localStorage.user)
   
-  // this will receive props username then to show in the navbar
-  // if user is logged in, hide login link
   return (
     <div className='navbar'>
       <div className='navbar links__navbar'>
