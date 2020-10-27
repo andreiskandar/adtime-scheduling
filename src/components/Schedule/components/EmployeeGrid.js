@@ -44,6 +44,15 @@ const EmployeeGrid = (props) => {
     setOpen(false);
   };
 
+  const validateTransfer = (e) => {
+    // // // convert end_time to shift_id
+    const endTimeShiftId = parseInt(endTime) - 8;
+    if (shift_id.includes(endTimeShiftId - 1)) {
+      setError(ERROR_MESSAGES_DICT['DOUBLE_BOOKED']);
+      return;
+    }
+  };
+
   const validate = (e) => {
     if (!endTime) {
       setError(ERROR_MESSAGES_DICT['CANNOT_BE_BLANK']);
@@ -54,16 +63,8 @@ const EmployeeGrid = (props) => {
       return;
     }
 
-    // // // convert end_time to shift_id
-    const endTimeShiftId = parseInt(endTime) - 8;
-    if (shift_id.includes(endTimeShiftId - 1)) {
-      setError(ERROR_MESSAGES_DICT['DOUBLE_BOOKED']);
-      return;
-    }
-
     submit();
   };
-  console.log('selected:', selected);
 
   const submit = () => {
     const user_id = props.id;
@@ -75,7 +76,7 @@ const EmployeeGrid = (props) => {
     if (!selected) {
       props.submitShift(user_id, start_time, end_time, event_date, category_id);
     } else {
-      props.transferShiftId(user_id, start_time, end_time, date, transferToUserId);
+      props.transferShiftId(user_id, start_time, end_time, transferToUserId, event_date, category_id);
     }
     reset();
   };
@@ -159,12 +160,16 @@ const EmployeeGrid = (props) => {
           <Button onClick={handleDelete} color='secondary' variant='contained'>
             Delete
           </Button>
-          {!error ||
-            (selected && (
-              <Button onClick={validate} color='primary' variant='contained'>
-                Submit
-              </Button>
-            ))}
+          {!error && (
+            <Button onClick={validate} color='primary' variant='contained'>
+              Submit
+            </Button>
+          )}
+          {selected && (
+            <Button onClick={validate} color='primary' variant='contained'>
+              Submit
+            </Button>
+          )}
         </DialogActions>
       </Dialog>
     </>
