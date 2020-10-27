@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import './employeeGrid.scss';
 import { Dialog, DialogActions, DialogTitle, Button, TextField, Avatar } from '@material-ui/core';
-import { HOURS_DICT } from '../../../helpers/dictionary';
+import { HOURS_DICT, ERROR_MESSAGES_DICT } from '../../../helpers/dictionary';
 import TransferShiftMenuButton from './TransferShiftMenuButton';
 import CategoryButton from './CategoryButton';
 import useStyles from './styles/formStyles';
 import useVisualMode from '../../../hooks/useVisualMode';
-import { ERROR_MESSAGES_DICT } from '../../../helpers/dictionary';
 
 const EmployeeGrid = (props) => {
   const classes = useStyles();
