@@ -1,11 +1,12 @@
 import React from 'react';
 import EmployeeGrid from './EmployeeGrid';
 import EmployeeHeader from './EmployeeHeader';
+import { default as WeekNav } from '../../WeekNav/index';
 
 import './employee.scss';
 
 const Employee = (props) => {
-  const { id, name, avatar, shift, color } = props;
+  const { id, name, avatar, shift, color, dateSelector } = props;
 
   const date_from_calendar = {
     1: [
@@ -38,7 +39,8 @@ const Employee = (props) => {
   };
 
   const weekSelector = () => {
-    return date_from_calendar[2];
+    props.setWeek(props.week)
+    return date_from_calendar[props.week];
   } 
   const weekPicked = weekSelector();
 
@@ -67,6 +69,7 @@ const Employee = (props) => {
   const num_event = totalEvents === '1' ? '1 event' : totalEvents > '1' ? `${totalEvents} events` : '';
 
   const renderEmployeeGridPerDay = weekPicked.map((date, idx) => {
+    props.dateSelector(date)
     return (
       <EmployeeGrid
         key={idx + Date.now}

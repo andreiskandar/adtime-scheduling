@@ -1,8 +1,7 @@
 import React from 'react';
-import './MiniCalendar.scss';
+import './MiniCalendar.css';
+import './index.css';
 import { Calendar } from 'antd';
-//import 'antd/dist/antd.css';
-
 
 const MiniCalendar = () => {
   
@@ -18,5 +17,3 @@ const MiniCalendar = () => {
 };
 
 export default MiniCalendar;
-
-  

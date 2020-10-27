@@ -14,9 +14,14 @@ import publishSchedule from 'helpers/publishSchedule';
 
 // const { addShift, transferShift, cancelShift } = require('../../helpers');
 
-export default () => {
+export default (props) => {
   const [users, setUsers] = useState([]);
   const [shift, setShift] = useState([]);
+  const [date, setDate] = useState('')
+
+  const dateSelector = (date) => {
+    setDate(date)
+  }
 
   useEffect(() => {
     transferShift();
@@ -74,6 +79,9 @@ export default () => {
         transferShift={transferShift}
         shift={shift}
         setShift={setShift}
+        week = {props.week}
+        setWeek = {props.setWeek}
+        dateSelector = {dateSelector}
       />
     );
   });
@@ -81,7 +89,7 @@ export default () => {
   return (
     <div className='scroll'>
       <Card className='schedule'>
-        <Header />
+        <Header date = {date}/>
         {employees}
       </Card>
     </div>

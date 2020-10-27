@@ -7,7 +7,7 @@ import { Dialog, DialogActions, DialogTitle, Button, TextField, Avatar } from '@
 import MiniCalendar from './MiniCalendar/MiniCalendar'
 
 
-export default () => {
+export default (props) => {
   const [open, setOpen] = useState(false);
   const openCalendar = () => {
     setOpen(true)
@@ -20,7 +20,7 @@ export default () => {
   return (
     <div className='week__navigator'>
       
-      <Button size='small' className='smaleft__navigator'>
+      <Button onClick={props.clickLeftCalendar} size='small' className='smaleft__navigator'>
         <ChevronLeftIcon />
       </Button>
       
@@ -31,7 +31,7 @@ export default () => {
         </Dialog>
       </Button>
 
-      <Button size='small' className='right__navigator'>
+      <Button onClick={props.clickRightCalendar} size='small' className='right__navigator'>
         <ChevronRightIcon />
       </Button>
     </div>
