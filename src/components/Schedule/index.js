@@ -12,8 +12,6 @@ import transferShift from 'helpers/transferShift';
 import cancelShift from 'helpers/cancelShift';
 import publishSchedule from 'helpers/publishSchedule';
 
-// const { addShift, transferShift, cancelShift } = require('../../helpers');
-
 export default () => {
   const [users, setUsers] = useState([]);
   const [shift, setShift] = useState([]);
@@ -38,9 +36,9 @@ export default () => {
       });
   }, []);
 
-  const submitShift = (user_id, startTime, endTime, date) => {
+  const submitShift = (user_id, startTime, endTime, event_date, category_id) => {
     axios
-      .post('/api/events/add', addShift(user_id, startTime, endTime, date))
+      .post('/api/events/add', addShift(user_id, startTime, endTime, event_date, category_id))
       .then(() => {
         axios.get('api/shifts/events').then((res) => {
           setShift(res.data);
@@ -51,13 +49,12 @@ export default () => {
       });
   };
 
-  const removeShift = (user_id, startTime, endTime, date) => {
-    let payload = cancelShift(user_id, startTime, endTime, date);
+  const removeShift = (user_id, startTime, endTime, event_date, category_id) => {
     axios
-      .delete('/api/events/delete', { params: payload })
+      .delete('/api/events/delete', cancelShift(user_id, startTime, endTime, event_date, category_id))
       .then(() => {
         axios.get('api/shifts/events').then((res) => {
-          setShift(res.data.data);
+          setShift(res.data);
         });
       })
       .catch((e) => {
@@ -65,17 +62,17 @@ export default () => {
       });
   };
 
-  const transferShiftId = (user_id, shift_id, start_time, end_time, category_id, transferToId) => {
-    let payload = transferShift(user_id, shift_id, start_time, end_time, category_id, transferToId)
-    axios.put('/api/events/transfer', payload)
+  const transferShiftId = (user_id, shift_id, start_time, end_time, category_id, transferToUserId) => {
+    let payload = transferShift(user_id, shift_id, start_time, end_time, category_id, transferToUserId);
+    axios
+      .put('/api/events/transfer', payload)
       .then(() => {
-        console.log("Good")
+        console.log('Good');
       })
       .catch((e) => {
-        console.log("Error from transfering shift(s)", e);
+        console.log('Error from transfering shift(s)', e);
       });
-   };
-  
+  };
 
   const employees = users.map((user) => {
     return (

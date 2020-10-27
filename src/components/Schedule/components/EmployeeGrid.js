@@ -38,9 +38,10 @@ const EmployeeGrid = (props) => {
     }
   };
 
-  const cancel = () => {
+  const reset = () => {
     setError('');
     setSelected('');
+    setCategorySelected({});
     setOpen(false);
   };
 
@@ -57,27 +58,26 @@ const EmployeeGrid = (props) => {
     // // convert end_time to shift_id
     const endTimeShiftId = parseInt(endTime) - 8;
     // // FIX THIS LATER. BUG EXISTS
-    if (shift_id.includes(endTimeShiftId)) {
+    if (shift_id && shift_id.includes(endTimeShiftId)) {
       setError(ERROR_MESSAGES_DICT['DOUBLE_BOOKED']);
       return;
     }
 
-    submit(date);
+    submit();
   };
-  
-  const submit = (event_date) => {
-    const date = event_date.split('T')[0];
+
+  const submit = () => {
     const user_id = props.id;
     const start_time = startTime;
     const end_time = endTime;
+    const category_id = categorySelected.id;
+
     if (!selected) {
-      props.submitShift(user_id, start_time, end_time, date);
+      props.submitShift(user_id, start_time, end_time, event_date, category_id);
     } else {
       props.transferShift();
     }
-    setError('');
-    setSelected('');
-    setOpen(false);
+    reset();
   };
 
   const handleClose = () => {
@@ -85,20 +85,18 @@ const EmployeeGrid = (props) => {
   };
 
   const handleDelete = () => {
-    remove(date);
+    remove();
   };
 
-  const remove = (event_date) => {
-    const date = event_date.split('T')[0];
+  const remove = () => {
     const user_id = props.id;
     const start_time = startTime;
     const end_time = endTime;
+    const category_id = categorySelected.id;
 
-    props.removeShift(user_id, start_time, end_time, date);
+    props.removeShift(user_id, start_time, end_time, event_date, category_id);
 
-    setError('');
-    setSelected('');
-    setOpen(false);
+    reset();
   };
 
   const renderSpan = Array.from({ length: 12 }, (x, i) => {
@@ -155,7 +153,7 @@ const EmployeeGrid = (props) => {
             categorySelected={categorySelected}
           />
           <TransferShiftMenuButton users={users} setSelected={setSelected} />
-          <Button onClick={cancel} variant='contained'>
+          <Button onClick={reset} variant='contained'>
             Back
           </Button>
           <Button onClick={handleDelete} color='secondary' variant='contained'>
