@@ -3,7 +3,7 @@ import Typography from '@material-ui/core/Typography';
 import AccountCircleOutlinedIcon from '@material-ui/icons/AccountCircleOutlined';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import './styles.scss';
-import { user } from '../../controllers'
+import { user } from '../../controllers';
 import { Avatar, makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme) => ({
     width: theme.spacing(3),
     height: theme.spacing(3),
   },
-})); 
+}));
 
 export default (props) => {
   const classes = useStyles();
@@ -27,14 +27,17 @@ export default (props) => {
         </Typography>
         <div className='navbar right_links__navbar'>
           <a href='#' src='' className='navbar link__navbar'>
-            <Avatar alt={username} src={avatar} className={classes.small}/>
+            <Avatar alt={username} src={avatar} className={classes.small} />
             {username}
           </a>
-          <a href='#' src='' className='navbar link__navbar'
-          {...{
-            onClick: () => user.logout(),
-            type: 'submit'
-          }}
+          <a
+            href='#'
+            src=''
+            className='navbar link__navbar'
+            {...{
+              onClick: () => user.logout(),
+              type: 'submit',
+            }}
           >
             <LockOutlinedIcon className='icon icon__navbar' />
             Logout

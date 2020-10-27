@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import './employeeGrid.scss';
 import { Dialog, DialogActions, DialogTitle, Button, TextField, Avatar } from '@material-ui/core';
-import { HOURS_DICT } from '../../../helpers/dictionary';
+import { HOURS_DICT, ERROR_MESSAGES_DICT } from '../../../helpers/dictionary';
 import TransferShiftMenuButton from './TransferShiftMenuButton';
 import CategoryButton from './CategoryButton';
 import useStyles from './styles/formStyles';
 import useVisualMode from '../../../hooks/useVisualMode';
-import { ERROR_MESSAGES_DICT } from '../../../helpers/dictionary';
 
 const EmployeeGrid = (props) => {
   const classes = useStyles();
@@ -38,9 +37,10 @@ const EmployeeGrid = (props) => {
     }
   };
 
-  const cancel = () => {
+  const reset = () => {
     setError('');
     setSelected('');
+    setCategorySelected({});
     setOpen(false);
   };
 
@@ -62,24 +62,22 @@ const EmployeeGrid = (props) => {
     //   return;
     // }
 
-    submit(date);
+    submit();
   };
-  
-  const submit = (event_date) => {
-    const date = event_date.split('T')[0];
+
+  const submit = () => {
     const user_id = props.id;
     const start_time = startTime;
     const end_time = endTime;
+    const category_id = categorySelected.id;
     const transferToUserId = selected.id;
+    
     if (!selected) {
-      props.submitShift(user_id, start_time, end_time, date);
+      props.submitShift(user_id, start_time, end_time, event_date, category_id);
     } else {
       props.transferShiftId(user_id, start_time, end_time, date, transferToUserId);
     }
-
-    setError('');
-    setSelected('');
-    setOpen(false);
+    reset();
   };
 
   const handleClose = () => {
@@ -87,20 +85,18 @@ const EmployeeGrid = (props) => {
   };
 
   const handleDelete = () => {
-    remove(date);
+    remove();
   };
 
-  const remove = (event_date) => {
-    const date = event_date.split('T')[0];
+  const remove = () => {
     const user_id = props.id;
     const start_time = startTime;
     const end_time = endTime;
+    const category_id = categorySelected.id;
 
-    props.removeShift(user_id, start_time, end_time, date);
+    props.removeShift(user_id, start_time, end_time, event_date, category_id);
 
-    setError('');
-    setSelected('');
-    setOpen(false);
+    reset();
   };
 
   const renderSpan = Array.from({ length: 12 }, (x, i) => {
@@ -157,7 +153,7 @@ const EmployeeGrid = (props) => {
             categorySelected={categorySelected}
           />
           <TransferShiftMenuButton users={users} setSelected={setSelected} />
-          <Button onClick={cancel} variant='contained'>
+          <Button onClick={reset} variant='contained'>
             Back
           </Button>
           <Button onClick={handleDelete} color='secondary' variant='contained'>
