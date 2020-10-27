@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Menu, MenuItem, Fade, Button } from '@material-ui/core/';
 import { makeStyles } from '@material-ui/core/styles';
 
-const CategoryButton = ({ categories, setCategorySelected }) => {
+const CategoryButton = ({ categories, categorySelected, setCategorySelected }) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const openButton = Boolean(anchorEl);
 
@@ -38,14 +38,6 @@ const CategoryButton = ({ categories, setCategorySelected }) => {
     setAnchorEl(null);
   };
 
-  const testCat = [1, 2, 3, 4, 5].map((category, idx) => {
-    return (
-      <form key={idx}>
-        <MenuItem onClick={() => onCategorySelect(category)}>{category}</MenuItem>
-      </form>
-    );
-  });
-
   const categoriesMenu = categories.map((category, idx) => {
     return (
       <form key={idx} value={category.id}>
@@ -59,7 +51,7 @@ const CategoryButton = ({ categories, setCategorySelected }) => {
   return (
     <>
       <Button aria-controls='fade-menu' aria-haspopup='true' onClick={handleClick} variant='contained'>
-        Category
+        {categorySelected.name || 'Category'}
       </Button>
       <Menu
         id='fade-menu'

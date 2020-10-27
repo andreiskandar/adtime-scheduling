@@ -54,13 +54,13 @@ const EmployeeGrid = (props) => {
       return;
     }
 
-    // convert end_time to shift_id
-    // const endTimeShiftId = parseInt(endTime) - 8;
+    // // convert end_time to shift_id
+    const endTimeShiftId = parseInt(endTime) - 8;
     // // FIX THIS LATER. BUG EXISTS
-    // if (shift_id.includes(endTimeShiftId)) {
-    //   setError(ERROR_MESSAGES_DICT['DOUBLE_BOOKED']);
-    //   return;
-    // }
+    if (shift_id.includes(endTimeShiftId)) {
+      setError(ERROR_MESSAGES_DICT['DOUBLE_BOOKED']);
+      return;
+    }
 
     submit(date);
   };
@@ -70,6 +70,7 @@ const EmployeeGrid = (props) => {
     const user_id = props.id;
     const start_time = startTime;
     const end_time = endTime;
+    const category_id = categorySelected.id;
     props.submitShift(user_id, start_time, end_time, date);
 
     setError('');
@@ -146,7 +147,11 @@ const EmployeeGrid = (props) => {
           </div>
         </form>
         <DialogActions>
-          <CategoryButton categories={categories && categories} setCategorySelected={setCategorySelected} />
+          <CategoryButton
+            categories={categories}
+            setCategorySelected={setCategorySelected}
+            categorySelected={categorySelected}
+          />
           <TransferShiftMenuButton users={users} setSelected={setSelected} />
           <Button onClick={cancel} variant='contained'>
             Back
