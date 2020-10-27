@@ -13,12 +13,12 @@ const MiniCalendar = () => {
   }
   
   const handleChange = (e) => {
-    console.log(e.currentTarget)
+    console.log(e._d)
   }
 
   return (
     <div className="site-calendar-demo-card">
-      <Calendar onSelect = {handleChange} fullscreen={false} onPanelChange={onPanelChange} />
+      <Calendar onChange = {handleChange} fullscreen={false} onPanelChange={onPanelChange} />
     </div>
   );
 };
