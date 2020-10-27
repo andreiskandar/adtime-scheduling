@@ -1,3 +1,4 @@
+// SEND CATEGORY ID
 const transferShift = (user_id, start_time, end_time, event_date, transferToId) => {
   const shift_id = [];
   const startTime = parseInt(start_time);
