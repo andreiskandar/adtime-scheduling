@@ -5,7 +5,7 @@ import EmployeeHeader from './EmployeeHeader';
 import './employee.scss';
 
 const Employee = (props) => {
-  const { id, name, avatar, shift, color } = props;
+  const { id, name, avatar, shift, color, users, categories } = props;
 
   const date_from_calendar = [
     '2020-10-19T00:00:00.000Z',
@@ -44,12 +44,13 @@ const Employee = (props) => {
   const renderEmployeeGridPerDay = date_from_calendar.map((date, idx) => {
     return (
       <EmployeeGrid
-        key={idx + Date.now}
+        key={Date.now() + idx}
         date={date}
         shift_id={slotMap[date]}
         {...props}
-        users={props.users}
+        users={users}
         color={color}
+        categories={categories}
       />
     );
   });

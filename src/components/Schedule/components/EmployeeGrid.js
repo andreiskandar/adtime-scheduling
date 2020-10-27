@@ -3,19 +3,21 @@ import './employeeGrid.scss';
 import { Dialog, DialogActions, DialogTitle, Button, TextField, Avatar } from '@material-ui/core';
 import { HOURS_DICT } from '../../../helpers/dictionary';
 import TransferShiftMenuButton from './TransferShiftMenuButton';
+import CategoryButton from './CategoryButton';
 import useStyles from './styles/formStyles';
 import useVisualMode from '../../../hooks/useVisualMode';
 import { ERROR_MESSAGES_DICT } from '../../../helpers/dictionary';
 
 const EmployeeGrid = (props) => {
   const classes = useStyles();
-  const { shift_id, users, date } = props;
+  const { shift_id, users, date, categories } = props;
   const event_date = date.split('T')[0];
   const [startTime, setStartTime] = useState(0);
   const [endTime, setEndTime] = useState('');
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState('');
   const [error, setError] = useState('');
+  const [categorySelected, setCategorySelected] = useState({});
 
   const clickGrid = (e) => {
     // getting grid_id from user selection
@@ -127,7 +129,7 @@ const EmployeeGrid = (props) => {
         </div>
         {error && errorElement}
         {/* <section className={classes.error}>{error && errorElement}</section> */}
-        <section>{date}</section>
+        {/* <section>{date}</section> */}
         <form>
           <div className={classes.root}>
             <TextField autoFocus margin='dense' id='start_time' label='Start Time' value={startTime} type='time' />
@@ -144,6 +146,7 @@ const EmployeeGrid = (props) => {
           </div>
         </form>
         <DialogActions>
+          <CategoryButton categories={categories && categories} setCategorySelected={setCategorySelected} />
           <TransferShiftMenuButton users={users} setSelected={setSelected} />
           <Button onClick={cancel} variant='contained'>
             Back

@@ -17,17 +17,21 @@ import publishSchedule from 'helpers/publishSchedule';
 export default () => {
   const [users, setUsers] = useState([]);
   const [shift, setShift] = useState([]);
+  const [categories, setCategories] = useState([]);
 
   useEffect(() => {
     const apiUsers = axios.get('/api/users');
     const apiUserShift = axios.get('api/shifts/events');
+    const apiCategories = axios.get('api/categories');
 
-    Promise.all([apiUsers, apiUserShift])
+    Promise.all([apiUsers, apiUserShift, apiCategories])
       .then((all) => {
-        const newUser = [...all[0].data.users];
-        const newShift = [...all[1].data.data];
+        const newUser = [...all[0].data];
+        const newShift = [...all[1].data];
+        const newCategories = [...all[2].data];
         setUsers(newUser);
         setShift(newShift);
+        setCategories(newCategories);
       })
       .catch((e) => {
         console.log(e);
@@ -39,7 +43,7 @@ export default () => {
       .post('/api/events/add', addShift(user_id, startTime, endTime, date))
       .then(() => {
         axios.get('api/shifts/events').then((res) => {
-          setShift(res.data.data);
+          setShift(res.data);
         });
       })
       .catch((e) => {
@@ -72,6 +76,7 @@ export default () => {
         transferShift={transferShift}
         shift={shift}
         setShift={setShift}
+        categories={categories}
       />
     );
   });

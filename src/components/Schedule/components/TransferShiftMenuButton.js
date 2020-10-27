@@ -38,9 +38,9 @@ const TransferShiftMenuButton = ({ users, setSelected }) => {
     setAnchorEl(null);
   };
 
-  const transferTo = users.map((user) => {
+  const transferTo = users.map((user, idx) => {
     return (
-      <form value={user.name}>
+      <form key={idx} value={user.name}>
         <MenuItem onClick={() => onProfileSelect(user)}>
           <Avatar alt={user.name} src={user.avatar} className={classes.small} />
           {user.name}
