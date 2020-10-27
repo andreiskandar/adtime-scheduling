@@ -7,7 +7,16 @@ import { user } from 'controllers'
 export default () => {
   const [isInitialRender, setIsInitialRender] = useState(true)
   const [isAuthenticated, setIsAuthenticated] = useState(false)
-  
+  const [week, setWeek] = useState(2);
+
+  const clickRightCalendar = () => {
+    setWeek(week + 1);
+  }
+
+  const clickLeftCalendar = () => {
+    setWeek(week - 1);
+  }
+
   useEffect(() => {
     if (!user.isAuthenticated()) {
       return history.push('/')
@@ -21,12 +30,12 @@ export default () => {
   })
 
   if (isInitialRender) return null
-
+  
   return (
     <>
       <Navbar />
-      <SecondaryNavbar />
-      <Schedule />
+      <SecondaryNavbar clickLeftCalendar = {clickLeftCalendar} clickRightCalendar = {clickRightCalendar}/>
+      <Schedule week = {week} setWeek = {setWeek}/>
     </>
   );
 };
