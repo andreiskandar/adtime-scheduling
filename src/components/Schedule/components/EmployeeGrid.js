@@ -82,18 +82,13 @@ const EmployeeGrid = (props) => {
     const start_time = startTime;
     const end_time = endTime;
     const category_id = categorySelected.id;
+    console.log('category_id:', category_id)
     const transferToUserId = selected.id;
 
     if (!selected) {
       props.submitShift(user_id, start_time, end_time, event_date, category_id);
     } else {
-      props.transferShiftId(
-        user_id,
-        start_time,
-        end_time,
-        date,
-        transferToUserId
-      );
+      props.transferShiftId(user_id, start_time, end_time, transferToUserId, event_date, category_id)
     }
     reset();
   };

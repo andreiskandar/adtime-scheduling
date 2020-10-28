@@ -70,14 +70,15 @@ export default (props) => {
       });
   };
 
-  const transferShiftId = (user_id, shift_id, start_time, end_time, category_id, transferToUserId) => {
-    let payload = transferShift(user_id, shift_id, start_time, end_time, category_id, transferToUserId);
+  const transferShiftId = (user_id, start_time, end_time, transferToUserId, event_date, category_id) => {
+    console.log('category_id:', category_id)
+    let payload = transferShift(user_id, start_time, end_time, transferToUserId, event_date, category_id);
     axios
       .put('/api/events/transfer', payload)
       .then(() => {
         axios.get('api/shifts/events').then((res) => {
           setShift(res.data);
-        });        
+        });
       })
       .catch((e) => {
         console.log('Error from transfering shift(s)', e);

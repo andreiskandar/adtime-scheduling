@@ -33,7 +33,7 @@ const CategoryButton = ({ categories, categorySelected, setCategorySelected }) =
     setAnchorEl(null);
   };
 
-  const onCategorySelect = (category) => {
+  const onCategorySelect = (category = categories[0]) => {
     setCategorySelected(category);
     setAnchorEl(null);
   };
@@ -41,7 +41,7 @@ const CategoryButton = ({ categories, categorySelected, setCategorySelected }) =
   const categoriesMenu = categories.map((category, idx) => {
     return (
       <form key={idx} value={category.id}>
-        <MenuItem key={idx} onClick={() => onCategorySelect(category || categories[0])}>
+        <MenuItem key={idx} onClick={() => onCategorySelect(category)}>
           {category.name}
         </MenuItem>
       </form>
