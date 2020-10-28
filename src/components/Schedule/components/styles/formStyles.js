@@ -37,6 +37,9 @@ const useStyles = makeStyles((theme) => ({
   delete: {
     backgroundColor: '',
   },
+  warning: {
+    background: '#ff9800',
+  }
 }));
 
 export default useStyles;

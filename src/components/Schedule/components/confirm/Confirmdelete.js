@@ -7,16 +7,19 @@ import { red } from '@material-ui/core/colors';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: '100%',
+    backgroundColor: '#FFF4E5',
+    color: '#A85D00',
+    alignItems: 'flex-end',
+    width: 'auto',
     '& > * + *': {
       marginTop: theme.spacing(2),
     },
   },
-  height: '100%',
-  fontSize: "50px",
-  backgroundColor: red,
-  display: 'flex',
-  justifyContent: 'space-between'
+  spacing: {
+    display: 'flex',
+    justifyContent: 'space-evenly',
+    marginBottom: '12px',
+  }
 }));
 
 export default function Delete(props) {
@@ -24,16 +27,16 @@ export default function Delete(props) {
   
   return (
     <main className={classes.root}>
-      <Alert severity="warning" variant="filled" >{props.message}</Alert>
-      <section>
-        <Button 
+      <Alert severity="warning" variant="filled" className={classes.root} >{props.message}</Alert>
+      <section className={classes.spacing}>
+        <Button size="small"
           variant="contained" 
           color="secondary" 
           onClick={props.onCancel}
         >
           Cancel
         </Button>
-        <Button 
+        <Button size="small"
           variant="contained" 
           color="secondary" 
           onClick={props.onConfirm}
