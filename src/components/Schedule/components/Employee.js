@@ -8,8 +8,6 @@ import './employee.scss';
 const Employee = (props) => {
   const { id, name, avatar, shift, color, users, categories } = props;
  
-  console.log(new Date (props.mon).toISOString())
-
   const date_from_calendar = [
       new Date (props.mon).toISOString(),
       new Date (props.tues).toISOString(),

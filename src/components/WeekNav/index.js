@@ -27,7 +27,23 @@ export default (props) => {
       <Button onClick={openCalendar}>
         <WeekCalendar />
         <Dialog open={open} onClose={handleClose} maxWidth='lg'>
-         <MiniCalendar/>
+         <MiniCalendar
+           mon = {props.mon}  
+           tues = {props.tues}  
+           wed = {props.wed}  
+           thurs = {props.thurs}  
+           fri = {props.fri}  
+           sat ={props.sat}  
+           sun = {props.sun}
+           setMon = {props.setMon}
+           setTues = {props.setTues}
+           setWed = {props.setWed}
+           setThurs = {props.setThurs}
+           setFri = {props.setFri}
+           setSat = {props.setSat}
+           setSun = {props.setSun}
+           handleClose = {handleClose}
+          />
         </Dialog>
       </Button>
 

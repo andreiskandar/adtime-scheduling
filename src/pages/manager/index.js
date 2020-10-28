@@ -8,6 +8,7 @@ import { user } from 'controllers'
 1 hour = 3600000
 1 day = 86400000
 1 week = 604800000
+Subtract 7 hours for timezone fix = -25200000
 */
 
 export default () => {
@@ -33,7 +34,6 @@ export default () => {
     setFri(fri + 604800000) 
     setSat(sat + 604800000)
     setSun(sun + 604800000)
-    new Date (mon).toISOString()
   }
 
   const clickLeftCalendar = () => {
@@ -63,7 +63,22 @@ export default () => {
   return (
     <>
       <Navbar />
-      <SecondaryNavbar clickLeftCalendar = {clickLeftCalendar} clickRightCalendar = {clickRightCalendar}/>
+      <SecondaryNavbar clickLeftCalendar = {clickLeftCalendar} clickRightCalendar = {clickRightCalendar}
+       mon = {mon}  
+       tues = {tues}  
+       wed = {wed}  
+       thurs = {thurs}  
+       fri = {fri}  
+       sat ={sat}  
+       sun = {sun}
+       setMon = {setMon}
+       setTues = {setTues}
+       setWed = {setWed}
+       setThurs = {setThurs}
+       setFri = {setFri}
+       setSat = {setSat}
+       setSun = {setSun}
+      />
       <Schedule week = {week} setWeek = {setWeek}
       mon = {mon}  
       tues = {tues}  
