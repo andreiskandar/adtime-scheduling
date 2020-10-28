@@ -2,7 +2,8 @@ import React from 'react';
 import './header.scss';
 
 function Header(props) {
-  const DAYS = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+  const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+  const DAYS = [(new Date (props.mon)).toLocaleDateString('en-EN', options), (new Date (props.tues)).toLocaleDateString('en-EN', options), (new Date (props.wed)).toLocaleDateString('en-EN', options), (new Date (props.thurs)).toLocaleDateString('en-EN', options), (new Date (props.fri)).toLocaleDateString('en-EN', options), (new Date (props.sat)).toLocaleDateString('en-EN', options), (new Date (props.sun)).toLocaleDateString('en-EN', options)];
   const hours = ['09a', '10a', '11a', '12p', '01p', '02p', '03p', '04p', '05p', '06p', '07p', '08p'];
 
   const hourElement = hours.map((hour, idx) => {
@@ -16,7 +17,7 @@ function Header(props) {
   const daysElement = DAYS.map((day, idx) => {
     return (
       <div key={idx} className='days__header'>
-        <div className='day_date__header'>{day}, {props.date}</div>
+        <div className='day_date__header'>{day}</div>
         <div className='hours__header'>{hourElement}</div>
       </div>
     );

@@ -15,7 +15,9 @@ const MiniCalendar = () => {
   const handleChange = (e) => {
     console.log(e._d)
   }
-
+  
+  // Date.new() + 7days
+  // [mon - 23508273508, tue - 2398754623983746, ]
   return (
     <div className="site-calendar-demo-card">
       <Calendar onChange = {handleChange} fullscreen={false} onPanelChange={onPanelChange} />
