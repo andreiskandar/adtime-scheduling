@@ -41,7 +41,7 @@ const CategoryButton = ({ categories, categorySelected, setCategorySelected }) =
   const categoriesMenu = categories.map((category, idx) => {
     return (
       <form key={idx} value={category.id}>
-        <MenuItem key={idx} onClick={() => onCategorySelect(category)}>
+        <MenuItem key={idx} onClick={() => onCategorySelect(category || categories[0])}>
           {category.name}
         </MenuItem>
       </form>
@@ -51,7 +51,7 @@ const CategoryButton = ({ categories, categorySelected, setCategorySelected }) =
   return (
     <>
       <Button aria-controls='fade-menu' aria-haspopup='true' onClick={handleClick} variant='contained'>
-        {categorySelected.name || 'Category'}
+        {categorySelected.name || categories[0].name}
       </Button>
       <Menu
         id='fade-menu'
