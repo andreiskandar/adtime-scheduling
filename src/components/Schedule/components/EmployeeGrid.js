@@ -18,16 +18,15 @@ const EmployeeGrid = (props) => {
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState('');
   const [error, setError] = useState('');
-  const [categorySelected, setCategorySelected] = useState({});
+  const [categorySelected, setCategorySelected] = useState(categories[0] || {});
   const [warning, setWarning] = useState(false);
   const [deleteConfirm, setDeleteConfirm] = useState(false);
 
   const clickGrid = (e) => {
-    const grid_id = parseInt(e.target.attributes[0].value) + 1;
     setOpen(true);
+    const grid_id = parseInt(e.target.attributes[0].value) + 1;
     const start_time = HOURS_DICT[grid_id];
     setStartTime(start_time);
-    console.log('shift_id:', shift_id);
     if (shift_id && shift_id.includes(grid_id)) {
       setError(ERROR_MESSAGES_DICT['DOUBLE_BOOKED']);
       return;
@@ -51,16 +50,18 @@ const EmployeeGrid = (props) => {
       return;
     }
 
-    // // // convert end_time to shift_id
-    // const endTimeShiftId = parseInt(endTime) - 8;
-    // // // FIX THIS LATER. BUG EXISTS
-    // if (shift_id.includes(endTimeShiftId)) {
-    //   setError(ERROR_MESSAGES_DICT['DOUBLE_BOOKED']);
-    //   return;
-    // }
+    // // convert end_time to shift_id
+    const endTimeShiftId = parseInt(endTime) - 8;
+    // // FIX THIS LATER. BUG EXISTS
+    if (!selected && shift_id && shift_id.includes(endTimeShiftId - 1)) {
+      setError(ERROR_MESSAGES_DICT['DOUBLE_BOOKED']);
+      return;
+    }
 
-    submit();
+    //validate if shift transferred to employee that will be double booked
+    if (selected) submit();
   };
+  console.log('selected:', selected);
 
   const submit = () => {
     const user_id = props.id;
@@ -85,11 +86,11 @@ const EmployeeGrid = (props) => {
     remove();
   };
 
-  const handleOpen2 = () => {
+  const openWarningDialog = () => {
     setWarning(true);
   };
 
-  const handleClose2 = () => {
+  const closeWarningDialog = () => {
     setWarning(false);
   };
 
@@ -182,19 +183,22 @@ const EmployeeGrid = (props) => {
             </Dialog>
           </>
           {!error && (
+            <Button onClick={validate} color='primary' variant='contained'>
+              Submit
+            </Button>
+          )}
+          {selected && (
             <>
-              <Button onClick={!selected ? validate : handleOpen2} color='primary' variant='contained'>
-                Submit
+              <Button onClick={openWarningDialog} color='primary' variant='contained'>
+                Transfer
               </Button>
-              {selected && (
-                <Dialog variant='filled' open={warning}>
-                  <Transfer
-                    onConfirm={validate}
-                    message={'Are you sure you want to transfer the shift(s)'}
-                    onCancel={handleClose2}
-                  />
-                </Dialog>
-              )}
+              <Dialog variant='filled' open={warning}>
+                <Transfer
+                  onConfirm={validate}
+                  message={'Are you sure you want to transfer the shift(s)'}
+                  onCancel={closeWarningDialog}
+                />
+              </Dialog>
             </>
           )}
         </DialogActions>
