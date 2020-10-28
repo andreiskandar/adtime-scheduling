@@ -141,7 +141,6 @@ const EmployeeGrid = (props) => {
     </>
   );
 
-
   return (
     <>
       <div className='employee_grid'>{renderSpan}</div>
@@ -205,13 +204,13 @@ const EmployeeGrid = (props) => {
                 Transfer
               </Button>
               <div className={classes.warning}>
-              <Dialog variant='filled' open={warning}>
-                <Transfer
-                  onConfirm={validate}
-                  message={'Are you sure you want to transfer the shift(s)'}
-                  onCancel={closeWarningDialog}
-                />
-              </Dialog>
+                <Dialog variant='filled' open={warning}>
+                  <Transfer
+                    onConfirm={validate}
+                    message={'Are you sure you want to transfer the shift(s)'}
+                    onCancel={closeWarningDialog}
+                  />
+                </Dialog>
               </div>
             </>
           )}
