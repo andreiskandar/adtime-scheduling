@@ -6,6 +6,7 @@ const CategoryButton = ({ categories, categorySelected, setCategorySelected }) =
   const [anchorEl, setAnchorEl] = useState(null);
   const openButton = Boolean(anchorEl);
 
+  categories && setCategorySelected(categories[0]);
   const useStyles = makeStyles((theme) => ({
     root: {
       display: 'flex',
@@ -33,7 +34,7 @@ const CategoryButton = ({ categories, categorySelected, setCategorySelected }) =
     setAnchorEl(null);
   };
 
-  const onCategorySelect = (category = categories[0]) => {
+  const onCategorySelect = (category) => {
     setCategorySelected(category);
     setAnchorEl(null);
   };
