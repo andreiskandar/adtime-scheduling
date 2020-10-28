@@ -3,7 +3,7 @@ import { Button } from '@material-ui/core';
 // import useStyles from '../styles/formStyles';
 import { makeStyles  } from '@material-ui/core/styles';
 import Alert from '@material-ui/lab/Alert';
-import { red } from '@material-ui/core/colors';
+import { red, orange } from '@material-ui/core/colors';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -11,12 +11,13 @@ const useStyles = makeStyles((theme) => ({
     '& > * + *': {
       marginTop: theme.spacing(2),
     },
-    height: '100%',
-    fontSize: "50px",
-    backgroundColor: red,
-    display: 'flex',
-    // justifyContent: 'space-between'
+    background: 500,
   },
+  // height: '100%',
+  // fontSize: "50px",
+  // backgroundColor: red,
+  // display: 'flex',
+  // justifyContent: 'space-between'
 }));
 
 export default function Transfer(props) {
@@ -33,7 +34,13 @@ export default function Transfer(props) {
         >
           Cancel
         </Button>
-        <Button variant="contained" color="secondary" onClick={props.onConfirm}>Confirm</Button>
+        <Button 
+          variant="contained" 
+          color="secondary" 
+          onClick={props.onConfirm}
+        >
+          Confirm
+        </Button>
       </section>
     </main>    
   );

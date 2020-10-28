@@ -24,12 +24,20 @@ export default function Delete(props) {
   
   return (
     <main className={classes.root}>
-      <Alert severity="warning" variant="filled" className={classes.height}>{props.messagVe}</Alert>
-      <section className={classes.flex}>
-        <Button variant="contained" color="secondary" className={classes.justifyContent} onClick={props.onCancel}>
+      <Alert severity="warning" variant="filled" >{props.message}</Alert>
+      <section>
+        <Button 
+          variant="contained" 
+          color="secondary" 
+          onClick={props.onCancel}
+        >
           Cancel
         </Button>
-        <Button danger onClick={props.onConfirm}>
+        <Button 
+          variant="contained" 
+          color="secondary" 
+          onClick={props.onConfirm}
+        >
           Confirm
         </Button>
       </section>

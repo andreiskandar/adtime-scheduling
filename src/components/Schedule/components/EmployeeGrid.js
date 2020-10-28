@@ -174,7 +174,7 @@ const EmployeeGrid = (props) => {
             <Button onClick={deleteConfirmOpen} color='secondary' variant='contained'>
               Delete
             </Button>
-            <Dialog variant='filled' open={deleteConfirm}>
+            <Dialog open={deleteConfirm}>
               <Delete
                 onConfirm={handleDelete}
                 message={'Are you sure you want to delete these shifts'}
@@ -192,7 +192,7 @@ const EmployeeGrid = (props) => {
               <Button onClick={openWarningDialog} color='primary' variant='contained'>
                 Transfer
               </Button>
-              <Dialog variant='filled' open={warning}>
+              <Dialog variant='filled' background='#ff9800' open={warning}>
                 <Transfer
                   onConfirm={validate}
                   message={'Are you sure you want to transfer the shift(s)'}
