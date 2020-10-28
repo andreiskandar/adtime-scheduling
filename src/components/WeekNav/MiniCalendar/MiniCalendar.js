@@ -83,7 +83,7 @@ const MiniCalendar = (props) => {
         props.setSun(daySelected);
       break;   
     }
-    
+    props.handleClose()
   } 
    
   
