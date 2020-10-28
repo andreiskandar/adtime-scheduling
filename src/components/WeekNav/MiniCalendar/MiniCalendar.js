@@ -14,7 +14,7 @@ const MiniCalendar = (props) => {
   function onPanelChange(value, mode) {
     console.log(value, mode);
   }
-  console.log((new Date(props.mon)).toISOString())
+ 
   const handleChange = (e) => {
     let daySelected = (e._d)
     const daySelectedNoTime = (new Date(daySelected)).toISOString().substr(0,10)
@@ -47,10 +47,10 @@ const MiniCalendar = (props) => {
         props.setMon(daySelected - (milisecDay)); 
         props.setTues(daySelected);
         props.setWed(daySelected + milisecDay);
-        props.setThurs(daySelected + (milisecDay));
-        props.setFri(daySelected + (2*milisecDay));
-        props.setSat(daySelected + (3*milisecDay));
-        props.setSun(daySelected + (4*milisecDay));
+        props.setThurs(daySelected + (2*milisecDay));
+        props.setFri(daySelected + (3*milisecDay));
+        props.setSat(daySelected + (4*milisecDay));
+        props.setSun(daySelected + (5*milisecDay));
       break;
       case 3:
         props.setMon(daySelected - (2*milisecDay)); 

@@ -3,7 +3,15 @@ import './header.scss';
 
 function Header(props) {
   const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-  const DAYS = [(new Date (props.mon)).toLocaleDateString('en-EN', options), (new Date (props.tues)).toLocaleDateString('en-EN', options), (new Date (props.wed)).toLocaleDateString('en-EN', options), (new Date (props.thurs)).toLocaleDateString('en-EN', options), (new Date (props.fri)).toLocaleDateString('en-EN', options), (new Date (props.sat)).toLocaleDateString('en-EN', options), (new Date (props.sun)).toLocaleDateString('en-EN', options)];
+  const DAYS = [
+    (new Date (props.mon)).toLocaleDateString('en-EN', options), 
+    (new Date (props.tues)).toLocaleDateString('en-EN', options), 
+    (new Date (props.wed)).toLocaleDateString('en-EN', options), 
+    (new Date (props.thurs)).toLocaleDateString('en-EN', options), 
+    (new Date (props.fri)).toLocaleDateString('en-EN', options), 
+    (new Date (props.sat)).toLocaleDateString('en-EN', options), 
+    (new Date (props.sun)).toLocaleDateString('en-EN', options)
+  ];
   const hours = ['09a', '10a', '11a', '12p', '01p', '02p', '03p', '04p', '05p', '06p', '07p', '08p'];
 
   const hourElement = hours.map((hour, idx) => {
