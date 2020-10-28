@@ -8,6 +8,8 @@ import useStyles from './styles/formStyles';
 import useVisualMode from '../../../hooks/useVisualMode';
 import Transfer from '../../Schedule/components/confirm/Confirmtransfer';
 import Delete from '../../Schedule/components/confirm/Confirmdelete';
+import { user } from '../../../controllers';
+const role = user.getRole();
 
 const EmployeeGrid = (props) => {
   const classes = useStyles();
@@ -182,9 +184,11 @@ const EmployeeGrid = (props) => {
             Back
           </Button>
           <>
+          {role === 'admin' && (
             <Button onClick={deleteConfirmOpen} color='secondary' variant='contained'>
               Delete
             </Button>
+          )}
             <Dialog open={deleteConfirm}>
               <Delete
                 onConfirm={handleDelete}

@@ -15,7 +15,7 @@ export default () => {
     if (user.isAuthenticated()) {
       const redirectTo = user.getRole() === 'admin'
         ? '/manager'
-        : '/employee'
+        : '/manager'
       return history.push(redirectTo)
     }
     if (isInitialRender && !isAuthenticated) {

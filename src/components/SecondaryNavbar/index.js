@@ -3,10 +3,12 @@ import { default as SearchBar } from '../SearchBar';
 import { default as WeekNav } from '../WeekNav';
 import classNames from 'classnames';
 import axios from 'axios';
-
+import { user } from '../../controllers';
 import Button from '@material-ui/core/Button';
 import CheckIcon from '@material-ui/icons/Check';
 import './styles.scss';
+
+const role = user.getRole();
 
 const PublishButton = (props) => {
   const [publish, setPublish] = useState(false);
@@ -56,10 +58,12 @@ const PublishButton = (props) => {
         setSat = {props.setSat}
         setSun = {props.setSun}
       />
+      {role === 'admin' && (
       <Button onClick={clickedMe} className={buttonClass}>
         <CheckIcon className='icon icon__secondary_navbar' />
         {wording}
       </Button>
+      )}
     </main>
   );
 };
