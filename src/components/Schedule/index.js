@@ -70,7 +70,7 @@ export default (props) => {
       });
   };
 
-  const transferShiftId = (user_id, shift_id, start_time, end_time, transferToUserId, event_date, category_id) => {
+  const transferShiftId = (user_id, start_time, end_time, transferToUserId, event_date, category_id) => {
     let payload = transferShift(user_id, start_time, end_time, transferToUserId, event_date, category_id);
     axios
       .put('/api/events/transfer', payload)
