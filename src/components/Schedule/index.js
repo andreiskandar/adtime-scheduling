@@ -14,12 +14,18 @@ import publishSchedule from 'helpers/publishSchedule';
 
 // const { addShift, transferShift, cancelShift } = require('../../helpers');
 
-export default () => {
+export default (props) => {
   const [users, setUsers] = useState([]);
   const [shift, setShift] = useState([]);
+  const [date, setDate] = useState('')
   const [categories, setCategories] = useState([]);
+  
+  const dateSelector = (date) => {
+    setDate(date)
+  }
 
   useEffect(() => {
+    cancelShift();
     const apiUsers = axios.get('/api/users');
     const apiUserShift = axios.get('api/shifts/events');
     const apiCategories = axios.get('api/categories');
@@ -38,9 +44,9 @@ export default () => {
       });
   }, []);
 
-  const submitShift = (user_id, startTime, endTime, date) => {
+  const submitShift = (user_id, startTime, endTime, event_date, category_id) => {
     axios
-      .post('/api/events/add', addShift(user_id, startTime, endTime, date))
+      .post('/api/events/add', addShift(user_id, startTime, endTime, event_date, category_id))
       .then(() => {
         axios.get('api/shifts/events').then((res) => {
           setShift(res.data);
@@ -51,10 +57,9 @@ export default () => {
       });
   };
 
-  const removeShift = (user_id, startTime, endTime, date) => {
-    let payload = cancelShift(user_id, startTime, endTime, date);
+  const removeShift = (user_id, startTime, endTime, event_date, category_id) => {
     axios
-      .delete('/api/events/delete', { params: payload })
+      .delete('/api/events/delete', cancelShift(user_id, startTime, endTime, event_date, category_id))
       .then(() => {
         axios.get('api/shifts/events').then((res) => {
           setShift(res.data);
@@ -62,6 +67,21 @@ export default () => {
       })
       .catch((e) => {
         console.log('Error from deleting shift(s)', e);
+      });
+  };
+
+  const transferShiftId = (user_id, start_time, end_time, transferToUserId, event_date, category_id) => {
+    console.log('category_id:', category_id)
+    let payload = transferShift(user_id, start_time, end_time, transferToUserId, event_date, category_id);
+    axios
+      .put('/api/events/transfer', payload)
+      .then(() => {
+        axios.get('api/shifts/events').then((res) => {
+          setShift(res.data);
+        });
+      })
+      .catch((e) => {
+        console.log('Error from transfering shift(s)', e);
       });
   };
 
@@ -73,10 +93,13 @@ export default () => {
         users={users}
         submitShift={submitShift}
         removeShift={removeShift}
-        transferShift={transferShift}
+        transferShiftId={transferShiftId}
         shift={shift}
         setShift={setShift}
-        categories={categories}
+        categories={categories}        
+        week = {props.week}
+        setWeek = {props.setWeek}
+        dateSelector = {dateSelector}
       />
     );
   });
@@ -84,7 +107,7 @@ export default () => {
   return (
     <div className='scroll'>
       <Card className='schedule'>
-        <Header />
+        <Header date = {date}/>
         {employees}
       </Card>
     </div>

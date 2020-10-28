@@ -23,7 +23,6 @@ function isAuthenticated() {
     // const {token} = JSON.parse(localStorage.getItem('user'))
     // call backend /token and verify token is valid on the backend and return
     // true/false depending on what the backend says
-    console.log('hello', user)
     const {role} = user
     if (role === 'admin' || role === 'employee') {
       return true

@@ -33,7 +33,7 @@ const CategoryButton = ({ categories, categorySelected, setCategorySelected }) =
     setAnchorEl(null);
   };
 
-  const onCategorySelect = (category) => {
+  const onCategorySelect = (category = categories[0]) => {
     setCategorySelected(category);
     setAnchorEl(null);
   };
@@ -51,7 +51,7 @@ const CategoryButton = ({ categories, categorySelected, setCategorySelected }) =
   return (
     <>
       <Button aria-controls='fade-menu' aria-haspopup='true' onClick={handleClick} variant='contained'>
-        {categorySelected.name || 'Category'}
+        {categorySelected.name || categories[0].name}
       </Button>
       <Menu
         id='fade-menu'
