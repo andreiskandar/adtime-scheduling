@@ -23,19 +23,11 @@ const EmployeeGrid = (props) => {
   const [deleteConfirm, setDeleteConfirm] = useState(false);
 
   const clickGrid = (e) => {
-    // getting grid_id from user selection
-    const grid_id = parseInt(e.target.attributes[0].value);
-    console.log('grid_id:', grid_id);
-
-    // open modal
+    const grid_id = parseInt(e.target.attributes[0].value) + 1;
     setOpen(true);
-
-    // convert grid_id to hours for database query
-    const start_time = HOURS_DICT[grid_id + 1];
-
+    const start_time = HOURS_DICT[grid_id];
     setStartTime(start_time);
-
-    // time validation when user selects time that has been booked
+    console.log('shift_id:', shift_id);
     if (shift_id && shift_id.includes(grid_id)) {
       setError(ERROR_MESSAGES_DICT['DOUBLE_BOOKED']);
       return;
@@ -75,7 +67,6 @@ const EmployeeGrid = (props) => {
     const start_time = startTime;
     const end_time = endTime;
     const category_id = categorySelected.id;
-    console.log('category_id:', category_id);
     const transferToUserId = selected.id;
 
     if (!selected) {

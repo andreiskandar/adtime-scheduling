@@ -7,6 +7,7 @@ const CategoryButton = ({ categories, categorySelected, setCategorySelected }) =
   const openButton = Boolean(anchorEl);
 
   categories && setCategorySelected(categories[0]);
+
   const useStyles = makeStyles((theme) => ({
     root: {
       display: 'flex',

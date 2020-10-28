@@ -17,12 +17,12 @@ import publishSchedule from 'helpers/publishSchedule';
 export default (props) => {
   const [users, setUsers] = useState([]);
   const [shift, setShift] = useState([]);
-  const [date, setDate] = useState('')
+  const [date, setDate] = useState('');
   const [categories, setCategories] = useState([]);
-  
+
   const dateSelector = (date) => {
-    setDate(date)
-  }
+    setDate(date);
+  };
 
   useEffect(() => {
     cancelShift();
@@ -71,7 +71,6 @@ export default (props) => {
   };
 
   const transferShiftId = (user_id, start_time, end_time, transferToUserId, event_date, category_id) => {
-    console.log('category_id:', category_id)
     let payload = transferShift(user_id, start_time, end_time, transferToUserId, event_date, category_id);
     axios
       .put('/api/events/transfer', payload)
@@ -96,10 +95,10 @@ export default (props) => {
         transferShiftId={transferShiftId}
         shift={shift}
         setShift={setShift}
-        categories={categories}        
-        week = {props.week}
-        setWeek = {props.setWeek}
-        dateSelector = {dateSelector}
+        categories={categories}
+        week={props.week}
+        setWeek={props.setWeek}
+        dateSelector={dateSelector}
       />
     );
   });
@@ -107,7 +106,7 @@ export default (props) => {
   return (
     <div className='scroll'>
       <Card className='schedule'>
-        <Header date = {date}/>
+        <Header date={date} />
         {employees}
       </Card>
     </div>
