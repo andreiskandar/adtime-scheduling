@@ -17,6 +17,7 @@ const ERROR_MESSAGES_DICT = {
   CANNOT_BE_BLANK: 'End time cannot be blank',
   AFTER_9PM: 'End time can not be after 21:00',
   DOUBLE_BOOKED: 'The shift has been booked',
+  TIME_IS_STRING: 'Please enter HH format',
 };
 
 module.exports = { HOURS_DICT, ERROR_MESSAGES_DICT };
