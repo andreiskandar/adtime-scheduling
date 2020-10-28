@@ -9,13 +9,13 @@ const Employee = (props) => {
   const { id, name, avatar, shift, color, users, categories } = props;
  
   const date_from_calendar = [
-      new Date (props.mon).toISOString(),
-      new Date (props.tues).toISOString(),
-      new Date (props.wed).toISOString(),
-      new Date (props.thurs).toISOString(),
-      new Date (props.fri).toISOString(),
-      new Date (props.sat).toISOString(),
-      new Date (props.sun).toISOString()
+      new Date (props.mon - 86400000).toISOString(),
+      new Date (props.tues - 86400000).toISOString(),
+      new Date (props.wed - 86400000).toISOString(),
+      new Date (props.thurs - 86400000).toISOString(),
+      new Date (props.fri - 86400000).toISOString(),
+      new Date (props.sat - 86400000).toISOString(),
+      new Date (props.sun - 86400000).toISOString()
   ]
   
   const slotMap = shift.reduce((acc, cur) => {
