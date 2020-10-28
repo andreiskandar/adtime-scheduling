@@ -73,7 +73,6 @@ const EmployeeGrid = (props) => {
 
     submit();
   };
-  console.log('selected:', selected);
 
   const submit = () => {
     const user_id = props.id;
