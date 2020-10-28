@@ -2,7 +2,11 @@ import React from 'react';
 import './MiniCalendar.css';
 import './index.css';
 import { Calendar } from 'antd';
-import { Button } from '@material-ui/core';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import Button from '@material-ui/core/Button';
+import moment from 'moment';
+import { SettingsPowerRounded } from '@material-ui/icons';
 
 const MiniCalendar = (props) => {
   const milisecDay = 86400000;
@@ -84,10 +88,14 @@ const MiniCalendar = (props) => {
         break;
     }
   };
-
   return (
     <div className='site-calendar-demo-card'>
-      <Calendar onChange={(e) => handleChange(e)} fullscreen={false} onPanelChange={onPanelChange} />
+      <Calendar onChange={handleChange} fullscreen={false} onPanelChange={onPanelChange} />
+      <div className='calendar__button'>
+        <Button color='primary' size='small' onClick={props.handleClose}>
+          Close
+        </Button>
+      </div>
     </div>
   );
 };

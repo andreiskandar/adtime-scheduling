@@ -1,23 +1,22 @@
 import React from 'react';
 import EmployeeGrid from './EmployeeGrid';
 import EmployeeHeader from './EmployeeHeader';
-import { default as WeekNav } from '../../WeekNav/index';
 
 import './employee.scss';
 
 const Employee = (props) => {
   const { id, name, avatar, shift, color, users, categories } = props;
- 
+
   const date_from_calendar = [
-      new Date (props.mon - 86400000).toISOString(),
-      new Date (props.tues - 86400000).toISOString(),
-      new Date (props.wed - 86400000).toISOString(),
-      new Date (props.thurs - 86400000).toISOString(),
-      new Date (props.fri - 86400000).toISOString(),
-      new Date (props.sat - 86400000).toISOString(),
-      new Date (props.sun - 86400000).toISOString()
-  ]
-  
+    new Date(props.mon - 86400000).toISOString(),
+    new Date(props.tues - 86400000).toISOString(),
+    new Date(props.wed - 86400000).toISOString(),
+    new Date(props.thurs - 86400000).toISOString(),
+    new Date(props.fri - 86400000).toISOString(),
+    new Date(props.sat - 86400000).toISOString(),
+    new Date(props.sun - 86400000).toISOString(),
+  ];
+
   const slotMap = shift.reduce((acc, cur) => {
     if (cur.user_id && cur.user_id === id) {
       if (!acc[cur.event_date]) {
