@@ -41,6 +41,14 @@ const EmployeeGrid = (props) => {
   };
 
   const validate = (e) => {
+    const timeRegex = /^([0-9]|0[0-9]|1[0-9]|2[0-3])([0-5][0-9])?$/;
+    //
+    if (!endTime.match(timeRegex)) {
+      // if (typeof endTime !== 'number') {
+      setError(ERROR_MESSAGES_DICT['TIME_IS_STRING']);
+      return;
+    }
+
     if (!endTime) {
       setError(ERROR_MESSAGES_DICT['CANNOT_BE_BLANK']);
       return;
@@ -59,9 +67,12 @@ const EmployeeGrid = (props) => {
     }
 
     //validate if shift transferred to employee that will be double booked
-    if (selected) submit();
+    // if(selected && selected's shift_id arrays includes endTimeShiftId){
+    // setError(ERROR_MESSAGES_DICT['DOUBLE_BOOKED'])
+    // }
+
+    submit();
   };
-  console.log('selected:', selected);
 
   const submit = () => {
     const user_id = props.id;
@@ -73,7 +84,7 @@ const EmployeeGrid = (props) => {
     if (!selected) {
       props.submitShift(user_id, start_time, end_time, event_date, category_id);
     } else {
-      props.transferShiftId(user_id, start_time, end_time, transferToUserId, event_date, category_id);
+      props.transferShiftId(user_id, start_time, end_time, transferToUserId, event_date);
     }
     reset();
   };

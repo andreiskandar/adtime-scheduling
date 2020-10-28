@@ -70,13 +70,10 @@ export default (props) => {
       });
   };
 
-  const transferShiftId = (user_id, start_time, end_time, transferToUserId, event_date, category_id) => {
+  const transferShiftId = (user_id, start_time, end_time, transferToUserId, event_date) => {
     // let payload = transferShift(user_id, start_time, end_time, transferToUserId, event_date, category_id);
     axios
-      .put(
-        '/api/events/transfer',
-        transferShift(user_id, start_time, end_time, transferToUserId, event_date, category_id)
-      )
+      .put('/api/events/transfer', transferShift(user_id, start_time, end_time, transferToUserId, event_date))
       .then(() => {
         axios.get('api/shifts/events').then((res) => {
           setShift(res.data);
