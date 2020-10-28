@@ -14,13 +14,16 @@ export default () => {
   const [isInitialRender, setIsInitialRender] = useState(true)
   const [isAuthenticated, setIsAuthenticated] = useState(false)
   const [week, setWeek] = useState(2);
-  const [mon, setMon] = useState(1603695600000)
-  const [tues, setTues] = useState(1603782000000)
-  const [wed, setWed] = useState(1603868400000)
-  const [thurs, setThurs] = useState(1603954800000)
-  const [fri, setFri] = useState(1604041200000)
-  const [sat, setSat] = useState(1604127600000)
-  const [sun, setSun] = useState(1604214000000)
+  const [mon, setMon] = useState(1603695600000 - 25200000)
+  const [tues, setTues] = useState(1603782000000 - 25200000)
+  const [wed, setWed] = useState(1603868400000 - 25200000)
+  const [thurs, setThurs] = useState(1603954800000 - 25200000)
+  const [fri, setFri] = useState(1604041200000 - 25200000)
+  const [sat, setSat] = useState(1604127600000 - 25200000)
+  const [sun, setSun] = useState(1604214000000 - 25200000)
+
+  const timezoneOffset = 420
+  
 
   const clickRightCalendar = () => {
     setMon(mon + 604800000)
@@ -30,6 +33,7 @@ export default () => {
     setFri(fri + 604800000) 
     setSat(sat + 604800000)
     setSun(sun + 604800000)
+    new Date (mon).toISOString()
   }
 
   const clickLeftCalendar = () => {

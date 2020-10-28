@@ -6,8 +6,10 @@ import { default as WeekNav } from '../../WeekNav/index';
 import './employee.scss';
 
 const Employee = (props) => {
-  const { id, name, avatar, shift, color, users, categories, dateSelector } = props;
+  const { id, name, avatar, shift, color, users, categories } = props;
  
+  console.log(new Date (props.mon).toISOString())
+
   const date_from_calendar = [
       new Date (props.mon).toISOString(),
       new Date (props.tues).toISOString(),
@@ -43,7 +45,6 @@ const Employee = (props) => {
   const num_event = totalEvents === '1' ? '1 event' : totalEvents > '1' ? `${totalEvents} events` : '';
 
   const renderEmployeeGridPerDay = date_from_calendar.map((date, idx) => {
-    props.dateSelector(date)
     return (
       <EmployeeGrid
         key={Date.now() + idx}

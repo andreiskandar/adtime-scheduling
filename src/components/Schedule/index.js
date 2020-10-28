@@ -20,10 +20,6 @@ export default (props) => {
   const [date, setDate] = useState('')
   const [categories, setCategories] = useState([]);
   
-  const dateSelector = (date) => {
-    setDate(date)
-  }
-
   useEffect(() => {
     cancelShift();
     const apiUsers = axios.get('/api/users');
@@ -98,7 +94,6 @@ export default (props) => {
         categories={categories}        
         week = {props.week}
         setWeek = {props.setWeek}
-        dateSelector = {dateSelector}
         mon = {props.mon}  
         tues = {props.tues}  
         wed = {props.wed}  
