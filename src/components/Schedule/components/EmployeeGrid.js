@@ -41,10 +41,9 @@ const EmployeeGrid = (props) => {
   };
 
   const validate = (e) => {
-    const timeRegex = /^([0-9]|0[0-9]|1[0-9]|2[0-3])([0-5][0-9])?$/;
-    //
+    const timeRegex = /^([0-9]|0[0-9]|1[0-9]|2[0-3])(:[0-5][0-9])?$/;
+   
     if (!endTime.match(timeRegex)) {
-      // if (typeof endTime !== 'number') {
       setError(ERROR_MESSAGES_DICT['TIME_IS_STRING']);
       return;
     }
@@ -188,7 +187,7 @@ const EmployeeGrid = (props) => {
             <Dialog open={deleteConfirm}>
               <Delete
                 onConfirm={handleDelete}
-                message={'Are you sure you want to delete these shifts'}
+                message={'Are you sure you want to delete these shift(s)?'}
                 onCancel={deleteConfirmClose}
               />
             </Dialog>
@@ -207,7 +206,7 @@ const EmployeeGrid = (props) => {
                 <Dialog variant='filled' open={warning}>
                   <Transfer
                     onConfirm={validate}
-                    message={'Are you sure you want to transfer the shift(s)'}
+                    message={'Are you sure you want to transfer the shift(s)?'}
                     onCancel={closeWarningDialog}
                   />
                 </Dialog>
