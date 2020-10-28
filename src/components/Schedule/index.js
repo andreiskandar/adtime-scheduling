@@ -19,11 +19,7 @@ export default (props) => {
   const [shift, setShift] = useState([]);
   const [date, setDate] = useState('');
   const [categories, setCategories] = useState([]);
-
-  const dateSelector = (date) => {
-    setDate(date);
-  };
-
+  
   useEffect(() => {
     cancelShift();
     const apiUsers = axios.get('/api/users');
@@ -95,10 +91,23 @@ export default (props) => {
         transferShiftId={transferShiftId}
         shift={shift}
         setShift={setShift}
-        categories={categories}
-        week={props.week}
-        setWeek={props.setWeek}
-        dateSelector={dateSelector}
+        categories={categories}        
+        week = {props.week}
+        setWeek = {props.setWeek}
+        mon = {props.mon}  
+        tues = {props.tues}  
+        wed = {props.wed}  
+        thurs = {props.thurs}  
+        fri = {props.fri}  
+        sat ={props.sat}  
+        sun = {props.sun}
+        setMon = {props.setMon}
+        setTues = {props.setTues}
+        setWed = {props.setWed}
+        setThurs = {props.setThurs}
+        setFri = {props.setFri}
+        setSat = {props.setSat}
+        setSun = {props.setSun}
       />
     );
   });
@@ -106,7 +115,23 @@ export default (props) => {
   return (
     <div className='scroll'>
       <Card className='schedule'>
-        <Header date={date} />
+        <Header 
+          mon = {props.mon}  
+          tues = {props.tues}  
+          wed = {props.wed}  
+          thurs = {props.thurs}  
+          fri = {props.fri}  
+          sat ={props.sat}  
+          sun = {props.sun}
+          setMon = {props.setMon}
+          setTues = {props.setTues}
+          setWed = {props.setWed}
+          setThurs = {props.setThurs}
+          setFri = {props.setFri}
+          setSat = {props.setSat}
+          setSun = {props.setSun}
+        
+        date = {date}/>
         {employees}
       </Card>
     </div>

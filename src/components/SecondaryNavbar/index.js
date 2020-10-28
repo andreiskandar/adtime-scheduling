@@ -40,7 +40,22 @@ const PublishButton = (props) => {
   return (
     <main className='secondary__navbar'>
       <SearchBar />
-      <WeekNav clickLeftCalendar = {props.clickLeftCalendar} clickRightCalendar = {props.clickRightCalendar} />
+      <WeekNav clickLeftCalendar = {props.clickLeftCalendar} clickRightCalendar = {props.clickRightCalendar} 
+        mon = {props.mon}  
+        tues = {props.tues}  
+        wed = {props.wed}  
+        thurs = {props.thurs}  
+        fri = {props.fri}  
+        sat ={props.sat}  
+        sun = {props.sun}
+        setMon = {props.setMon}
+        setTues = {props.setTues}
+        setWed = {props.setWed}
+        setThurs = {props.setThurs}
+        setFri = {props.setFri}
+        setSat = {props.setSat}
+        setSun = {props.setSun}
+      />
       <Button onClick={clickedMe} className={buttonClass}>
         <CheckIcon className='icon icon__secondary_navbar' />
         {wording}
