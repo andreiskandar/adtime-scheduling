@@ -94,7 +94,7 @@ export default (props) => {
         shift={shift}
         setShift={setShift}
         categories={categories}
-<<<<<<< HEAD
+        
         week = {props.week}
         setWeek = {props.setWeek}
         mon = {props.mon}  
@@ -111,24 +111,6 @@ export default (props) => {
         setFri = {props.setFri}
         setSat = {props.setSat}
         setSun = {props.setSun}
-=======
-        week={props.week}
-        setWeek={props.setWeek}
-        mon={props.mon}
-        tues={props.tues}
-        wed={props.wed}
-        thurs={props.thurs}
-        fri={props.fri}
-        sat={props.sat}
-        sun={props.sun}
-        setMon={props.setMon}
-        setTues={props.setTues}
-        setWed={props.setWed}
-        setThurs={props.setThurs}
-        setFri={props.setFri}
-        setSat={props.setSat}
-        setSun={props.setSun}
->>>>>>> 34fc4bbe071482a76dcc6ee6caa9e5c186581a89
       />
     );
   });
