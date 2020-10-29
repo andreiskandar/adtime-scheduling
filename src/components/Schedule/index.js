@@ -16,14 +16,15 @@ import publishSchedule from 'helpers/publishSchedule';
 
 export default (props) => {
   const [users, setUsers] = useState([]);
-  const [shift, setShift] = useState([]);
   const [date, setDate] = useState('');
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
+    const day1 = new Date(props.mon - 86400000).toISOString();
+    const day2 = new Date(props.sun - 86400000).toISOString();
     cancelShift();
     const apiUsers = axios.get('/api/users');
-    const apiUserShift = axios.get('api/shifts/events');
+    const apiUserShift = axios.get('api/shifts/events', { params: {firstDay: day1.split('T')[0], lastDay: day2.split('T')[0]}});
     const apiCategories = axios.get('api/categories');
     
 
@@ -33,7 +34,7 @@ export default (props) => {
         const newShift = [...all[1].data];
         const newCategories = [...all[2].data];
         setUsers(newUser);
-        setShift(newShift);
+        props.setShift(newShift);
         setCategories(newCategories);
       })
       .catch((e) => {
@@ -42,11 +43,14 @@ export default (props) => {
   }, []);
   
   const submitShift = (user_id, startTime, endTime, event_date, category_id) => {
+    const day1 = new Date(props.mon - 86400000).toISOString();
+    const day2 = new Date(props.sun - 86400000).toISOString();
     axios
       .post('/api/events/add', addShift(user_id, startTime, endTime, event_date, category_id))
       .then(() => {
-        axios.get('api/shifts/events').then((res) => {
-          setShift(res.data);
+        axios.get('api/shifts/events', { params: {firstDay: day1.split('T')[0], lastDay: day2.split('T')[0]}})
+        .then((res) => {
+          props.setShift(res.data);
         });
       })
       .catch((e) => {
@@ -55,11 +59,14 @@ export default (props) => {
   };
 
   const removeShift = (user_id, startTime, endTime, event_date, category_id) => {
+    const day1 = new Date(props.mon - 86400000).toISOString();
+    const day2 = new Date(props.sun - 86400000).toISOString();
     axios
       .delete('/api/events/delete', cancelShift(user_id, startTime, endTime, event_date, category_id))
       .then(() => {
-        axios.get('api/shifts/events').then((res) => {
-          setShift(res.data);
+        axios.get('api/shifts/events', { params: {firstDay: day1.split('T')[0], lastDay: day2.split('T')[0]}})
+        .then((res) => {
+          props.setShift(res.data);
         });
       })
       .catch((e) => {
@@ -68,13 +75,16 @@ export default (props) => {
   };
 
   const transferShiftId = (user_id, start_time, end_time, transferToUserId, event_date) => {
-    console.log('event_date:', event_date);
+    const day1 = new Date(props.mon - 86400000).toISOString();
+    const day2 = new Date(props.sun - 86400000).toISOString();
+    //console.log('event_date:', event_date);
     // let payload = transferShift(user_id, start_time, end_time, transferToUserId, event_date, category_id);
     axios
       .put('/api/events/transfer', transferShift(user_id, start_time, end_time, transferToUserId, event_date))
       .then(() => {
-        axios.get('api/shifts/events').then((res) => {
-          setShift(res.data);
+        axios.get('api/shifts/events', { params: {firstDay: day1.split('T')[0], lastDay: day2.split('T')[0]}})
+        .then((res) => {
+          props.setShift(res.data);
         });
       })
       .catch((e) => {
@@ -91,10 +101,9 @@ export default (props) => {
         submitShift={submitShift}
         removeShift={removeShift}
         transferShiftId={transferShiftId}
-        shift={shift}
-        setShift={setShift}
+        shift={props.shift}
+        setShift={props.setShift}
         categories={categories}
-        
         week = {props.week}
         setWeek = {props.setWeek}
         mon = {props.mon}  

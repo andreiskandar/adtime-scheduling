@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import history from 'app/history';
 import { Navbar, SecondaryNavbar, Schedule } from 'components';
 import { user } from 'controllers';
+import axios from 'axios'
 
 /*
 1 hour = 3600000
@@ -22,14 +23,25 @@ export default () => {
   const [fri, setFri] = useState(1604102400000 - 604800000);
   const [sat, setSat] = useState(1604188800000 - 604800000);
   const [sun, setSun] = useState(1604275200000 - 604800000);
-
-      
+  const [shift, setShift] = useState([]);
   
-
+  const getNewWeek = (day1, day2) => {
+    console.log(day1)
+    axios.get('api/shifts/events', { params: {firstDay: day1.split('T')[0], lastDay: day2.split('T')[0]}})
+      .then((res) => {
+        setShift(res.data);
+      })    
+      .catch((e) => {
+        console.log('Error from adding shift', e);
+      });
+  }
+  
   //console.log(props.mon) // Header.js:16 1603670400000  --> 1603756800000
   //console.log(props.sun) // Header.js:17 1604188800000  --> 1604275200000
 
   const clickRightCalendar = () => {
+    const day1 = new Date(mon + 604800000 - 86400000).toISOString();
+    const day2 = new Date(sun + 604800000 - 86400000).toISOString();
     setMon(mon + 604800000);
     setTues(tues + 604800000);
     setWed(wed + 604800000);
@@ -37,9 +49,12 @@ export default () => {
     setFri(fri + 604800000);
     setSat(sat + 604800000);
     setSun(sun + 604800000);
+    getNewWeek(day1, day2);
   };
 
   const clickLeftCalendar = () => {
+    const day1 = new Date(mon - 604800000 - 86400000).toISOString();
+    const day2 = new Date(sun - 604800000 - 86400000).toISOString();
     setMon(mon - 604800000);
     setTues(tues - 604800000);
     setWed(wed - 604800000);
@@ -47,6 +62,7 @@ export default () => {
     setFri(fri - 604800000);
     setSat(sat - 604800000);
     setSun(sun - 604800000);
+    getNewWeek(day1, day2);
   };
 
   useEffect(() => {
@@ -87,6 +103,8 @@ export default () => {
       <Schedule
         week={week}
         setWeek={setWeek}
+        shift={shift}
+        setShift={setShift}
         mon={mon}
         tues={tues}
         wed={wed}

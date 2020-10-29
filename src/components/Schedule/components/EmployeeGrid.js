@@ -148,7 +148,7 @@ const EmployeeGrid = (props) => {
   let dumb = shift[0]
   for (const published in dumb) {
     if ((dumb[published]) === false){
-      console.log("THIS IS STUPID")
+      //console.log("THIS IS STUPID")
     }
   }
   
