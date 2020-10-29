@@ -10,7 +10,6 @@ import Transfer from '../../Schedule/components/confirm/Confirmtransfer';
 import Delete from '../../Schedule/components/confirm/Confirmdelete';
 import { user } from '../../../controllers';
 
-
 const EmployeeGrid = (props) => {
   const role = user.getRole();
   const classes = useStyles();
@@ -25,7 +24,6 @@ const EmployeeGrid = (props) => {
   const [warning, setWarning] = useState(false);
   const [deleteConfirm, setDeleteConfirm] = useState(false);
 
-  
   const clickGrid = (e) => {
     setOpen(true);
     const grid_id = parseInt(e.target.attributes[0].value) + 1;
@@ -144,23 +142,18 @@ const EmployeeGrid = (props) => {
       </div>
     </>
   );
-  
-  let dumb = shift[0]
+
+  let dumb = shift[0];
   for (const published in dumb) {
-    if ((dumb[published]) === false){
-      console.log("THIS IS STUPID")
+    if (dumb[published] === false) {
+      console.log('THIS IS STUPID');
     }
   }
-  
+
   return (
     <>
-      {error && errorElement}
-      {role === 'admin' && (
-      <div className='employee_grid'>{renderSpan}</div>
-      )}
-      {role === 'employee' && (
-      <div>hello</div>
-      )}
+      {role === 'admin' && <div className='employee_grid'>{renderSpan}</div>}
+      {role === 'employee' && <div>hello</div>}
       <Dialog open={open} onClose={handleClose} maxWidth='lg'>
         <DialogTitle>Add / Transfer Shift</DialogTitle>
         <div className={classes.flex}>
@@ -194,9 +187,10 @@ const EmployeeGrid = (props) => {
             setCategorySelected={setCategorySelected}
             categorySelected={categorySelected}
           />
-          {role !== 'admin' && (
           <TransferShiftMenuButton users={users} setSelected={setSelected} setCategorySelected={categorySelected.id} />
-          )}
+          {/* {role !== 'admin' && (
+          <TransferShiftMenuButton users={users} setSelected={setSelected} setCategorySelected={categorySelected.id} />
+          )} */}
           <Button onClick={reset} variant='contained'>
             Back
           </Button>
@@ -206,13 +200,13 @@ const EmployeeGrid = (props) => {
               Delete
             </Button>
           )}
-            <Dialog open={deleteConfirm}>
-              <Delete
-                onConfirm={handleDelete}
-                message={'Are you sure you want to delete these shifts'}
-                onCancel={deleteConfirmClose}
-              />
-            </Dialog>
+          <Dialog open={deleteConfirm}>
+            <Delete
+              onConfirm={handleDelete}
+              message={'Are you sure you want to delete these shifts'}
+              onCancel={deleteConfirmClose}
+            />
+          </Dialog>
           {!error && role === 'admin' && (
             <Button onClick={validate} color='primary' variant='contained'>
               Submit

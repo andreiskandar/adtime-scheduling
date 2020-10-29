@@ -36,7 +36,7 @@ const Employee = (props) => {
   let totalHours = 0,
     totalEvents = 0;
   for (const item in slotMap) {
-    totalEvents += 1;
+    totalEvents++;
     totalHours += slotMap[item].length;
   }
 
