@@ -1,3 +1,5 @@
+@import '../../styles/variables.scss';
+
 .navbar {
   margin-left: 0;
   background-color: #3f51b5;
@@ -9,6 +11,7 @@
     justify-content: space-between;
   }
   .logo__navbar {
+    font-family: $font-family;
     margin-left: 27px;
     font-size: 0.8em;
   }
