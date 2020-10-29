@@ -8,22 +8,24 @@ const Employee = (props) => {
   const { id, name, avatar, shift, color, users, categories } = props;
 
   const date_from_calendar = [
-    new Date(props.mon - 86400000).toISOString(),
-    new Date(props.tues - 86400000).toISOString(),
-    new Date(props.wed - 86400000).toISOString(),
-    new Date(props.thurs - 86400000).toISOString(),
-    new Date(props.fri - 86400000).toISOString(),
-    new Date(props.sat - 86400000).toISOString(),
-    new Date(props.sun - 86400000).toISOString(),
+    new Date(props.mon - 86400000).toISOString().split('T')[0],
+    new Date(props.tues - 86400000).toISOString().split('T')[0],
+    new Date(props.wed - 86400000).toISOString().split('T')[0],
+    new Date(props.thurs - 86400000).toISOString().split('T')[0],
+    new Date(props.fri - 86400000).toISOString().split('T')[0],
+    new Date(props.sat - 86400000).toISOString().split('T')[0],
+    new Date(props.sun - 86400000).toISOString().split('T')[0],
   ];
+  //2020-11-02T00:00:00.000Z
 
   const slotMap = shift.reduce((acc, cur) => {
+    const currentDate = cur.event_date.split('T')[0];
     if (cur.user_id && cur.user_id === id) {
-      if (!acc[cur.event_date]) {
-        acc[cur.event_date] = [];
-        acc[cur.event_date].push(cur.shift_id);
+      if (!acc[currentDate]) {
+        acc[currentDate] = [];
+        acc[currentDate].push(cur.shift_id);
       } else {
-        acc[cur.event_date].push(cur.shift_id);
+        acc[currentDate].push(cur.shift_id);
       }
       return acc;
     } else {

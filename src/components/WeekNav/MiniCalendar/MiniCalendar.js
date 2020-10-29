@@ -17,7 +17,7 @@ const MiniCalendar = (props) => {
 
   const handleChange = (e) => {
     let daySelected = e._d;
-    const daySelectedNoTime = new Date(daySelected).toISOString().substr(0, 10);
+    let daySelectedNoTime = new Date(daySelected).toISOString().substr(0, 10);
     let string = daySelectedNoTime.toString() + 'T00:00:00.000Z';
     string = new Date(string);
     daySelected = string.getTime();

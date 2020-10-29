@@ -12,7 +12,7 @@ import Delete from '../../Schedule/components/confirm/Confirmdelete';
 const EmployeeGrid = (props) => {
   const classes = useStyles();
   const { shift_id, users, date, categories } = props;
-  const event_date = date.split('T')[0];
+  const event_date = date;
   const [startTime, setStartTime] = useState(0);
   const [endTime, setEndTime] = useState('');
   const [open, setOpen] = useState(false);
@@ -189,7 +189,7 @@ const EmployeeGrid = (props) => {
           <Dialog open={deleteConfirm}>
             <Delete
               onConfirm={handleDelete}
-              message={'Are you sure you want to delete these shifts'}
+              message={'Are you sure you want to delete these shifts?'}
               onCancel={deleteConfirmClose}
             />
           </Dialog>
