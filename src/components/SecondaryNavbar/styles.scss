@@ -12,6 +12,14 @@
     font-size: 1.5em;
   }
 
+  .week__navigator {
+    justify-self: center;
+    position: fixed;
+    bottom: 1000;
+    right: 40% ;
+    justify-content: center;
+  }
+
   .btn {
     font-size: 1em;
     color: #717171;
@@ -21,12 +29,17 @@
     }
   }
 
+  .week_nav {
+    justify-self: center;
+  }
+
   .isPublished {
     color: #f5f5f5;
     background-color: #02bb02;
     &:hover {
       opacity: 0.8;
     }
+    justify-self: right;
   }
 
   // .isPending {

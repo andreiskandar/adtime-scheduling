@@ -9,9 +9,11 @@ import useVisualMode from '../../../hooks/useVisualMode';
 import Transfer from '../../Schedule/components/confirm/Confirmtransfer';
 import Delete from '../../Schedule/components/confirm/Confirmdelete';
 import { user } from '../../../controllers';
-const role = user.getRole();
+
 
 const EmployeeGrid = (props) => {
+  const role = user.getRole();
+  console.log(role)
   const classes = useStyles();
   const { shift_id, users, date, categories } = props;
   const event_date = date.split('T')[0];
@@ -179,7 +181,9 @@ const EmployeeGrid = (props) => {
             setCategorySelected={setCategorySelected}
             categorySelected={categorySelected}
           />
+          {role !== 'admin' && (
           <TransferShiftMenuButton users={users} setSelected={setSelected} setCategorySelected={categorySelected.id} />
+          )}
           <Button onClick={reset} variant='contained'>
             Back
           </Button>
@@ -197,7 +201,7 @@ const EmployeeGrid = (props) => {
               />
             </Dialog>
           </>
-          {!error && (
+          {!error && role === 'admin' && (
             <Button onClick={validate} color='primary' variant='contained'>
               Submit
             </Button>

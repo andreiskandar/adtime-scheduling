@@ -8,12 +8,12 @@ import Button from '@material-ui/core/Button';
 import CheckIcon from '@material-ui/icons/Check';
 import './styles.scss';
 
-const role = user.getRole();
+
 
 const PublishButton = (props) => {
   const [publish, setPublish] = useState(false);
   const [wording, setWording] = useState('Publish');
-
+  const role = user.getRole();
   const buttonClass = classNames({
     btn: true,
     isPublished: publish,
