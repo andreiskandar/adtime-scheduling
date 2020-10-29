@@ -8,11 +8,14 @@ import useStyles from './styles/formStyles';
 import useVisualMode from '../../../hooks/useVisualMode';
 import Transfer from '../../Schedule/components/confirm/Confirmtransfer';
 import Delete from '../../Schedule/components/confirm/Confirmdelete';
+import { user } from '../../../controllers';
+
 
 const EmployeeGrid = (props) => {
+  const role = user.getRole();
   const classes = useStyles();
-  const { shift_id, users, date, categories } = props;
-  const event_date = date.split('T')[0];
+  const { shift_id, users, date, categories, shift } = props;
+  const event_date = date;
   const [startTime, setStartTime] = useState(0);
   const [endTime, setEndTime] = useState('');
   const [open, setOpen] = useState(false);
@@ -22,6 +25,7 @@ const EmployeeGrid = (props) => {
   const [warning, setWarning] = useState(false);
   const [deleteConfirm, setDeleteConfirm] = useState(false);
 
+  
   const clickGrid = (e) => {
     setOpen(true);
     const grid_id = parseInt(e.target.attributes[0].value) + 1;
@@ -34,6 +38,7 @@ const EmployeeGrid = (props) => {
   };
 
   const reset = () => {
+    console.log('reset triggered');
     setError('');
     setSelected('');
     setCategorySelected({});
@@ -42,7 +47,6 @@ const EmployeeGrid = (props) => {
 
   const validate = (e) => {
     const timeRegex = /^([0-9]|0[0-9]|1[0-9]|2[0-3])(:[0-5][0-9])?$/;
-   
     if (!endTime.match(timeRegex)) {
       setError(ERROR_MESSAGES_DICT['TIME_IS_STRING']);
       return;
@@ -89,6 +93,7 @@ const EmployeeGrid = (props) => {
   };
 
   const handleClose = () => {
+    console.log('handleClose triggered');
     setOpen(false);
   };
 
@@ -139,10 +144,23 @@ const EmployeeGrid = (props) => {
       </div>
     </>
   );
-
+  
+  let dumb = shift[0]
+  for (const published in dumb) {
+    if ((dumb[published]) === false){
+      console.log("THIS IS STUPID")
+    }
+  }
+  
   return (
     <>
+      {error && errorElement}
+      {role === 'admin' && (
       <div className='employee_grid'>{renderSpan}</div>
+      )}
+      {role === 'employee' && (
+      <div>hello</div>
+      )}
       <Dialog open={open} onClose={handleClose} maxWidth='lg'>
         <DialogTitle>Add / Transfer Shift</DialogTitle>
         <div className={classes.flex}>
@@ -176,14 +194,18 @@ const EmployeeGrid = (props) => {
             setCategorySelected={setCategorySelected}
             categorySelected={categorySelected}
           />
+          {role !== 'admin' && (
           <TransferShiftMenuButton users={users} setSelected={setSelected} setCategorySelected={categorySelected.id} />
+          )}
           <Button onClick={reset} variant='contained'>
             Back
           </Button>
-          <>
+
+          {role === 'admin' && (
             <Button onClick={deleteConfirmOpen} color='secondary' variant='contained'>
               Delete
             </Button>
+          )}
             <Dialog open={deleteConfirm}>
               <Delete
                 onConfirm={handleDelete}
@@ -191,8 +213,7 @@ const EmployeeGrid = (props) => {
                 onCancel={deleteConfirmClose}
               />
             </Dialog>
-          </>
-          {!error && (
+          {!error && role === 'admin' && (
             <Button onClick={validate} color='primary' variant='contained'>
               Submit
             </Button>

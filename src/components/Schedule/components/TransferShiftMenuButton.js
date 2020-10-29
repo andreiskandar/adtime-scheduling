@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Menu, MenuItem, Fade, Avatar, Button } from '@material-ui/core/';
 import { makeStyles } from '@material-ui/core/styles';
+import { user } from '../../../controllers';
+const role = user.getRole();
 
 const TransferShiftMenuButton = ({ users, setSelected }) => {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -51,9 +53,11 @@ const TransferShiftMenuButton = ({ users, setSelected }) => {
 
   return (
     <>
+      {role !== 'admin' && (
       <Button aria-controls='fade-menu' aria-haspopup='true' onClick={handleClick} variant='contained'>
         Transfer Shift
       </Button>
+      )}
       <Menu
         id='fade-menu'
         anchorEl={anchorEl}
