@@ -39,8 +39,12 @@
     &:hover {
       opacity: 0.8;
     }
-    justify-self: right;
   }
+      .left__secondary_navbar{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
 
   // .isPending {
   //   color: #717171;
