@@ -16,8 +16,8 @@
   font-size: 13px;
   .avatar__employee {
     margin: 5px 10px 5px 5px;
-    border-radius: 50%;
-    transform: scale(0.9);
+    border-radius: 10px;
+    transform: scale(0.7);
   }
 
   .name_event__employee {
@@ -28,7 +28,7 @@
 
   .events__employee,
   .hours__employee {
-    font-size: 12px;
+    font-size: 11px;
     color: #9e9e9e;
   }
 
