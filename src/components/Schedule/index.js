@@ -25,6 +25,7 @@ export default (props) => {
     const apiUsers = axios.get('/api/users');
     const apiUserShift = axios.get('api/shifts/events');
     const apiCategories = axios.get('api/categories');
+    
 
     Promise.all([apiUsers, apiUserShift, apiCategories])
       .then((all) => {
@@ -39,7 +40,7 @@ export default (props) => {
         console.log(e);
       });
   }, []);
-
+  
   const submitShift = (user_id, startTime, endTime, event_date, category_id) => {
     axios
       .post('/api/events/add', addShift(user_id, startTime, endTime, event_date, category_id))
@@ -91,7 +92,7 @@ export default (props) => {
         transferShiftId={transferShiftId}
         shift={shift}
         setShift={setShift}
-        categories={categories}        
+        categories={categories}
         week = {props.week}
         setWeek = {props.setWeek}
         mon = {props.mon}  

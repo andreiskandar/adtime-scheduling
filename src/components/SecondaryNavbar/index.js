@@ -18,10 +18,13 @@ const PublishButton = (props) => {
     btn: true,
     isPublished: publish,
   });
-
+  
+  const day1 = (new Date (props.mon - 86400000)).toISOString()
+  const day2 = (new Date (props.sun - 86400000)).toISOString()
+ 
   const clickedMe = (e) => {
     if (publish === false) {
-      axios.put('/api/events/publish', { publish: true, firstDay: '2020-10-19', lastDay: '2020-10-26' })
+      axios.put('/api/events/publish', { publish: true, firstDay: day1.split('T')[0], lastDay: day2.split('T')[0]})
       .then(setPublish(true))
       .then(setWording('Unpublish'))
       .catch((e) => {
@@ -29,7 +32,7 @@ const PublishButton = (props) => {
       });
     } else {
       axios
-        .put('/api/events/publish', { publish: false, firstDay: '2020-10-19', lastDay: '2020-10-26' })
+        .put('/api/events/publish', { publish: false, firstDay: day1.split('T')[0], lastDay: day2.split('T')[0]})
         .then(setPublish(false))
         .then(setWording('Publish'))
         .catch((e) => {
@@ -57,6 +60,8 @@ const PublishButton = (props) => {
         setFri = {props.setFri}
         setSat = {props.setSat}
         setSun = {props.setSun}
+        publish = {props.publish}
+        setPublish = {props.setPublish}
       />
       {role === 'admin' && (
       <Button onClick={clickedMe} className={buttonClass}>

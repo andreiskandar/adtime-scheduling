@@ -13,9 +13,8 @@ import { user } from '../../../controllers';
 
 const EmployeeGrid = (props) => {
   const role = user.getRole();
-  console.log(role)
   const classes = useStyles();
-  const { shift_id, users, date, categories } = props;
+  const { shift_id, users, date, categories, shift } = props;
   const event_date = date.split('T')[0];
   const [startTime, setStartTime] = useState(0);
   const [endTime, setEndTime] = useState('');
@@ -26,6 +25,7 @@ const EmployeeGrid = (props) => {
   const [warning, setWarning] = useState(false);
   const [deleteConfirm, setDeleteConfirm] = useState(false);
 
+  
   const clickGrid = (e) => {
     setOpen(true);
     const grid_id = parseInt(e.target.attributes[0].value) + 1;
@@ -144,10 +144,23 @@ const EmployeeGrid = (props) => {
       </div>
     </>
   );
-
+  
+  let dumb = shift[0]
+  for (const published in dumb) {
+    if ((dumb[published]) === false){
+      console.log("THIS IS STUPID")
+    }
+  }
+  
   return (
     <>
+      {error && errorElement}
+      {role === 'admin' && (
       <div className='employee_grid'>{renderSpan}</div>
+      )}
+      {role === 'employee' && (
+      <div>hello</div>
+      )}
       <Dialog open={open} onClose={handleClose} maxWidth='lg'>
         <DialogTitle>Add / Transfer Shift</DialogTitle>
         <div className={classes.flex}>

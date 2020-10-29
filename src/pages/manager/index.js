@@ -23,6 +23,9 @@ export default () => {
   const [sat, setSat] = useState(1604188800000 - 604800000)
   const [sun, setSun] = useState(1604275200000 - 604800000)
 
+      
+  
+
   //console.log(props.mon) // Header.js:16 1603670400000  --> 1603756800000
   //console.log(props.sun) // Header.js:17 1604188800000  --> 1604275200000
  
