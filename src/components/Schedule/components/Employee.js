@@ -36,12 +36,12 @@ const Employee = (props) => {
   let totalHours = 0,
     totalEvents = 0;
   for (const item in slotMap) {
-    totalEvents++;
+    totalEvents += 1;
     totalHours += slotMap[item].length;
   }
 
   const num_hours = totalHours === 1 ? '1 hr' : totalHours > 1 ? `${totalHours} hrs` : '';
-  const num_event = totalEvents === '1' ? '1 event' : totalEvents > '1' ? `${totalEvents} events` : '';
+  const num_event = totalEvents === 1 ? '1 event' : totalEvents > 1 ? `${totalEvents} events` : '';
 
   const renderEmployeeGridPerDay = date_from_calendar.map((date, idx) => {
     return (
