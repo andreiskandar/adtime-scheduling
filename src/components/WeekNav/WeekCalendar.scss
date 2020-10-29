@@ -3,7 +3,7 @@
 .week__navigator {
   display: flex;
   align-items: center;
-  border: solid 1px $border-color-grey;
+  border: solid 2px $border-color-grey;
   border-radius: 15px;
 
   .left__navigator {
@@ -11,7 +11,7 @@
     border-radius: 15px 0 0 15px;
   }
   .right__navigator {
-    border-left: solid 1px $border-color-grey;
+   
   }
 }
 
@@ -22,4 +22,11 @@
   .weekCalendar__icon {
     font-size: 20px;
   }
+}
+
+.littleCalendar {
+  padding-left: 3px;
+  padding-top: 2px;
+  height: 30px;
+  width: 30px;
 }
