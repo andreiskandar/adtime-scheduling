@@ -15,7 +15,7 @@ const EmployeeGrid = (props) => {
   const role = user.getRole();
   const classes = useStyles();
   const { shift_id, users, date, categories, shift } = props;
-  const event_date = date.split('T')[0];
+  const event_date = date;
   const [startTime, setStartTime] = useState(0);
   const [endTime, setEndTime] = useState('');
   const [open, setOpen] = useState(false);
@@ -38,6 +38,7 @@ const EmployeeGrid = (props) => {
   };
 
   const reset = () => {
+    console.log('reset triggered');
     setError('');
     setSelected('');
     setCategorySelected({});
@@ -45,10 +46,8 @@ const EmployeeGrid = (props) => {
   };
 
   const validate = (e) => {
-    const timeRegex = /^([0-9]|0[0-9]|1[0-9]|2[0-3])([0-5][0-9])?$/;
-    //
+    const timeRegex = /^([0-9]|0[0-9]|1[0-9]|2[0-3])(:[0-5][0-9])?$/;
     if (!endTime.match(timeRegex)) {
-      // if (typeof endTime !== 'number') {
       setError(ERROR_MESSAGES_DICT['TIME_IS_STRING']);
       return;
     }
@@ -94,6 +93,7 @@ const EmployeeGrid = (props) => {
   };
 
   const handleClose = () => {
+    console.log('handleClose triggered');
     setOpen(false);
   };
 
@@ -200,7 +200,7 @@ const EmployeeGrid = (props) => {
           <Button onClick={reset} variant='contained'>
             Back
           </Button>
-          <>
+
           {role === 'admin' && (
             <Button onClick={deleteConfirmOpen} color='secondary' variant='contained'>
               Delete
@@ -213,7 +213,6 @@ const EmployeeGrid = (props) => {
                 onCancel={deleteConfirmClose}
               />
             </Dialog>
-          </>
           {!error && role === 'admin' && (
             <Button onClick={validate} color='primary' variant='contained'>
               Submit

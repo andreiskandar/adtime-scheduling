@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { default as SearchBar } from '../SearchBar';
 import { default as WeekNav } from '../WeekNav';
+import Settings from '../Settings/Settings';
 import classNames from 'classnames';
 import axios from 'axios';
 import { user } from '../../controllers';
@@ -45,6 +46,7 @@ const PublishButton = (props) => {
   return (
     <main className='secondary__navbar'>
       <SearchBar />
+      <Settings />
       <WeekNav clickLeftCalendar = {props.clickLeftCalendar} clickRightCalendar = {props.clickRightCalendar} 
         mon = {props.mon}  
         tues = {props.tues}  
@@ -64,10 +66,10 @@ const PublishButton = (props) => {
         setPublish = {props.setPublish}
       />
       {role === 'admin' && (
-      <Button onClick={clickedMe} className={buttonClass}>
-        <CheckIcon className='icon icon__secondary_navbar' />
-        {wording}
-      </Button>
+        <Button onClick={clickedMe} className={buttonClass}>
+          <CheckIcon className='icon icon__secondary_navbar' />
+          {wording}
+        </Button>
       )}
     </main>
   );
