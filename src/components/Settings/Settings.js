@@ -18,7 +18,6 @@ const Settings = () => {
     <Dropdown overlay={menu}>
       <a className='settings__secondary_navbar' onClick={(e) => e.preventDefault()}>
         Settings
-        {/* <DownOutlined /> */}
       </a>
     </Dropdown>
   );

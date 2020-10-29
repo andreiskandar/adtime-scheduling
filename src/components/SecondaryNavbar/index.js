@@ -21,7 +21,7 @@ const PublishButton = (props) => {
   const day1 = new Date(props.mon - 86400000).toISOString();
   const day2 = new Date(props.sun - 86400000).toISOString();
 
-  const clickedMe = (e) => {
+  const handleClick = (e) => {
     if (publish === false) {
       axios
         .put('/api/events/publish', { publish: true, firstDay: day1.split('T')[0], lastDay: day2.split('T')[0] })
@@ -67,7 +67,7 @@ const PublishButton = (props) => {
         setSun={props.setSun}
       />
       {role === 'admin' && (
-        <Button onClick={clickedMe} className={buttonClass}>
+        <Button onClick={handleClick} className={buttonClass}>
           <CheckIcon className='icon icon__secondary_navbar' />
           {wording}
         </Button>

@@ -2,20 +2,25 @@
 .employee_grid {
   display: flex;
   border-bottom: 1px $border-color-grey solid;
-  // margin-left: 143px;
+  
   span {
     display: inline-block;
-    width: 25.185px;
+    width: 25.18px;
     height: 51px;
     border-left: solid $border-color-grey 1px;
     border-right: solid $border-color-grey 1px;
     border-top: none;
     border-bottom: none;
-    border-radius: 2px;
     &:hover {
       border: solid 1px #3f3f3f;
       cursor: pointer;
     }
+  }
+  .grid__1{
+    border-left: solid 1px $outer-border-color;
+  }
+  .grid__12{
+    border-right: solid 1px $outer-border-color;
   }
   .color {
     background-color: brown;

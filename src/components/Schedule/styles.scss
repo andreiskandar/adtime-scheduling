@@ -1,9 +1,9 @@
 @import '../../styles/variables.scss';
 .schedule {
   margin: 0 10px;
-  border: 2px solid $border-color-grey;
+  border: 2px solid $outer-border-color;
   border-radius: 5px;
-  min-width: 2445px;
+  min-width: 2440px;
   display: grid;
 }
 .scroll {

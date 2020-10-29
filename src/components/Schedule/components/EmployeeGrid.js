@@ -36,7 +36,6 @@ const EmployeeGrid = (props) => {
   };
 
   const reset = () => {
-    console.log('reset triggered');
     setError('');
     setSelected('');
     setCategorySelected({});
@@ -91,7 +90,6 @@ const EmployeeGrid = (props) => {
   };
 
   const handleClose = () => {
-    console.log('handleClose triggered');
     setOpen(false);
   };
 
@@ -128,7 +126,15 @@ const EmployeeGrid = (props) => {
 
   const renderSpan = Array.from({ length: 12 }, (x, i) => {
     const background = shift_id && shift_id.includes(i + 1) ? props.color : '#eeeeee';
-    return <span key={i} data-id={i} onClick={clickGrid} style={{ backgroundColor: `${background}` }} />;
+    return (
+      <span
+        className={`grid__${i + 1}`}
+        key={i}
+        data-id={i}
+        onClick={clickGrid}
+        style={{ backgroundColor: `${background}` }}
+      />
+    );
   });
 
   const errorElement = <section className={classes.error}>{error}</section>;
@@ -143,15 +149,16 @@ const EmployeeGrid = (props) => {
     </>
   );
 
-  let dumb = shift[0];
-  for (const published in dumb) {
-    if (dumb[published] === false) {
-      console.log('THIS IS STUPID');
-    }
-  }
+  // let dumb = shift[0];
+  // for (const published in dumb) {
+  //   if (dumb[published] === false) {
+  //     console.log('THIS IS STUPID');
+  //   }
+  // }
 
   return (
     <>
+      {error && errorElement}
       {role === 'admin' && <div className='employee_grid'>{renderSpan}</div>}
       {role === 'employee' && <div>hello</div>}
       <Dialog open={open} onClose={handleClose} maxWidth='lg'>
@@ -203,7 +210,7 @@ const EmployeeGrid = (props) => {
           <Dialog open={deleteConfirm}>
             <Delete
               onConfirm={handleDelete}
-              message={'Are you sure you want to delete these shifts'}
+              message={'Are you sure you want to delete these shifts?'}
               onCancel={deleteConfirmClose}
             />
           </Dialog>
