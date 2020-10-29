@@ -65,6 +65,8 @@ const PublishButton = (props) => {
         setFri={props.setFri}
         setSat={props.setSat}
         setSun={props.setSun}
+        shift={props.shift}
+        setShift={props.setShift}
       />
       {role === 'admin' && (
         <Button onClick={clickedMe} className={buttonClass}>

@@ -28,11 +28,6 @@ export default (props) => {
       <Dialog open={open} onClose={handleClose} maxWidth='lg'>
         <MiniCalendar
           mon={props.mon}
-          tues={props.tues}
-          wed={props.wed}
-          thurs={props.thurs}
-          fri={props.fri}
-          sat={props.sat}
           sun={props.sun}
           setMon={props.setMon}
           setTues={props.setTues}
@@ -42,6 +37,7 @@ export default (props) => {
           setSat={props.setSat}
           setSun={props.setSun}
           handleClose={handleClose}
+          setShift={props.setShift}
         />
       </Dialog>
 

@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './MiniCalendar.css';
 import './index.css';
 import { Calendar } from 'antd';
+import axios from 'axios';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Button from '@material-ui/core/Button';
@@ -9,10 +10,24 @@ import moment from 'moment';
 import { SettingsPowerRounded } from '@material-ui/icons';
 
 const MiniCalendar = (props) => {
+  useEffect(() => {
+    getNewWeek(new Date(props.mon - 86400000).toISOString(), new Date(props.sun - 86400000).toISOString());
+  }, [props.mon, props.sun])
+
   const milisecDay = 86400000;
 
   function onPanelChange(value, mode) {
     console.log(value, mode);
+  }
+
+  const getNewWeek = (day1, day2) => {
+    axios.get('api/shifts/events', { params: {firstDay: day1.split('T')[0], lastDay: day2.split('T')[0]}})
+      .then((res) => {
+        props.setShift(res.data);
+      })    
+      .catch((e) => {
+        console.log('Error from adding shift', e);
+      });
   }
 
   const handleChange = (e) => {
@@ -21,7 +36,7 @@ const MiniCalendar = (props) => {
     let string = daySelectedNoTime.toString() + 'T00:00:00.000Z';
     string = new Date(string);
     daySelected = string.getTime();
-
+    
     switch (new Date(daySelected).getDay()) {
       case 0:
         props.setMon(daySelected + milisecDay);
@@ -31,6 +46,7 @@ const MiniCalendar = (props) => {
         props.setFri(daySelected + 5 * milisecDay);
         props.setSat(daySelected + 6 * milisecDay);
         props.setSun(daySelected + 7 * milisecDay);
+        
         break;
       case 1:
         props.setMon(daySelected);
@@ -87,7 +103,9 @@ const MiniCalendar = (props) => {
         props.setSun(daySelected + milisecDay);
         break;
     }
+    
   };
+  
   return (
     <div className='site-calendar-demo-card'>
       <Calendar onChange={handleChange} fullscreen={false} onPanelChange={onPanelChange} />

@@ -26,7 +26,6 @@ export default () => {
   const [shift, setShift] = useState([]);
   
   const getNewWeek = (day1, day2) => {
-    console.log(day1)
     axios.get('api/shifts/events', { params: {firstDay: day1.split('T')[0], lastDay: day2.split('T')[0]}})
       .then((res) => {
         setShift(res.data);
@@ -99,6 +98,8 @@ export default () => {
         setFri={setFri}
         setSat={setSat}
         setSun={setSun}
+        shift={shift}
+        setShift={setShift}
       />
       <Schedule
         week={week}
