@@ -43,8 +43,10 @@ const PublishButton = (props) => {
   // send props.success show green else yellow
   return (
     <main className='secondary__navbar'>
-      <SearchBar />
-      <Settings />
+      <div className='left__secondary_navbar'>
+        <SearchBar />
+        <Settings />
+      </div>
       <WeekNav
         clickLeftCalendar={props.clickLeftCalendar}
         clickRightCalendar={props.clickRightCalendar}
