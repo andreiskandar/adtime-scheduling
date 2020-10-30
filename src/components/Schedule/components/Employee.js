@@ -5,14 +5,8 @@ import { user } from '../../../controllers';
 import './employee.scss';
 
 const Employee = (props) => {
-<<<<<<< HEAD
-  const { id, name, avatar, shift, color, users, categories } = props;
-  const role = user.getRole();
-  
-=======
   const { id, name, avatar, shift, color, users, categories, results, setResults, term, setTerm } = props;
-
->>>>>>> feature/search
+  const role = user.getRole();
   const date_from_calendar = [
     new Date(props.mon - 86400000).toISOString().split('T')[0],
     new Date(props.tues - 86400000).toISOString().split('T')[0],

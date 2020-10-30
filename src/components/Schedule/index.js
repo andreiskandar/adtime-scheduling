@@ -11,7 +11,6 @@ import addShift from 'helpers/addShift';
 import transferShift from 'helpers/transferShift';
 import cancelShift from 'helpers/cancelShift';
 import publishSchedule from 'helpers/publishSchedule';
-import { user } from 'models';
 
 // const { addShift, transferShift, cancelShift } = require('../../helpers');
 
