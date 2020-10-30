@@ -8,7 +8,7 @@ const useStyles = makeStyles((theme) => ({
   profile__form: {
     display: 'flex',
     alignItems: 'center',
-    margin: '8px',
+    margin: '8px 10px',
   },
   name: {
     margin: '0 5px',
@@ -38,6 +38,9 @@ const useStyles = makeStyles((theme) => ({
   time__form: {
     width: '80%',
     marginBottom: '10px',
+  },
+  info: {
+    margin: '10px',
   },
 }));
 

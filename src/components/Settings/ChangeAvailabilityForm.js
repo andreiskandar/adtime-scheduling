@@ -5,25 +5,32 @@ import useStyles from './ChangeAvailabilityFormStyles';
 const ChangeAvailibilityForm = () => {
   const classes = useStyles();
   const [startTimeState, setStartTimeState] = useState({
-    mon: 0,
-    tue: 0,
-    wed: 0,
-    thu: 0,
-    fri: 0,
-    sat: 0,
-    sun: 0,
+    Monday: 0,
+    Tuesday: 0,
+    Wednesday: 0,
+    Thursday: 0,
+    Friday: 0,
+    Saturday: 0,
+    Sunday: 0,
   });
 
   const [endTimeState, setEndTimeState] = useState({
-    mon: 0,
-    tue: 0,
-    wed: 0,
-    thu: 0,
-    fri: 0,
-    sat: 0,
-    sun: 0,
+    Monday: 0,
+    Tuesday: 0,
+    Wednesday: 0,
+    Thursday: 0,
+    Friday: 0,
+    Saturday: 0,
+    Sunday: 0,
   });
 
+  const updateStartTimeAvailability = (e, day) => {
+    setStartTimeState({ ...startTimeState, [day]: e.target.value });
+  };
+
+  const updateEndTimeAvailability = (e, day) => {
+    setEndTimeState({ ...endTimeState, [day]: e.target.value });
+  };
   const { username, avatar, user_id } = JSON.parse(localStorage.user);
 
   const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
@@ -33,8 +40,20 @@ const ChangeAvailibilityForm = () => {
       <div key={idx}>
         <div className={classes.day_header__form}>{day}</div>
         <div className={classes.availability_time__form}>
-          <TextField className={classes.time__form} label='Start Time' placeholder='HH:MM' />
-          <TextField className={classes.time__form} label='End Time' placeholder='HH:MM' />
+          <TextField
+            className={classes.time__form}
+            label='Start Time'
+            placeholder='HH:MM'
+            value={startTimeState.day}
+            onChange={(e) => updateStartTimeAvailability(e, day)}
+          />
+          <TextField
+            className={classes.time__form}
+            label='End Time'
+            placeholder='HH:MM'
+            value={endTimeState.day}
+            onChange={(e) => updateEndTimeAvailability(e, day)}
+          />
         </div>
       </div>
     );
@@ -46,9 +65,10 @@ const ChangeAvailibilityForm = () => {
         <Avatar src={avatar} alt={username} />
         <p className={classes.name}>{username}</p>
       </div>
+      <p className={classes.info}>Shift is available from 9am to 9pm</p>
       <div className={classes.availability__form}>{formElement}</div>
       <DialogActions>
-        <Button onClick={true} color='primary' variant='contained'>
+        <Button onClick={(e) => e.preventDefault()} color='primary' variant='contained'>
           Submit
         </Button>
       </DialogActions>
