@@ -1,10 +1,28 @@
 import React, { useState } from 'react';
 import { Menu, Dropdown, message } from 'antd';
+import ChangeAvailabilityForm from './ChangAvailabilityForm';
+import { Dialog, DialogActions, DialogTitle, Button, TextField, Avatar } from '@material-ui/core';
+
 import './styles.scss';
 
 const Settings = () => {
+  const [open, setOpen] = useState(false);
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   const onClick = ({ key }) => {
-    message.info(`Click on item ${key}`);
+    switch (key) {
+      case '1':
+      case '2':
+        setOpen(true);
+        break;
+
+      default:
+        break;
+    }
+    // message.info(`Click on item ${key}`);
   };
 
   const menu = (
@@ -15,11 +33,16 @@ const Settings = () => {
     </Menu>
   );
   return (
-    <Dropdown overlay={menu}>
-      <a className='settings__secondary_navbar' onClick={(e) => e.preventDefault()}>
-        Settings
-      </a>
-    </Dropdown>
+    <>
+      <Dropdown overlay={menu}>
+        <a className='settings__secondary_navbar' onClick={(e) => e.preventDefault()}>
+          Settings
+        </a>
+      </Dropdown>
+      <Dialog open={open} onClose={handleClose} maxWidth='lg'>
+        <ChangeAvailabilityForm />
+      </Dialog>
+    </>
   );
 };
 

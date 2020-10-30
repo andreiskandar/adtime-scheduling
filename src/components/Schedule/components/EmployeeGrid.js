@@ -26,7 +26,7 @@ const EmployeeGrid = (props) => {
 
   const clickGrid = (e) => {
     setOpen(true);
-    const grid_id = parseInt(e.target.attributes[0].value) + 1;
+    const grid_id = parseInt(e.target.attributes[1].value) + 1;
     const start_time = HOURS_DICT[grid_id];
     setStartTime(start_time);
     if (shift_id && shift_id.includes(grid_id)) {
@@ -128,8 +128,8 @@ const EmployeeGrid = (props) => {
     const background = shift_id && shift_id.includes(i + 1) ? props.color : '#eeeeee';
     return (
       <span
-        className={`grid__${i + 1}`}
         key={i}
+        className={`grid__${i + 1}`}
         data-id={i}
         onClick={clickGrid}
         style={{ backgroundColor: `${background}` }}
