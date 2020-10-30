@@ -11,6 +11,7 @@ import addShift from 'helpers/addShift';
 import transferShift from 'helpers/transferShift';
 import cancelShift from 'helpers/cancelShift';
 import publishSchedule from 'helpers/publishSchedule';
+import { user } from 'models';
 
 // const { addShift, transferShift, cancelShift } = require('../../helpers');
 
@@ -119,9 +120,11 @@ export default (props) => {
         console.log('Error from transfering shift(s)', e);
       });
   };
-
+  
   const employees = users.map((user) => {
-    return (
+    const lowerUserName = user.name.toLowerCase();
+    const lowerTermName = props.term.toLowerCase();
+    return lowerUserName.startsWith(lowerTermName) && (
       <Employee
         key={user.id}
         {...user}
@@ -132,6 +135,13 @@ export default (props) => {
         shift={props.shift}
         setShift={props.setShift}
         categories={categories}
+ 
+        results = {props.results}
+        setResults = {props.setResults}
+        term={props.term}
+        setTerm={props.setTerm}
+
+
         week = {props.week}
         setWeek = {props.setWeek}
         mon = {props.mon}  
@@ -172,7 +182,7 @@ export default (props) => {
           setSun={props.setSun}
           date={date}
         />
-        {employees}
+          {employees}
       </Card>
     </div>
   );

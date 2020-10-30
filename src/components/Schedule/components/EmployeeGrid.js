@@ -148,6 +148,7 @@ const EmployeeGrid = (props) => {
       </div>
     </>
   );
+<<<<<<< HEAD
 
   // let dumb = shift[0];
   // for (const published in dumb) {
@@ -156,6 +157,15 @@ const EmployeeGrid = (props) => {
   //   }
   // }
 
+=======
+  
+  // let dumb = shift[0]
+  // for (const published in dumb) {
+  //   if ((dumb[published]) === false){
+  //   }
+  // }
+  
+>>>>>>> feature/search
   return (
     <>
       <div className='employee_grid'>{renderSpan}</div>
@@ -205,6 +215,7 @@ const EmployeeGrid = (props) => {
               Delete
             </Button>
           )}
+<<<<<<< HEAD
           <Dialog open={deleteConfirm}>
             <Delete
               onConfirm={handleDelete}
@@ -212,6 +223,15 @@ const EmployeeGrid = (props) => {
               onCancel={deleteConfirmClose}
             />
           </Dialog>
+=======
+            <Dialog open={deleteConfirm}>
+              <Delete
+                onConfirm={handleDelete}
+                message={'Are you sure you want to delete these shift(s)?'}
+                onCancel={deleteConfirmClose}
+              />
+            </Dialog>
+>>>>>>> feature/search
           {!error && role === 'admin' && (
             <Button onClick={validate} color='primary' variant='contained'>
               Submit
@@ -226,7 +246,7 @@ const EmployeeGrid = (props) => {
                 <Dialog variant='filled' open={warning}>
                   <Transfer
                     onConfirm={validate}
-                    message={'Are you sure you want to transfer the shift(s)'}
+                    message={'Are you sure you want to transfer the shift(s)?'}
                     onCancel={closeWarningDialog}
                   />
                 </Dialog>

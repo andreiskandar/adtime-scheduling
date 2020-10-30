@@ -24,6 +24,8 @@ export default () => {
   const [sat, setSat] = useState(1604188800000 - 604800000);
   const [sun, setSun] = useState(1604275200000 - 604800000);
   const [shift, setShift] = useState([]);
+  const [term, setTerm] = useState("") 
+  const [results, setResults] = useState([]);
   const role = user.getRole();
 
   const getNewWeek = (day1, day2) => {
@@ -47,6 +49,7 @@ export default () => {
         });
     }
   };
+  
 
   //console.log(props.mon) // Header.js:16 1603670400000  --> 1603756800000
   //console.log(props.sun) // Header.js:17 1604188800000  --> 1604275200000
@@ -113,8 +116,14 @@ export default () => {
         setSun={setSun}
         shift={shift}
         setShift={setShift}
+        term={term}
+        setTerm={setTerm}
+        results = {results}
+        setResults = {setResults}
       />
       <Schedule
+        results = {results}
+        setResults = {setResults}
         week={week}
         setWeek={setWeek}
         shift={shift}
@@ -133,6 +142,8 @@ export default () => {
         setFri={setFri}
         setSat={setSat}
         setSun={setSun}
+        term={term}
+        setTerm={setTerm}
       />
     </>
   );

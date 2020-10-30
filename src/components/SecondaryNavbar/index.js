@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { default as SearchBar } from '../SearchBar';
+import  LiveSearch from '../SearchBar/index';
 import { default as WeekNav } from '../WeekNav';
 import Settings from '../Settings/Settings';
 import classNames from 'classnames';
@@ -9,7 +9,9 @@ import Button from '@material-ui/core/Button';
 import CheckIcon from '@material-ui/icons/Check';
 import './styles.scss';
 
+
 const PublishButton = (props) => {
+
   const [publish, setPublish] = useState(false);
   const [wording, setWording] = useState('Publish');
   const role = user.getRole();
@@ -41,11 +43,17 @@ const PublishButton = (props) => {
     }
   };
 
+
   // send props.success show green else yellow
   return (
     <main className='secondary__navbar'>
       <div className='left__secondary_navbar'>
-        <SearchBar />
+        <LiveSearch 
+        results = {props.results}
+        setResults = {props.setResults} 
+        term={props.term}
+        setTerm={props.setTerm}
+        />
         <Settings avatar={props.avatar} name={props.name} />
       </div>
       <WeekNav
@@ -67,6 +75,8 @@ const PublishButton = (props) => {
         setSun={props.setSun}
         shift={props.shift}
         setShift={props.setShift}
+        search={props.term}
+        
       />
       {role === 'admin' && (
         <Button onClick={handleClick} className={buttonClass}>
