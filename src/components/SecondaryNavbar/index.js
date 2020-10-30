@@ -46,7 +46,7 @@ const PublishButton = (props) => {
     <main className='secondary__navbar'>
       <div className='left__secondary_navbar'>
         <SearchBar />
-        <Settings />
+        <Settings avatar={props.avatar} name={props.name} />
       </div>
       <WeekNav
         clickLeftCalendar={props.clickLeftCalendar}

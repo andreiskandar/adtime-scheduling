@@ -173,21 +173,21 @@ const EmployeeGrid = (props) => {
         {error && errorElement}
         {/* <section className={classes.error}>{error && errorElement}</section> */}
         {/* <section>{date}</section> */}
-        <form>
-          <div className={classes.root}>
-            <TextField autoFocus margin='dense' id='start_time' label='Start Time' value={startTime} type='time' />
-            <TextField
-              autoFocus
-              margin='dense'
-              id='end_time'
-              label='End Time'
-              value={endTime}
-              onChange={(e) => setEndTime(e.target.value)}
-              type='text'
-              placeholder={parseInt(startTime) + 1 + ':00'}
-            />
-          </div>
-        </form>
+
+        <div className={classes.root}>
+          <TextField autoFocus margin='dense' id='start_time' label='Start Time' value={startTime} type='time' />
+          <TextField
+            autoFocus
+            margin='dense'
+            id='end_time'
+            label='End Time'
+            value={endTime}
+            onChange={(e) => setEndTime(e.target.value)}
+            type='text'
+            placeholder={parseInt(startTime) + 1 + ':00'}
+          />
+        </div>
+
         <DialogActions>
           <CategoryButton
             categories={categories}

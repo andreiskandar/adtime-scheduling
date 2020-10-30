@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme) => ({
   flex: {
     display: 'flex',
     fontFamily:
-      "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans','Helvetica Neue';",
+      "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'",
     fontSize: '15px',
     alignItems: 'center',
     justifyContent: 'space-between',
@@ -39,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
   },
   warning: {
     background: '#ff9800',
-  }
+  },
 }));
 
 export default useStyles;
