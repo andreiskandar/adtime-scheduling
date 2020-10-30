@@ -1,53 +1,25 @@
-import React from 'react';
-import './ChangeAvailabilityForm.scss';
+import React, { useState } from 'react';
 import { DialogActions, DialogTitle, Button, TextField, Avatar } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import useStyles from './ChangeAvailabilityFormStyles';
 
 const ChangeAvailibilityForm = () => {
-  const useStyles = makeStyles((theme) => ({
-    small: {
-      width: theme.spacing(3),
-      height: theme.spacing(3),
-    },
-    profile__form: {
-      display: 'flex',
-      alignItems: 'center',
-      margin: '8px',
-    },
-    name: {
-      margin: '0 5px',
-    },
-    availability__form: {
-      border: 'solid 2px #9e9e9e',
-      borderRadius: '5px',
-      margin: '8px',
-      display: 'flex',
-    },
-    day_header__form: {
-      borderBottom: 'solid 2px #9e9e9e',
-      borderRight: 'solid 1px  #9e9e9e',
-      display: 'flex',
-      padding: '5px',
-      justifyContent: 'center',
-    },
-    availability_time__form: {
-      display: 'flex',
-      flexDirection: 'column',
-      borderRight: 'solid 1px  #9e9e9e',
-      alignItems: 'center',
-    },
-    submit__form: {
-      margin: '5px',
-    },
-    time__form: {
-      width: '80%',
-      marginBottom: '10px',
-    },
-  }));
-
   const classes = useStyles();
+  const [startTimeState, setStartTimeState] = useState({
+    monStartTime: 0,
+    tueStartTime: 0,
+    wedStartTime: 0,
+    thuStartTime: 0,
+    friStartTime: 0,
+    satStartTime: 0,
+    sunStartTime: 0,
+  });
 
-  const { username, avatar } = JSON.parse(localStorage.user);
+  const [endTimeState, setEndTimeState] = useState({
+    monEndTime: '',
+  });
+
+  const { username, avatar, id } = JSON.parse(localStorage.user);
+  console.log('localStorage.user:', localStorage.user);
 
   const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
