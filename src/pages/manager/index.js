@@ -53,9 +53,9 @@ export default () => {
     if (!user.isAuthenticated()) {
       return history.push('/');
     }
-    if (user.getRole() !== 'admin') {
-      return history.push('/employee');
-    }
+    // if (user.getRole() !== 'admin') {
+    //   return history.push('/manager');
+    // }
     if (isInitialRender && !isAuthenticated) {
       setIsInitialRender(false);
     }

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { default as SearchBar } from '../SearchBar';
+import  LiveSearch from '../SearchBar/index';
 import { default as WeekNav } from '../WeekNav';
 import Settings from '../Settings/Settings';
 import classNames from 'classnames';
@@ -41,11 +41,12 @@ const PublishButton = (props) => {
     }
   };
 
+
   // send props.success show green else yellow
   return (
     <main className='secondary__navbar'>
       <div className='left__secondary_navbar'>
-        <SearchBar />
+        <LiveSearch />
         <Settings />
       </div>
       <WeekNav
@@ -65,6 +66,7 @@ const PublishButton = (props) => {
         setFri={props.setFri}
         setSat={props.setSat}
         setSun={props.setSun}
+        search={props.term}
       />
       {role === 'admin' && (
         <Button onClick={clickedMe} className={buttonClass}>
