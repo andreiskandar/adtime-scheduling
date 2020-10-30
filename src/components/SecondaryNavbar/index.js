@@ -9,7 +9,9 @@ import Button from '@material-ui/core/Button';
 import CheckIcon from '@material-ui/icons/Check';
 import './styles.scss';
 
+
 const PublishButton = (props) => {
+
   const [publish, setPublish] = useState(false);
   const [wording, setWording] = useState('Publish');
   const role = user.getRole();
@@ -46,7 +48,12 @@ const PublishButton = (props) => {
   return (
     <main className='secondary__navbar'>
       <div className='left__secondary_navbar'>
-        <LiveSearch />
+        <LiveSearch 
+        results = {props.results}
+        setResults = {props.setResults} 
+        term={props.term}
+        setTerm={props.setTerm}
+        />
         <Settings />
       </div>
       <WeekNav
@@ -67,6 +74,7 @@ const PublishButton = (props) => {
         setSat={props.setSat}
         setSun={props.setSun}
         search={props.term}
+        
       />
       {role === 'admin' && (
         <Button onClick={clickedMe} className={buttonClass}>

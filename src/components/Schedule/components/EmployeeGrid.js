@@ -25,7 +25,6 @@ const EmployeeGrid = (props) => {
   const [warning, setWarning] = useState(false);
   const [deleteConfirm, setDeleteConfirm] = useState(false);
 
-  
   const clickGrid = (e) => {
     setOpen(true);
     const grid_id = parseInt(e.target.attributes[0].value) + 1;
@@ -145,11 +144,11 @@ const EmployeeGrid = (props) => {
     </>
   );
   
-  let dumb = shift[0]
-  for (const published in dumb) {
-    if ((dumb[published]) === false){
-    }
-  }
+  // let dumb = shift[0]
+  // for (const published in dumb) {
+  //   if ((dumb[published]) === false){
+  //   }
+  // }
   
   return (
     <>

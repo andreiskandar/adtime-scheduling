@@ -22,8 +22,8 @@ export default () => {
   const [fri, setFri] = useState(1604102400000 - 604800000);
   const [sat, setSat] = useState(1604188800000 - 604800000);
   const [sun, setSun] = useState(1604275200000 - 604800000);
-
-      
+  const [term, setTerm] = useState("") 
+  const [results, setResults] = useState([]);
   
 
   //console.log(props.mon) // Header.js:16 1603670400000  --> 1603756800000
@@ -83,8 +83,14 @@ export default () => {
         setFri={setFri}
         setSat={setSat}
         setSun={setSun}
+        term={term}
+        setTerm={setTerm}
+        results = {results}
+        setResults = {setResults}
       />
       <Schedule
+        results = {results}
+        setResults = {setResults}
         week={week}
         setWeek={setWeek}
         mon={mon}
@@ -101,6 +107,8 @@ export default () => {
         setFri={setFri}
         setSat={setSat}
         setSun={setSun}
+        term={term}
+        setTerm={setTerm}
       />
     </>
   );

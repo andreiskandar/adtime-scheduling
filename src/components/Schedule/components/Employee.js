@@ -5,7 +5,7 @@ import EmployeeHeader from './EmployeeHeader';
 import './employee.scss';
 
 const Employee = (props) => {
-  const { id, name, avatar, shift, color, users, categories } = props;
+  const { id, name, avatar, shift, color, users, categories, results, setResults, term, setTerm } = props;
 
   const date_from_calendar = [
     new Date(props.mon - 86400000).toISOString().split('T')[0],
@@ -53,13 +53,17 @@ const Employee = (props) => {
         users={users}
         color={color}
         categories={categories}
+        results = {results}
+        setResults = {setResults}
+        term={term}
+        setTerm={setTerm}        
       />
     );
   });
 
   return (
     <main className='employee_row'>
-      <EmployeeHeader name={name} num_event={num_event} avatar={avatar} num_hours={num_hours} />
+      <EmployeeHeader name={name} num_event={num_event} avatar={avatar} num_hours={num_hours} results = {results} setResults = {setResults} term= {term} setTerm = {setTerm}/>
       {renderEmployeeGridPerDay}
     </main>
   );

@@ -4,22 +4,20 @@ import axios from "axios";
 import Results from "../SearchBar/Results";
 import SearchBar from "../SearchBar/SearchBar";
 
-export default function LiveSearch() {
-  const [term, setTerm] = useState("");
-  const [results, setResults] = useState([]);
+export default function LiveSearch(props) {
 
   useEffect(() => {
-    const testUrl = `/api/users/${term}`;
+    const testUrl = `/api/users/${props.term}`;
     axios.get(testUrl).then((response) => {
-      setResults([...response.data]);
+      props.setResults([...response.data]);
     });
-  }, [term]);
+  }, [props.term]);
 
   return (
     <>
       <main>
-        <SearchBar onSearch={(term) => setTerm(term)} />
-        <Results results={results}  term={term} />
+        <SearchBar onSearch={(term) => props.setTerm(term)} />
+        <Results results={props.results}  term={props.term} />
       </main>
     </>
   );

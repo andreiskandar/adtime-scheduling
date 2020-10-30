@@ -4,9 +4,7 @@ import SearchBar from '../SearchBar/SearchBar'
 
 export default function results(props) {
   
-  const { results } = props;
-  
-  return results.map(result => {
+  return props.results.map(result => {
     return <Album key={result.name}  {...result} term={props.term} />;
     
   })
