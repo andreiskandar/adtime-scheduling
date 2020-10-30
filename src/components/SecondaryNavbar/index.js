@@ -21,7 +21,7 @@ const PublishButton = (props) => {
   const day1 = new Date(props.mon - 86400000).toISOString();
   const day2 = new Date(props.sun - 86400000).toISOString();
 
-  const clickedMe = (e) => {
+  const handleClick = (e) => {
     if (publish === false) {
       axios
         .put('/api/events/publish', { publish: true, firstDay: day1.split('T')[0], lastDay: day2.split('T')[0] })
@@ -46,7 +46,7 @@ const PublishButton = (props) => {
     <main className='secondary__navbar'>
       <div className='left__secondary_navbar'>
         <SearchBar />
-        <Settings />
+        <Settings avatar={props.avatar} name={props.name} />
       </div>
       <WeekNav
         clickLeftCalendar={props.clickLeftCalendar}
@@ -69,7 +69,7 @@ const PublishButton = (props) => {
         setShift={props.setShift}
       />
       {role === 'admin' && (
-        <Button onClick={clickedMe} className={buttonClass}>
+        <Button onClick={handleClick} className={buttonClass}>
           <CheckIcon className='icon icon__secondary_navbar' />
           {wording}
         </Button>

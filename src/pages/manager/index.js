@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import history from 'app/history';
 import { Navbar, SecondaryNavbar, Schedule } from 'components';
 import { user } from 'controllers';
-import axios from 'axios'
+import axios from 'axios';
 
 /*
 1 hour = 3600000
@@ -25,27 +25,29 @@ export default () => {
   const [sun, setSun] = useState(1604275200000 - 604800000);
   const [shift, setShift] = useState([]);
   const role = user.getRole();
-  
+
   const getNewWeek = (day1, day2) => {
     if (role === 'admin') {
-      axios.get('api/shifts/events/manager', { params: {firstDay: day1.split('T')[0], lastDay: day2.split('T')[0]}})
-      .then((res) => {
-        setShift(res.data);
-      })
-      .catch((e) => {
-        console.log('Error from adding shift', e);
-      });
+      axios
+        .get('api/shifts/events/manager', { params: { firstDay: day1.split('T')[0], lastDay: day2.split('T')[0] } })
+        .then((res) => {
+          setShift(res.data);
+        })
+        .catch((e) => {
+          console.log('Error from adding shift', e);
+        });
     } else {
-      axios.get('api/shifts/events/employee', { params: {firstDay: day1.split('T')[0], lastDay: day2.split('T')[0]}})
-      .then((res) => {
-        setShift(res.data);
-      })
-      .catch((e) => {
-        console.log('Error from adding shift', e);
-      });
+      axios
+        .get('api/shifts/events/employee', { params: { firstDay: day1.split('T')[0], lastDay: day2.split('T')[0] } })
+        .then((res) => {
+          setShift(res.data);
+        })
+        .catch((e) => {
+          console.log('Error from adding shift', e);
+        });
     }
-  }
-  
+  };
+
   //console.log(props.mon) // Header.js:16 1603670400000  --> 1603756800000
   //console.log(props.sun) // Header.js:17 1604188800000  --> 1604275200000
 

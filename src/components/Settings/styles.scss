@@ -1,0 +1,9 @@
+@import  '../../styles/variables.scss';
+
+.settings__secondary_navbar{
+  color: $black;
+  &:hover {
+    cursor: pointer;
+    color: #3f51b5;
+  }
+}

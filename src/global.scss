@@ -1,7 +1,11 @@
+
+@import './styles/variables.scss';
+
 body {
   background-color: #eceff1;
   padding: 0;
   margin: 0;
+  font-family: $font-family;
 }
 
 .icon {

@@ -5,7 +5,7 @@ import './WeekCalendar.scss';
 const WeekCalendar = () => {
   return (
     <div className='weekCalendar'>
-      <img class="littleCalendar" src="images/schedule.svg" alt="little calendar"/>
+      <img className='littleCalendar' src='images/schedule.svg' alt='little calendar' />
     </div>
   );
 };

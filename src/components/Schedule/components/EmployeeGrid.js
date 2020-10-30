@@ -10,7 +10,6 @@ import Transfer from '../../Schedule/components/confirm/Confirmtransfer';
 import Delete from '../../Schedule/components/confirm/Confirmdelete';
 import { user } from '../../../controllers';
 
-
 const EmployeeGrid = (props) => {
   const role = user.getRole();
   const classes = useStyles();
@@ -25,10 +24,9 @@ const EmployeeGrid = (props) => {
   const [warning, setWarning] = useState(false);
   const [deleteConfirm, setDeleteConfirm] = useState(false);
 
-  
   const clickGrid = (e) => {
     setOpen(true);
-    const grid_id = parseInt(e.target.attributes[0].value) + 1;
+    const grid_id = parseInt(e.target.attributes[1].value) + 1;
     const start_time = HOURS_DICT[grid_id];
     setStartTime(start_time);
     if (shift_id && shift_id.includes(grid_id)) {
@@ -38,7 +36,6 @@ const EmployeeGrid = (props) => {
   };
 
   const reset = () => {
-    console.log('reset triggered');
     setError('');
     setSelected('');
     setCategorySelected({});
@@ -93,7 +90,6 @@ const EmployeeGrid = (props) => {
   };
 
   const handleClose = () => {
-    console.log('handleClose triggered');
     setOpen(false);
   };
 
@@ -130,7 +126,15 @@ const EmployeeGrid = (props) => {
 
   const renderSpan = Array.from({ length: 12 }, (x, i) => {
     const background = shift_id && shift_id.includes(i + 1) ? props.color : '#eeeeee';
-    return <span key={i} data-id={i} onClick={clickGrid} style={{ backgroundColor: `${background}` }} />;
+    return (
+      <span
+        key={i}
+        className={`grid__${i + 1}`}
+        data-id={i}
+        onClick={clickGrid}
+        style={{ backgroundColor: `${background}` }}
+      />
+    );
   });
 
   const errorElement = <section className={classes.error}>{error}</section>;
@@ -144,18 +148,17 @@ const EmployeeGrid = (props) => {
       </div>
     </>
   );
-  
-  let dumb = shift[0]
-  for (const published in dumb) {
-    if ((dumb[published]) === false){
-      //console.log("THIS IS STUPID")
-    }
-  }
-  
+
+  // let dumb = shift[0];
+  // for (const published in dumb) {
+  //   if (dumb[published] === false) {
+  //     console.log('THIS IS STUPID');
+  //   }
+  // }
+
   return (
     <>
       <div className='employee_grid'>{renderSpan}</div>
-      
       <Dialog open={open} onClose={handleClose} maxWidth='lg'>
         <DialogTitle>Add / Transfer Shift</DialogTitle>
         <div className={classes.flex}>
@@ -168,30 +171,31 @@ const EmployeeGrid = (props) => {
         {error && errorElement}
         {/* <section className={classes.error}>{error && errorElement}</section> */}
         {/* <section>{date}</section> */}
-        <form>
-          <div className={classes.root}>
-            <TextField autoFocus margin='dense' id='start_time' label='Start Time' value={startTime} type='time' />
-            <TextField
-              autoFocus
-              margin='dense'
-              id='end_time'
-              label='End Time'
-              value={endTime}
-              onChange={(e) => setEndTime(e.target.value)}
-              type='text'
-              placeholder={parseInt(startTime) + 1 + ':00'}
-            />
-          </div>
-        </form>
+
+        <div className={classes.root}>
+          <TextField autoFocus margin='dense' id='start_time' label='Start Time' value={startTime} type='time' />
+          <TextField
+            autoFocus
+            margin='dense'
+            id='end_time'
+            label='End Time'
+            value={endTime}
+            onChange={(e) => setEndTime(e.target.value)}
+            type='text'
+            placeholder={parseInt(startTime) + 1 + ':00'}
+          />
+        </div>
+
         <DialogActions>
           <CategoryButton
             categories={categories}
             setCategorySelected={setCategorySelected}
             categorySelected={categorySelected}
           />
-          {role !== 'admin' && (
           <TransferShiftMenuButton users={users} setSelected={setSelected} setCategorySelected={categorySelected.id} />
-          )}
+          {/* {role !== 'admin' && (
+          <TransferShiftMenuButton users={users} setSelected={setSelected} setCategorySelected={categorySelected.id} />
+          )} */}
           <Button onClick={reset} variant='contained'>
             Back
           </Button>
@@ -201,13 +205,13 @@ const EmployeeGrid = (props) => {
               Delete
             </Button>
           )}
-            <Dialog open={deleteConfirm}>
-              <Delete
-                onConfirm={handleDelete}
-                message={'Are you sure you want to delete these shifts'}
-                onCancel={deleteConfirmClose}
-              />
-            </Dialog>
+          <Dialog open={deleteConfirm}>
+            <Delete
+              onConfirm={handleDelete}
+              message={'Are you sure you want to delete these shifts?'}
+              onCancel={deleteConfirmClose}
+            />
+          </Dialog>
           {!error && role === 'admin' && (
             <Button onClick={validate} color='primary' variant='contained'>
               Submit
