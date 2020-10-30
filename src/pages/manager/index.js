@@ -13,6 +13,25 @@ Subtract 7 hours for timezone fix = -25200000
 */
 
 export default () => {
+  const [startTimeState, setStartTimeState] = useState({
+    Monday: 0,
+    Tuesday: 0,
+    Wednesday: 0,
+    Thursday: 0,
+    Friday: 0,
+    Saturday: 0,
+    Sunday: 0,
+  });
+  const [endTimeState, setEndTimeState] = useState({
+    Monday: 0,
+    Tuesday: 0,
+    Wednesday: 0,
+    Thursday: 0,
+    Friday: 0,
+    Saturday: 0,
+    Sunday: 0,
+  });
+
   const [isInitialRender, setIsInitialRender] = useState(true);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [week, setWeek] = useState(2);
@@ -24,7 +43,7 @@ export default () => {
   const [sat, setSat] = useState(1604188800000 - 604800000);
   const [sun, setSun] = useState(1604275200000 - 604800000);
   const [shift, setShift] = useState([]);
-  const [term, setTerm] = useState("") 
+  const [term, setTerm] = useState('');
   const [results, setResults] = useState([]);
   const role = user.getRole();
 
@@ -49,7 +68,6 @@ export default () => {
         });
     }
   };
-  
 
   //console.log(props.mon) // Header.js:16 1603670400000  --> 1603756800000
   //console.log(props.sun) // Header.js:17 1604188800000  --> 1604275200000
@@ -118,12 +136,16 @@ export default () => {
         setShift={setShift}
         term={term}
         setTerm={setTerm}
-        results = {results}
-        setResults = {setResults}
+        results={results}
+        setResults={setResults}
+        startTimeState={startTimeState}
+        setStartTimeState={setStartTimeState}
+        endTimeState={endTimeState}
+        setEndTimeState={setEndTimeState}
       />
       <Schedule
-        results = {results}
-        setResults = {setResults}
+        results={results}
+        setResults={setResults}
         week={week}
         setWeek={setWeek}
         shift={shift}

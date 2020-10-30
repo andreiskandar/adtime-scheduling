@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import  LiveSearch from '../SearchBar/index';
+import LiveSearch from '../SearchBar/index';
 import { default as WeekNav } from '../WeekNav';
 import Settings from '../Settings/Settings';
 import classNames from 'classnames';
@@ -9,9 +9,8 @@ import Button from '@material-ui/core/Button';
 import CheckIcon from '@material-ui/icons/Check';
 import './styles.scss';
 
-
 const PublishButton = (props) => {
-
+  const { startTimeState, setStartTimeState, endTimeState, setEndTimeState } = props;
   const [publish, setPublish] = useState(false);
   const [wording, setWording] = useState('Publish');
   const role = user.getRole();
@@ -43,18 +42,19 @@ const PublishButton = (props) => {
     }
   };
 
-
   // send props.success show green else yellow
   return (
     <main className='secondary__navbar'>
       <div className='left__secondary_navbar'>
-        <LiveSearch 
-        results = {props.results}
-        setResults = {props.setResults} 
-        term={props.term}
-        setTerm={props.setTerm}
+        <LiveSearch results={props.results} setResults={props.setResults} term={props.term} setTerm={props.setTerm} />
+        <Settings
+          avatar={props.avatar}
+          name={props.name}
+          startTimeState={startTimeState}
+          setStartTimeState={setStartTimeState}
+          endTimeState={endTimeState}
+          setEndTimeState={setEndTimeState}
         />
-        <Settings avatar={props.avatar} name={props.name} />
       </div>
       <WeekNav
         clickLeftCalendar={props.clickLeftCalendar}
@@ -76,7 +76,6 @@ const PublishButton = (props) => {
         shift={props.shift}
         setShift={props.setShift}
         search={props.term}
-        
       />
       {role === 'admin' && (
         <Button onClick={handleClick} className={buttonClass}>

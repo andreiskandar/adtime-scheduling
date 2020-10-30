@@ -191,7 +191,13 @@ const EmployeeGrid = (props) => {
             setCategorySelected={setCategorySelected}
             categorySelected={categorySelected}
           />
-          <TransferShiftMenuButton users={users} setSelected={setSelected} setCategorySelected={categorySelected.id} />
+          {error && (
+            <TransferShiftMenuButton
+              users={users}
+              setSelected={setSelected}
+              setCategorySelected={categorySelected.id}
+            />
+          )}
           {/* {role !== 'admin' && (
           <TransferShiftMenuButton users={users} setSelected={setSelected} setCategorySelected={categorySelected.id} />
           )} */}
