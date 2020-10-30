@@ -5,21 +5,26 @@ import useStyles from './ChangeAvailabilityFormStyles';
 const ChangeAvailibilityForm = () => {
   const classes = useStyles();
   const [startTimeState, setStartTimeState] = useState({
-    monStartTime: 0,
-    tueStartTime: 0,
-    wedStartTime: 0,
-    thuStartTime: 0,
-    friStartTime: 0,
-    satStartTime: 0,
-    sunStartTime: 0,
+    mon: 0,
+    tue: 0,
+    wed: 0,
+    thu: 0,
+    fri: 0,
+    sat: 0,
+    sun: 0,
   });
 
   const [endTimeState, setEndTimeState] = useState({
-    monEndTime: '',
+    mon: 0,
+    tue: 0,
+    wed: 0,
+    thu: 0,
+    fri: 0,
+    sat: 0,
+    sun: 0,
   });
 
-  const { username, avatar, id } = JSON.parse(localStorage.user);
-  console.log('localStorage.user:', localStorage.user);
+  const { username, avatar, user_id } = JSON.parse(localStorage.user);
 
   const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
