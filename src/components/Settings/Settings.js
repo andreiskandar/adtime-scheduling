@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import { Menu, Dropdown, message } from 'antd';
 import ChangeAvailabilityForm from './ChangeAvailabilityForm';
-import { Dialog, DialogActions, DialogTitle, Button, TextField, Avatar } from '@material-ui/core';
+import { Dialog } from '@material-ui/core';
 
 import './styles.scss';
 
 const Settings = (props) => {
-  console.log('props:', props);
   const [open, setOpen] = useState(false);
 
   const handleClose = () => {
