@@ -5,8 +5,6 @@ import axios from 'axios';
 
 const ChangeAvailibilityForm = (props) => {
   const { startTimeState, setStartTimeState, endTimeState, setEndTimeState } = props;
-  // console.log('startTimeState:', startTimeState);
-  // console.log('endTimeState:', endTimeState);
   const classes = useStyles();
 
   const updateStartTimeAvailability = (e, day) => {
@@ -19,9 +17,8 @@ const ChangeAvailibilityForm = (props) => {
   const { username, avatar, user_id } = JSON.parse(localStorage.user);
 
   const submitUserAvailability = (e) => {
-    console.log('submitted');
     e.preventDefault();
-    axios.post();
+    axios.get(`/api/categories/updateAvailability/${user_id}`, { params: { startTimeState, endTimeState } });
   };
 
   const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];

@@ -10,7 +10,7 @@ import CheckIcon from '@material-ui/icons/Check';
 import './styles.scss';
 
 const PublishButton = (props) => {
-  const { startTimeState, setStartTimeState, endTimeState, setEndTimeState } = props;
+  const { startTimeState, setStartTimeState, endTimeState, setEndTimeState, avatar, name } = props;
   const [publish, setPublish] = useState(false);
   const [wording, setWording] = useState('Publish');
   const role = user.getRole();
@@ -48,8 +48,8 @@ const PublishButton = (props) => {
       <div className='left__secondary_navbar'>
         <LiveSearch results={props.results} setResults={props.setResults} term={props.term} setTerm={props.setTerm} />
         <Settings
-          avatar={props.avatar}
-          name={props.name}
+          avatar={avatar}
+          name={name}
           startTimeState={startTimeState}
           setStartTimeState={setStartTimeState}
           endTimeState={endTimeState}
