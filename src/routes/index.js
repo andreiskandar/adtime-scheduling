@@ -4,5 +4,5 @@ export default [
   // switch, order matters
   { component: Login, path: '/' },
   { component: Manager, path: '/manager' },
-  { component: Employee, path: '/employee' },
+  { component: Employee, path: '/manager' },
 ];

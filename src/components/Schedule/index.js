@@ -3,7 +3,7 @@ import axios from 'axios';
 import Card from '@material-ui/core/Card';
 import Header from '../Schedule/components/Header';
 import Employee from '../Schedule/components/Employee';
-
+import { user } from '../../controllers/index';
 //import helper function addShift, transferShift, cancelShift
 
 import './styles.scss';
@@ -18,13 +18,20 @@ export default (props) => {
   const [users, setUsers] = useState([]);
   const [date, setDate] = useState('');
   const [categories, setCategories] = useState([]);
-
+  const role = user.getRole();
+  
   useEffect(() => {
     const day1 = new Date(props.mon - 86400000).toISOString();
     const day2 = new Date(props.sun - 86400000).toISOString();
     cancelShift();
+    let apiUserShift;
     const apiUsers = axios.get('/api/users');
-    const apiUserShift = axios.get('api/shifts/events', { params: {firstDay: day1.split('T')[0], lastDay: day2.split('T')[0]}});
+    if (role === 'admin') {
+      apiUserShift = axios.get('api/shifts/events/manager', { params: {firstDay: day1.split('T')[0], lastDay: day2.split('T')[0]}});
+    } else {
+      apiUserShift = axios.get('api/shifts/events/employee', { params: {firstDay: day1.split('T')[0], lastDay: day2.split('T')[0]}});
+    }
+    
     const apiCategories = axios.get('api/categories');
     
 
@@ -48,10 +55,17 @@ export default (props) => {
     axios
       .post('/api/events/add', addShift(user_id, startTime, endTime, event_date, category_id))
       .then(() => {
-        axios.get('api/shifts/events', { params: {firstDay: day1.split('T')[0], lastDay: day2.split('T')[0]}})
-        .then((res) => {
-          props.setShift(res.data);
-        });
+        if (role === 'admin') {
+          axios.get('api/shifts/events/manager', { params: {firstDay: day1.split('T')[0], lastDay: day2.split('T')[0]}})
+          .then((res) => {
+            props.setShift(res.data);
+          });
+        } else {
+          axios.get('api/shifts/events/employee', { params: {firstDay: day1.split('T')[0], lastDay: day2.split('T')[0]}})
+          .then((res) => {
+            props.setShift(res.data);
+          });
+        }
       })
       .catch((e) => {
         console.log('Error from adding shift', e);
@@ -64,10 +78,17 @@ export default (props) => {
     axios
       .delete('/api/events/delete', cancelShift(user_id, startTime, endTime, event_date, category_id))
       .then(() => {
-        axios.get('api/shifts/events', { params: {firstDay: day1.split('T')[0], lastDay: day2.split('T')[0]}})
-        .then((res) => {
-          props.setShift(res.data);
-        });
+        if (role === 'admin') {
+          axios.get('api/shifts/events/manager', { params: {firstDay: day1.split('T')[0], lastDay: day2.split('T')[0]}})
+          .then((res) => {
+            props.setShift(res.data);
+          });
+        } else {
+          axios.get('api/shifts/events/employee', { params: {firstDay: day1.split('T')[0], lastDay: day2.split('T')[0]}})
+          .then((res) => {
+            props.setShift(res.data);
+          });
+        }
       })
       .catch((e) => {
         console.log('Error from deleting shift(s)', e);
@@ -82,10 +103,17 @@ export default (props) => {
     axios
       .put('/api/events/transfer', transferShift(user_id, start_time, end_time, transferToUserId, event_date))
       .then(() => {
-        axios.get('api/shifts/events', { params: {firstDay: day1.split('T')[0], lastDay: day2.split('T')[0]}})
-        .then((res) => {
-          props.setShift(res.data);
-        });
+        if (role === 'admin') {
+          axios.get('api/shifts/events/manager', { params: {firstDay: day1.split('T')[0], lastDay: day2.split('T')[0]}})
+          .then((res) => {
+            props.setShift(res.data);
+          });
+        } else {
+          axios.get('api/shifts/events/employee', { params: {firstDay: day1.split('T')[0], lastDay: day2.split('T')[0]}})
+          .then((res) => {
+            props.setShift(res.data);
+          });
+        }
       })
       .catch((e) => {
         console.log('Error from transfering shift(s)', e);

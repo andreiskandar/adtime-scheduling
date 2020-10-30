@@ -24,15 +24,26 @@ export default () => {
   const [sat, setSat] = useState(1604188800000 - 604800000);
   const [sun, setSun] = useState(1604275200000 - 604800000);
   const [shift, setShift] = useState([]);
+  const role = user.getRole();
   
   const getNewWeek = (day1, day2) => {
-    axios.get('api/shifts/events', { params: {firstDay: day1.split('T')[0], lastDay: day2.split('T')[0]}})
+    if (role === 'admin') {
+      axios.get('api/shifts/events/manager', { params: {firstDay: day1.split('T')[0], lastDay: day2.split('T')[0]}})
       .then((res) => {
         setShift(res.data);
-      })    
+      })
       .catch((e) => {
         console.log('Error from adding shift', e);
       });
+    } else {
+      axios.get('api/shifts/events/employee', { params: {firstDay: day1.split('T')[0], lastDay: day2.split('T')[0]}})
+      .then((res) => {
+        setShift(res.data);
+      })
+      .catch((e) => {
+        console.log('Error from adding shift', e);
+      });
+    }
   }
   
   //console.log(props.mon) // Header.js:16 1603670400000  --> 1603756800000
@@ -68,9 +79,9 @@ export default () => {
     if (!user.isAuthenticated()) {
       return history.push('/');
     }
-    if (user.getRole() !== 'admin') {
-      return history.push('/employee');
-    }
+    // if (user.getRole() !== 'admin') {
+    //   return history.push('/manager');
+    // }
     if (isInitialRender && !isAuthenticated) {
       setIsInitialRender(false);
     }

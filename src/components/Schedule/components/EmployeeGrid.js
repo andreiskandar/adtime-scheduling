@@ -154,13 +154,8 @@ const EmployeeGrid = (props) => {
   
   return (
     <>
-      {error && errorElement}
-      {role === 'admin' && (
       <div className='employee_grid'>{renderSpan}</div>
-      )}
-      {role === 'employee' && (
-      <div>hello</div>
-      )}
+      
       <Dialog open={open} onClose={handleClose} maxWidth='lg'>
         <DialogTitle>Add / Transfer Shift</DialogTitle>
         <div className={classes.flex}>

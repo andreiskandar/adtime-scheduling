@@ -7,27 +7,39 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Button from '@material-ui/core/Button';
 import moment from 'moment';
+import { user } from '../../../controllers/index';
 import { SettingsPowerRounded } from '@material-ui/icons';
 
 const MiniCalendar = (props) => {
+  const role = user.getRole();
+  const milisecDay = 86400000;
+
   useEffect(() => {
     getNewWeek(new Date(props.mon - 86400000).toISOString(), new Date(props.sun - 86400000).toISOString());
   }, [props.mon, props.sun])
-
-  const milisecDay = 86400000;
 
   function onPanelChange(value, mode) {
     console.log(value, mode);
   }
 
   const getNewWeek = (day1, day2) => {
-    axios.get('api/shifts/events', { params: {firstDay: day1.split('T')[0], lastDay: day2.split('T')[0]}})
+    if (role === 'admin') {
+      axios.get('api/shifts/events/manager', { params: {firstDay: day1.split('T')[0], lastDay: day2.split('T')[0]}})
       .then((res) => {
         props.setShift(res.data);
-      })    
+      })
       .catch((e) => {
         console.log('Error from adding shift', e);
       });
+    } else {
+      axios.get('api/shifts/events/employee', { params: {firstDay: day1.split('T')[0], lastDay: day2.split('T')[0]}})
+      .then((res) => {
+        props.setShift(res.data);
+      })
+      .catch((e) => {
+        console.log('Error from adding shift', e);
+      });
+    }
   }
 
   const handleChange = (e) => {
