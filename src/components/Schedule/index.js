@@ -119,7 +119,7 @@ export default (props) => {
       });
   };
   
-  const employees = users.map((user) => {
+    const employees = users.map((user) => {
     const lowerUserName = user.name.toLowerCase();
     const lowerTermName = props.term.toLowerCase();
     return lowerUserName.startsWith(lowerTermName) && (
@@ -133,13 +133,10 @@ export default (props) => {
         shift={props.shift}
         setShift={props.setShift}
         categories={categories}
- 
         results = {props.results}
         setResults = {props.setResults}
         term={props.term}
         setTerm={props.setTerm}
-
-
         week = {props.week}
         setWeek = {props.setWeek}
         mon = {props.mon}  
