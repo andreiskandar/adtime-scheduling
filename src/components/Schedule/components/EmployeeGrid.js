@@ -141,32 +141,41 @@ const EmployeeGrid = (props) => {
 
   const renderSpan = Array.from({ length: 12 }, (x, i) => {
     // check if availability
-    if (testingSlotMap && testingSlotMap.unavailable && testingSlotMap.unavailable.includes(i + 1)) {
-      return (
-        <span
-          key={i}
-          className={`grid__${i + 1} unavailable`}
-          data-id={i}
-          // style={{ backgroundColor: '#bdbdbd', cursor: 'default' }}
-        >
-          <p className='hide'>unavailable</p>
-        </span>
-      );
-    } else if (testingSlotMap && testingSlotMap.meetings && testingSlotMap.meetings.includes(i + 1)) {
-      const background = testingSlotMap.meetings.includes(i + 1) ? props.color : '#eeeeee';
-      return (
-        <span
-          key={i}
-          className={`grid__${i + 1}`}
-          data-id={i}
-          onClick={clickGrid}
-          style={{ backgroundColor: `${background}` }}
-        >
-          <span className='badge__grid'></span>
-        </span>
-      );
+    if (testingSlotMap) {
+      if (testingSlotMap.unavailable && testingSlotMap.unavailable.includes(i + 1)) {
+        return (
+          <span key={i} className={`grid__${i + 1} unavailable`} data-id={i}>
+            <p className='hide'>unavailable</p>
+          </span>
+        );
+      } else if (testingSlotMap && testingSlotMap.meetings && testingSlotMap.meetings.includes(i + 1)) {
+        const background = testingSlotMap.meetings.includes(i + 1) ? props.color : '#eeeeee';
+        return (
+          <span
+            key={i}
+            className={`grid__${i + 1}`}
+            data-id={i}
+            onClick={clickGrid}
+            style={{ backgroundColor: `${background}` }}
+          >
+            <span className='badge__grid'></span>
+          </span>
+        );
+      } else {
+        const background =
+          testingSlotMap.workingShift && testingSlotMap.workingShift.includes(i + 1) ? props.color : '#eeeeee';
+        return (
+          <span
+            key={i}
+            className={`grid__${i + 1}`}
+            data-id={i}
+            onClick={clickGrid}
+            style={{ backgroundColor: `${background}` }}
+          />
+        );
+      }
     } else {
-      const background = shift_id && shift_id.includes(i + 1) ? props.color : '#eeeeee';
+      const background = '#eeeeee';
       return (
         <span
           key={i}
