@@ -48,30 +48,31 @@ export default (props) => {
         console.log(e);
       });
   }, []);
-  
+
   const submitShift = (user_id, startTime, endTime, event_date, category_id) => {
     const day1 = new Date(props.mon - 86400000).toISOString();
     const day2 = new Date(props.sun - 86400000).toISOString();
     axios
-      .post('/api/events/add', addShift(user_id, startTime, endTime, event_date, category_id))
-      .then(() => {
-        if (role === 'admin') {
-          axios.get('api/shifts/events/manager', { params: {firstDay: day1.split('T')[0], lastDay: day2.split('T')[0]}})
-          .then((res) => {
-            props.setShift(res.data);
-          });
-        } else {
-          axios.get('api/shifts/events/employee', { params: {firstDay: day1.split('T')[0], lastDay: day2.split('T')[0]}})
-          .then((res) => {
-            props.setShift(res.data);
-          });
-        }
-      })
-      .catch((e) => {
-        console.log('Error from adding shift', e);
-      });
-  };
+    .post('/api/events/add', addShift(user_id, startTime, endTime, event_date, category_id))
+    .then(() => {
+      if (role === 'admin') {
+        axios.get('api/shifts/events/manager', { params: {firstDay: day1.split('T')[0], lastDay: day2.split('T')[0]}})
+        .then((res) => {
+          props.setShift(res.data);
 
+        });
+      } else {
+        axios.get('api/shifts/events/employee', { params: {firstDay: day1.split('T')[0], lastDay: day2.split('T')[0]}})
+        .then((res) => {
+          props.setShift(res.data);
+        });
+      }
+    })
+    .catch((e) => {
+      console.log('Error from adding shift', e);
+    });
+  };
+  
   const removeShift = (user_id, startTime, endTime, event_date, category_id) => {
     const day1 = new Date(props.mon - 86400000).toISOString();
     const day2 = new Date(props.sun - 86400000).toISOString();

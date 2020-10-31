@@ -7,8 +7,8 @@ import SearchBar from "../SearchBar/SearchBar";
 export default function LiveSearch(props) {
 
   useEffect(() => {
-    const testUrl = `/api/users/${props.term}`;
-    axios.get(testUrl).then((response) => {
+    const searchBarUrl = `/api/users/${props.term}`;
+    axios.get(searchBarUrl).then((response) => {
       props.setResults([...response.data]);
     });
   }, [props.term]);

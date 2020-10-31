@@ -7,11 +7,14 @@ import axios from 'axios';
 import { user } from '../../controllers';
 import Button from '@material-ui/core/Button';
 import CheckIcon from '@material-ui/icons/Check';
+import CopyButton from '../CopyButton/copy';
+import PasteButton from '../PasteButton/paste';
 import './styles.scss';
 
 
 const PublishButton = (props) => {
-
+  const [copySchedule, setCopySchedule] = useState([]);
+  const [copy, setCopy] = useState(false)
   const [publish, setPublish] = useState(false);
   const [wording, setWording] = useState('Publish');
   const role = user.getRole();
@@ -43,8 +46,7 @@ const PublishButton = (props) => {
     }
   };
 
-
-  // send props.success show green else yellow
+  
   return (
     <main className='secondary__navbar'>
       <div className='left__secondary_navbar'>
@@ -78,11 +80,19 @@ const PublishButton = (props) => {
         search={props.term}
         
       />
+      {/* copySchedule={copySchedule} */}
+      {/* setCopySchedule={setCopySchedule} */}
+      
       {role === 'admin' && (
-        <Button onClick={handleClick} className={buttonClass}>
-          <CheckIcon className='icon icon__secondary_navbar' />
-          {wording}
-        </Button>
+        <div>
+          <PasteButton mon={props.mon} sun={props.sun} copySchedule={copySchedule} copy={copy}/>
+          <CopyButton mon={props.mon} sun={props.sun} calenderInfo={props.shift} setCopySchedule={setCopySchedule} setCopy={setCopy} />
+          <Button onClick={handleClick} className={buttonClass}>
+            <CheckIcon className='icon icon__secondary_navbar' />
+            {wording}
+          </Button>
+
+        </div>
       )}
     </main>
   );
