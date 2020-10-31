@@ -8,6 +8,7 @@ import { user } from '../../controllers';
 import Button from '@material-ui/core/Button';
 import CheckIcon from '@material-ui/icons/Check';
 import './styles.scss';
+import MyCalendar from 'components/MyCalendar/MyCalendar';
 
 
 const PublishButton = (props) => {
@@ -55,6 +56,7 @@ const PublishButton = (props) => {
         setTerm={props.setTerm}
         />
         <Settings avatar={props.avatar} name={props.name} />
+        <MyCalendar/>
       </div>
       <WeekNav
         clickLeftCalendar={props.clickLeftCalendar}
