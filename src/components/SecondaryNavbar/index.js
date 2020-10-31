@@ -12,12 +12,9 @@ import PasteButton from '../PasteButton/paste';
 import './styles.scss';
 
 const PublishButton = (props) => {
-<<<<<<< HEAD
   const [copySchedule, setCopySchedule] = useState([]);
-  const [copy, setCopy] = useState(false)
-=======
+  const [copy, setCopy] = useState(false);
   const { startTimeState, setStartTimeState, endTimeState, setEndTimeState, avatar, name } = props;
->>>>>>> dev
   const [publish, setPublish] = useState(false);
   const [wording, setWording] = useState('Publish');
   const role = user.getRole();
@@ -48,7 +45,7 @@ const PublishButton = (props) => {
         });
     }
   };
-  
+
   return (
     <main className='secondary__navbar'>
       <div className='left__secondary_navbar'>
@@ -85,16 +82,21 @@ const PublishButton = (props) => {
       />
       {/* copySchedule={copySchedule} */}
       {/* setCopySchedule={setCopySchedule} */}
-      
+
       {role === 'admin' && (
         <div>
-          <PasteButton mon={props.mon} sun={props.sun} copySchedule={copySchedule} copy={copy}/>
-          <CopyButton mon={props.mon} sun={props.sun} calenderInfo={props.shift} setCopySchedule={setCopySchedule} setCopy={setCopy} />
+          <PasteButton mon={props.mon} sun={props.sun} copySchedule={copySchedule} copy={copy} />
+          <CopyButton
+            mon={props.mon}
+            sun={props.sun}
+            calenderInfo={props.shift}
+            setCopySchedule={setCopySchedule}
+            setCopy={setCopy}
+          />
           <Button onClick={handleClick} className={buttonClass}>
             <CheckIcon className='icon icon__secondary_navbar' />
             {wording}
           </Button>
-
         </div>
       )}
     </main>
