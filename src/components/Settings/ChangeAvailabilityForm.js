@@ -18,7 +18,12 @@ const ChangeAvailibilityForm = (props) => {
 
   const submitUserAvailability = (e) => {
     e.preventDefault();
-    axios.get(`/api/categories/updateAvailability/${user_id}`, { params: { startTimeState, endTimeState } });
+    axios
+      .put(`/api/categories/updateAvailability/${user_id}`, { startTimeState, endTimeState })
+      .then(() => {
+        props.handleClose();
+      })
+      .catch(() => console.log('axios.put update Availability error', e));
   };
 
   const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
@@ -56,6 +61,9 @@ const ChangeAvailibilityForm = (props) => {
       <p className={classes.info}>Shift is available from 9am to 9pm</p>
       <div className={classes.availability__form}>{formElement}</div>
       <DialogActions>
+        <Button onClick={props.handleClose} color='default' variant='contained'>
+          Back
+        </Button>
         <Button onClick={submitUserAvailability} color='primary' variant='contained'>
           Submit
         </Button>

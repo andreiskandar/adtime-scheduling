@@ -40,7 +40,7 @@ const Settings = (props) => {
         </a>
       </Dropdown>
       <Dialog open={open} onClose={handleClose} maxWidth='lg'>
-        <ChangeAvailabilityForm {...props} />
+        <ChangeAvailabilityForm {...props} handleClose={handleClose} />
       </Dialog>
     </>
   );

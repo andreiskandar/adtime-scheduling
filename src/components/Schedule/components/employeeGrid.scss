@@ -26,6 +26,30 @@
     background-color: brown;
   }
 
+  .unavailable {
+    background-color: #bdbdbd;    
+    display: flex;
+    justify-content: center;
+    &:hover {
+      .hide {
+        visibility: visible;
+      }
+      cursor: default;
+      border-color: $border-color-grey;
+    }
+  }
+
+  .hide {
+    background-color: #757575;
+    border-radius: 3px;
+    font-size: 12px;
+    position: absolute;
+    padding: 3px;
+    margin-top: 54px;
+    
+    visibility: hidden;
+    color: #fafafa;
+  }
+  
+
 }
-
-
