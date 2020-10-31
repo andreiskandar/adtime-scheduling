@@ -19,7 +19,6 @@ const Employee = (props) => {
   ];
   //2020-11-02T00:00:00.000Z
 
-  // const slotMap = shift && shift && slotMapHelper(shift, id);
   const testingSlotMap = shift.reduce((acc, cur) => {
     const currentDate = cur.event_date.split('T')[0];
     if (cur.user_id && cur.user_id === id) {
@@ -98,6 +97,9 @@ const Employee = (props) => {
     totalEvents++;
     totalHours += slotMap[item].length;
   }
+  console.log('testingSlotMap:', testingSlotMap);
+  // const totalHours = testingSlotMap ? testingSlotMap.workingShift.length : 0;
+  // const totalEvents = testingSlotMap ? testingSlotMap.meetings.length : 0;
 
   const num_hours = totalHours === 1 ? '1 hr' : totalHours > 1 ? `${totalHours} hrs` : '';
   const num_event = totalEvents === 1 ? '1 event' : totalEvents > 1 ? `${totalEvents} events` : '';
