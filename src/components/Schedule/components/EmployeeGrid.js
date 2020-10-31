@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './employeeGrid.scss';
-import { Dialog, DialogActions, DialogTitle, Button, TextField, Avatar } from '@material-ui/core';
+import { Dialog, DialogActions, DialogTitle, Button, TextField, Avatar, Badge } from '@material-ui/core';
 import { HOURS_DICT, ERROR_MESSAGES_DICT } from '../../../helpers/dictionary';
 import TransferShiftMenuButton from './TransferShiftMenuButton';
 import CategoryButton from './CategoryButton';
@@ -13,7 +13,8 @@ import { user } from '../../../controllers';
 const EmployeeGrid = (props) => {
   const role = user.getRole();
   const classes = useStyles();
-  const { shift_id, users, date, categories, shift } = props;
+  const { shift_id, users, date, categories, testingSlotMap } = props;
+  console.log('testingSlotMap:', testingSlotMap);
   const event_date = date;
   const [startTime, setStartTime] = useState(0);
   const [endTime, setEndTime] = useState('');
@@ -124,17 +125,67 @@ const EmployeeGrid = (props) => {
     reset();
   };
 
+  // const renderSpan = Array.from({ length: 12 }, (x, i) => {
+  //   // check if availability
+  //   const background = shift_id && shift_id.includes(i + 1) ? props.color : '#eeeeee';
+  //   return (
+  //     <span
+  //       key={i}
+  //       className={`grid__${i + 1}`}
+  //       data-id={i}
+  //       onClick={clickGrid}
+  //       style={{ backgroundColor: `${background}` }}
+  //     />
+  //   );
+  // });
+
   const renderSpan = Array.from({ length: 12 }, (x, i) => {
-    const background = shift_id && shift_id.includes(i + 1) ? props.color : '#eeeeee';
-    return (
-      <span
-        key={i}
-        className={`grid__${i + 1}`}
-        data-id={i}
-        onClick={clickGrid}
-        style={{ backgroundColor: `${background}` }}
-      />
-    );
+    // check if availability
+    if (testingSlotMap) {
+      if (testingSlotMap.unavailable && testingSlotMap.unavailable.includes(i + 1)) {
+        return (
+          <span key={i} className={`grid__${i + 1} unavailable`} data-id={i}>
+            <p className='hide'>unavailable</p>
+          </span>
+        );
+      } else if (testingSlotMap && testingSlotMap.meetings && testingSlotMap.meetings.includes(i + 1)) {
+        const background = testingSlotMap.meetings.includes(i + 1) ? props.color : '#eeeeee';
+        return (
+          <span
+            key={i}
+            className={`grid__${i + 1}`}
+            data-id={i}
+            onClick={clickGrid}
+            style={{ backgroundColor: `${background}` }}
+          >
+            <span className='badge__grid'></span>
+          </span>
+        );
+      } else {
+        const background =
+          testingSlotMap.workingShift && testingSlotMap.workingShift.includes(i + 1) ? props.color : '#eeeeee';
+        return (
+          <span
+            key={i}
+            className={`grid__${i + 1}`}
+            data-id={i}
+            onClick={clickGrid}
+            style={{ backgroundColor: `${background}` }}
+          />
+        );
+      }
+    } else {
+      const background = '#eeeeee';
+      return (
+        <span
+          key={i}
+          className={`grid__${i + 1}`}
+          data-id={i}
+          onClick={clickGrid}
+          style={{ backgroundColor: `${background}` }}
+        />
+      );
+    }
   });
 
   const errorElement = <section className={classes.error}>{error}</section>;
@@ -148,13 +199,7 @@ const EmployeeGrid = (props) => {
       </div>
     </>
   );
-  
-  // let dumb = shift[0]
-  // for (const published in dumb) {
-  //   if ((dumb[published]) === false){
-  //   }
-  // }
-  
+
   return (
     <>
       <div className='employee_grid'>{renderSpan}</div>
@@ -191,26 +236,32 @@ const EmployeeGrid = (props) => {
             setCategorySelected={setCategorySelected}
             categorySelected={categorySelected}
           />
-          <TransferShiftMenuButton users={users} setSelected={setSelected} setCategorySelected={categorySelected.id} />
+          {error && (
+            <TransferShiftMenuButton
+              users={users}
+              setSelected={setSelected}
+              setCategorySelected={categorySelected.id}
+            />
+          )}
+
           {/* {role !== 'admin' && (
           <TransferShiftMenuButton users={users} setSelected={setSelected} setCategorySelected={categorySelected.id} />
           )} */}
           <Button onClick={reset} variant='contained'>
             Back
           </Button>
-
           {role === 'admin' && (
             <Button onClick={deleteConfirmOpen} color='secondary' variant='contained'>
               Delete
             </Button>
           )}
-            <Dialog open={deleteConfirm}>
-              <Delete
-                onConfirm={handleDelete}
-                message={'Are you sure you want to delete these shift(s)?'}
-                onCancel={deleteConfirmClose}
-              />
-            </Dialog>
+          <Dialog open={deleteConfirm}>
+            <Delete
+              onConfirm={handleDelete}
+              message={'Are you sure you want to delete these shift(s)?'}
+              onCancel={deleteConfirmClose}
+            />
+          </Dialog>
           {!error && role === 'admin' && (
             <Button onClick={validate} color='primary' variant='contained'>
               Submit

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import  LiveSearch from '../SearchBar/index';
+import LiveSearch from '../SearchBar/index';
 import { default as WeekNav } from '../WeekNav';
 import Settings from '../Settings/Settings';
 import classNames from 'classnames';
@@ -11,10 +11,13 @@ import CopyButton from '../CopyButton/copy';
 import PasteButton from '../PasteButton/paste';
 import './styles.scss';
 
-
 const PublishButton = (props) => {
+<<<<<<< HEAD
   const [copySchedule, setCopySchedule] = useState([]);
   const [copy, setCopy] = useState(false)
+=======
+  const { startTimeState, setStartTimeState, endTimeState, setEndTimeState, avatar, name } = props;
+>>>>>>> dev
   const [publish, setPublish] = useState(false);
   const [wording, setWording] = useState('Publish');
   const role = user.getRole();
@@ -45,18 +48,19 @@ const PublishButton = (props) => {
         });
     }
   };
-
   
   return (
     <main className='secondary__navbar'>
       <div className='left__secondary_navbar'>
-        <LiveSearch 
-        results = {props.results}
-        setResults = {props.setResults} 
-        term={props.term}
-        setTerm={props.setTerm}
+        <LiveSearch results={props.results} setResults={props.setResults} term={props.term} setTerm={props.setTerm} />
+        <Settings
+          avatar={avatar}
+          name={name}
+          startTimeState={startTimeState}
+          setStartTimeState={setStartTimeState}
+          endTimeState={endTimeState}
+          setEndTimeState={setEndTimeState}
         />
-        <Settings avatar={props.avatar} name={props.name} />
       </div>
       <WeekNav
         clickLeftCalendar={props.clickLeftCalendar}
@@ -78,7 +82,6 @@ const PublishButton = (props) => {
         shift={props.shift}
         setShift={props.setShift}
         search={props.term}
-        
       />
       {/* copySchedule={copySchedule} */}
       {/* setCopySchedule={setCopySchedule} */}

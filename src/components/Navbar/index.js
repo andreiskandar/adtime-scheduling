@@ -11,12 +11,16 @@ const useStyles = makeStyles((theme) => ({
     width: theme.spacing(3),
     height: theme.spacing(3),
   },
+  username: {
+    marginLeft: '5px',
+    marginBottom: 0,
+  },
 }));
 
 export default (props) => {
   const classes = useStyles();
-  const { username, avatar } = JSON.parse(localStorage.user)
-  
+  const { username, avatar } = JSON.parse(localStorage.user);
+
   return (
     <div className='navbar'>
       <div className='navbar links__navbar'>
@@ -28,7 +32,7 @@ export default (props) => {
         <div className='navbar right_links__navbar'>
           <a href='#' src='' className='navbar link__navbar'>
             <Avatar alt={username} src={avatar} className={classes.small} />
-            {username}
+            <p className={classes.username}>{username}</p>
           </a>
           <a
             href='#'

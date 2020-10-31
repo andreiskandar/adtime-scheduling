@@ -19,7 +19,7 @@ export default (props) => {
   const [date, setDate] = useState('');
   const [categories, setCategories] = useState([]);
   const role = user.getRole();
-  
+
   useEffect(() => {
     const day1 = new Date(props.mon - 86400000).toISOString();
     const day2 = new Date(props.sun - 86400000).toISOString();
@@ -27,13 +27,16 @@ export default (props) => {
     let apiUserShift;
     const apiUsers = axios.get('/api/users');
     if (role === 'admin') {
-      apiUserShift = axios.get('api/shifts/events/manager', { params: {firstDay: day1.split('T')[0], lastDay: day2.split('T')[0]}});
+      apiUserShift = axios.get('api/shifts/events/manager', {
+        params: { firstDay: day1.split('T')[0], lastDay: day2.split('T')[0] },
+      });
     } else {
-      apiUserShift = axios.get('api/shifts/events/employee', { params: {firstDay: day1.split('T')[0], lastDay: day2.split('T')[0]}});
+      apiUserShift = axios.get('api/shifts/events/employee', {
+        params: { firstDay: day1.split('T')[0], lastDay: day2.split('T')[0] },
+      });
     }
-    
+
     const apiCategories = axios.get('api/categories');
-    
 
     Promise.all([apiUsers, apiUserShift, apiCategories])
       .then((all) => {
@@ -53,12 +56,37 @@ export default (props) => {
     const day1 = new Date(props.mon - 86400000).toISOString();
     const day2 = new Date(props.sun - 86400000).toISOString();
     axios
+<<<<<<< HEAD
     .post('/api/events/add', addShift(user_id, startTime, endTime, event_date, category_id))
     .then(() => {
       if (role === 'admin') {
         axios.get('api/shifts/events/manager', { params: {firstDay: day1.split('T')[0], lastDay: day2.split('T')[0]}})
         .then((res) => {
           props.setShift(res.data);
+=======
+      .post('/api/events/add', addShift(user_id, startTime, endTime, event_date, category_id))
+      .then(() => {
+        if (role === 'admin') {
+          axios
+            .get('api/shifts/events/manager', { params: { firstDay: day1.split('T')[0], lastDay: day2.split('T')[0] } })
+            .then((res) => {
+              props.setShift(res.data);
+            });
+        } else {
+          axios
+            .get('api/shifts/events/employee', {
+              params: { firstDay: day1.split('T')[0], lastDay: day2.split('T')[0] },
+            })
+            .then((res) => {
+              props.setShift(res.data);
+            });
+        }
+      })
+      .catch((e) => {
+        console.log('Error from adding shift', e);
+      });
+  };
+>>>>>>> dev
 
         });
       } else {
@@ -80,15 +108,19 @@ export default (props) => {
       .delete('/api/events/delete', cancelShift(user_id, startTime, endTime, event_date, category_id))
       .then(() => {
         if (role === 'admin') {
-          axios.get('api/shifts/events/manager', { params: {firstDay: day1.split('T')[0], lastDay: day2.split('T')[0]}})
-          .then((res) => {
-            props.setShift(res.data);
-          });
+          axios
+            .get('api/shifts/events/manager', { params: { firstDay: day1.split('T')[0], lastDay: day2.split('T')[0] } })
+            .then((res) => {
+              props.setShift(res.data);
+            });
         } else {
-          axios.get('api/shifts/events/employee', { params: {firstDay: day1.split('T')[0], lastDay: day2.split('T')[0]}})
-          .then((res) => {
-            props.setShift(res.data);
-          });
+          axios
+            .get('api/shifts/events/employee', {
+              params: { firstDay: day1.split('T')[0], lastDay: day2.split('T')[0] },
+            })
+            .then((res) => {
+              props.setShift(res.data);
+            });
         }
       })
       .catch((e) => {
@@ -105,60 +137,63 @@ export default (props) => {
       .put('/api/events/transfer', transferShift(user_id, start_time, end_time, transferToUserId, event_date))
       .then(() => {
         if (role === 'admin') {
-          axios.get('api/shifts/events/manager', { params: {firstDay: day1.split('T')[0], lastDay: day2.split('T')[0]}})
-          .then((res) => {
-            props.setShift(res.data);
-          });
+          axios
+            .get('api/shifts/events/manager', { params: { firstDay: day1.split('T')[0], lastDay: day2.split('T')[0] } })
+            .then((res) => {
+              props.setShift(res.data);
+            });
         } else {
-          axios.get('api/shifts/events/employee', { params: {firstDay: day1.split('T')[0], lastDay: day2.split('T')[0]}})
-          .then((res) => {
-            props.setShift(res.data);
-          });
+          axios
+            .get('api/shifts/events/employee', {
+              params: { firstDay: day1.split('T')[0], lastDay: day2.split('T')[0] },
+            })
+            .then((res) => {
+              props.setShift(res.data);
+            });
         }
       })
       .catch((e) => {
         console.log('Error from transfering shift(s)', e);
       });
   };
-  
+
   const employees = users.map((user) => {
     const lowerUserName = user.name.toLowerCase();
     const lowerTermName = props.term.toLowerCase();
-    return lowerUserName.startsWith(lowerTermName) && (
-      <Employee
-        key={user.id}
-        {...user}
-        users={users}
-        submitShift={submitShift}
-        removeShift={removeShift}
-        transferShiftId={transferShiftId}
-        shift={props.shift}
-        setShift={props.setShift}
-        categories={categories}
- 
-        results = {props.results}
-        setResults = {props.setResults}
-        term={props.term}
-        setTerm={props.setTerm}
-
-
-        week = {props.week}
-        setWeek = {props.setWeek}
-        mon = {props.mon}  
-        tues = {props.tues}  
-        wed = {props.wed}  
-        thurs = {props.thurs}  
-        fri = {props.fri}  
-        sat ={props.sat}  
-        sun = {props.sun}
-        setMon = {props.setMon}
-        setTues = {props.setTues}
-        setWed = {props.setWed}
-        setThurs = {props.setThurs}
-        setFri = {props.setFri}
-        setSat = {props.setSat}
-        setSun = {props.setSun}
-      />
+    return (
+      lowerUserName.startsWith(lowerTermName) && (
+        <Employee
+          key={user.id}
+          {...user}
+          users={users}
+          submitShift={submitShift}
+          removeShift={removeShift}
+          transferShiftId={transferShiftId}
+          shift={props.shift}
+          setShift={props.setShift}
+          categories={categories}
+          results={props.results}
+          setResults={props.setResults}
+          term={props.term}
+          setTerm={props.setTerm}
+          week={props.week}
+          setWeek={props.setWeek}
+          mon={props.mon}
+          tues={props.tues}
+          wed={props.wed}
+          thurs={props.thurs}
+          fri={props.fri}
+          sat={props.sat}
+          sun={props.sun}
+          setMon={props.setMon}
+          setTues={props.setTues}
+          setWed={props.setWed}
+          setThurs={props.setThurs}
+          setFri={props.setFri}
+          setSat={props.setSat}
+          setSun={props.setSun}
+        />
+      )
     );
   });
 
@@ -182,7 +217,7 @@ export default (props) => {
           setSun={props.setSun}
           date={date}
         />
-          {employees}
+        {employees}
       </Card>
     </div>
   );

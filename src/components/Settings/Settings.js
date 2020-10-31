@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { Menu, Dropdown, message } from 'antd';
 import ChangeAvailabilityForm from './ChangeAvailabilityForm';
-import { Dialog, DialogActions, DialogTitle, Button, TextField, Avatar } from '@material-ui/core';
+import { Dialog } from '@material-ui/core';
 
 import './styles.scss';
 
-const Settings = ({ avatar, name }) => {
+const Settings = (props) => {
   const [open, setOpen] = useState(false);
 
   const handleClose = () => {
@@ -40,7 +40,7 @@ const Settings = ({ avatar, name }) => {
         </a>
       </Dropdown>
       <Dialog open={open} onClose={handleClose} maxWidth='lg'>
-        <ChangeAvailabilityForm avatar={avatar} name={name} />
+        <ChangeAvailabilityForm {...props} handleClose={handleClose} />
       </Dialog>
     </>
   );

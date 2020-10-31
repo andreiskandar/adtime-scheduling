@@ -53,11 +53,9 @@ const TransferShiftMenuButton = ({ users, setSelected }) => {
 
   return (
     <>
-      {role !== 'admin' && (
       <Button aria-controls='fade-menu' aria-haspopup='true' onClick={handleClick} variant='contained'>
         Transfer Shift
       </Button>
-      )}
       <Menu
         id='fade-menu'
         anchorEl={anchorEl}

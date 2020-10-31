@@ -1,25 +1,30 @@
 import React, { useState } from 'react';
 import { DialogActions, DialogTitle, Button, TextField, Avatar } from '@material-ui/core';
 import useStyles from './ChangeAvailabilityFormStyles';
+import axios from 'axios';
 
-const ChangeAvailibilityForm = () => {
+const ChangeAvailibilityForm = (props) => {
+  const { startTimeState, setStartTimeState, endTimeState, setEndTimeState } = props;
   const classes = useStyles();
-  const [startTimeState, setStartTimeState] = useState({
-    monStartTime: 0,
-    tueStartTime: 0,
-    wedStartTime: 0,
-    thuStartTime: 0,
-    friStartTime: 0,
-    satStartTime: 0,
-    sunStartTime: 0,
-  });
 
-  const [endTimeState, setEndTimeState] = useState({
-    monEndTime: '',
-  });
+  const updateStartTimeAvailability = (e, day) => {
+    setStartTimeState({ ...startTimeState, [day]: e.target.value });
+  };
 
-  const { username, avatar, id } = JSON.parse(localStorage.user);
-  console.log('localStorage.user:', localStorage.user);
+  const updateEndTimeAvailability = (e, day) => {
+    setEndTimeState({ ...endTimeState, [day]: e.target.value });
+  };
+  const { username, avatar, user_id } = JSON.parse(localStorage.user);
+
+  const submitUserAvailability = (e) => {
+    e.preventDefault();
+    axios
+      .put(`/api/categories/updateAvailability/${user_id}`, { startTimeState, endTimeState })
+      .then(() => {
+        props.handleClose();
+      })
+      .catch(() => console.log('axios.put update Availability error', e));
+  };
 
   const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
@@ -28,8 +33,20 @@ const ChangeAvailibilityForm = () => {
       <div key={idx}>
         <div className={classes.day_header__form}>{day}</div>
         <div className={classes.availability_time__form}>
-          <TextField className={classes.time__form} label='Start Time' placeholder='HH:MM' />
-          <TextField className={classes.time__form} label='End Time' placeholder='HH:MM' />
+          <TextField
+            className={classes.time__form}
+            label='Start Time'
+            placeholder='HH:MM'
+            value={startTimeState.day}
+            onChange={(e) => updateStartTimeAvailability(e, day)}
+          />
+          <TextField
+            className={classes.time__form}
+            label='End Time'
+            placeholder='HH:MM'
+            value={endTimeState.day}
+            onChange={(e) => updateEndTimeAvailability(e, day)}
+          />
         </div>
       </div>
     );
@@ -41,9 +58,13 @@ const ChangeAvailibilityForm = () => {
         <Avatar src={avatar} alt={username} />
         <p className={classes.name}>{username}</p>
       </div>
+      <p className={classes.info}>Shift is available from 9am to 9pm</p>
       <div className={classes.availability__form}>{formElement}</div>
       <DialogActions>
-        <Button onClick={true} color='primary' variant='contained'>
+        <Button onClick={props.handleClose} color='default' variant='contained'>
+          Back
+        </Button>
+        <Button onClick={submitUserAvailability} color='primary' variant='contained'>
           Submit
         </Button>
       </DialogActions>
