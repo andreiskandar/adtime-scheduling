@@ -153,7 +153,7 @@ const EmployeeGrid = (props) => {
         </span>
       );
     } else if (testingSlotMap && testingSlotMap.meetings && testingSlotMap.meetings.includes(i + 1)) {
-      const background = shift_id && shift_id.includes(i + 1) ? props.color : '#eeeeee';
+      const background = testingSlotMap.meetings.includes(i + 1) ? props.color : '#eeeeee';
       return (
         <span
           key={i}
@@ -162,7 +162,7 @@ const EmployeeGrid = (props) => {
           onClick={clickGrid}
           style={{ backgroundColor: `${background}` }}
         >
-          <Badge color='secondary' badgeContent=' '></Badge>
+          <span className='badge__grid'></span>
         </span>
       );
     } else {
