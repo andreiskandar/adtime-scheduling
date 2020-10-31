@@ -3,10 +3,13 @@ import EmployeeGrid from './EmployeeGrid';
 import EmployeeHeader from './EmployeeHeader';
 import { user } from '../../../controllers';
 import './employee.scss';
+import useStyles from './styles/formStyles';
+import {GridList, GridListTile} from '@material-ui/core';
 
 const Employee = (props) => {
   const { id, name, avatar, shift, color, users, categories, results, setResults, term, setTerm } = props;
   const role = user.getRole();
+  const classes = useStyles();
   const date_from_calendar = [
     new Date(props.mon - 86400000).toISOString().split('T')[0],
     new Date(props.tues - 86400000).toISOString().split('T')[0],
@@ -42,7 +45,12 @@ const Employee = (props) => {
 
   const num_hours = totalHours === 1 ? '1 hr' : totalHours > 1 ? `${totalHours} hrs` : '';
   const num_event = totalEvents === 1 ? '1 event' : totalEvents > 1 ? `${totalEvents} events` : '';
-
+  const tileData = [
+    {
+      img: '../../../../public/images/Bradley.jpg'
+    }
+  ]
+  
   const renderEmployeeGridPerDay = date_from_calendar.map((date, idx) => {
     return (
       <EmployeeGrid
@@ -60,10 +68,29 @@ const Employee = (props) => {
       />
     );
   });
-
+  // JOKE FOR DEMO REHEARSAL
+  if (role === 'employee') {
+    return (
+      <>
+      <main className='employee_row'>
+        <EmployeeHeader name={name} 
+        num_event={num_event} 
+        avatar={avatar} num_hours={num_hours} 
+        results = {results} setResults = {setResults} 
+        term= {term} setTerm = {setTerm}/>
+      <img src={'https://raw.githubusercontent.com/andreiskandar/moment/david-fe2/public/images/Bradley.jpg'}/>
+      </main>
+      </>
+    )
+  }
+  
   return (
     <main className='employee_row'>
-      <EmployeeHeader name={name} num_event={num_event} avatar={avatar} num_hours={num_hours} results = {results} setResults = {setResults} term= {term} setTerm = {setTerm}/>
+      <EmployeeHeader name={name} 
+      num_event={num_event} 
+      avatar={avatar} num_hours={num_hours} 
+      results = {results} setResults = {setResults} 
+      term= {term} setTerm = {setTerm}/>
       {renderEmployeeGridPerDay}
     </main>
   );
