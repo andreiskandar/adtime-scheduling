@@ -4,8 +4,7 @@ import Card from '@material-ui/core/Card';
 import Header from '../Schedule/components/Header';
 import Employee from '../Schedule/components/Employee';
 import { user } from '../../controllers/index';
-//import helper function addShift, transferShift, cancelShift
-
+//import { user } from 'models';
 import './styles.scss';
 import addShift from 'helpers/addShift';
 import transferShift from 'helpers/transferShift';
@@ -133,44 +132,42 @@ export default (props) => {
         console.log('Error from transfering shift(s)', e);
       });
   };
-
-  const employees = users.map((user) => {
+  
+    const employees = users.map((user) => {
     const lowerUserName = user.name.toLowerCase();
     const lowerTermName = props.term.toLowerCase();
-    return (
-      lowerUserName.startsWith(lowerTermName) && (
-        <Employee
-          key={user.id}
-          {...user}
-          users={users}
-          submitShift={submitShift}
-          removeShift={removeShift}
-          transferShiftId={transferShiftId}
-          shift={props.shift}
-          setShift={props.setShift}
-          categories={categories}
-          results={props.results}
-          setResults={props.setResults}
-          term={props.term}
-          setTerm={props.setTerm}
-          week={props.week}
-          setWeek={props.setWeek}
-          mon={props.mon}
-          tues={props.tues}
-          wed={props.wed}
-          thurs={props.thurs}
-          fri={props.fri}
-          sat={props.sat}
-          sun={props.sun}
-          setMon={props.setMon}
-          setTues={props.setTues}
-          setWed={props.setWed}
-          setThurs={props.setThurs}
-          setFri={props.setFri}
-          setSat={props.setSat}
-          setSun={props.setSun}
-        />
-      )
+    return lowerUserName.startsWith(lowerTermName) && (
+      <Employee
+        key={user.id}
+        {...user}
+        users={users}
+        submitShift={submitShift}
+        removeShift={removeShift}
+        transferShiftId={transferShiftId}
+        shift={props.shift}
+        setShift={props.setShift}
+        categories={categories}
+        results = {props.results}
+        setResults = {props.setResults}
+        term={props.term}
+        setTerm={props.setTerm}
+        week = {props.week}
+        setWeek = {props.setWeek}
+        mon = {props.mon}  
+        tues = {props.tues}  
+        wed = {props.wed}  
+        thurs = {props.thurs}  
+        fri = {props.fri}  
+        sat ={props.sat}  
+        sun = {props.sun}
+        setMon = {props.setMon}
+        setTues = {props.setTues}
+        setWed = {props.setWed}
+        setThurs = {props.setThurs}
+        setFri = {props.setFri}
+        setSat = {props.setSat}
+        setSun = {props.setSun}
+      />
     );
   });
 

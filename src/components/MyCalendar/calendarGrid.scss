@@ -1,0 +1,51 @@
+@import '../../styles/variables.scss';
+
+.hours__header {
+  display: flex;
+  .hour {
+    border: solid 1px $border-color-grey;
+    width: 19px;
+    font-size: 0.8em;
+    padding: 3px;
+  }
+}
+.days__header {
+  display: flex;
+  flex-direction: column;
+  .day {
+    display: flex;
+    border: solid 1px $border-color-grey;
+    width: 100px;
+    font-size: 1em;
+  }
+}
+.row__header {
+  width: 120px;
+}
+
+.employee_name {
+  width: 60%;
+}
+
+.mycalendar_grid {
+  display: flex;
+  
+  border-bottom: 1px $border-color-grey solid;
+  span {
+    display: inline-block;
+    width: 25.18px;
+    height: 51px;
+    border-left: solid $border-color-grey 1px;
+    border-right: solid $border-color-grey 1px;
+    border-top: none;
+    border-bottom: none;
+    &:hover {
+      border: solid 1px #3f3f3f;
+      cursor: pointer;
+    }
+  }
+}
+
+body > div.MuiDialog-root > div.MuiDialog-container.MuiDialog-scrollPaper > div > div > div.days__header > div:nth-child(1) > div {
+  padding-left: 43px;
+}

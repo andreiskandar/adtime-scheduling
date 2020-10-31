@@ -10,6 +10,7 @@ import CheckIcon from '@material-ui/icons/Check';
 import CopyButton from '../CopyButton/copy';
 import PasteButton from '../PasteButton/paste';
 import './styles.scss';
+import MyCalendar from 'components/MyCalendar/MyCalendar';
 
 const PublishButton = (props) => {
   const [copySchedule, setCopySchedule] = useState([]);
@@ -58,6 +59,17 @@ const PublishButton = (props) => {
           endTimeState={endTimeState}
           setEndTimeState={setEndTimeState}
         />
+<<<<<<< HEAD
+=======
+        <Settings avatar={props.avatar} name={props.name} />
+        <MyCalendar
+          mon={props.mon}
+          sun={props.sun}
+          clickLeftCalendar={props.clickLeftCalendar}
+          clickRightCalendar={props.clickRightCalendar}
+          shift={props.shift}
+        />
+>>>>>>> david-fe2
       </div>
       <WeekNav
         clickLeftCalendar={props.clickLeftCalendar}
