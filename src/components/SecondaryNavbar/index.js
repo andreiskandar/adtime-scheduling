@@ -59,9 +59,6 @@ const PublishButton = (props) => {
           endTimeState={endTimeState}
           setEndTimeState={setEndTimeState}
         />
-<<<<<<< HEAD
-=======
-        <Settings avatar={props.avatar} name={props.name} />
         <MyCalendar
           mon={props.mon}
           sun={props.sun}
@@ -69,7 +66,6 @@ const PublishButton = (props) => {
           clickRightCalendar={props.clickRightCalendar}
           shift={props.shift}
         />
->>>>>>> david-fe2
       </div>
       <WeekNav
         clickLeftCalendar={props.clickLeftCalendar}

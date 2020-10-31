@@ -199,17 +199,6 @@ const EmployeeGrid = (props) => {
       </div>
     </>
   );
-<<<<<<< HEAD
-=======
-  
-  
-  // let dumb = shift[0];
-  // for (const published in dumb) {
-  //   if (dumb[published] === false) {
-  //     console.log('THIS IS STUPID');
-  //   }
-  // }
->>>>>>> david-fe2
 
   return (
     <>
@@ -266,7 +255,6 @@ const EmployeeGrid = (props) => {
               Delete
             </Button>
           )}
-<<<<<<< HEAD
           <Dialog open={deleteConfirm}>
             <Delete
               onConfirm={handleDelete}
@@ -274,15 +262,6 @@ const EmployeeGrid = (props) => {
               onCancel={deleteConfirmClose}
             />
           </Dialog>
-=======
-            <Dialog open={deleteConfirm}>
-              <Delete
-                onConfirm={handleDelete}
-                message={'Are you sure you want to delete these shift(s)?'}
-                onCancel={deleteConfirmClose}
-              />
-            </Dialog>
->>>>>>> david-fe2
           {!error && role === 'admin' && (
             <Button onClick={validate} color='primary' variant='contained'>
               Submit
