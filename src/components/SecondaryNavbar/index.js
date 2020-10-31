@@ -56,7 +56,13 @@ const PublishButton = (props) => {
         setTerm={props.setTerm}
         />
         <Settings avatar={props.avatar} name={props.name} />
-        <MyCalendar/>
+        <MyCalendar
+          mon={props.mon}
+          sun={props.sun}
+          clickLeftCalendar={props.clickLeftCalendar}
+          clickRightCalendar={props.clickRightCalendar}
+          shift={props.shift}
+        />
       </div>
       <WeekNav
         clickLeftCalendar={props.clickLeftCalendar}

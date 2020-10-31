@@ -45,12 +45,7 @@ const Employee = (props) => {
 
   const num_hours = totalHours === 1 ? '1 hr' : totalHours > 1 ? `${totalHours} hrs` : '';
   const num_event = totalEvents === 1 ? '1 event' : totalEvents > 1 ? `${totalEvents} events` : '';
-  const tileData = [
-    {
-      img: '../../../../public/images/Bradley.jpg'
-    }
-  ]
-  
+    
   const renderEmployeeGridPerDay = date_from_calendar.map((date, idx) => {
     return (
       <EmployeeGrid
@@ -68,7 +63,7 @@ const Employee = (props) => {
       />
     );
   });
-  // JOKE FOR DEMO REHEARSAL
+  /*// JOKE FOR DEMO REHEARSAL
   if (role === 'employee') {
     return (
       <>
@@ -82,7 +77,7 @@ const Employee = (props) => {
       </main>
       </>
     )
-  }
+  }*/
   
   return (
     <main className='employee_row'>
