@@ -42,6 +42,7 @@ const useStyles = makeStyles((theme) => ({
   },
   title__dialog: {
     backgroundColor: '#3f51b5',
+    color: '#757575',
   },
 }));
 
