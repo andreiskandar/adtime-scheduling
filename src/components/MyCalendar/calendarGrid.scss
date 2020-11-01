@@ -1,12 +1,32 @@
 @import '../../styles/variables.scss';
 
-.hours__header {
+.hours__header__myCalendar {
   display: flex;
-  .hour {
-    border: solid 1px $border-color-grey;
-    width: 19px;
-    font-size: 0.8em;
-    padding: 3px;
+  border-bottom: solid 2px $outer-border-color;
+  .row_header{
+    align-items: center;
+    padding-left: 8px;
+    p{
+      height: 20px;
+      width: 115px;
+      margin: 0;
+    }
+    border-right:solid 2px $outer-border-color;
+  }
+  .hour_header{
+    display: flex;
+    .hour {
+      border-right: solid 2px $outer-border-color;
+      width: 20px;
+      font-size: 10px;
+      padding: 3px;
+    }
+  }
+  .days__header__myCalendar{
+    display: flex;
+    .calendar_grid__myCalendar{
+      display: flex;
+    }
   }
 }
 .days__header {

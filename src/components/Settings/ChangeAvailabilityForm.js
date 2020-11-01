@@ -53,7 +53,7 @@ const ChangeAvailibilityForm = (props) => {
   });
   return (
     <div>
-      <DialogTitle>Change Availibility</DialogTitle>
+      <DialogTitle className={classes.title__dialog}>Change Availibility</DialogTitle>
       <div className={classes.profile__form}>
         <Avatar src={avatar} alt={username} />
         <p className={classes.name}>{username}</p>

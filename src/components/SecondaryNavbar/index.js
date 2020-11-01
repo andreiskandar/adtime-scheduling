@@ -15,7 +15,18 @@ import MyCalendar from 'components/MyCalendar/MyCalendar';
 const PublishButton = (props) => {
   const [copySchedule, setCopySchedule] = useState([]);
   const [copy, setCopy] = useState(false);
-  const { startTimeState, setStartTimeState, endTimeState, setEndTimeState, avatar, name, users, setUsers, weeklyHours, weeklyEvents } = props;
+  const {
+    startTimeState,
+    setStartTimeState,
+    endTimeState,
+    setEndTimeState,
+    avatar,
+    name,
+    users,
+    setUsers,
+    weeklyHours,
+    weeklyEvents,
+  } = props;
   const [publish, setPublish] = useState(false);
   const [wording, setWording] = useState('Publish');
   const role = user.getRole();
@@ -60,8 +71,8 @@ const PublishButton = (props) => {
           setEndTimeState={setEndTimeState}
         />
         <MyCalendar
-          users = {users}
-          setUsers = {setUsers}
+          users={users}
+          setUsers={setUsers}
           mon={props.mon}
           tues={props.tues}
           wed={props.wed}
