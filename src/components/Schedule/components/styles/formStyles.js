@@ -40,6 +40,9 @@ const useStyles = makeStyles((theme) => ({
   warning: {
     background: '#ff9800',
   },
+  title__dialog: {
+    backgroundColor: '#3f51b5',
+  },
 }));
 
 export default useStyles;

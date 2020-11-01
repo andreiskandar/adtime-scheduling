@@ -201,10 +201,10 @@ const EmployeeGrid = (props) => {
   );
 
   return (
-    <>
+    <div className='entire_employee__grid'>
       <div className='employee_grid'>{renderSpan}</div>
       <Dialog open={open} onClose={handleClose} maxWidth='lg'>
-        <DialogTitle>Add / Transfer Shift</DialogTitle>
+        <DialogTitle className={classes.title__dialog}>Add / Transfer Shift</DialogTitle>
         <div className={classes.flex}>
           <div className={classes.flex}>
             <Avatar alt={props.name} src={props.avatar} />
@@ -285,7 +285,7 @@ const EmployeeGrid = (props) => {
           )}
         </DialogActions>
       </Dialog>
-    </>
+    </div>
   );
 };
 

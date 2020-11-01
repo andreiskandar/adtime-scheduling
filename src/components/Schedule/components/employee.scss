@@ -1,11 +1,13 @@
 @import '../../../styles/variables.scss';
 .employee_row {
   display: flex;
+
   &:hover {
     opacity: 0.7;
   }
 }
 .employee {
+  // position: sticky;
   color: #757575;
   background-color: #eeeeee;
   border: solid 1px $outer-border-color;
