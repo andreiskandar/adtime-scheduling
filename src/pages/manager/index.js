@@ -35,19 +35,20 @@ export default () => {
   const [isInitialRender, setIsInitialRender] = useState(true);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [week, setWeek] = useState(2);
-  const [mon, setMon] = useState(1603756800000 - 604800000);
-  const [tues, setTues] = useState(1603843200000 - 604800000);
-  const [wed, setWed] = useState(1603929600000 - 604800000);
-  const [thurs, setThurs] = useState(1604016000000 - 604800000);
-  const [fri, setFri] = useState(1604102400000 - 604800000);
-  const [sat, setSat] = useState(1604188800000 - 604800000);
-  const [sun, setSun] = useState(1604275200000 - 604800000);
+  const [mon, setMon] = useState(1603756800000);
+  const [tues, setTues] = useState(1603843200000);
+  const [wed, setWed] = useState(1603929600000);
+  const [thurs, setThurs] = useState(1604016000000);
+  const [fri, setFri] = useState(1604102400000);
+  const [sat, setSat] = useState(1604188800000);
+  const [sun, setSun] = useState(1604275200000);
   const [shift, setShift] = useState([]);
   const [term, setTerm] = useState('');
   const [results, setResults] = useState([]);
   const [users, setUsers] = useState([]);
   const role = user.getRole();
   
+  console.log(new Date (Date.now()))
   const getNewWeek = (day1, day2) => {
     if (role === 'admin') {
       axios
