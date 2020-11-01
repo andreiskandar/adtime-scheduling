@@ -1,12 +1,32 @@
 @import '../../styles/variables.scss';
 
-.hours__header {
+.hours__header__myCalendar {
   display: flex;
-  .hour {
-    border: solid 1px $border-color-grey;
-    width: 19px;
-    font-size: 0.8em;
-    padding: 3px;
+  border-bottom: solid 2px $outer-border-color;
+  .row_header{
+    align-items: center;
+    padding-left: 8px;
+    p{
+      height: 20px;
+      width: 115px;
+      margin: 0;
+    }
+    border-right:solid 2px $outer-border-color;
+  }
+  .hour_header{
+    display: flex;
+    .hour {
+      border-right: solid 2px $outer-border-color;
+      width: 21.25px;
+      font-size: 10px;
+      padding: 2px;
+    }
+  }
+  .days__header__myCalendar{
+    display: flex;
+    .calendar_grid__myCalendar{
+      display: flex;
+    }
   }
 }
 .days__header {
@@ -52,4 +72,17 @@
 
 body > div.MuiDialog-root > div.MuiDialog-container.MuiDialog-scrollPaper > div > div > div.days__header > div:nth-child(1) > div {
   padding-left: 43px;
+}
+.calendar_grid__myCalendar{
+  display: flex;
+  .day_header__myCalendar{
+    padding-top: 5px;
+    padding-left: 8px;
+    width: 92px;
+    border-bottom: solid 2px $outer-border-color;
+  }
+  .wrapper_grid__myCalendar{
+    border-bottom: solid 2px $outer-border-color;
+
+  }
 }

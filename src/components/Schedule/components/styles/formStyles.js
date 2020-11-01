@@ -42,7 +42,10 @@ const useStyles = makeStyles((theme) => ({
   },
   title__dialog: {
     backgroundColor: '#3f51b5',
-    color: '#757575',
+    '& h2': {
+      color: '#f5f5f5',
+    },
+    marginBottom: '8px',
   },
 }));
 
