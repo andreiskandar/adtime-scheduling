@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
-import { makeStyles, Dialog, DialogActions, DialogTitle, Button, TextField, Avatar } from '@material-ui/core';
+import { Dialog, DialogActions, DialogTitle, Button, TextField, Avatar } from '@material-ui/core';
 import './styles.scss';
 import './calendarGrid.scss';
-import useStyles from './MyCalendarStyles';
 import CalendarGrid from './CalendarGrid';
-import Container from '@material-ui/core/Container'
-import WeekNav from '../WeekNav/index'
+import WeekNav from '../WeekNav/index';
+import useStyles from './MyCalendarStyles';
 
 const MyCalendar = (props) => {
+  const classes = useStyles();
+
   const date_from_calendar = [
     new Date(props.mon).toISOString().split('T')[0],
     new Date(props.tues).toISOString().split('T')[0],
@@ -18,25 +19,24 @@ const MyCalendar = (props) => {
     new Date(props.sun).toISOString().split('T')[0],
   ];
   const hours = ['09a', '10a', '11a', '12p', '01p', '02p', '03p', '04p', '05p', '06p', '07p', '08p'];
-  const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
-  const { username, avatar } = JSON.parse(localStorage.user)
+  const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+  const { username, avatar } = JSON.parse(localStorage.user);
   const [open, setOpen] = useState(false);
-  const useStyles = makeStyles((theme) => ({
-    dialog: {
-      position:'absolute',
-      left: 200, 
-      top:100
-    }
-  }));
-  const classes = useStyles();
-  
+  // const useStyles = makeStyles((theme) => ({
+  //   dialog: {
+  //     position: 'absolute',
+  //     left: 200,
+  //     top: 100,
+  //   },
+  // }));
+
   const handleClose = () => {
     setOpen(false);
   };
   const openMyCalendar = () => {
     setOpen(true);
   };
-    
+
   const hourElement = hours.map((hour, idx) => {
     return (
       <div key={idx} className='hour'>
@@ -69,14 +69,14 @@ const MyCalendar = (props) => {
 
   const renderMyCalendarGrid = date_from_calendar.map((date, idx) => {
     return (
-      <div className="calendar_grid">
-      {days[idx]}
+      <div className='calendar_grid'>
+        {days[idx]}
         <CalendarGrid
           key={Date.now() + idx}
           date={date}
-          username = {username}
-          users = {props.users}
-          setUsers = {props.setUsers}
+          username={username}
+          users={props.users}
+          setUsers={props.setUsers}
           mon={props.mon}
           sun={props.sun}
           shift={props.shift}
@@ -85,27 +85,22 @@ const MyCalendar = (props) => {
       </div>
     );
   });
- 
 
   return (
     <>
-      <a onClick={openMyCalendar} onClose={handleClose} className='myCalendar__secondary_navbar' >
+      <a onClick={openMyCalendar} onClose={handleClose} className='myCalendar__secondary_navbar'>
         My Calendar
       </a>
-      <Dialog 
-      classes={{paper: classes.dialog}}
-      open={open} 
-      onClose={handleClose} 
-      maxWidth='lg'
-      >
-      <a href='#' src='' className='navbar link__navbar'>
-        <Avatar alt={username} src={avatar} className={classes.small} />
-          {username}
-          <div>
-          Total Weekly Hours = {totalHours}
-          Total Weekly Events = {totalEvents}
+      <Dialog classes={{ paper: classes.dialog }} open={open} onClose={handleClose} maxWidth='lg'>
+        <DialogTitle className={classes.title__dialog}>My Calendar</DialogTitle>
+        <div className={classes.flex}>
+          <Avatar alt={username} src={avatar} className={classes.small} />
+          <p className={classes.name}>{username}</p>
+          <div className={classes.moreInfo}>
+            <p>Total Weekly Hours = {totalHours}</p>
+            <p>Total Weekly Events = {totalEvents}</p>
           </div>
-        </a>
+        </div>
         <WeekNav
           clickLeftCalendar={props.clickLeftCalendar}
           clickRightCalendar={props.clickRightCalendar}
@@ -127,14 +122,17 @@ const MyCalendar = (props) => {
           setShift={props.setShift}
           search={props.term}
         />
-      <div className="employee_name"></div>
-      <div className="hours__header">
-      <div className='row__header'>Day of Week</div>
+        <div className='employee_name'></div>
+        <div className='hours__header'>
+          <div className='row__header'>Day of Week</div>
           {hourElement}
-      </div>
-      <div className="days__header">
-        {renderMyCalendarGrid}
-      </div>
+        </div>
+        <div className='days__header'>{renderMyCalendarGrid}</div>
+        <DialogActions>
+          <Button onClick={handleClose} color='primary' variant='contained'>
+            Close
+          </Button>
+        </DialogActions>
       </Dialog>
     </>
   );

@@ -1,43 +1,31 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
-  small: {
-    width: theme.spacing(3),
-    height: theme.spacing(3),
+  title__dialog: {
+    backgroundColor: '#3f51b5',
+    '& h2': {
+      color: '#f5f5f5',
+    },
+    marginBottom: '8px',
   },
-  profile__form: {
+  flex: {
     display: 'flex',
+    fontFamily:
+      "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'",
+    fontSize: '15px',
     alignItems: 'center',
-    margin: '8px',
+    margin: '0 5px 8px 5px',
   },
   name: {
     margin: '0 5px',
   },
-  availability__form: {
-    border: 'solid 2px #9e9e9e',
-    borderRadius: '5px',
-    margin: '8px',
-    display: 'flex',
-  },
-  day_header__form: {
-    borderBottom: 'solid 2px #9e9e9e',
-    borderRight: 'solid 1px  #9e9e9e',
-    display: 'flex',
-    padding: '5px',
-    justifyContent: 'center',
-  },
-  availability_time__form: {
+  moreInfo: {
     display: 'flex',
     flexDirection: 'column',
-    borderRight: 'solid 1px  #9e9e9e',
-    alignItems: 'center',
-  },
-  submit__form: {
-    margin: '5px',
-  },
-  time__form: {
-    width: '80%',
-    marginBottom: '10px',
+    marginLeft: '10px',
+    '& p': {
+      marginBottom: 0,
+    },
   },
 }));
 
