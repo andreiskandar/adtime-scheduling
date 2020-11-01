@@ -45,15 +45,11 @@ export default () => {
   const [shift, setShift] = useState([]);
   const [term, setTerm] = useState('');
   const [results, setResults] = useState([]);
-<<<<<<< HEAD
-  const [users, setUsers] = useState([]);
-=======
   const [copyData, setCopyData] = useState()
 
   const [users, setUsers] = useState([]);
   const [date, setDate] = useState('');
   const [categories, setCategories] = useState([]);
->>>>>>> feature/copybutton
   const role = user.getRole();
   
   const getNewWeek = (day1, day2) => {
