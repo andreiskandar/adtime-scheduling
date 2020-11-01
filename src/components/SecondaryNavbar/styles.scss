@@ -1,12 +1,17 @@
 @import '../../styles/variables.scss';
 
 .secondary__navbar {
+  position: sticky;
+  top: 45px;
+  left:0;
+  z-index: 1;
   font-family: $font-family;
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 50px;
   padding: 0 27px 0 11px;
+  background-color: $background-color-grey;
 
   .icon__secondary_navbar {
     font-size: 1.5em;
