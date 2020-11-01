@@ -19,12 +19,8 @@ const PublishButton = (props) => {
   const {copyData, setCopyData, mon, sun} = props
   const {shift, setShift} = props
   const [copySchedule, setCopySchedule] = useState([]);
-<<<<<<< HEAD
   const [copy, setCopy] = useState(false);
   const { startTimeState, setStartTimeState, endTimeState, setEndTimeState, avatar, name, users, setUsers, weeklyHours, weeklyEvents } = props;
-=======
-  const [copy, setCopy] = useState(false)
->>>>>>> feature/copybutton
   const [publish, setPublish] = useState(false);
   const [wording, setWording] = useState('Publish');
   const role = user.getRole();
@@ -60,7 +56,6 @@ const PublishButton = (props) => {
   return (
     <main className='secondary__navbar'>
       <div className='left__secondary_navbar'>
-<<<<<<< HEAD
         <LiveSearch results={props.results} setResults={props.setResults} term={props.term} setTerm={props.setTerm} />
         <Settings
           avatar={avatar}
@@ -83,13 +78,6 @@ const PublishButton = (props) => {
           clickLeftCalendar={props.clickLeftCalendar}
           clickRightCalendar={props.clickRightCalendar}
           shift={props.shift}
-=======
-        <LiveSearch 
-        results = {props.results}
-        setResults = {props.setResults} 
-        term={props.term}
-        setTerm={props.setTerm}
->>>>>>> feature/copybutton
         />
         <Settings avatar={props.avatar} name={props.name} />
       </div>
