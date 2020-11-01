@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
     textTransform: 'none',
   },
   icon__weeknav: {
-    height: '14px',
+    height: '18px',
     marginRight: '4px',
   },
   weekCalendar: {
