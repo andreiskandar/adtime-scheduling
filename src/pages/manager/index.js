@@ -12,7 +12,7 @@ import axios from 'axios';
 Subtract 7 hours for timezone fix = -25200000
 */
 
-export default () => {
+export default () => {  
   const [startTimeState, setStartTimeState] = useState({
     Monday: 0,
     Tuesday: 0,
@@ -35,17 +35,25 @@ export default () => {
   const [isInitialRender, setIsInitialRender] = useState(true);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [week, setWeek] = useState(2);
-  const [mon, setMon] = useState(1603756800000 - 604800000);
-  const [tues, setTues] = useState(1603843200000 - 604800000);
-  const [wed, setWed] = useState(1603929600000 - 604800000);
-  const [thurs, setThurs] = useState(1604016000000 - 604800000);
-  const [fri, setFri] = useState(1604102400000 - 604800000);
-  const [sat, setSat] = useState(1604188800000 - 604800000);
-  const [sun, setSun] = useState(1604275200000 - 604800000);
+  const [mon, setMon] = useState(1603756800000);
+  const [tues, setTues] = useState(1603843200000);
+  const [wed, setWed] = useState(1603929600000);
+  const [thurs, setThurs] = useState(1604016000000);
+  const [fri, setFri] = useState(1604102400000);
+  const [sat, setSat] = useState(1604188800000);
+  const [sun, setSun] = useState(1604275200000);
   const [shift, setShift] = useState([]);
   const [term, setTerm] = useState('');
   const [results, setResults] = useState([]);
+<<<<<<< HEAD
   const [users, setUsers] = useState([]);
+=======
+  const [copyData, setCopyData] = useState()
+
+  const [users, setUsers] = useState([]);
+  const [date, setDate] = useState('');
+  const [categories, setCategories] = useState([]);
+>>>>>>> feature/copybutton
   const role = user.getRole();
   
   const getNewWeek = (day1, day2) => {
@@ -113,6 +121,7 @@ export default () => {
 
   if (isInitialRender) return null;
 
+  // console.log('SHIFT', JSON.stringify(shift))
   return (
     <>
       <Navbar />
@@ -145,6 +154,8 @@ export default () => {
         setStartTimeState={setStartTimeState}
         endTimeState={endTimeState}
         setEndTimeState={setEndTimeState}
+        copyData={copyData}
+        setCopyData={setCopyData}
       />
       <Schedule
         users = {users}
@@ -171,6 +182,8 @@ export default () => {
         setSun={setSun}
         term={term}
         setTerm={setTerm}
+        copyData={copyData}
+        setCopyData={setCopyData}
       />
     </>
   );

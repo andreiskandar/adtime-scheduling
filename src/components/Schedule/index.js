@@ -59,6 +59,7 @@ export default (props) => {
           axios
             .get('api/shifts/events/manager', { params: { firstDay: day1.split('T')[0], lastDay: day2.split('T')[0] } })
             .then((res) => {
+              console.log("BLAH", res.data)
               props.setShift(res.data);
             });
         } else {
@@ -135,6 +136,7 @@ export default (props) => {
     const employees = props.users.map((user) => {
     const lowerUserName = user.name.toLowerCase();
     const lowerTermName = props.term.toLowerCase();
+    // console.log('SHIFTING', props.shift)
     return lowerUserName.startsWith(lowerTermName) && (
       <Employee
         key={user.id}
@@ -166,6 +168,8 @@ export default (props) => {
         setFri = {props.setFri}
         setSat = {props.setSat}
         setSun = {props.setSun}
+        copyData={props.copyData}
+        setCopyData={props.setCopyData}
       />
     );
   });

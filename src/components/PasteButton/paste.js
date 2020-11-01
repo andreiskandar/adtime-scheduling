@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React from "react";
 import Button from '@material-ui/core/Button';
+<<<<<<< HEAD
 import SubmitShift from '../Schedule/index'
 import addShift from '../../helpers/addShift'
 export default function PasteButton(props) {
@@ -16,11 +16,23 @@ export default function PasteButton(props) {
       })
   };
 
+=======
+//import axios from "axios";
+//import SubmitShift from '../Schedule/index'
+//import addShift from '../../helpers/addShift'
+export default function PasteButton({
+  onClick,
+}) {
+>>>>>>> feature/copybutton
   return (
-    <>
-      <Button variant="contained" color="primary" onClick={handlePasteClick}>
-        Paste Schedule
-      </Button>
-    </>
+    <Button
+      {...{
+        color: 'primary',
+        onClick,
+        variant: 'contained',
+      }}
+    >
+      Paste Schedule
+    </Button>
   );
 }

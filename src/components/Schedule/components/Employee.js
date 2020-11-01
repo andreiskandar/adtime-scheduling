@@ -99,7 +99,11 @@ const Employee = (props) => {
     totalEvents++;
     totalHours += slotMap[item].length;
   }
+<<<<<<< HEAD
 
+=======
+  // console.log('testingSlotMap:', testingSlotMap);
+>>>>>>> feature/copybutton
   // const totalHours = testingSlotMap ? testingSlotMap.workingShift.length : 0;
   // const totalEvents = testingSlotMap ? testingSlotMap.meetings.length : 0;
 
@@ -122,9 +126,12 @@ const Employee = (props) => {
         setResults={setResults}
         term={term}
         setTerm={setTerm}
+        copyData={props.copyData}
+        setCopyData={props.setCopyData}
       />
     );
   });
+<<<<<<< HEAD
   /*// JOKE FOR DEMO REHEARSAL
   if (role === 'employee') {
     return (
@@ -141,6 +148,24 @@ const Employee = (props) => {
     )
   }*/
 
+=======
+  // JOKE FOR DEMO REHEARSAL
+  // if (role === 'employee') {
+  //   return (
+  //     <>
+  //     <main className='employee_row'>
+  //       <EmployeeHeader name={name} 
+  //       num_event={num_event} 
+  //       avatar={avatar} num_hours={num_hours} 
+  //       results = {results} setResults = {setResults} 
+  //       term= {term} setTerm = {setTerm}/>
+  //     <img src={'https://raw.githubusercontent.com/andreiskandar/moment/david-fe2/public/images/Bradley.jpg'}/>
+  //     </main>
+  //     </>
+  //   )
+  // }
+  
+>>>>>>> feature/copybutton
   return (
     <main className='employee_row'>
       <EmployeeHeader
