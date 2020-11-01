@@ -1,6 +1,8 @@
 @import '../../styles/variables.scss';
 
 .secondary__navbar {
+  position: sticky;
+  top: 42;
   font-family: $font-family;
   display: flex;
   justify-content: space-between;
