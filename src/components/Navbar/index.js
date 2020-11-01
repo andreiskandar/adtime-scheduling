@@ -14,6 +14,7 @@ const useStyles = makeStyles((theme) => ({
   username: {
     marginLeft: '5px',
     marginBottom: 0,
+    fontSize: '14px',
   },
 }));
 

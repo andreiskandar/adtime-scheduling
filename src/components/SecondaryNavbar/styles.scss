@@ -6,7 +6,7 @@
   justify-content: space-between;
   align-items: center;
   height: 50px;
-  padding: 0 27px 0 27px;
+  padding: 0 27px 0 11px;
 
   .icon__secondary_navbar {
     font-size: 1.5em;
@@ -14,9 +14,8 @@
 
   .week__navigator {
     justify-self: center;
-    position: fixed;
-    bottom: 1000;
     right: 40% ;
+    height: 28px;
     justify-content: center;
   }
 

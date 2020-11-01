@@ -11,8 +11,6 @@ const useStyles = makeStyles((theme) => ({
     height: 25,
   },
   dateString: {
-    // fontFamily:
-    //   " -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol','Noto Color Emoji'",
     fontSize: '11px',
     fontFamily: 'inherit',
     textTransform: 'none',
