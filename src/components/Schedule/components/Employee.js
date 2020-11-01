@@ -99,7 +99,7 @@ const Employee = (props) => {
     totalEvents++;
     totalHours += slotMap[item].length;
   }
-  console.log('testingSlotMap:', testingSlotMap);
+  // console.log('testingSlotMap:', testingSlotMap);
   // const totalHours = testingSlotMap ? testingSlotMap.workingShift.length : 0;
   // const totalEvents = testingSlotMap ? testingSlotMap.meetings.length : 0;
 
@@ -122,24 +122,26 @@ const Employee = (props) => {
         setResults={setResults}
         term={term}
         setTerm={setTerm}
+        copyData={props.copyData}
+        setCopyData={props.setCopyData}
       />
     );
   });
-  /*// JOKE FOR DEMO REHEARSAL
-  if (role === 'employee') {
-    return (
-      <>
-      <main className='employee_row'>
-        <EmployeeHeader name={name} 
-        num_event={num_event} 
-        avatar={avatar} num_hours={num_hours} 
-        results = {results} setResults = {setResults} 
-        term= {term} setTerm = {setTerm}/>
-      <img src={'https://raw.githubusercontent.com/andreiskandar/moment/david-fe2/public/images/Bradley.jpg'}/>
-      </main>
-      </>
-    )
-  }*/
+  // JOKE FOR DEMO REHEARSAL
+  // if (role === 'employee') {
+  //   return (
+  //     <>
+  //     <main className='employee_row'>
+  //       <EmployeeHeader name={name} 
+  //       num_event={num_event} 
+  //       avatar={avatar} num_hours={num_hours} 
+  //       results = {results} setResults = {setResults} 
+  //       term= {term} setTerm = {setTerm}/>
+  //     <img src={'https://raw.githubusercontent.com/andreiskandar/moment/david-fe2/public/images/Bradley.jpg'}/>
+  //     </main>
+  //     </>
+  //   )
+  // }
   
   return (
     <main className='employee_row'>
