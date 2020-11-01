@@ -12,7 +12,7 @@ import axios from 'axios';
 Subtract 7 hours for timezone fix = -25200000
 */
 
-export default () => {
+export default () => {  
   const [startTimeState, setStartTimeState] = useState({
     Monday: 0,
     Tuesday: 0,
@@ -45,7 +45,11 @@ export default () => {
   const [shift, setShift] = useState([]);
   const [term, setTerm] = useState('');
   const [results, setResults] = useState([]);
+  const [copyData, setCopyData] = useState()
+
   const [users, setUsers] = useState([]);
+  const [date, setDate] = useState('');
+  const [categories, setCategories] = useState([]);
   const role = user.getRole();
   
   console.log(new Date (Date.now()))
@@ -114,6 +118,7 @@ export default () => {
 
   if (isInitialRender) return null;
 
+  // console.log('SHIFT', JSON.stringify(shift))
   return (
     <>
       <Navbar />
@@ -146,6 +151,8 @@ export default () => {
         setStartTimeState={setStartTimeState}
         endTimeState={endTimeState}
         setEndTimeState={setEndTimeState}
+        copyData={copyData}
+        setCopyData={setCopyData}
       />
       <Schedule
         users = {users}
@@ -172,6 +179,8 @@ export default () => {
         setSun={setSun}
         term={term}
         setTerm={setTerm}
+        copyData={copyData}
+        setCopyData={setCopyData}
       />
     </>
   );
