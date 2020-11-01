@@ -11,8 +11,8 @@ export default function CopyButton(props) {
   
   // const [copy, setCopy] = useState(false);
   // const [copySchedule, setCopySchedule] = useState({});
-  const day1 = new Date(props.mon - 86400000).toISOString();
-  const day2 = new Date(props.sun - 86400000).toISOString();
+  const day1 = new Date(props.mon).toISOString();
+  const day2 = new Date(props.sun).toISOString();
     
   const handleCopyClick = () => {
     const copyButtonUrl = `/api/shifts/copy`;
