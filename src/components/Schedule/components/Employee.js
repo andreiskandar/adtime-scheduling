@@ -7,7 +7,7 @@ import useStyles from './styles/formStyles';
 import {GridList, GridListTile} from '@material-ui/core';
 
 const Employee = (props) => {
-  const { id, name, avatar, shift, color, users, categories, results, setResults, term, setTerm } = props;
+  const { id, name, avatar, shift, color, users, categories, results, setResults, term, setTerm} = props;
   const role = user.getRole();
   
   const date_from_calendar = [
@@ -99,13 +99,13 @@ const Employee = (props) => {
     totalEvents++;
     totalHours += slotMap[item].length;
   }
-  console.log('testingSlotMap:', testingSlotMap);
+  
   // const totalHours = testingSlotMap ? testingSlotMap.workingShift.length : 0;
   // const totalEvents = testingSlotMap ? testingSlotMap.meetings.length : 0;
 
   const num_hours = totalHours === 1 ? '1 hr' : totalHours > 1 ? `${totalHours} hrs` : '';
   const num_event = totalEvents === 1 ? '1 event' : totalEvents > 1 ? `${totalEvents} events` : '';
-    
+
   const renderEmployeeGridPerDay = date_from_calendar.map((date, idx) => {
     return (
       <EmployeeGrid
@@ -148,8 +148,6 @@ const Employee = (props) => {
         num_event={num_event}
         avatar={avatar}
         num_hours={num_hours}
-        results={results}
-        setResults={setResults}
         term={term}
         setTerm={setTerm}
       />

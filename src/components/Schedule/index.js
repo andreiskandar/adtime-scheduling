@@ -13,7 +13,6 @@ import cancelShift from 'helpers/cancelShift';
 // const { addShift, transferShift, cancelShift } = require('../../helpers');
 
 export default (props) => {
-  const [users, setUsers] = useState([]);
   const [date, setDate] = useState('');
   const [categories, setCategories] = useState([]);
   const role = user.getRole();
@@ -41,7 +40,7 @@ export default (props) => {
         const newUser = [...all[0].data];
         const newShift = [...all[1].data];
         const newCategories = [...all[2].data];
-        setUsers(newUser);
+        props.setUsers(newUser);
         props.setShift(newShift);
         setCategories(newCategories);
       })
@@ -133,14 +132,14 @@ export default (props) => {
       });
   };
   
-    const employees = users.map((user) => {
+    const employees = props.users.map((user) => {
     const lowerUserName = user.name.toLowerCase();
     const lowerTermName = props.term.toLowerCase();
     return lowerUserName.startsWith(lowerTermName) && (
       <Employee
         key={user.id}
         {...user}
-        users={users}
+        users={props.users}
         submitShift={submitShift}
         removeShift={removeShift}
         transferShiftId={transferShiftId}

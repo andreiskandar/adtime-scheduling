@@ -41,9 +41,13 @@
     border-bottom: none;
     &:hover {
       border: solid 1px #3f3f3f;
-      cursor: pointer;
+      
     }
   }
+}
+
+.calendar_grid {
+  display: flex;
 }
 
 body > div.MuiDialog-root > div.MuiDialog-container.MuiDialog-scrollPaper > div > div > div.days__header > div:nth-child(1) > div {

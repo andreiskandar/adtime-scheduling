@@ -4,7 +4,7 @@ import './employee.scss';
 const EmployeeHeader = (props) => {
   const backendQuery = props.name.split(" ").slice(0,-1).join(' ');
   const userSearch = props.term
-
+  
   return (
     <div className='employee'>
       <img className='avatar__employee' src={props.avatar} alt={props.name}></img>

@@ -45,8 +45,9 @@ export default () => {
   const [shift, setShift] = useState([]);
   const [term, setTerm] = useState('');
   const [results, setResults] = useState([]);
+  const [users, setUsers] = useState([]);
   const role = user.getRole();
-
+  
   const getNewWeek = (day1, day2) => {
     if (role === 'admin') {
       axios
@@ -116,6 +117,8 @@ export default () => {
     <>
       <Navbar />
       <SecondaryNavbar
+        users = {users}
+        setUsers = {setUsers}
         clickLeftCalendar={clickLeftCalendar}
         clickRightCalendar={clickRightCalendar}
         mon={mon}
@@ -144,6 +147,8 @@ export default () => {
         setEndTimeState={setEndTimeState}
       />
       <Schedule
+        users = {users}
+        setUsers = {setUsers}
         results={results}
         setResults={setResults}
         week={week}
