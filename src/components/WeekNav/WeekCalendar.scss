@@ -3,17 +3,10 @@
 .week__navigator {
   display: flex;
   align-items: center;
-  border: solid 2px $border-color-grey;
+  border: solid 2px $outer-border-color;
   border-radius: 15px;
-  height: 35px;
-  width: 320px;
-
-  
-  .left__navigator {
-    margin: 0px;
-    border-right: solid 2px $border-color-grey;
-    border-radius: 15px 0 0 15px;
-  }
+  height: 30px;
+  width: 280px;
 }
 
 .weekCalendar {
@@ -21,13 +14,9 @@
   flex-direction: row;
   align-items: center;
   justify-items: center;
-  font-family: cursive;
   font-size: 12px;
   height: 32px;
   
-  .weekCalendar__icon {
-    font-size: 15px;
-  }
 }
 
 .littleCalendar {
@@ -38,11 +27,3 @@
   width: 22px;
 }
 
-#weekdates{
-  display: flex;
-  flex-direction: column;
-  width: 140px;
-  justify-items: flex-start;
-  margin-top: 0px;
-  border-left: 105px;
-}

@@ -1,10 +1,12 @@
 import React from 'react';
 import TodayIcon from '@material-ui/icons/Today';
 import './WeekCalendar.scss';
+import useStyles from './styles';
 
 const WeekCalendar = (props) => {
+  const classes = useStyles();
   const options = { weekday: 'short', year: 'numeric', month: 'short', day: '2-digit' };
-  
+
   let MondaySelectedNoTime = new Date(props.mon).toISOString().substr(0, 10);
   let Monstring = MondaySelectedNoTime.toString() + 'T00:00:00.000Z';
   Monstring = new Date(Monstring).toLocaleDateString('en-US', options);
@@ -15,10 +17,13 @@ const WeekCalendar = (props) => {
   Sunstring = new Date(Sunstring).toLocaleDateString('en-US', options);
   Sunstring = Sunstring.substr(5, 12);
 
+  console.log('Monstring:', Monstring);
   return (
     <div className='weekCalendar'>
-      <img className='littleCalendar' src='images/schedule.svg' alt='little calendar' />
-      <div id="weekdates">{Monstring} - {Sunstring}</div>
+      <img className='littleCalendar' src='images/schedule.svg' alt='calendar' className={classes.icon__weeknav} />
+      <div className={classes.dateString}>
+        {Monstring} - {Sunstring}
+      </div>
     </div>
   );
 };
