@@ -1,4 +1,8 @@
 @import '../../../styles/variables.scss';
+.entire_employee__grid{
+  // position: absolute;
+  // left: 2610px;
+}
 .employee_grid {
   display: flex;
   border-bottom: 1px $border-color-grey solid;

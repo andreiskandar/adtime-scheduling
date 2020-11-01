@@ -1,3 +1,16 @@
-albumselected {
-  background: red;
+@import '../../styles/variables.scss';
+
+.input__form{
+  border: 2px solid $outer-border-color;
+  border-radius: 30px;
+  height: 15px;
+  width: 136px;
+  padding: 5px;
+  padding-left: 15px;
+  font-size: inherit;
+  color:#757575;
+  background-color: white;
+  &:focus {
+    outline: none;
+  }
 }

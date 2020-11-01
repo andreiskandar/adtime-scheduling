@@ -4,12 +4,12 @@ import EmployeeHeader from './EmployeeHeader';
 import { user } from '../../../controllers';
 import './employee.scss';
 import useStyles from './styles/formStyles';
-import {GridList, GridListTile} from '@material-ui/core';
+import { GridList, GridListTile } from '@material-ui/core';
 
 const Employee = (props) => {
-  const { id, name, avatar, shift, color, users, categories, results, setResults, term, setTerm} = props;
+  const { id, name, avatar, shift, color, users, categories, results, setResults, term, setTerm } = props;
   const role = user.getRole();
-  
+
   const date_from_calendar = [
     new Date(props.mon).toISOString().split('T')[0],
     new Date(props.tues).toISOString().split('T')[0],
@@ -99,7 +99,7 @@ const Employee = (props) => {
     totalEvents++;
     totalHours += slotMap[item].length;
   }
-  
+
   // const totalHours = testingSlotMap ? testingSlotMap.workingShift.length : 0;
   // const totalEvents = testingSlotMap ? testingSlotMap.meetings.length : 0;
 
@@ -140,7 +140,7 @@ const Employee = (props) => {
       </>
     )
   }*/
-  
+
   return (
     <main className='employee_row'>
       <EmployeeHeader
