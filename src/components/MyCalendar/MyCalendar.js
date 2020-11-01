@@ -63,18 +63,21 @@ const MyCalendar = (props) => {
   const renderMyCalendarGrid = date_from_calendar.map((date, idx) => {
     return (
       <div className='calendar_grid__myCalendar'>
-        {days[idx]}
-        <CalendarGrid
-          key={Date.now() + idx}
-          date={date}
-          username={username}
-          users={props.users}
-          setUsers={props.setUsers}
-          mon={props.mon}
-          sun={props.sun}
-          shift={props.shift}
-          shift_id={slotMap[date]}
-        />
+        <div className='day_header__myCalendar'>{days[idx]}</div>
+        <div className='wrapper_grid__myCalendar'>
+          <CalendarGrid
+            key={Date.now() + idx}
+            date={date}
+            username={username}
+            users={props.users}
+            setUsers={props.setUsers}
+            mon={props.mon}
+            sun={props.sun}
+            shift={props.shift}
+            shift_id={slotMap[date]}
+            className={classes.calendarGrid__myCalendar}
+          />
+        </div>
       </div>
     );
   });
@@ -124,7 +127,7 @@ const MyCalendar = (props) => {
             </div>
             <div className='hour_header'>{hourElement}</div>
           </div>
-          <div className='days__header__myCalendar'>{renderMyCalendarGrid}</div>
+          {renderMyCalendarGrid}
         </div>
         <DialogActions>
           <Button onClick={handleClose} color='primary' variant='contained'>
