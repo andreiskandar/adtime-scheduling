@@ -11,6 +11,7 @@ import CopyButton from '../CopyButton/copy';
 import PasteButton from '../PasteButton/paste';
 import addShift from 'helpers/addShift';
 import './styles.scss';
+import MyCalendar from '../MyCalendar/MyCalendar'
 
 
 const PublishButton = (props) => {
