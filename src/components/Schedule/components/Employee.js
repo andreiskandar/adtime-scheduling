@@ -99,10 +99,7 @@ const Employee = (props) => {
     totalEvents++;
     totalHours += slotMap[item].length;
   }
-<<<<<<< HEAD
   // console.log('testingSlotMap:', testingSlotMap);
-=======
->>>>>>> feature/copybutton
   // const totalHours = testingSlotMap ? testingSlotMap.workingShift.length : 0;
   // const totalEvents = testingSlotMap ? testingSlotMap.meetings.length : 0;
 
