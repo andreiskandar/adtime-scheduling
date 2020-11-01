@@ -22,13 +22,6 @@ const MyCalendar = (props) => {
   const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
   const { username, avatar } = JSON.parse(localStorage.user);
   const [open, setOpen] = useState(false);
-  // const useStyles = makeStyles((theme) => ({
-  //   dialog: {
-  //     position: 'absolute',
-  //     left: 200,
-  //     top: 100,
-  //   },
-  // }));
 
   const handleClose = () => {
     setOpen(false);
@@ -69,7 +62,7 @@ const MyCalendar = (props) => {
 
   const renderMyCalendarGrid = date_from_calendar.map((date, idx) => {
     return (
-      <div className='calendar_grid'>
+      <div className='calendar_grid__myCalendar'>
         {days[idx]}
         <CalendarGrid
           key={Date.now() + idx}
@@ -101,33 +94,38 @@ const MyCalendar = (props) => {
             <p>Total Weekly Events = {totalEvents}</p>
           </div>
         </div>
-        <WeekNav
-          clickLeftCalendar={props.clickLeftCalendar}
-          clickRightCalendar={props.clickRightCalendar}
-          mon={props.mon}
-          tues={props.tues}
-          wed={props.wed}
-          thurs={props.thurs}
-          fri={props.fri}
-          sat={props.sat}
-          sun={props.sun}
-          setMon={props.setMon}
-          setTues={props.setTues}
-          setWed={props.setWed}
-          setThurs={props.setThurs}
-          setFri={props.setFri}
-          setSat={props.setSat}
-          setSun={props.setSun}
-          shift={props.shift}
-          setShift={props.setShift}
-          search={props.term}
-        />
-        <div className='employee_name'></div>
-        <div className='hours__header'>
-          <div className='row__header'>Day of Week</div>
-          {hourElement}
+        <div className={classes.weeknav__myCalendar}>
+          <WeekNav
+            clickLeftCalendar={props.clickLeftCalendar}
+            clickRightCalendar={props.clickRightCalendar}
+            mon={props.mon}
+            tues={props.tues}
+            wed={props.wed}
+            thurs={props.thurs}
+            fri={props.fri}
+            sat={props.sat}
+            sun={props.sun}
+            setMon={props.setMon}
+            setTues={props.setTues}
+            setWed={props.setWed}
+            setThurs={props.setThurs}
+            setFri={props.setFri}
+            setSat={props.setSat}
+            setSun={props.setSun}
+            shift={props.shift}
+            setShift={props.setShift}
+            search={props.term}
+          />
         </div>
-        <div className='days__header'>{renderMyCalendarGrid}</div>
+        <div className={classes.wrapper__myCalendar}>
+          <div className='hours__header__myCalendar'>
+            <div className='row_header'>
+              <p>Days of Week</p>
+            </div>
+            <div className='hour_header'>{hourElement}</div>
+          </div>
+          <div className='days__header__myCalendar'>{renderMyCalendarGrid}</div>
+        </div>
         <DialogActions>
           <Button onClick={handleClose} color='primary' variant='contained'>
             Close

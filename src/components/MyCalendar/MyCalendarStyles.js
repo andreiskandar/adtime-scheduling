@@ -27,6 +27,20 @@ const useStyles = makeStyles((theme) => ({
       marginBottom: 0,
     },
   },
+  weeknav__myCalendar: {
+    display: 'flex',
+    justifyContent: 'center',
+    marginBottom: '10px',
+  },
+  wrapper__myCalendar: {
+    border: 'solid 2px #9e9e9e',
+    borderRadius: '5px',
+    margin: '0 10px',
+    padding: 0,
+  },
+  calendarGrid__myCalendar: {
+    paddingLeft: '50px',
+  },
 }));
 
 export default useStyles;
