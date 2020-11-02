@@ -60,8 +60,7 @@ export default () => {
       mondayTime = mondayTime + 6*milisecDay
       break;
   }
-  console.log(mondayTime)
-
+  
   const [isInitialRender, setIsInitialRender] = useState(true);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [week, setWeek] = useState(2);
@@ -75,7 +74,7 @@ export default () => {
   const [shift, setShift] = useState([]);
   const [term, setTerm] = useState('');
   const [results, setResults] = useState([]);
-  const [copyData, setCopyData] = useState()
+  const [copyData, setCopyData] = useState();
 
 
   const [users, setUsers] = useState([]);
@@ -109,8 +108,8 @@ export default () => {
   //console.log(props.sun) // Header.js:17 1604188800000  --> 1604275200000
 
   const clickRightCalendar = () => {
-    const day1 = new Date(mon + 604800000).toISOString();
-    const day2 = new Date(sun + 604800000).toISOString();
+    const day1 = new Date(mon + 604800000 - 86400000).toISOString();
+    const day2 = new Date(sun + 604800000 + 86400000).toISOString();
     setMon(mon + 604800000);
     setTues(tues + 604800000);
     setWed(wed + 604800000);
@@ -122,8 +121,8 @@ export default () => {
   };
 
   const clickLeftCalendar = () => {
-    const day1 = new Date(mon - 604800000).toISOString();
-    const day2 = new Date(sun - 604800000).toISOString();
+    const day1 = new Date(mon - 604800000 - 86400000).toISOString();
+    const day2 = new Date(sun - 604800000 + 86400000).toISOString();
     setMon(mon - 604800000);
     setTues(tues - 604800000);
     setWed(wed - 604800000);

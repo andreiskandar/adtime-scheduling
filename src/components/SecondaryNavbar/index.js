@@ -16,12 +16,9 @@ import MyCalendar from '../MyCalendar/MyCalendar'
 
 const PublishButton = (props) => {
   // console.log('SECONDARY NAV PROPS:', props)
-
-  const {copyData, setCopyData, mon, sun} = props
-  const {shift, setShift} = props
-  const [copySchedule, setCopySchedule] = useState([]);
-  const [copy, setCopy] = useState(false);
+    
   const {
+    copyData, setCopyData, mon, sun, shift, setShift,
     startTimeState,
     setStartTimeState,
     endTimeState,
@@ -31,6 +28,7 @@ const PublishButton = (props) => {
     users,
     setUsers,
   } = props;
+  
   const [publish, setPublish] = useState(false);
   const [wording, setWording] = useState('Publish');
   const role = user.getRole();
@@ -39,8 +37,8 @@ const PublishButton = (props) => {
     isPublished: publish,
   });
 
-  const day1 = new Date(props.mon).toISOString();
-  const day2 = new Date(props.sun).toISOString();
+  const day1 = new Date(props.mon - 86400000).toISOString();
+  const day2 = new Date(props.sun + 86399999).toISOString();
 
   const handleClick = (e) => {
     if (publish === false) {
@@ -129,11 +127,7 @@ const PublishButton = (props) => {
 
                 if (copyData.length) {
                   for (const info of copyData) {
-
-                    console.log("INFO EVNT", info.event_date.split('T')[0])
                     const days = (new Date(info.event_date.split('T')[0])).getDay()
-                    console.log('days:', days)
-                    //await axios.post('/api/events/add', {user_id, event_date, category_id, shift_id})
                     
                     switch (days) {
                       case 0:
