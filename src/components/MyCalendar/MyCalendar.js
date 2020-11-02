@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Dialog, DialogActions, DialogTitle, Button, TextField, Avatar } from '@material-ui/core';
+import { Dialog, DialogActions, DialogTitle, Button, Avatar } from '@material-ui/core';
 import './styles.scss';
 import './calendarGrid.scss';
 import CalendarGrid from './CalendarGrid';

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { DialogActions, DialogTitle, Button, TextField, Avatar } from '@material-ui/core';
 import useStyles from './ChangeAvailabilityFormStyles';
 import axios from 'axios';

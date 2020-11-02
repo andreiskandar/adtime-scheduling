@@ -9,13 +9,10 @@ import Button from '@material-ui/core/Button';
 import CheckIcon from '@material-ui/icons/Check';
 import CopyButton from '../CopyButton/copy';
 import PasteButton from '../PasteButton/paste';
-import addShift from 'helpers/addShift';
 import './styles.scss';
 import MyCalendar from '../MyCalendar/MyCalendar';
 
 const PublishButton = (props) => {
-  // console.log('SECONDARY NAV PROPS:', props)
-
   const { copyData, setCopyData, mon, sun } = props;
   const { shift, setShift } = props;
   const [copySchedule, setCopySchedule] = useState([]);

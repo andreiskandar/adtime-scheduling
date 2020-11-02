@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './calendarGrid.scss';
-import Container from '@material-ui/core/Container'
-import WeekCalendar from '../WeekNav/WeekCalendar'
+import Container from '@material-ui/core/Container';
 import useStyles from '../Schedule/components/styles/formStyles';
 
 const CalendarGrid = (props) => {
@@ -10,7 +9,7 @@ const CalendarGrid = (props) => {
   let color;
   for (const user of props.users) {
     if (user.name === props.username) {
-      color = user.color
+      color = user.color;
     }
   }
   //Renders the eventblocks in the right shift_ids
@@ -26,10 +25,10 @@ const CalendarGrid = (props) => {
       />
     );
   });
-  
+
   return (
     <Container>
-      <div className="mycalendar_grid">{renderSpan}</div>
+      <div className='mycalendar_grid'>{renderSpan}</div>
     </Container>
   );
 };
