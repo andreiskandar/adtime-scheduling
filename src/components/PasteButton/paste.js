@@ -1,6 +1,5 @@
-import React from 'react';
+import React from "react";
 import Button from '@material-ui/core/Button';
-<<<<<<< HEAD
 import axios from "axios";
 import { user } from '../../controllers';
 
@@ -28,7 +27,7 @@ export default function PasteButton(props) {
             info.event_date = (sunday + 86400000)
             break;
             case 1:
-              info.event_date = monday - 86400000
+              info.event_date = monday + 86400000
               break;
             case 2:
               info.event_date = tuesday + 86400000
@@ -40,10 +39,10 @@ export default function PasteButton(props) {
             info.event_date = thursday+ 86400000
             break;
             case 5:
-              info.event_date = friday+ 86400000
+              info.event_date = friday
               break;
             case 6:
-              info.event_date = saturday+ 86400000
+              info.event_date = saturday
               break;
             }
             const event_date = info.event_date
@@ -88,21 +87,3 @@ export default function PasteButton(props) {
       //     </Button>
       //   );
       // }
-=======
-//import axios from "axios";
-//import SubmitShift from '../Schedule/index'
-//import addShift from '../../helpers/addShift'
-export default function PasteButton({ onClick }) {
-  return (
-    <Button
-      {...{
-        color: 'primary',
-        onClick,
-        variant: 'contained',
-      }}
-    >
-      Paste
-    </Button>
-  );
-}
->>>>>>> dc604fc6577c3c84786e9f3a3a0dfcbb58663663

@@ -29,14 +29,8 @@ export default function CopyButton(props) {
   console.log('Copy Data from copy.js', props.copyData);
 
   return (
-<<<<<<< HEAD
     <Button color= 'primary' onClick={handleCopyClick} variant='contained'>
       Save
     </Button>        
-=======
-    <Button color='primary' onClick={handleCopyClick} variant='contained'>
-      Copy
-    </Button>
->>>>>>> dc604fc6577c3c84786e9f3a3a0dfcbb58663663
   );
 }

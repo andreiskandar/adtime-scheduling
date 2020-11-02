@@ -14,10 +14,7 @@ const EmployeeGrid = (props) => {
   const role = user.getRole();
   const classes = useStyles();
   const { shift_id, users, date, categories, testingSlotMap } = props;
-<<<<<<< HEAD
   // console.log('testingSlotMap:', testingSlotMap);
-=======
->>>>>>> dc604fc6577c3c84786e9f3a3a0dfcbb58663663
   const event_date = date;
   const [startTime, setStartTime] = useState(0);
   const [endTime, setEndTime] = useState('');

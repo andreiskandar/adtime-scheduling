@@ -143,10 +143,6 @@ const Employee = (props) => {
     const workingShift = testingSlotMap[item].workingShift ? testingSlotMap[item].workingShift.length : 0;
     totalHours += totalEvents + workingShift;
   }
-<<<<<<< HEAD
-=======
-
->>>>>>> dc604fc6577c3c84786e9f3a3a0dfcbb58663663
   // console.log('testingSlotMap:', testingSlotMap);
   // const totalHours = testingSlotMap ? testingSlotMap.workingShift.length : 0;
   // const totalEvents = testingSlotMap ? testingSlotMap.meetings.length : 0;
@@ -190,11 +186,7 @@ const Employee = (props) => {
   //     </>
   //   )
   // }
-<<<<<<< HEAD
   
-=======
-
->>>>>>> dc604fc6577c3c84786e9f3a3a0dfcbb58663663
   return (
     <main className='employee_row'>
       <EmployeeHeader
