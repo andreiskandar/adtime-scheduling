@@ -1,11 +1,9 @@
-import React from "react";
+import React from 'react';
 import Button from '@material-ui/core/Button';
 //import axios from "axios";
 //import SubmitShift from '../Schedule/index'
 //import addShift from '../../helpers/addShift'
-export default function PasteButton({
-  onClick,
-}) {
+export default function PasteButton({ onClick }) {
   return (
     <Button
       {...{
@@ -14,7 +12,7 @@ export default function PasteButton({
         variant: 'contained',
       }}
     >
-      Paste Schedule
+      Paste
     </Button>
   );
 }

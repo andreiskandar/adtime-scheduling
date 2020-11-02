@@ -42,12 +42,30 @@ const Employee = (props) => {
         } else if (cur.category_id === 1) {
           acc[currentDate].workingShift.push(cur.shift_id);
           return acc;
-        } else if (!acc[currentDate].meetings) {
-          acc[currentDate].meetings = [];
-          acc[currentDate].meetings.push(cur.shift_id);
+        }
+
+        if (cur.category_id === 2 && !acc[currentDate].lecture) {
+          acc[currentDate].lecture = [];
+          acc[currentDate].lecture.push(cur.shift_id);
+          return acc;
+        } else if (cur.category_id === 2) {
+          acc[currentDate].lecture.push(cur.shift_id);
+          return acc;
+        }
+
+        if (cur.category_id === 3 && !acc[currentDate].interview) {
+          acc[currentDate].interview = [];
+          acc[currentDate].interview.push(cur.shift_id);
+          return acc;
+        } else if (cur.category_id === 3) {
+          acc[currentDate].interview.push(cur.shift_id);
+          return acc;
+        } else if (!acc[currentDate].breakout) {
+          acc[currentDate].breakout = [];
+          acc[currentDate].breakout.push(cur.shift_id);
           return acc;
         } else {
-          acc[currentDate].meetings.push(cur.shift_id);
+          acc[currentDate].breakout.push(cur.shift_id);
           return acc;
         }
       } else {
@@ -58,19 +76,39 @@ const Employee = (props) => {
         } else if (cur.category_id === 5) {
           acc[currentDate].unavailable.push(cur.shift_id);
           return acc;
-        } else if (cur.category_id === 1 && !acc[currentDate].workingShift) {
+        }
+
+        if (cur.category_id === 1 && !acc[currentDate].workingShift) {
           acc[currentDate].workingShift = [];
           acc[currentDate].workingShift.push(cur.shift_id);
           return acc;
         } else if (cur.category_id === 1) {
           acc[currentDate].workingShift.push(cur.shift_id);
           return acc;
-        } else if (!acc[currentDate].meetings) {
-          acc[currentDate].meetings = [];
-          acc[currentDate].meetings.push(cur.shift_id);
+        }
+
+        if (cur.category_id === 2 && !acc[currentDate].lecture) {
+          acc[currentDate].lecture = [];
+          acc[currentDate].lecture.push(cur.shift_id);
+          return acc;
+        } else if (cur.category_id === 2) {
+          acc[currentDate].lecture.push(cur.shift_id);
+          return acc;
+        }
+
+        if (cur.category_id === 3 && !acc[currentDate].interview) {
+          acc[currentDate].interview = [];
+          acc[currentDate].interview.push(cur.shift_id);
+          return acc;
+        } else if (cur.category_id === 3) {
+          acc[currentDate].interview.push(cur.shift_id);
+          return acc;
+        } else if (!acc[currentDate].breakout) {
+          acc[currentDate].breakout = [];
+          acc[currentDate].breakout.push(cur.shift_id);
           return acc;
         } else {
-          acc[currentDate].meetings.push(cur.shift_id);
+          acc[currentDate].breakout.push(cur.shift_id);
           return acc;
         }
       }
@@ -93,12 +131,24 @@ const Employee = (props) => {
     }
   }, {});
 
+  console.log('testingSlotMap:', testingSlotMap);
+
   let totalHours = 0,
     totalEvents = 0;
-  for (const item in slotMap) {
-    totalEvents++;
-    totalHours += slotMap[item].length;
+  // for (const item in slotMap) {
+  //   totalEvents++;
+  //   totalHours += slotMap[item].length;
+  // }
+
+  for (const item in testingSlotMap) {
+    const breakout = testingSlotMap[item].breakout ? testingSlotMap[item].breakout.length : 0;
+    const interview = testingSlotMap[item].interview ? testingSlotMap[item].interview.length : 0;
+    const lecture = testingSlotMap[item].lecture ? testingSlotMap[item].lecture.length : 0;
+    totalEvents += breakout + interview + lecture;
+    const workingShift = testingSlotMap[item].workingShift ? testingSlotMap[item].workingShift.length : 0;
+    totalHours += totalEvents + workingShift;
   }
+
   // console.log('testingSlotMap:', testingSlotMap);
   // const totalHours = testingSlotMap ? testingSlotMap.workingShift.length : 0;
   // const totalEvents = testingSlotMap ? testingSlotMap.meetings.length : 0;
