@@ -67,8 +67,9 @@
   }
   
   .grid__badge{
-    margin: 15px 0 0 5px;
+    margin: 0 0 0 8px;
     height: 17px;
+    pointer-events: none;
   
   }
 }

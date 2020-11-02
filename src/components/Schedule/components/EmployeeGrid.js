@@ -143,7 +143,16 @@ const EmployeeGrid = (props) => {
             onClick={clickGrid}
             style={{ backgroundColor: `${background}` }}
           >
-            <img src='images/interview.png' alt='interview icon' className='grid__badge'></img>
+            <img
+              src='images/hired.png'
+              alt='interview icon'
+              className='grid__badge'
+              data-id={i}
+              onClick={(e) => {
+                console.log(e.target);
+                clickGrid(e);
+              }}
+            ></img>
           </span>
         );
       } else if (testingSlotMap && testingSlotMap.lecture && testingSlotMap.lecture.includes(i + 1)) {
@@ -156,7 +165,13 @@ const EmployeeGrid = (props) => {
             onClick={clickGrid}
             style={{ backgroundColor: `${background}` }}
           >
-            <img src='images/lecture.png' alt='lecture icon' className='grid__badge'></img>
+            <img
+              src='images/lecture.png'
+              alt='lecture icon'
+              className='grid__badge'
+              data-id={i}
+              onClick={clickGrid}
+            ></img>
           </span>
         );
       } else if (testingSlotMap && testingSlotMap.breakout && testingSlotMap.breakout.includes(i + 1)) {
@@ -169,7 +184,13 @@ const EmployeeGrid = (props) => {
             onClick={clickGrid}
             style={{ backgroundColor: `${background}` }}
           >
-            <img src='images/breakout.png' alt='breakout icon' className='grid__badge'></img>
+            <img
+              src='images/breakout.png'
+              alt='breakout icon'
+              className='grid__badge'
+              data-id={i}
+              onClick={clickGrid}
+            ></img>
           </span>
         );
       } else {
