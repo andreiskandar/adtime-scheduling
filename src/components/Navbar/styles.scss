@@ -12,20 +12,24 @@
   .links__navbar {
     display: flex;
     justify-content: space-between;
+    
   }
   .logo__navbar {
     font-family: $font-family;
-    margin-left: 27px;
-    font-size: 0.8em;
+    margin-right: 40px;
+    height: 42px;
+    
+    .logo_img__navbar{
+      position: absolute;
+      left: -20px;
+      transform: scale(0.6);
+    }
   }
 
   a {
     display: flex;
     align-items: center;
     text-decoration: none;
-    .icon__navbar {
-      font-size: 14px;
-    }
   }
 
   .right_links__navbar {
@@ -40,9 +44,13 @@
     margin: 5px;
     font-size: 14px;
     padding: 2px;
+      .icon__navbar {
+      font-size: 14px;
+    }
     &:hover {
       color: #f5f5f5;
       border-radius: 10px;
+      cursor: pointer;
     }
   }
 }

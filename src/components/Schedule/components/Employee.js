@@ -1,14 +1,10 @@
 import React from 'react';
 import EmployeeGrid from './EmployeeGrid';
 import EmployeeHeader from './EmployeeHeader';
-import { user } from '../../../controllers';
 import './employee.scss';
-import useStyles from './styles/formStyles';
-import { GridList, GridListTile } from '@material-ui/core';
 
 const Employee = (props) => {
   const { id, name, avatar, shift, color, users, categories, results, setResults, term, setTerm } = props;
-  const role = user.getRole();
 
   const date_from_calendar = [
     new Date(props.mon - 86400000).toISOString().split('T')[0],
@@ -19,6 +15,7 @@ const Employee = (props) => {
     new Date(props.sat - 86400000).toISOString().split('T')[0],
     new Date(props.sun - 86400000).toISOString().split('T')[0],
   ];
+  // console.log('new Date(props.sun - 360000).:', new Date(props.sun));
   //2020-11-02T00:00:00.000Z
 
   const testingSlotMap = shift.reduce((acc, cur) => {
@@ -42,12 +39,30 @@ const Employee = (props) => {
         } else if (cur.category_id === 1) {
           acc[currentDate].workingShift.push(cur.shift_id);
           return acc;
-        } else if (!acc[currentDate].meetings) {
-          acc[currentDate].meetings = [];
-          acc[currentDate].meetings.push(cur.shift_id);
+        }
+
+        if (cur.category_id === 2 && !acc[currentDate].lecture) {
+          acc[currentDate].lecture = [];
+          acc[currentDate].lecture.push(cur.shift_id);
+          return acc;
+        } else if (cur.category_id === 2) {
+          acc[currentDate].lecture.push(cur.shift_id);
+          return acc;
+        }
+
+        if (cur.category_id === 3 && !acc[currentDate].interview) {
+          acc[currentDate].interview = [];
+          acc[currentDate].interview.push(cur.shift_id);
+          return acc;
+        } else if (cur.category_id === 3) {
+          acc[currentDate].interview.push(cur.shift_id);
+          return acc;
+        } else if (!acc[currentDate].breakout) {
+          acc[currentDate].breakout = [];
+          acc[currentDate].breakout.push(cur.shift_id);
           return acc;
         } else {
-          acc[currentDate].meetings.push(cur.shift_id);
+          acc[currentDate].breakout.push(cur.shift_id);
           return acc;
         }
       } else {
@@ -58,19 +73,39 @@ const Employee = (props) => {
         } else if (cur.category_id === 5) {
           acc[currentDate].unavailable.push(cur.shift_id);
           return acc;
-        } else if (cur.category_id === 1 && !acc[currentDate].workingShift) {
+        }
+
+        if (cur.category_id === 1 && !acc[currentDate].workingShift) {
           acc[currentDate].workingShift = [];
           acc[currentDate].workingShift.push(cur.shift_id);
           return acc;
         } else if (cur.category_id === 1) {
           acc[currentDate].workingShift.push(cur.shift_id);
           return acc;
-        } else if (!acc[currentDate].meetings) {
-          acc[currentDate].meetings = [];
-          acc[currentDate].meetings.push(cur.shift_id);
+        }
+
+        if (cur.category_id === 2 && !acc[currentDate].lecture) {
+          acc[currentDate].lecture = [];
+          acc[currentDate].lecture.push(cur.shift_id);
+          return acc;
+        } else if (cur.category_id === 2) {
+          acc[currentDate].lecture.push(cur.shift_id);
+          return acc;
+        }
+
+        if (cur.category_id === 3 && !acc[currentDate].interview) {
+          acc[currentDate].interview = [];
+          acc[currentDate].interview.push(cur.shift_id);
+          return acc;
+        } else if (cur.category_id === 3) {
+          acc[currentDate].interview.push(cur.shift_id);
+          return acc;
+        } else if (!acc[currentDate].breakout) {
+          acc[currentDate].breakout = [];
+          acc[currentDate].breakout.push(cur.shift_id);
           return acc;
         } else {
-          acc[currentDate].meetings.push(cur.shift_id);
+          acc[currentDate].breakout.push(cur.shift_id);
           return acc;
         }
       }
@@ -95,10 +130,23 @@ const Employee = (props) => {
 
   let totalHours = 0,
     totalEvents = 0;
-  for (const item in slotMap) {
-    totalEvents++;
-    totalHours += slotMap[item].length;
+  // for (const item in slotMap) {
+  //   totalEvents++;
+  //   totalHours += slotMap[item].length;
+  // }
+
+  for (const item in testingSlotMap) {
+    const breakout = testingSlotMap[item].breakout ? testingSlotMap[item].breakout.length : 0;
+    const interview = testingSlotMap[item].interview ? testingSlotMap[item].interview.length : 0;
+    const lecture = testingSlotMap[item].lecture ? testingSlotMap[item].lecture.length : 0;
+    totalEvents += breakout + interview + lecture;
+    const workingShift = testingSlotMap[item].workingShift ? testingSlotMap[item].workingShift.length : 0;
+    totalHours += totalEvents + workingShift;
   }
+<<<<<<< HEAD
+=======
+
+>>>>>>> dc604fc6577c3c84786e9f3a3a0dfcbb58663663
   // console.log('testingSlotMap:', testingSlotMap);
   // const totalHours = testingSlotMap ? testingSlotMap.workingShift.length : 0;
   // const totalEvents = testingSlotMap ? testingSlotMap.meetings.length : 0;
@@ -132,17 +180,21 @@ const Employee = (props) => {
   //   return (
   //     <>
   //     <main className='employee_row'>
-  //       <EmployeeHeader name={name} 
-  //       num_event={num_event} 
-  //       avatar={avatar} num_hours={num_hours} 
-  //       results = {results} setResults = {setResults} 
+  //       <EmployeeHeader name={name}
+  //       num_event={num_event}
+  //       avatar={avatar} num_hours={num_hours}
+  //       results = {results} setResults = {setResults}
   //       term= {term} setTerm = {setTerm}/>
   //     <img src={'https://raw.githubusercontent.com/andreiskandar/moment/david-fe2/public/images/Bradley.jpg'}/>
   //     </main>
   //     </>
   //   )
   // }
+<<<<<<< HEAD
   
+=======
+
+>>>>>>> dc604fc6577c3c84786e9f3a3a0dfcbb58663663
   return (
     <main className='employee_row'>
       <EmployeeHeader

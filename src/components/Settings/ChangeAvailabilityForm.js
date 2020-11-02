@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { DialogActions, DialogTitle, Button, TextField, Avatar } from '@material-ui/core';
 import useStyles from './ChangeAvailabilityFormStyles';
 import axios from 'axios';
@@ -18,11 +18,10 @@ const ChangeAvailibilityForm = (props) => {
 
   const submitUserAvailability = (e) => {
     e.preventDefault();
+    props.handleClose();
     axios
       .put(`/api/categories/updateAvailability/${user_id}`, { startTimeState, endTimeState })
-      .then(() => {
-        props.handleClose();
-      })
+      .then(() => {})
       .catch(() => console.log('axios.put update Availability error', e));
   };
 
@@ -59,6 +58,7 @@ const ChangeAvailibilityForm = (props) => {
         <p className={classes.name}>{username}</p>
       </div>
       <p className={classes.info}>Shift is available from 9am to 9pm</p>
+      <p className={classes.info}>This availability will be affected for next 4 weeks</p>
       <div className={classes.availability__form}>{formElement}</div>
       <DialogActions>
         <Button onClick={props.handleClose} color='default' variant='contained'>
