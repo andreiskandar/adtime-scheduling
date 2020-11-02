@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Dialog, DialogActions, DialogTitle, Button, TextField, Avatar } from '@material-ui/core';
+import { Dialog, DialogActions, DialogTitle, Button, Avatar } from '@material-ui/core';
 import './styles.scss';
 import './calendarGrid.scss';
 import CalendarGrid from './CalendarGrid';
@@ -62,7 +62,7 @@ const MyCalendar = (props) => {
 
   const renderMyCalendarGrid = date_from_calendar.map((date, idx) => {
     return (
-      <div className='calendar_grid__myCalendar'>
+      <div key={idx} className='calendar_grid__myCalendar'>
         <div className='day_header__myCalendar'>{days[idx]}</div>
         <div className='wrapper_grid__myCalendar'>
           <CalendarGrid
@@ -84,9 +84,9 @@ const MyCalendar = (props) => {
 
   return (
     <>
-      <a onClick={openMyCalendar} onClose={handleClose} className='myCalendar__secondary_navbar'>
+      <p onClick={openMyCalendar} onClose={handleClose} className='myCalendar__secondary_navbar'>
         My Calendar
-      </a>
+      </p>
       <Dialog classes={{ paper: classes.dialog }} open={open} onClose={handleClose} maxWidth='lg'>
         <DialogTitle className={classes.title__dialog}>My Calendar</DialogTitle>
         <div className={classes.flex}>

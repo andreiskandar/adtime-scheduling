@@ -1,9 +1,7 @@
 import React from 'react';
 import { Button } from '@material-ui/core';
-// import useStyles from '../styles/formStyles';
-import { makeStyles  } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Alert from '@material-ui/lab/Alert';
-import { red, orange } from '@material-ui/core/colors';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -19,31 +17,25 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'space-evenly',
     marginBottom: '12px',
-  }
+  },
 }));
 
 export default function Transfer(props) {
   const classes = useStyles();
 
-  return(
+  return (
     <main className={classes.root}>
-      <Alert severity="warning" className={classes.root} variant="filled" >{props.message}</Alert>
+      <Alert severity='warning' className={classes.root} variant='filled'>
+        {props.message}
+      </Alert>
       <section className={classes.spacing}>
-        <Button size="small"
-          variant="contained" 
-          color="secondary"
-          onClick={props.onCancel}
-        >
+        <Button size='small' variant='contained' color='secondary' onClick={props.onCancel}>
           Cancel
         </Button>
-        <Button size="small"
-          variant="contained" 
-          color="secondary" 
-          onClick={props.onConfirm}
-        >
+        <Button size='small' variant='contained' color='secondary' onClick={props.onConfirm}>
           Confirm
         </Button>
       </section>
-    </main>    
+    </main>
   );
-};
+}

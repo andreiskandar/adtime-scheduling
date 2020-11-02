@@ -1,6 +1,7 @@
 @import  '../../styles/variables.scss';
 
 .settings__secondary_navbar{
+  margin-bottom: 0;
   color: $black;
   &:hover {
     cursor: pointer;
