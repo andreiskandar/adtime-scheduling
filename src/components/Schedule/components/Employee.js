@@ -3,8 +3,6 @@ import EmployeeGrid from './EmployeeGrid';
 import EmployeeHeader from './EmployeeHeader';
 import { user } from '../../../controllers';
 import './employee.scss';
-import useStyles from './styles/formStyles';
-import { GridList, GridListTile } from '@material-ui/core';
 
 const Employee = (props) => {
   const { id, name, avatar, shift, color, users, categories, results, setResults, term, setTerm } = props;

@@ -1,10 +1,8 @@
 import React from 'react';
 import './calendarGrid.scss';
 import Container from '@material-ui/core/Container';
-import useStyles from '../Schedule/components/styles/formStyles';
 
 const CalendarGrid = (props) => {
-  const classes = useStyles();
   //Picks right color for current user
   let color;
   for (const user of props.users) {

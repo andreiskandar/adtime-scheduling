@@ -84,9 +84,9 @@ const MyCalendar = (props) => {
 
   return (
     <>
-      <a onClick={openMyCalendar} onClose={handleClose} className='myCalendar__secondary_navbar'>
+      <p onClick={openMyCalendar} onClose={handleClose} className='myCalendar__secondary_navbar'>
         My Calendar
-      </a>
+      </p>
       <Dialog classes={{ paper: classes.dialog }} open={open} onClose={handleClose} maxWidth='lg'>
         <DialogTitle className={classes.title__dialog}>My Calendar</DialogTitle>
         <div className={classes.flex}>

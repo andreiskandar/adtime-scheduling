@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Menu, Dropdown, message } from 'antd';
+import { Menu, Dropdown } from 'antd';
 import ChangeAvailabilityForm from './ChangeAvailabilityForm';
 import { Dialog } from '@material-ui/core';
 
@@ -22,7 +22,6 @@ const Settings = (props) => {
       default:
         break;
     }
-    // message.info(`Click on item ${key}`);
   };
 
   const menu = (
@@ -35,9 +34,9 @@ const Settings = (props) => {
   return (
     <>
       <Dropdown overlay={menu}>
-        <a className='settings__secondary_navbar' onClick={(e) => e.preventDefault()}>
+        <p className='settings__secondary_navbar' onClick={(e) => e.preventDefault()}>
           Settings
-        </a>
+        </p>
       </Dropdown>
       <Dialog open={open} onClose={handleClose} maxWidth='lg'>
         <ChangeAvailabilityForm {...props} handleClose={handleClose} />
