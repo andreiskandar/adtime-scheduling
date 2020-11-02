@@ -131,8 +131,6 @@ const Employee = (props) => {
     }
   }, {});
 
-  console.log('testingSlotMap:', testingSlotMap);
-
   let totalHours = 0,
     totalEvents = 0;
   // for (const item in slotMap) {

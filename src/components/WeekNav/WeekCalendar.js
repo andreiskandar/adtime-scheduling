@@ -17,7 +17,6 @@ const WeekCalendar = (props) => {
   Sunstring = new Date(Sunstring).toLocaleDateString('en-US', options);
   Sunstring = Sunstring.substr(5, 12);
 
-  console.log('Monstring:', Monstring);
   return (
     <div className='weekCalendar'>
       <img className='littleCalendar' src='images/schedule.svg' alt='calendar' className={classes.icon__weeknav} />
