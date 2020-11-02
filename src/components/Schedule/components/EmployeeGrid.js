@@ -124,20 +124,6 @@ const EmployeeGrid = (props) => {
     reset();
   };
 
-  // const renderSpan = Array.from({ length: 12 }, (x, i) => {
-  //   // check if availability
-  //   const background = shift_id && shift_id.includes(i + 1) ? props.color : '#eeeeee';
-  //   return (
-  //     <span
-  //       key={i}
-  //       className={`grid__${i + 1}`}
-  //       data-id={i}
-  //       onClick={clickGrid}
-  //       style={{ backgroundColor: `${background}` }}
-  //     />
-  //   );
-  // });
-
   const renderSpan = Array.from({ length: 12 }, (x, i) => {
     // check if availability
     if (testingSlotMap) {
@@ -147,8 +133,8 @@ const EmployeeGrid = (props) => {
             <p className='hide'>unavailable</p>
           </span>
         );
-      } else if (testingSlotMap && testingSlotMap.meetings && testingSlotMap.meetings.includes(i + 1)) {
-        const background = testingSlotMap.meetings.includes(i + 1) ? props.color : '#eeeeee';
+      } else if (testingSlotMap && testingSlotMap.interview && testingSlotMap.interview.includes(i + 1)) {
+        const background = testingSlotMap.interview.includes(i + 1) ? props.color : '#eeeeee';
         return (
           <span
             key={i}
@@ -157,7 +143,33 @@ const EmployeeGrid = (props) => {
             onClick={clickGrid}
             style={{ backgroundColor: `${background}` }}
           >
-            <span className='badge__grid'></span>
+            <img src='images/interview.png' alt='interview icon' className='grid__badge'></img>
+          </span>
+        );
+      } else if (testingSlotMap && testingSlotMap.lecture && testingSlotMap.lecture.includes(i + 1)) {
+        const background = testingSlotMap.lecture.includes(i + 1) ? props.color : '#eeeeee';
+        return (
+          <span
+            key={i}
+            className={`grid__${i + 1}`}
+            data-id={i}
+            onClick={clickGrid}
+            style={{ backgroundColor: `${background}` }}
+          >
+            <img src='images/lecture.png' alt='lecture icon' className='grid__badge'></img>
+          </span>
+        );
+      } else if (testingSlotMap && testingSlotMap.breakout && testingSlotMap.breakout.includes(i + 1)) {
+        const background = testingSlotMap.breakout.includes(i + 1) ? props.color : '#eeeeee';
+        return (
+          <span
+            key={i}
+            className={`grid__${i + 1}`}
+            data-id={i}
+            onClick={clickGrid}
+            style={{ backgroundColor: `${background}` }}
+          >
+            <img src='images/breakout.png' alt='breakout icon' className='grid__badge'></img>
           </span>
         );
       } else {
