@@ -7,13 +7,13 @@ const Employee = (props) => {
   const { id, name, avatar, shift, color, users, categories, results, setResults, term, setTerm } = props;
 
   const date_from_calendar = [
-    new Date(props.mon).toISOString().split('T')[0],
-    new Date(props.tues).toISOString().split('T')[0],
-    new Date(props.wed).toISOString().split('T')[0],
-    new Date(props.thurs).toISOString().split('T')[0],
-    new Date(props.fri).toISOString().split('T')[0],
-    new Date(props.sat).toISOString().split('T')[0],
-    new Date(props.sun).toISOString().split('T')[0],
+    new Date(props.mon - 86400000).toISOString().split('T')[0],
+    new Date(props.tues - 86400000).toISOString().split('T')[0],
+    new Date(props.wed - 86400000).toISOString().split('T')[0],
+    new Date(props.thurs - 86400000).toISOString().split('T')[0],
+    new Date(props.fri - 86400000).toISOString().split('T')[0],
+    new Date(props.sat - 86400000).toISOString().split('T')[0],
+    new Date(props.sun - 86400000).toISOString().split('T')[0],
   ];
   //2020-11-02T00:00:00.000Z
 

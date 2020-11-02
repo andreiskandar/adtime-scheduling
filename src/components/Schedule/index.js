@@ -57,7 +57,6 @@ export default (props) => {
           axios
             .get('api/shifts/events/manager', { params: { firstDay: day1.split('T')[0], lastDay: day2.split('T')[0] } })
             .then((res) => {
-              console.log('BLAH', res.data);
               props.setShift(res.data);
             });
         } else {
