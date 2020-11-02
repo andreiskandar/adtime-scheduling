@@ -12,7 +12,7 @@ import axios from 'axios';
 Subtract 7 hours for timezone fix = -25200000
 */
 
-export default () => {  
+export default () => {
   const [startTimeState, setStartTimeState] = useState({
     Monday: 0,
     Tuesday: 0,
@@ -45,13 +45,13 @@ export default () => {
   const [shift, setShift] = useState([]);
   const [term, setTerm] = useState('');
   const [results, setResults] = useState([]);
-  const [copyData, setCopyData] = useState()
+  const [copyData, setCopyData] = useState();
 
   const [users, setUsers] = useState([]);
   const [date, setDate] = useState('');
   const [categories, setCategories] = useState([]);
   const role = user.getRole();
-  
+
   const getNewWeek = (day1, day2) => {
     if (role === 'admin') {
       axios
@@ -122,8 +122,8 @@ export default () => {
     <>
       <Navbar />
       <SecondaryNavbar
-        users = {users}
-        setUsers = {setUsers}
+        users={users}
+        setUsers={setUsers}
         clickLeftCalendar={clickLeftCalendar}
         clickRightCalendar={clickRightCalendar}
         mon={mon}
@@ -154,8 +154,8 @@ export default () => {
         setCopyData={setCopyData}
       />
       <Schedule
-        users = {users}
-        setUsers = {setUsers}
+        users={users}
+        setUsers={setUsers}
         results={results}
         setResults={setResults}
         week={week}

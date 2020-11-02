@@ -21,63 +21,6 @@ const Employee = (props) => {
   ];
   //2020-11-02T00:00:00.000Z
 
-  // const testingSlotMap = shift.reduce((acc, cur) => {
-  //   const currentDate = cur.event_date.split('T')[0];
-  //   if (cur.user_id && cur.user_id === id) {
-  //     if (!acc[currentDate]) {
-  //       acc[currentDate] = {};
-  //       if (cur.category_id === 5 && !acc[currentDate].unavailable) {
-  //         acc[currentDate].unavailable = [];
-  //         acc[currentDate].unavailable.push(cur.shift_id);
-  //         return acc;
-  //       } else if (cur.category_id === 5) {
-  //         acc[currentDate].unavailable.push(cur.shift_id);
-  //         return acc;
-  //       }
-
-  //       if (cur.category_id === 1 && !acc[currentDate].workingShift) {
-  //         acc[currentDate].workingShift = [];
-  //         acc[currentDate].workingShift.push(cur.shift_id);
-  //         return acc;
-  //       } else if (cur.category_id === 1) {
-  //         acc[currentDate].workingShift.push(cur.shift_id);
-  //         return acc;
-  //       } else if (!acc[currentDate].meetings) {
-  //         acc[currentDate].meetings = [];
-  //         acc[currentDate].meetings.push(cur.shift_id);
-  //         return acc;
-  //       } else {
-  //         acc[currentDate].meetings.push(cur.shift_id);
-  //         return acc;
-  //       }
-  //     } else {
-  //       if (cur.category_id === 5 && !acc[currentDate].unavailable) {
-  //         acc[currentDate].unavailable = [];
-  //         acc[currentDate].unavailable.push(cur.shift_id);
-  //         return acc;
-  //       } else if (cur.category_id === 5) {
-  //         acc[currentDate].unavailable.push(cur.shift_id);
-  //         return acc;
-  //       } else if (cur.category_id === 1 && !acc[currentDate].workingShift) {
-  //         acc[currentDate].workingShift = [];
-  //         acc[currentDate].workingShift.push(cur.shift_id);
-  //         return acc;
-  //       } else if (cur.category_id === 1) {
-  //         acc[currentDate].workingShift.push(cur.shift_id);
-  //         return acc;
-  //       } else if (!acc[currentDate].meetings) {
-  //         acc[currentDate].meetings = [];
-  //         acc[currentDate].meetings.push(cur.shift_id);
-  //         return acc;
-  //       } else {
-  //         acc[currentDate].meetings.push(cur.shift_id);
-  //         return acc;
-  //       }
-  //     }
-  //   }
-  //   return acc;
-  // }, {});
-
   const testingSlotMap = shift.reduce((acc, cur) => {
     const currentDate = cur.event_date.split('T')[0];
     if (cur.user_id && cur.user_id === id) {
@@ -188,12 +131,24 @@ const Employee = (props) => {
     }
   }, {});
 
+  console.log('testingSlotMap:', testingSlotMap);
+
   let totalHours = 0,
     totalEvents = 0;
-  for (const item in slotMap) {
-    totalEvents++;
-    totalHours += slotMap[item].length;
+  // for (const item in slotMap) {
+  //   totalEvents++;
+  //   totalHours += slotMap[item].length;
+  // }
+
+  for (const item in testingSlotMap) {
+    const breakout = testingSlotMap[item].breakout ? testingSlotMap[item].breakout.length : 0;
+    const interview = testingSlotMap[item].interview ? testingSlotMap[item].interview.length : 0;
+    const lecture = testingSlotMap[item].lecture ? testingSlotMap[item].lecture.length : 0;
+    totalEvents += breakout + interview + lecture;
+    const workingShift = testingSlotMap[item].workingShift ? testingSlotMap[item].workingShift.length : 0;
+    totalHours += totalEvents + workingShift;
   }
+
   // console.log('testingSlotMap:', testingSlotMap);
   // const totalHours = testingSlotMap ? testingSlotMap.workingShift.length : 0;
   // const totalEvents = testingSlotMap ? testingSlotMap.meetings.length : 0;

@@ -27,7 +27,7 @@ export default (props) => {
       <div className='navbar links__navbar'>
         <Typography variant='h4'>
           <a href='#' src='' className='navbar logo__navbar'>
-            <img src='' alt='' className='logo_img__navbar'></img>A.D.Time
+            <img src='images/logo.png' alt='' className='logo_img__navbar'></img>
           </a>
         </Typography>
         <div className='navbar right_links__navbar'>
