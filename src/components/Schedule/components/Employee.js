@@ -17,7 +17,7 @@ const Employee = (props) => {
     new Date(props.thurs - 86400000).toISOString().split('T')[0],
     new Date(props.fri - 86400000).toISOString().split('T')[0],
     new Date(props.sat - 86400000).toISOString().split('T')[0],
-    new Date(props.sun - 86400000).toISOString().split('T')[0],
+    new Date(props.sun + 86399999).toISOString().split('T')[0],
   ];
   //2020-11-02T00:00:00.000Z
 

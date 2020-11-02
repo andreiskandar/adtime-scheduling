@@ -6,7 +6,7 @@ import { user } from '../../controllers';
 export default function CopyButton(props) {
   const role = user.getRole();
   const day1 = new Date(props.mon - 86400000).toISOString();
-  const day2 = new Date(props.sun + 86400000).toISOString();
+  const day2 = new Date(props.sun + 86399999).toISOString();
 
   // copyData = [{"user_id":1,"name":"Alice Simon","hours":9,"event_date":"2020-11-10T09:00:00.000Z","shift_id":1,"category_id":1,"ispublished":false},{"user_id":1,"name":"Alice Simon","hours":10,"event_date":"2020-11-10T10:00:00.000Z","shift_id":2,"category_id":1,"ispublished":false}]
   const handleCopyClick = () => {
