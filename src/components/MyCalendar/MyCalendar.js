@@ -62,7 +62,7 @@ const MyCalendar = (props) => {
 
   const renderMyCalendarGrid = date_from_calendar.map((date, idx) => {
     return (
-      <div className='calendar_grid__myCalendar'>
+      <div key={idx} className='calendar_grid__myCalendar'>
         <div className='day_header__myCalendar'>{days[idx]}</div>
         <div className='wrapper_grid__myCalendar'>
           <CalendarGrid

@@ -48,8 +48,6 @@ export default () => {
   const [copyData, setCopyData] = useState();
 
   const [users, setUsers] = useState([]);
-  const [date, setDate] = useState('');
-  const [categories, setCategories] = useState([]);
   const role = user.getRole();
 
   const getNewWeek = (day1, day2) => {

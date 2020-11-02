@@ -15,8 +15,8 @@ import MyCalendar from '../MyCalendar/MyCalendar';
 const PublishButton = (props) => {
   const { copyData, setCopyData, mon, sun } = props;
   const { shift, setShift } = props;
-  const [copySchedule, setCopySchedule] = useState([]);
-  const [copy, setCopy] = useState(false);
+  // const [copySchedule, setCopySchedule] = useState([]);
+  // const [copy, setCopy] = useState(false);
   const {
     startTimeState,
     setStartTimeState,

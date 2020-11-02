@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Album from './Album';
-import SearchBar from '../SearchBar/SearchBar';
 
 export default function results(props) {
   return props.results.map((result) => {

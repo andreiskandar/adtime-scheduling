@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { Menu, MenuItem, Fade, Avatar, Button } from '@material-ui/core/';
 import { makeStyles } from '@material-ui/core/styles';
-import { user } from '../../../controllers';
-const role = user.getRole();
 
 const TransferShiftMenuButton = ({ users, setSelected }) => {
   const [anchorEl, setAnchorEl] = useState(null);

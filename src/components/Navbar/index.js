@@ -34,9 +34,7 @@ export default (props) => {
             <Avatar alt={username} src={avatar} className={classes.small} />
             <p className={classes.username}>{username}</p>
           </a>
-          <a
-            href=''
-            src=''
+          <p
             className='navbar link__navbar'
             {...{
               onClick: () => user.logout(),
@@ -45,7 +43,7 @@ export default (props) => {
           >
             <LockOutlinedIcon className='icon icon__navbar' />
             Logout
-          </a>
+          </p>
         </div>
       </div>
     </div>

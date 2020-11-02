@@ -1,12 +1,10 @@
 import React from 'react';
 import EmployeeGrid from './EmployeeGrid';
 import EmployeeHeader from './EmployeeHeader';
-import { user } from '../../../controllers';
 import './employee.scss';
 
 const Employee = (props) => {
   const { id, name, avatar, shift, color, users, categories, results, setResults, term, setTerm } = props;
-  const role = user.getRole();
 
   const date_from_calendar = [
     new Date(props.mon).toISOString().split('T')[0],
