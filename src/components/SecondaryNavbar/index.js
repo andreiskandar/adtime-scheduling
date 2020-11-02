@@ -152,6 +152,8 @@ const PublishButton = (props) => {
                       case 6:
                         info.event_date = saturday;
                         break;
+                      default:
+                        break;
                     }
                     const event_date = info.event_date;
                     const user_id = info.user_id;
