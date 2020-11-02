@@ -29,8 +29,7 @@ const PublishButton = (props) => {
     users,
     setUsers,
   } = props;
-  console.log('copyData: before paste button clicked', copyData);
-
+  
   // const [copySchedule, setCopySchedule] = useState([]);
   // const [copy, setCopy] = useState(false);
 
@@ -119,17 +118,13 @@ const PublishButton = (props) => {
             {...{
               onClick: async () => {
                 const monday = new Date(props.mon).toISOString();
-                console.log('props.mon: after paste clicked', props.mon);
-
                 const tuesday = new Date(props.tues).toISOString();
                 const wednesday = new Date(props.wed).toISOString();
                 const thursday = new Date(props.thurs).toISOString();
                 const friday = new Date(props.fri).toISOString();
                 const saturday = new Date(props.sat).toISOString();
-                const sunday = new Date(props.sun).toISOString();
-                console.log('props.sun: after paste clicked', props.sun);
-
-                console.log('copyData: inside paste button onClick', copyData);
+                const sunday = new Date(props.sun - (7*(86400000))).toISOString();
+               
 
                 if (copyData.length) {
                   for (const info of copyData) {
@@ -140,24 +135,31 @@ const PublishButton = (props) => {
 
                     switch (days) {
                       case 0:
+                        console.log('HELLO! MONDAY!')
                         info.event_date = sunday;
                         break;
                       case 1:
+                        console.log('HELLO! TUESDAY!')
                         info.event_date = monday;
                         break;
                       case 2:
+                        console.log('HELLO! WEDNESDAY!')
                         info.event_date = tuesday;
                         break;
                       case 3:
+                        console.log('HELLO! THURSDAY!')
                         info.event_date = wednesday;
                         break;
                       case 4:
+                        console.log('HELLO! FRIDAY!')
                         info.event_date = thursday;
                         break;
                       case 5:
+                        console.log('HELLO! SATURDAY!')
                         info.event_date = friday;
                         break;
                       case 6:
+                        console.log('HELLO! SUNDAY!')
                         info.event_date = saturday;
                         break;
                       default:
@@ -179,7 +181,7 @@ const PublishButton = (props) => {
                         lastDay: day2.split('T')[0],
                       },
                     });
-                    console.log('shift  from onclick paste button', shift);
+                  
                     setShift(res.data);
                   }
                 }

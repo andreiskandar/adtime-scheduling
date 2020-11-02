@@ -103,8 +103,6 @@ export default (props) => {
       });
   };
 
-  console.log('props.shift from schedule index', props.shift);
-
   const transferShiftId = (user_id, start_time, end_time, transferToUserId, event_date) => {
     const day1 = new Date(props.mon - 86400000).toISOString();
     const day2 = new Date(props.sun + 86399999).toISOString();
