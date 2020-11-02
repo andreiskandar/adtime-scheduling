@@ -12,11 +12,16 @@
   .links__navbar {
     display: flex;
     justify-content: space-between;
+    
   }
   .logo__navbar {
     font-family: $font-family;
-    margin-left: 27px;
-    font-size: 0.8em;
+    margin-right: 40px;
+    height: 42px;
+    .logo_img__navbar{
+      padding-left: -20px;
+      transform: scale(0.6);
+    }
   }
 
   a {

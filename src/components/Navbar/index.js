@@ -25,11 +25,9 @@ export default (props) => {
   return (
     <div className='navbar'>
       <div className='navbar links__navbar'>
-        <Typography variant='h4'>
-          <a href='#' src='' className='navbar logo__navbar'>
-            <img src='' alt='' className='logo_img__navbar'></img>A.D.Time
-          </a>
-        </Typography>
+        <a href='#' src='' className='navbar logo__navbar'>
+          <img src='images/ori.png' alt='' className='logo_img__navbar'></img>
+        </a>
         <div className='navbar right_links__navbar'>
           <a href='#' src='' className='navbar link__navbar'>
             <Avatar alt={username} src={avatar} className={classes.small} />
