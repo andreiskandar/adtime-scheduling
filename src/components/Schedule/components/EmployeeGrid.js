@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './employeeGrid.scss';
-import { Dialog, DialogActions, DialogTitle, Button, TextField, Avatar, Badge } from '@material-ui/core';
+import { Dialog, DialogActions, DialogTitle, Button, TextField, Avatar } from '@material-ui/core';
 import { HOURS_DICT, ERROR_MESSAGES_DICT } from '../../../helpers/dictionary';
 import TransferShiftMenuButton from './TransferShiftMenuButton';
 import CategoryButton from './CategoryButton';
@@ -124,20 +124,6 @@ const EmployeeGrid = (props) => {
     reset();
   };
 
-  // const renderSpan = Array.from({ length: 12 }, (x, i) => {
-  //   // check if availability
-  //   const background = shift_id && shift_id.includes(i + 1) ? props.color : '#eeeeee';
-  //   return (
-  //     <span
-  //       key={i}
-  //       className={`grid__${i + 1}`}
-  //       data-id={i}
-  //       onClick={clickGrid}
-  //       style={{ backgroundColor: `${background}` }}
-  //     />
-  //   );
-  // });
-
   const renderSpan = Array.from({ length: 12 }, (x, i) => {
     // check if availability
     if (testingSlotMap) {
@@ -147,17 +133,46 @@ const EmployeeGrid = (props) => {
             <p className='hide'>unavailable</p>
           </span>
         );
-      } else if (testingSlotMap && testingSlotMap.meetings && testingSlotMap.meetings.includes(i + 1)) {
-        const background = testingSlotMap.meetings.includes(i + 1) ? props.color : '#eeeeee';
+      } else if (testingSlotMap && testingSlotMap.interview && testingSlotMap.interview.includes(i + 1)) {
+        const background = testingSlotMap.interview.includes(i + 1) ? props.color : '#eeeeee';
         return (
           <span
             key={i}
-            className={`grid__${i + 1}`}
+            className={`grid__${i + 1} shifts`}
             data-id={i}
             onClick={clickGrid}
             style={{ backgroundColor: `${background}` }}
           >
-            <span className='badge__grid'></span>
+            <span className='grid__badge'></span>
+            <p className='events'>interview</p>
+          </span>
+        );
+      } else if (testingSlotMap && testingSlotMap.lecture && testingSlotMap.lecture.includes(i + 1)) {
+        const background = testingSlotMap.lecture.includes(i + 1) ? props.color : '#eeeeee';
+        return (
+          <span
+            key={i}
+            className={`grid__${i + 1} shifts`}
+            data-id={i}
+            onClick={clickGrid}
+            style={{ backgroundColor: `${background}` }}
+          >
+            <span className='grid__badge'></span>
+            <p className='events'>lecture</p>
+          </span>
+        );
+      } else if (testingSlotMap && testingSlotMap.breakout && testingSlotMap.breakout.includes(i + 1)) {
+        const background = testingSlotMap.breakout.includes(i + 1) ? props.color : '#eeeeee';
+        return (
+          <span
+            key={i}
+            className={`grid__${i + 1} shifts`}
+            data-id={i}
+            onClick={clickGrid}
+            style={{ backgroundColor: `${background}` }}
+          >
+            <span className='grid__badge'></span>
+            <p className='events'>breakout</p>
           </span>
         );
       } else {

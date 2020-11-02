@@ -10,8 +10,6 @@ import addShift from 'helpers/addShift';
 import transferShift from 'helpers/transferShift';
 import cancelShift from 'helpers/cancelShift';
 
-// const { addShift, transferShift, cancelShift } = require('../../helpers');
-
 export default (props) => {
   const [date, setDate] = useState('');
   const [categories, setCategories] = useState([]);
@@ -19,7 +17,9 @@ export default (props) => {
 
   useEffect(() => {
     const day1 = new Date(props.mon - 86400000).toISOString();
-    const day2 = new Date(props.sun + 86400000).toISOString();
+    // const day2 = new Date(props.sun - 86400000).toISOString();
+    const day2 = new Date(props.sun + 86399999).toISOString();
+    // const day2 = new Date(props.sun).toISOString();
     cancelShift();
     let apiUserShift;
     const apiUsers = axios.get('/api/users');
@@ -51,7 +51,7 @@ export default (props) => {
 
   const submitShift = (user_id, startTime, endTime, event_date, category_id) => {
     const day1 = new Date(props.mon - 86400000).toISOString();
-    const day2 = new Date(props.sun + 86400000).toISOString();
+    const day2 = new Date(props.sun + 86399999).toISOString();
     axios
       .post('/api/events/add', addShift(user_id, startTime, endTime, event_date, category_id))
       .then(() => {
@@ -78,7 +78,7 @@ export default (props) => {
 
   const removeShift = (user_id, startTime, endTime, event_date, category_id) => {
     const day1 = new Date(props.mon - 86400000).toISOString();
-    const day2 = new Date(props.sun + 86400000).toISOString();
+    const day2 = new Date(props.sun + 86399999).toISOString();
     axios
       .delete('/api/events/delete', cancelShift(user_id, startTime, endTime, event_date, category_id))
       .then(() => {
@@ -103,11 +103,11 @@ export default (props) => {
       });
   };
 
+  console.log('props.shift from schedule index', props.shift);
+
   const transferShiftId = (user_id, start_time, end_time, transferToUserId, event_date) => {
     const day1 = new Date(props.mon - 86400000).toISOString();
-    const day2 = new Date(props.sun + 86400000).toISOString();
-    //console.log('event_date:', event_date);
-    // let payload = transferShift(user_id, start_time, end_time, transferToUserId, event_date, category_id);
+    const day2 = new Date(props.sun + 86399999).toISOString();
     axios
       .put('/api/events/transfer', transferShift(user_id, start_time, end_time, transferToUserId, event_date))
       .then(() => {
@@ -131,45 +131,47 @@ export default (props) => {
         console.log('Error from transfering shift(s)', e);
       });
   };
-  
-    const employees = props.users.map((user) => {
+
+  const employees = props.users.map((user) => {
     const lowerUserName = user.name.toLowerCase();
     const lowerTermName = props.term.toLowerCase();
     // console.log('SHIFTING', props.shift)
-    return lowerUserName.startsWith(lowerTermName) && (
-      <Employee
-        key={user.id}
-        {...user}
-        users={props.users}
-        submitShift={submitShift}
-        removeShift={removeShift}
-        transferShiftId={transferShiftId}
-        shift={props.shift}
-        setShift={props.setShift}
-        categories={categories}
-        results = {props.results}
-        setResults = {props.setResults}
-        term={props.term}
-        setTerm={props.setTerm}
-        week = {props.week}
-        setWeek = {props.setWeek}
-        mon = {props.mon}  
-        tues = {props.tues}  
-        wed = {props.wed}  
-        thurs = {props.thurs}  
-        fri = {props.fri}  
-        sat ={props.sat}  
-        sun = {props.sun}
-        setMon = {props.setMon}
-        setTues = {props.setTues}
-        setWed = {props.setWed}
-        setThurs = {props.setThurs}
-        setFri = {props.setFri}
-        setSat = {props.setSat}
-        setSun = {props.setSun}
-        copyData={props.copyData}
-        setCopyData={props.setCopyData}
-      />
+    return (
+      lowerUserName.startsWith(lowerTermName) && (
+        <Employee
+          key={user.id}
+          {...user}
+          users={props.users}
+          submitShift={submitShift}
+          removeShift={removeShift}
+          transferShiftId={transferShiftId}
+          shift={props.shift}
+          setShift={props.setShift}
+          categories={categories}
+          results={props.results}
+          setResults={props.setResults}
+          term={props.term}
+          setTerm={props.setTerm}
+          week={props.week}
+          setWeek={props.setWeek}
+          mon={props.mon}
+          tues={props.tues}
+          wed={props.wed}
+          thurs={props.thurs}
+          fri={props.fri}
+          sat={props.sat}
+          sun={props.sun}
+          setMon={props.setMon}
+          setTues={props.setTues}
+          setWed={props.setWed}
+          setThurs={props.setThurs}
+          setFri={props.setFri}
+          setSat={props.setSat}
+          setSun={props.setSun}
+          copyData={props.copyData}
+          setCopyData={props.setCopyData}
+        />
+      )
     );
   });
 

@@ -1,5 +1,4 @@
 import React from 'react';
-import TodayIcon from '@material-ui/icons/Today';
 import './WeekCalendar.scss';
 import useStyles from './styles';
 
@@ -19,7 +18,7 @@ const WeekCalendar = (props) => {
 
   return (
     <div className='weekCalendar'>
-      <img className='littleCalendar' src='images/schedule.svg' alt='calendar' className={classes.icon__weeknav} />
+      <img src='images/schedule.svg' alt='calendar' className={classes.icon__weeknav} />
       <div className={classes.dateString}>
         {Monstring} - {Sunstring}
       </div>

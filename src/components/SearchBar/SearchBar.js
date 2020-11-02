@@ -1,11 +1,9 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import useDebounce from 'hooks/useDebounce';
-import { Input } from 'antd';
 
 import './styles.scss';
 
 export default function SearchBar(props) {
-  const { Search } = Input;
   const [value, setValue] = useState('');
   const term = useDebounce(value, 400);
 
