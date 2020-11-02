@@ -143,10 +143,6 @@ const Employee = (props) => {
     const workingShift = testingSlotMap[item].workingShift ? testingSlotMap[item].workingShift.length : 0;
     totalHours += totalEvents + workingShift;
   }
-<<<<<<< HEAD
-=======
-
->>>>>>> f47621864d099ff82f3de404788998335d9eb395
   // console.log('testingSlotMap:', testingSlotMap);
   // const totalHours = testingSlotMap ? testingSlotMap.workingShift.length : 0;
   // const totalEvents = testingSlotMap ? testingSlotMap.meetings.length : 0;
