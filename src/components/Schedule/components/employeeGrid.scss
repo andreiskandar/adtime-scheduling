@@ -65,10 +65,38 @@
     visibility: hidden;
     color: #fafafa;
   }
+  .shifts{
+    display: flex;
+    justify-content: center;
+    &:hover{
+      .events{
+        visibility: visible;
+      }
+    }
+    border-color: $border-color-grey;
+  }
+  .events {
+    position: absolute;
+    background-color: #757575;
+    border-radius: 3px;
+    font-size: 12px;
+    padding: 3px;
+    margin-top: 54px;
+    height: 15px;
+    visibility: hidden;
+    color: #fafafa;
+    width: auto;
+  }
   
   .grid__badge{
-    margin: 0 0 0 8px;
-    height: 17px;
+    background-color: red;
+    border-bottom-left-radius: 100%;
+    border-bottom-right-radius: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+
+    margin: 0 -1px 90px 12px;
+    height: 10px;
     pointer-events: none;
   
   }

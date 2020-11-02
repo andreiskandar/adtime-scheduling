@@ -138,21 +138,13 @@ const EmployeeGrid = (props) => {
         return (
           <span
             key={i}
-            className={`grid__${i + 1}`}
+            className={`grid__${i + 1} shifts`}
             data-id={i}
             onClick={clickGrid}
             style={{ backgroundColor: `${background}` }}
           >
-            <img
-              src='images/hired.png'
-              alt='interview icon'
-              className='grid__badge'
-              data-id={i}
-              onClick={(e) => {
-                console.log(e.target);
-                clickGrid(e);
-              }}
-            ></img>
+            <span className='grid__badge'></span>
+            <p className='events'>interview</p>
           </span>
         );
       } else if (testingSlotMap && testingSlotMap.lecture && testingSlotMap.lecture.includes(i + 1)) {
@@ -160,18 +152,13 @@ const EmployeeGrid = (props) => {
         return (
           <span
             key={i}
-            className={`grid__${i + 1}`}
+            className={`grid__${i + 1} shifts`}
             data-id={i}
             onClick={clickGrid}
             style={{ backgroundColor: `${background}` }}
           >
-            <img
-              src='images/lecture.png'
-              alt='lecture icon'
-              className='grid__badge'
-              data-id={i}
-              onClick={clickGrid}
-            ></img>
+            <span className='grid__badge'></span>
+            <p className='events'>lecture</p>
           </span>
         );
       } else if (testingSlotMap && testingSlotMap.breakout && testingSlotMap.breakout.includes(i + 1)) {
@@ -179,18 +166,13 @@ const EmployeeGrid = (props) => {
         return (
           <span
             key={i}
-            className={`grid__${i + 1}`}
+            className={`grid__${i + 1} shifts`}
             data-id={i}
             onClick={clickGrid}
             style={{ backgroundColor: `${background}` }}
           >
-            <img
-              src='images/breakout.png'
-              alt='breakout icon'
-              className='grid__badge'
-              data-id={i}
-              onClick={clickGrid}
-            ></img>
+            <span className='grid__badge'></span>
+            <p className='events'>breakout</p>
           </span>
         );
       } else {
