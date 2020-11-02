@@ -13,12 +13,13 @@ import './styles.scss';
 import MyCalendar from '../MyCalendar/MyCalendar';
 
 const PublishButton = (props) => {
-  const { copyData, setCopyData, mon, sun, setShift } = props;
-  console.log('copyData: before paste button clicked', copyData);
-  const { shift } = props;
-  // const [copySchedule, setCopySchedule] = useState([]);
-  // const [copy, setCopy] = useState(false);
   const {
+    copyData,
+    setCopyData,
+    mon,
+    sun,
+    setShift,
+    shift,
     startTimeState,
     setStartTimeState,
     endTimeState,
@@ -27,9 +28,12 @@ const PublishButton = (props) => {
     name,
     users,
     setUsers,
-    weeklyHours,
-    weeklyEvents,
   } = props;
+  console.log('copyData: before paste button clicked', copyData);
+
+  // const [copySchedule, setCopySchedule] = useState([]);
+  // const [copy, setCopy] = useState(false);
+
   const [publish, setPublish] = useState(false);
   const [wording, setWording] = useState('Publish');
   const role = user.getRole();
@@ -109,8 +113,6 @@ const PublishButton = (props) => {
         setShift={props.setShift}
         search={props.term}
       />
-      {/* copySchedule={copySchedule} */}
-      {/* setCopySchedule={setCopySchedule} */}
       {role === 'admin' && (
         <div>
           <PasteButton
