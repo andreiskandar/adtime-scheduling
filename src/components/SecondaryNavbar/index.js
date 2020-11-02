@@ -13,8 +13,9 @@ import './styles.scss';
 import MyCalendar from '../MyCalendar/MyCalendar';
 
 const PublishButton = (props) => {
-  const { copyData, setCopyData, mon, sun } = props;
-  const { shift, setShift } = props;
+  const { copyData, setCopyData, mon, sun, setShift } = props;
+  console.log('copyData: before paste button clicked', copyData);
+  const { shift } = props;
   // const [copySchedule, setCopySchedule] = useState([]);
   // const [copy, setCopy] = useState(false);
   const {
@@ -38,7 +39,7 @@ const PublishButton = (props) => {
   });
 
   const day1 = new Date(props.mon - 86400000).toISOString();
-  const day2 = new Date(props.sun - 86400000).toISOString();
+  const day2 = new Date(props.sun + 86399999).toISOString();
 
   const handleClick = (e) => {
     if (publish === false) {
@@ -116,18 +117,23 @@ const PublishButton = (props) => {
             {...{
               onClick: async () => {
                 const monday = new Date(props.mon).toISOString();
+                console.log('props.mon: after paste clicked', props.mon);
+
                 const tuesday = new Date(props.tues).toISOString();
                 const wednesday = new Date(props.wed).toISOString();
                 const thursday = new Date(props.thurs).toISOString();
                 const friday = new Date(props.fri).toISOString();
                 const saturday = new Date(props.sat).toISOString();
                 const sunday = new Date(props.sun).toISOString();
+                console.log('props.sun: after paste clicked', props.sun);
+
+                console.log('copyData: inside paste button onClick', copyData);
 
                 if (copyData.length) {
                   for (const info of copyData) {
-                    console.log('INFO EVNT', info.event_date.split('T')[0]);
+                    // console.log('INFO EVNT', info.event_date.split('T')[0]);
                     const days = new Date(info.event_date.split('T')[0]).getDay();
-                    console.log('days:', days);
+                    // console.log('days:', days);
                     //await axios.post('/api/events/add', {user_id, event_date, category_id, shift_id})
 
                     switch (days) {
@@ -160,7 +166,7 @@ const PublishButton = (props) => {
                     const category_id = info.category_id;
                     const shift_id = [info.shift_id];
 
-                    console.log('AFTER SWTICH', info.event_date);
+                    // console.log('AFTER SWTICH', info.event_date);
                     await axios.post('/api/events/add', { user_id, event_date, category_id, shift_id });
                   }
                   let res;
@@ -171,6 +177,7 @@ const PublishButton = (props) => {
                         lastDay: day2.split('T')[0],
                       },
                     });
+                    console.log('shift  from onclick paste button', shift);
                     setShift(res.data);
                   }
                 }

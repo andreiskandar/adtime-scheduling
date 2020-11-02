@@ -15,6 +15,7 @@ const Employee = (props) => {
     new Date(props.sat - 86400000).toISOString().split('T')[0],
     new Date(props.sun - 86400000).toISOString().split('T')[0],
   ];
+  // console.log('new Date(props.sun - 360000).:', new Date(props.sun));
   //2020-11-02T00:00:00.000Z
 
   const testingSlotMap = shift.reduce((acc, cur) => {

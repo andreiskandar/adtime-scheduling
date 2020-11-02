@@ -45,7 +45,8 @@ export default () => {
   const [shift, setShift] = useState([]);
   const [term, setTerm] = useState('');
   const [results, setResults] = useState([]);
-  const [copyData, setCopyData] = useState();
+  const [copyData, setCopyData] = useState([]);
+  console.log('copyData: from manager index', copyData);
 
   const [users, setUsers] = useState([]);
   const role = user.getRole();
@@ -77,7 +78,7 @@ export default () => {
 
   const clickRightCalendar = () => {
     const day1 = new Date(mon + 604800000 - 86400000).toISOString();
-    const day2 = new Date(sun + 604800000 - 86400000).toISOString();
+    const day2 = new Date(sun + 604800000 + 86399999).toISOString();
     setMon(mon + 604800000);
     setTues(tues + 604800000);
     setWed(wed + 604800000);
@@ -90,7 +91,7 @@ export default () => {
 
   const clickLeftCalendar = () => {
     const day1 = new Date(mon - 604800000 - 86400000).toISOString();
-    const day2 = new Date(sun - 604800000 - 86400000).toISOString();
+    const day2 = new Date(sun - 604800000 + 86399999).toISOString();
     setMon(mon - 604800000);
     setTues(tues - 604800000);
     setWed(wed - 604800000);
