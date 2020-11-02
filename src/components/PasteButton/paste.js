@@ -5,7 +5,6 @@ import { user } from '../../controllers';
 
 export default function PasteButton(props) {
   const { copyData } = props;
-  console.log('copyData:', copyData);
   const role = user.getRole();
   const monday = new Date(props.mon).toISOString();
   const tuesday = new Date(props.tues).toISOString();
@@ -19,12 +18,9 @@ export default function PasteButton(props) {
   const day2 = new Date(props.sun + 86400000).toISOString();
 
   const handlePasteClick = async () => {
-    console.log('copyData: inside Paste on click', copyData);
-
     if (copyData.length) {
       for (const info of copyData) {
         const days = new Date(info.event_date.split('T')[0]).getDay();
-        console.log('DAYS', days);
         switch (days) {
           case 0:
             info.event_date = sunday;
