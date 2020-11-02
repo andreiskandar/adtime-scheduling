@@ -18,8 +18,8 @@ export default (props) => {
   const role = user.getRole();
 
   useEffect(() => {
-    const day1 = new Date(props.mon).toISOString();
-    const day2 = new Date(props.sun).toISOString();
+    const day1 = new Date(props.mon - 86400000).toISOString();
+    const day2 = new Date(props.sun + 86400000).toISOString();
     cancelShift();
     let apiUserShift;
     const apiUsers = axios.get('/api/users');
@@ -59,7 +59,6 @@ export default (props) => {
           axios
             .get('api/shifts/events/manager', { params: { firstDay: day1.split('T')[0], lastDay: day2.split('T')[0] } })
             .then((res) => {
-              console.log("BLAH", res.data)
               props.setShift(res.data);
             });
         } else {

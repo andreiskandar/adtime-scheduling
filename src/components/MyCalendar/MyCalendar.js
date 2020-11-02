@@ -10,14 +10,15 @@ const MyCalendar = (props) => {
   const classes = useStyles();
 
   const date_from_calendar = [
-    new Date(props.mon).toISOString().split('T')[0],
-    new Date(props.tues).toISOString().split('T')[0],
-    new Date(props.wed).toISOString().split('T')[0],
-    new Date(props.thurs).toISOString().split('T')[0],
-    new Date(props.fri).toISOString().split('T')[0],
-    new Date(props.sat).toISOString().split('T')[0],
-    new Date(props.sun).toISOString().split('T')[0],
+    new Date(props.mon - 86400000).toISOString().split('T')[0],
+    new Date(props.tues - 86400000).toISOString().split('T')[0],
+    new Date(props.wed - 86400000).toISOString().split('T')[0],
+    new Date(props.thurs - 86400000).toISOString().split('T')[0],
+    new Date(props.fri - 86400000).toISOString().split('T')[0],
+    new Date(props.sat - 86400000).toISOString().split('T')[0],
+    new Date(props.sun - 86400000).toISOString().split('T')[0],
   ];
+  
   const hours = ['09a', '10a', '11a', '12p', '01p', '02p', '03p', '04p', '05p', '06p', '07p', '08p'];
   const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
   const { username, avatar } = JSON.parse(localStorage.user);

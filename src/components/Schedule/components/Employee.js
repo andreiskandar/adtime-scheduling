@@ -11,13 +11,13 @@ const Employee = (props) => {
   const role = user.getRole();
 
   const date_from_calendar = [
-    new Date(props.mon).toISOString().split('T')[0],
-    new Date(props.tues).toISOString().split('T')[0],
-    new Date(props.wed).toISOString().split('T')[0],
-    new Date(props.thurs).toISOString().split('T')[0],
-    new Date(props.fri).toISOString().split('T')[0],
-    new Date(props.sat).toISOString().split('T')[0],
-    new Date(props.sun).toISOString().split('T')[0],
+    new Date(props.mon - 86400000).toISOString().split('T')[0],
+    new Date(props.tues - 86400000).toISOString().split('T')[0],
+    new Date(props.wed - 86400000).toISOString().split('T')[0],
+    new Date(props.thurs - 86400000).toISOString().split('T')[0],
+    new Date(props.fri - 86400000).toISOString().split('T')[0],
+    new Date(props.sat - 86400000).toISOString().split('T')[0],
+    new Date(props.sun - 86400000).toISOString().split('T')[0],
   ];
   //2020-11-02T00:00:00.000Z
 
@@ -99,10 +99,6 @@ const Employee = (props) => {
     totalEvents++;
     totalHours += slotMap[item].length;
   }
-<<<<<<< HEAD
-  // console.log('testingSlotMap:', testingSlotMap);
-=======
->>>>>>> feature/copybutton
   // const totalHours = testingSlotMap ? testingSlotMap.workingShift.length : 0;
   // const totalEvents = testingSlotMap ? testingSlotMap.meetings.length : 0;
 
@@ -130,24 +126,6 @@ const Employee = (props) => {
       />
     );
   });
-<<<<<<< HEAD
-  // JOKE FOR DEMO REHEARSAL
-  // if (role === 'employee') {
-  //   return (
-  //     <>
-  //     <main className='employee_row'>
-  //       <EmployeeHeader name={name} 
-  //       num_event={num_event} 
-  //       avatar={avatar} num_hours={num_hours} 
-  //       results = {results} setResults = {setResults} 
-  //       term= {term} setTerm = {setTerm}/>
-  //     <img src={'https://raw.githubusercontent.com/andreiskandar/moment/david-fe2/public/images/Bradley.jpg'}/>
-  //     </main>
-  //     </>
-  //   )
-  // }
-  
-=======
   /*// JOKE FOR DEMO REHEARSAL
   if (role === 'employee') {
     return (
@@ -164,7 +142,6 @@ const Employee = (props) => {
     )
   }*/
 
->>>>>>> feature/copybutton
   return (
     <main className='employee_row'>
       <EmployeeHeader

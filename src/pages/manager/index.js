@@ -31,28 +31,58 @@ export default () => {
     Saturday: 0,
     Sunday: 0,
   });
+  
+  let currentUTCDate = (((new Date (Date.now())).toISOString()).split('T')[0]);
+  currentUTCDate = ((new Date(currentUTCDate)).toUTCString())
+  const milisecDay = 86400000;
+  let mondayTime = (new Date (currentUTCDate)).getTime()
+  const dayofWeek = (new Date (currentUTCDate)).getUTCDay()
+  switch (dayofWeek) {
+    case 0:
+      mondayTime = mondayTime + 7*milisecDay
+      break;
+    case 1:
+      mondayTime = mondayTime + milisecDay
+      break;
+    case 2:
+      mondayTime = mondayTime + 2*milisecDay
+      break;
+    case 3:
+      mondayTime = mondayTime + 3*milisecDay
+      break;
+    case 4:
+      mondayTime = mondayTime + 4*milisecDay
+      break;
+    case 5:
+      mondayTime = mondayTime + 5*milisecDay
+      break;
+    case 6:
+      mondayTime = mondayTime + 6*milisecDay
+      break;
+  }
+  console.log(mondayTime)
 
   const [isInitialRender, setIsInitialRender] = useState(true);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [week, setWeek] = useState(2);
-  const [mon, setMon] = useState(1603756800000);
-  const [tues, setTues] = useState(1603843200000);
-  const [wed, setWed] = useState(1603929600000);
-  const [thurs, setThurs] = useState(1604016000000);
-  const [fri, setFri] = useState(1604102400000);
-  const [sat, setSat] = useState(1604188800000);
-  const [sun, setSun] = useState(1604275200000);
+  const [mon, setMon] = useState(mondayTime);
+  const [tues, setTues] = useState(mondayTime + milisecDay);
+  const [wed, setWed] = useState(mondayTime + 2*milisecDay);
+  const [thurs, setThurs] = useState(mondayTime + 3*milisecDay);
+  const [fri, setFri] = useState(mondayTime + 4*milisecDay);
+  const [sat, setSat] = useState(mondayTime + 5*milisecDay);
+  const [sun, setSun] = useState(mondayTime + 6*milisecDay);
   const [shift, setShift] = useState([]);
   const [term, setTerm] = useState('');
   const [results, setResults] = useState([]);
   const [copyData, setCopyData] = useState()
+
 
   const [users, setUsers] = useState([]);
   const [date, setDate] = useState('');
   const [categories, setCategories] = useState([]);
   const role = user.getRole();
   
-  console.log(new Date (Date.now()))
   const getNewWeek = (day1, day2) => {
     if (role === 'admin') {
       axios

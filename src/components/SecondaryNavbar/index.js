@@ -30,8 +30,6 @@ const PublishButton = (props) => {
     name,
     users,
     setUsers,
-    weeklyHours,
-    weeklyEvents,
   } = props;
   const [publish, setPublish] = useState(false);
   const [wording, setWording] = useState('Publish');
@@ -91,7 +89,6 @@ const PublishButton = (props) => {
           clickRightCalendar={props.clickRightCalendar}
           shift={props.shift}
         />
-        <Settings avatar={props.avatar} name={props.name} />
       </div>
       <WeekNav
         clickLeftCalendar={props.clickLeftCalendar}
