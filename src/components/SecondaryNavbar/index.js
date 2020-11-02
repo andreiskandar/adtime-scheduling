@@ -116,7 +116,6 @@ const PublishButton = (props) => {
       {role === 'admin' && (
         <div>
           <PasteButton
-<<<<<<< HEAD
             setShift={props.setShift}
             mon={props.mon}
             tues={props.tues}
@@ -127,77 +126,7 @@ const PublishButton = (props) => {
             sun={props.sun}
             copyData={props.copyData}
             setCopyData={props.setCopyData}
-=======
-            {...{
-              onClick: async () => {
-                const monday = new Date(props.mon).toISOString();
-                console.log('props.mon: after paste clicked', props.mon);
-
-                const tuesday = new Date(props.tues).toISOString();
-                const wednesday = new Date(props.wed).toISOString();
-                const thursday = new Date(props.thurs).toISOString();
-                const friday = new Date(props.fri).toISOString();
-                const saturday = new Date(props.sat).toISOString();
-                const sunday = new Date(props.sun).toISOString();
-                console.log('props.sun: after paste clicked', props.sun);
-
-                console.log('copyData: inside paste button onClick', copyData);
-
-                if (copyData.length) {
-                  for (const info of copyData) {
-                    // console.log('INFO EVNT', info.event_date.split('T')[0]);
-                    const days = new Date(info.event_date.split('T')[0]).getDay();
-                    // console.log('days:', days);
-                    //await axios.post('/api/events/add', {user_id, event_date, category_id, shift_id})
-
-                    switch (days) {
-                      case 0:
-                        info.event_date = sunday;
-                        break;
-                      case 1:
-                        info.event_date = monday;
-                        break;
-                      case 2:
-                        info.event_date = tuesday;
-                        break;
-                      case 3:
-                        info.event_date = wednesday;
-                        break;
-                      case 4:
-                        info.event_date = thursday;
-                        break;
-                      case 5:
-                        info.event_date = friday;
-                        break;
-                      case 6:
-                        info.event_date = saturday;
-                        break;
-                      default:
-                        break;
-                    }
-                    const event_date = info.event_date;
-                    const user_id = info.user_id;
-                    const category_id = info.category_id;
-                    const shift_id = [info.shift_id];
-
-                    // console.log('AFTER SWTICH', info.event_date);
-                    await axios.post('/api/events/add', { user_id, event_date, category_id, shift_id });
-                  }
-                  let res;
-                  if (role === 'admin') {
-                    res = await axios.get('api/shifts/events/manager', {
-                      params: {
-                        firstDay: day1.split('T')[0],
-                        lastDay: day2.split('T')[0],
-                      },
-                    });
-                    console.log('shift  from onclick paste button', shift);
-                    setShift(res.data);
-                  }
-                }
-              },
-            }}
->>>>>>> dc604fc6577c3c84786e9f3a3a0dfcbb58663663
+            
           />
           <CopyButton {...{ copyData, setCopyData, mon, sun }} />
           <Button onClick={handleClick} className={buttonClass}>
