@@ -76,7 +76,7 @@ export default () => {
 
   //console.log(props.mon) // Header.js:16 1603670400000  --> 1603756800000
   //console.log(props.sun) // Header.js:17 1604188800000  --> 1604275200000
-
+  console.log("SHIFTS FROM PASTE", shift)
   const clickRightCalendar = () => {
     const day1 = new Date(mon + 604800000 - 86400000).toISOString();
     const day2 = new Date(sun + 604800000 - 86400000).toISOString();

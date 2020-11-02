@@ -4,6 +4,7 @@ import { user } from 'controllers';
 import { Button, Grid, InputAdornment, TextField } from '@material-ui/core';
 import { Email, LockRounded } from '@material-ui/icons';
 import history from 'app/history'
+import Alert from '@material-ui/lab/Alert';
 
 export default () => {
   const [isInitialRender, setIsInitialRender] = useState(true)
@@ -49,8 +50,8 @@ export default () => {
           <div style={{ display: 'flex', flexDirection: 'column', madWidth: 400, minWidth: 300 }}>
             <Grid container justify='center'>
               <img
-                src='https://financesonline.com/uploads/2019/08/Acuity-Scheduling-logo1.png'
-                width={200}
+                src='https://www.freelogodesign.org/file/app/client/thumb/2b85f52d-3340-40ad-8a46-23d120211f28_200x200.png?1604299448064'
+                width={250}
                 alt='logo'
               />
             </Grid>
@@ -72,7 +73,7 @@ export default () => {
               }}
             />
             <TextField
-              type='text  '
+              type='password'
               label='Password'
               for='passwordInput'
               id='passwordInput'
@@ -108,7 +109,7 @@ export default () => {
               Log in
             </Button>
             <div style={{ height: 20 }} />
-            <Button>Sign up</Button>
+            {/* <Button>Sign up</Button> */}
           </div>
           <Grid container justify='center' spaceing={2}>
             <Grid item>

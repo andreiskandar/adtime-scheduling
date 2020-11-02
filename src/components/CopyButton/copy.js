@@ -30,7 +30,7 @@ export default function CopyButton(props) {
 
   return (
     <Button color= 'primary' onClick={handleCopyClick} variant='contained'>
-      Copy Schedule
+      Save
     </Button>        
   );
 }
