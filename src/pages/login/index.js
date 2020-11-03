@@ -108,7 +108,7 @@ export default () => {
               Log in
             </Button>
             <div style={{ height: 20 }} />
-            <Button>Sign up</Button>
+            {/* <Button>Sign up</Button> */}
           </div>
           <Grid container justify='center' spaceing={2}>
             <Grid item>
