@@ -13,6 +13,7 @@ import './styles.scss';
 import MyCalendar from '../MyCalendar/MyCalendar';
 
 const PublishButton = (props) => {
+  console.log('props:', props);
   const {
     copyData,
     setCopyData,
@@ -27,7 +28,7 @@ const PublishButton = (props) => {
     users,
     setUsers,
   } = props;
-  
+
   const [publish, setPublish] = useState(false);
   const [wording, setWording] = useState('Publish');
   const role = user.getRole();

@@ -135,9 +135,9 @@ const Employee = (props) => {
     const lecture = groupCategorySlotMap[item].lecture ? groupCategorySlotMap[item].lecture.length : 0;
     totalEvents += breakout + interview + lecture;
     const workingShift = groupCategorySlotMap[item].workingShift ? groupCategorySlotMap[item].workingShift.length : 0;
-    totalHours += totalEvents + workingShift;
+    totalHours += workingShift;
   }
-
+  totalHours += totalEvents;
   const num_hours = totalHours === 1 ? '1 hr' : totalHours > 1 ? `${totalHours} hrs` : '';
   const num_event = totalEvents === 1 ? '1 event' : totalEvents > 1 ? `${totalEvents} events` : '';
 
