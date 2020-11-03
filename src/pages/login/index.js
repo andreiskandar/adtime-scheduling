@@ -49,8 +49,8 @@ export default () => {
           <div style={{ display: 'flex', flexDirection: 'column', madWidth: 400, minWidth: 300 }}>
             <Grid container justify='center'>
               <img
-                src='https://financesonline.com/uploads/2019/08/Acuity-Scheduling-logo1.png'
-                width={200}
+                src='https://www.freelogodesign.org/file/app/client/thumb/2b85f52d-3340-40ad-8a46-23d120211f28_200x200.png?1604299448064'
+                width={250}
                 alt='logo'
               />
             </Grid>
