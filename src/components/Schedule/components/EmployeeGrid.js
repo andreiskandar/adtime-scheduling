@@ -13,7 +13,7 @@ import { user } from '../../../controllers';
 const EmployeeGrid = (props) => {
   const role = user.getRole();
   const classes = useStyles();
-  const { shift_id, users, date, categories, testingSlotMap } = props;
+  const { shift_id, users, date, categories, groupCategorySlotMap } = props;
   const event_date = date;
   const [startTime, setStartTime] = useState(0);
   const [endTime, setEndTime] = useState('');
@@ -126,15 +126,19 @@ const EmployeeGrid = (props) => {
 
   const renderSpan = Array.from({ length: 12 }, (x, i) => {
     // check if availability
-    if (testingSlotMap) {
-      if (testingSlotMap.unavailable && testingSlotMap.unavailable.includes(i + 1)) {
+    if (groupCategorySlotMap) {
+      if (groupCategorySlotMap.unavailable && groupCategorySlotMap.unavailable.includes(i + 1)) {
         return (
           <span key={i} className={`grid__${i + 1} unavailable`} data-id={i}>
             <p className='hide'>unavailable</p>
           </span>
         );
-      } else if (testingSlotMap && testingSlotMap.interview && testingSlotMap.interview.includes(i + 1)) {
-        const background = testingSlotMap.interview.includes(i + 1) ? props.color : '#eeeeee';
+      } else if (
+        groupCategorySlotMap &&
+        groupCategorySlotMap.interview &&
+        groupCategorySlotMap.interview.includes(i + 1)
+      ) {
+        const background = groupCategorySlotMap.interview.includes(i + 1) ? props.color : '#eeeeee';
         return (
           <span
             key={i}
@@ -147,8 +151,8 @@ const EmployeeGrid = (props) => {
             <p className='events'>interview</p>
           </span>
         );
-      } else if (testingSlotMap && testingSlotMap.lecture && testingSlotMap.lecture.includes(i + 1)) {
-        const background = testingSlotMap.lecture.includes(i + 1) ? props.color : '#eeeeee';
+      } else if (groupCategorySlotMap && groupCategorySlotMap.lecture && groupCategorySlotMap.lecture.includes(i + 1)) {
+        const background = groupCategorySlotMap.lecture.includes(i + 1) ? props.color : '#eeeeee';
         return (
           <span
             key={i}
@@ -161,8 +165,12 @@ const EmployeeGrid = (props) => {
             <p className='events'>lecture</p>
           </span>
         );
-      } else if (testingSlotMap && testingSlotMap.breakout && testingSlotMap.breakout.includes(i + 1)) {
-        const background = testingSlotMap.breakout.includes(i + 1) ? props.color : '#eeeeee';
+      } else if (
+        groupCategorySlotMap &&
+        groupCategorySlotMap.breakout &&
+        groupCategorySlotMap.breakout.includes(i + 1)
+      ) {
+        const background = groupCategorySlotMap.breakout.includes(i + 1) ? props.color : '#eeeeee';
         return (
           <span
             key={i}
@@ -177,7 +185,9 @@ const EmployeeGrid = (props) => {
         );
       } else {
         const background =
-          testingSlotMap.workingShift && testingSlotMap.workingShift.includes(i + 1) ? props.color : '#eeeeee';
+          groupCategorySlotMap.workingShift && groupCategorySlotMap.workingShift.includes(i + 1)
+            ? props.color
+            : '#eeeeee';
         return (
           <span
             key={i}

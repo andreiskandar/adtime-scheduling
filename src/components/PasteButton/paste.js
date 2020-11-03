@@ -43,6 +43,8 @@ export default function PasteButton(props) {
           case 6:
             info.event_date = saturday;
             break;
+          default:
+            break;
         }
         const event_date = info.event_date.split('T')[0];
         const user_id = info.user_id;

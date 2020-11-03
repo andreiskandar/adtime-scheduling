@@ -16,7 +16,7 @@ const HOURS_DICT = {
 const ERROR_MESSAGES_DICT = {
   CANNOT_BE_BLANK: 'End time cannot be blank',
   AFTER_9PM: 'End time can not be after 21:00',
-  DOUBLE_BOOKED: 'The shift has been booked',
+  DOUBLE_BOOKED: 'The shift is a booked shift',
   TIME_IS_STRING: 'Please enter HH or HH:MM format',
 };
 
