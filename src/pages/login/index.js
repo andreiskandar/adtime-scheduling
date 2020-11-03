@@ -36,7 +36,7 @@ export default () => {
       <Grid container style={{ minHeight: '100vh' }}>
         <Grid item xs={12} sm={6}>
           <img
-            src='https://gearheart.io/media/images/shutterstock_1523635688.original.jpg'
+            src='/images/scheduler.jpeg'
             style={{ width: '100%', height: '100%', objectFit: 'cover' }}
             alt=''
           />
@@ -55,7 +55,7 @@ export default () => {
           <div style={{ display: 'flex', flexDirection: 'column', madWidth: 400, minWidth: 300 }}>
             <Grid container justify='center'>
               <img
-                src='https://www.freelogodesign.org/file/app/client/thumb/2b85f52d-3340-40ad-8a46-23d120211f28_200x200.png?1604299448064'
+                src='https://www.freelogodesign.org/file/app/client/thumb/2b85f52d-3340-40ad-8a46-23d120211f28_200x200.png?1604299448064g'
                 width={250}
                 alt='logo'
               />
