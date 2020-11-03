@@ -1,29 +1,9 @@
 import React, { useState } from 'react';
 import { Menu, MenuItem, Fade, Button } from '@material-ui/core/';
-import { makeStyles } from '@material-ui/core/styles';
 
 const CategoryButton = ({ categories, categorySelected, setCategorySelected }) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const openButton = Boolean(anchorEl);
-
-  const useStyles = makeStyles((theme) => ({
-    root: {
-      display: 'flex',
-      '& > *': {
-        margin: theme.spacing(1),
-      },
-    },
-    small: {
-      width: theme.spacing(3),
-      height: theme.spacing(3),
-      marginRight: '10px',
-    },
-    displayFlex: {
-      display: 'flex',
-    },
-  }));
-
-  const classes = useStyles();
 
   const handleClick = (e) => {
     setAnchorEl(e.currentTarget);

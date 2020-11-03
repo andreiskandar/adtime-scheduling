@@ -1,14 +1,10 @@
-import React, { useState } from 'react';
-import SearchBar from '../SearchBar/index';
+import React from 'react';
 import classnames from 'classnames';
 
 export default function Album(props) {
   const alubumInfoClass = classnames('name', {
     name: props.name === props,
   });
-
-  // console.log("PROPS TERM", props.term);
-  // console.log("PROPS NAME", props.name);
 
   if (props.term !== props.name) {
     return <div></div>;

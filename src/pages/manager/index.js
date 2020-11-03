@@ -12,7 +12,7 @@ import axios from 'axios';
 Subtract 7 hours for timezone fix = -25200000
 */
 
-export default () => {  
+export default () => {
   const [startTimeState, setStartTimeState] = useState({
     Monday: 0,
     Tuesday: 0,
@@ -74,14 +74,17 @@ export default () => {
   const [shift, setShift] = useState([]);
   const [term, setTerm] = useState('');
   const [results, setResults] = useState([]);
+<<<<<<< HEAD
   const [copyData, setCopyData] = useState();
 
+=======
+  const [copyData, setCopyData] = useState([]);
+  console.log('copyData: from manager index', copyData);
+>>>>>>> master
 
   const [users, setUsers] = useState([]);
-  const [date, setDate] = useState('');
-  const [categories, setCategories] = useState([]);
   const role = user.getRole();
-  
+
   const getNewWeek = (day1, day2) => {
     if (role === 'admin') {
       axios
@@ -109,7 +112,11 @@ export default () => {
 
   const clickRightCalendar = () => {
     const day1 = new Date(mon + 604800000 - 86400000).toISOString();
+<<<<<<< HEAD
     const day2 = new Date(sun + 604800000 + 86400000).toISOString();
+=======
+    const day2 = new Date(sun + 604800000 + 86399999).toISOString();
+>>>>>>> master
     setMon(mon + 604800000);
     setTues(tues + 604800000);
     setWed(wed + 604800000);
@@ -122,7 +129,11 @@ export default () => {
 
   const clickLeftCalendar = () => {
     const day1 = new Date(mon - 604800000 - 86400000).toISOString();
+<<<<<<< HEAD
     const day2 = new Date(sun - 604800000 + 86400000).toISOString();
+=======
+    const day2 = new Date(sun - 604800000 + 86399999).toISOString();
+>>>>>>> master
     setMon(mon - 604800000);
     setTues(tues - 604800000);
     setWed(wed - 604800000);
@@ -152,8 +163,8 @@ export default () => {
     <>
       <Navbar />
       <SecondaryNavbar
-        users = {users}
-        setUsers = {setUsers}
+        users={users}
+        setUsers={setUsers}
         clickLeftCalendar={clickLeftCalendar}
         clickRightCalendar={clickRightCalendar}
         mon={mon}
@@ -184,8 +195,8 @@ export default () => {
         setCopyData={setCopyData}
       />
       <Schedule
-        users = {users}
-        setUsers = {setUsers}
+        users={users}
+        setUsers={setUsers}
         results={results}
         setResults={setResults}
         week={week}

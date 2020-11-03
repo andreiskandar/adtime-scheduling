@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import  LiveSearch from '../SearchBar/index';
+import LiveSearch from '../SearchBar/index';
 import { default as WeekNav } from '../WeekNav';
 import Settings from '../Settings/Settings';
 import classNames from 'classnames';
@@ -9,16 +9,22 @@ import Button from '@material-ui/core/Button';
 import CheckIcon from '@material-ui/icons/Check';
 import CopyButton from '../CopyButton/copy';
 import PasteButton from '../PasteButton/paste';
-import addShift from 'helpers/addShift';
 import './styles.scss';
-import MyCalendar from '../MyCalendar/MyCalendar'
-
+import MyCalendar from '../MyCalendar/MyCalendar';
 
 const PublishButton = (props) => {
   // console.log('SECONDARY NAV PROPS:', props)
+<<<<<<< HEAD
     
   const {
     copyData, setCopyData, mon, sun, shift, setShift,
+=======
+  const {
+    copyData,
+    setCopyData,
+    mon,
+    sun,
+>>>>>>> master
     startTimeState,
     setStartTimeState,
     endTimeState,
@@ -36,10 +42,12 @@ const PublishButton = (props) => {
     btn: true,
     isPublished: publish,
   });
-
   const day1 = new Date(props.mon - 86400000).toISOString();
   const day2 = new Date(props.sun + 86399999).toISOString();
+<<<<<<< HEAD
 
+=======
+>>>>>>> master
   const handleClick = (e) => {
     if (publish === false) {
       axios
@@ -59,8 +67,6 @@ const PublishButton = (props) => {
         });
     }
   };
-
-  
   return (
     <main className='secondary__navbar'>
       <div className='left__secondary_navbar'>
@@ -108,13 +114,13 @@ const PublishButton = (props) => {
         shift={props.shift}
         setShift={props.setShift}
         search={props.term}
-        
       />
       {/* copySchedule={copySchedule} */}
       {/* setCopySchedule={setCopySchedule} */}
       {role === 'admin' && (
         <div>
           <PasteButton
+<<<<<<< HEAD
             {...{
               onClick: async () => {
                 const monday = new Date(props.mon).toISOString();
@@ -174,17 +180,27 @@ const PublishButton = (props) => {
                 }
               },
             }}
+=======
+            setShift={props.setShift}
+            mon={props.mon}
+            tues={props.tues}
+            wed={props.wed}
+            thurs={props.thurs}
+            fri={props.fri}
+            sat={props.sat}
+            sun={props.sun}
+            copyData={props.copyData}
+            setCopyData={props.setCopyData}
+>>>>>>> master
           />
-          <CopyButton {...{copyData, setCopyData, mon, sun}} />
+          <CopyButton {...{ copyData, setCopyData, mon, sun }} />
           <Button onClick={handleClick} className={buttonClass}>
             <CheckIcon className='icon icon__secondary_navbar' />
             {wording}
           </Button>
-
         </div>
       )}
     </main>
   );
 };
-
 export default PublishButton;

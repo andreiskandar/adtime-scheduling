@@ -1,22 +1,23 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import './MiniCalendar.css';
 import './index.css';
 import { Calendar } from 'antd';
 import axios from 'axios';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogTitle from '@material-ui/core/DialogTitle';
 import Button from '@material-ui/core/Button';
-import moment from 'moment';
 import { user } from '../../../controllers/index';
-import { SettingsPowerRounded } from '@material-ui/icons';
 
 const MiniCalendar = (props) => {
   const role = user.getRole();
   const milisecDay = 86400000;
 
   useEffect(() => {
+<<<<<<< HEAD
     getNewWeek(new Date(props.mon - 86400000).toISOString(), new Date(props.sun + 86400000).toISOString());
   }, [props.mon, props.sun])
+=======
+    getNewWeek(new Date(props.mon - 86400000).toISOString(), new Date(props.sun + 86399999).toISOString());
+  }, [props.mon, props.sun]);
+>>>>>>> master
 
   function onPanelChange(value, mode) {
     console.log(value, mode);
@@ -24,23 +25,25 @@ const MiniCalendar = (props) => {
 
   const getNewWeek = (day1, day2) => {
     if (role === 'admin') {
-      axios.get('api/shifts/events/manager', { params: {firstDay: day1.split('T')[0], lastDay: day2.split('T')[0]}})
-      .then((res) => {
-        props.setShift(res.data);
-      })
-      .catch((e) => {
-        console.log('Error from adding shift', e);
-      });
+      axios
+        .get('api/shifts/events/manager', { params: { firstDay: day1.split('T')[0], lastDay: day2.split('T')[0] } })
+        .then((res) => {
+          props.setShift(res.data);
+        })
+        .catch((e) => {
+          console.log('Error from adding shift', e);
+        });
     } else {
-      axios.get('api/shifts/events/employee', { params: {firstDay: day1.split('T')[0], lastDay: day2.split('T')[0]}})
-      .then((res) => {
-        props.setShift(res.data);
-      })
-      .catch((e) => {
-        console.log('Error from adding shift', e);
-      });
+      axios
+        .get('api/shifts/events/employee', { params: { firstDay: day1.split('T')[0], lastDay: day2.split('T')[0] } })
+        .then((res) => {
+          props.setShift(res.data);
+        })
+        .catch((e) => {
+          console.log('Error from adding shift', e);
+        });
     }
-  }
+  };
 
   const handleChange = (e) => {
     let daySelected = e._d;
@@ -48,7 +51,7 @@ const MiniCalendar = (props) => {
     let string = daySelectedNoTime.toString() + 'T00:00:00.000Z';
     string = new Date(string);
     daySelected = string.getTime();
-    
+
     switch (new Date(daySelected).getDay()) {
       case 0:
         props.setMon(daySelected + milisecDay);
@@ -58,7 +61,7 @@ const MiniCalendar = (props) => {
         props.setFri(daySelected + 5 * milisecDay);
         props.setSat(daySelected + 6 * milisecDay);
         props.setSun(daySelected + 7 * milisecDay);
-        
+
         break;
       case 1:
         props.setMon(daySelected);
@@ -114,10 +117,12 @@ const MiniCalendar = (props) => {
         props.setSat(daySelected);
         props.setSun(daySelected + milisecDay);
         break;
+
+      default:
+        break;
     }
-    
   };
-  
+
   return (
     <div className='site-calendar-demo-card'>
       <Calendar onChange={handleChange} fullscreen={false} onPanelChange={onPanelChange} />
