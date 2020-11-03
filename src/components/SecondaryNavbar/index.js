@@ -27,6 +27,7 @@ const PublishButton = (props) => {
     users,
     setUsers,
   } = props;
+  
   const [publish, setPublish] = useState(false);
   const [wording, setWording] = useState('Publish');
   const role = user.getRole();

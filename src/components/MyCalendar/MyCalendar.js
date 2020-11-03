@@ -18,6 +18,7 @@ const MyCalendar = (props) => {
     new Date(props.sat - 86400000).toISOString().split('T')[0],
     new Date(props.sun - 86400000).toISOString().split('T')[0],
   ];
+  
   const hours = ['09a', '10a', '11a', '12p', '01p', '02p', '03p', '04p', '05p', '06p', '07p', '08p'];
   const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
   const { username, avatar } = JSON.parse(localStorage.user);
