@@ -1,15 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import './styles.scss';
 import { user } from 'controllers';
-import { Button, Grid, InputAdornment, TextField } from '@material-ui/core';
-import { Email, LockRounded } from '@material-ui/icons';
+import { Button, Grid, IconButton, InputAdornment, TextField } from '@material-ui/core';
+import { Email, LockRounded, } from '@material-ui/icons';
+import Alert from '@material-ui/lab/Alert';
 import history from 'app/history'
+import Collapse from '@material-ui/core/Collapse';
+import CloseIcon from '@material-ui/icons/Close';
 
 export default () => {
   const [isInitialRender, setIsInitialRender] = useState(true)
   const [isAuthenticated, setIsAuthenticated] = useState(false)
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('password');
+  const [errorMsg, setErrorMessage] = useState(false)
+  const [open, setOpen] = useState(true);
+
 
   useEffect(() => {
     if (user.isAuthenticated()) {
@@ -54,6 +60,24 @@ export default () => {
                 alt='logo'
               />
             </Grid>
+            {errorMsg && (
+                // <Alert severity="error" isOpen={visible} onClick={()=> onDismiss}>Your Credentials Do Not Match!</Alert>
+              <Collapse in={open}>
+                <Alert action={
+                  <IconButton
+                    aria-label="close"
+                    onClick={() => {
+                      setOpen(false)
+                    }}
+                    >
+                      <CloseIcon fontSize="small" />
+                    </IconButton>
+                }
+                >
+                  Your Credentials Do Not Match!
+                </Alert>
+              </Collapse>
+            )}
             <TextField
               label='Email'
               for='emailInput'
@@ -100,6 +124,7 @@ export default () => {
                     setIsAuthenticated(true)
                   } catch(err) {
                     console.error(err)
+                    setErrorMessage(true)
                   }
                 },
                 type: 'submit',
@@ -117,7 +142,7 @@ export default () => {
               </Button>
             </Grid>
             <Grid item>
-              <Button variant='outlined'>Forgot pasword?</Button>
+              {/* <Button variant='outlined'>Forgot pasword?</Button> */}
             </Grid>
           </Grid>
         </Grid>
