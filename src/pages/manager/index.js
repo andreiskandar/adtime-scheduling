@@ -75,10 +75,6 @@ export default () => {
   const [term, setTerm] = useState('');
   const [results, setResults] = useState([]);
   const [copyData, setCopyData] = useState([]);
-<<<<<<< HEAD
-
-=======
->>>>>>> david-fe2
   const [users, setUsers] = useState([]);
   const role = user.getRole();
 
