@@ -1,8 +1,8 @@
 @import '../../../styles/variables.scss';
 
 .header {
-  position: sticky;
-  top: 92;
+  // position: fixed;
+  // z-index: 1;
   color: $font-grey;
   display: flex;
   padding: 0;

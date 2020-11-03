@@ -2,8 +2,10 @@ import React from 'react';
 import Button from '@material-ui/core/Button';
 import axios from 'axios';
 import { user } from '../../controllers';
+import useStyles from '../styles';
 
 export default function PasteButton(props) {
+  const classes = useStyles();
   const { copyData } = props;
   const role = user.getRole();
   const monday = new Date(props.mon).toISOString();
@@ -64,8 +66,10 @@ export default function PasteButton(props) {
       }
     }
   };
+  // className={classes.secondary_navbar__button}
   return (
-    <Button color='primary' onClick={handlePasteClick} variant='contained'>
+    <Button color='primary' onClick={handlePasteClick} variant='contained' className={classes.button__secondary_navbar}>
+      <img src='images/paste.png' alt='copy icon' className={classes.icon__secondary_navbar}></img>
       Paste
     </Button>
   );
