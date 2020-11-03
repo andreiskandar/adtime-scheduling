@@ -16,7 +16,7 @@ const Employee = (props) => {
     new Date(props.sun - 86400000).toISOString().split('T')[0],
   ];
 
-  const testingSlotMap = shift.reduce((acc, cur) => {
+  const groupCategorySlotMap = shift.reduce((acc, cur) => {
     const currentDate = cur.event_date.split('T')[0];
     if (cur.user_id && cur.user_id === id) {
       if (!acc[currentDate]) {
@@ -128,22 +128,15 @@ const Employee = (props) => {
 
   let totalHours = 0,
     totalEvents = 0;
-  // for (const item in slotMap) {
-  //   totalEvents++;
-  //   totalHours += slotMap[item].length;
-  // }
 
-  for (const item in testingSlotMap) {
-    const breakout = testingSlotMap[item].breakout ? testingSlotMap[item].breakout.length : 0;
-    const interview = testingSlotMap[item].interview ? testingSlotMap[item].interview.length : 0;
-    const lecture = testingSlotMap[item].lecture ? testingSlotMap[item].lecture.length : 0;
+  for (const item in groupCategorySlotMap) {
+    const breakout = groupCategorySlotMap[item].breakout ? groupCategorySlotMap[item].breakout.length : 0;
+    const interview = groupCategorySlotMap[item].interview ? groupCategorySlotMap[item].interview.length : 0;
+    const lecture = groupCategorySlotMap[item].lecture ? groupCategorySlotMap[item].lecture.length : 0;
     totalEvents += breakout + interview + lecture;
-    const workingShift = testingSlotMap[item].workingShift ? testingSlotMap[item].workingShift.length : 0;
+    const workingShift = groupCategorySlotMap[item].workingShift ? groupCategorySlotMap[item].workingShift.length : 0;
     totalHours += totalEvents + workingShift;
   }
-  // console.log('testingSlotMap:', testingSlotMap);
-  // const totalHours = testingSlotMap ? testingSlotMap.workingShift.length : 0;
-  // const totalEvents = testingSlotMap ? testingSlotMap.meetings.length : 0;
 
   const num_hours = totalHours === 1 ? '1 hr' : totalHours > 1 ? `${totalHours} hrs` : '';
   const num_event = totalEvents === 1 ? '1 event' : totalEvents > 1 ? `${totalEvents} events` : '';
@@ -154,7 +147,7 @@ const Employee = (props) => {
         key={Date.now() + idx}
         date={date}
         // shift_id={slotMap[date].workingShift}
-        testingSlotMap={testingSlotMap[date]}
+        groupCategorySlotMap={groupCategorySlotMap[date]}
         shift_id={slotMap[date]}
         {...props}
         users={users}
