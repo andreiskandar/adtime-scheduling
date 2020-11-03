@@ -4,7 +4,6 @@ import Card from '@material-ui/core/Card';
 import Header from '../Schedule/components/Header';
 import Employee from '../Schedule/components/Employee';
 import { user } from '../../controllers/index';
-//import { user } from 'models';
 import './styles.scss';
 import addShift from 'helpers/addShift';
 import transferShift from 'helpers/transferShift';
