@@ -72,7 +72,7 @@ export default () => {
               }}
             />
             <TextField
-              type='text  '
+              type='password'
               label='Password'
               for='passwordInput'
               id='passwordInput'
