@@ -13,7 +13,6 @@ import './styles.scss';
 import MyCalendar from '../MyCalendar/MyCalendar';
 
 const PublishButton = (props) => {
-  console.log('props:', props);
   const {
     copyData,
     setCopyData,

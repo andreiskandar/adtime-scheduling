@@ -2,11 +2,15 @@
 .entire_employee__grid{
   // position: absolute;
   // left: 2610px;
+  
 }
+
+
 .employee_grid {
   display: flex;
   border-bottom: 1px $border-color-grey solid;
   
+
   span {
     display: inline-block;
     width: 25.17px;
@@ -29,8 +33,6 @@
   .color {
     background-color: brown;
   }
-
-
 
   .unavailable {
     background-color:#b9baba;

@@ -18,11 +18,21 @@
     justify-content: center;
     align-items: center;
     font-family: $font-family;
+    position: fixed;
+    height: 36px;
+    z-index: 2;
+    background-color: $background-color-grey;
+
+  }
+
+  .row__header:first-of-type + .day__header{
+    margin-left: 158px;
   }
   .day_date__header {
     padding: 2px 0;
   }
   .day__header {
+    z-index: 0;
     display: flex;
   }
   .days__header {
