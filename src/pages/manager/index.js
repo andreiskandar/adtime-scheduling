@@ -76,6 +76,8 @@ export default () => {
   const [results, setResults] = useState([]);
   const [copyData, setCopyData] = useState([]);
   const [users, setUsers] = useState([]);
+  const [publish, setPublish] = useState(false);
+  const [wording, setWording] = useState('Publish');
   const role = user.getRole();
 
   const getNewWeek = (day1, day2) => {
@@ -177,6 +179,10 @@ export default () => {
         setEndTimeState={setEndTimeState}
         copyData={copyData}
         setCopyData={setCopyData}
+        publish = {publish}
+        setPublish = {setPublish}
+        wording = {wording}
+        setWording = {setWording}
       />
       <Schedule
         users={users}
@@ -205,6 +211,7 @@ export default () => {
         setTerm={setTerm}
         copyData={copyData}
         setCopyData={setCopyData}
+        publish = {publish}
       />
     </>
   );

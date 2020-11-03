@@ -136,6 +136,14 @@ export default (props) => {
       });
   };
 
+  let check;
+  const publishCheck = props.shift[0]
+  if (publishCheck) {
+    if (publishCheck.ispublished === false) {
+      check = false;
+    }
+  }
+  
   const employees = props.users.map((user) => {
     const lowerUserName = user.name.toLowerCase();
     const lowerTermName = props.term.toLowerCase();
@@ -200,7 +208,7 @@ export default (props) => {
         />
         {employees}
       </Card>
-      {role === 'employee' && (
+      {role === 'employee' && props.publish === false && (
         <Dialog open={open} onClose={handleClose} maxWidth='lg'>
           <Unpublished handleClose = {handleClose}></Unpublished>
         </Dialog>

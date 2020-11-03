@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import LiveSearch from '../SearchBar/index';
 import { default as WeekNav } from '../WeekNav';
 import Settings from '../Settings/Settings';
@@ -26,17 +26,57 @@ const PublishButton = (props) => {
     name,
     users,
     setUsers,
+    shift,
+    publish, 
+    setPublish,
+    wording, 
+    setWording,
   } = props;
-  
-  const [publish, setPublish] = useState(false);
-  const [wording, setWording] = useState('Publish');
+
   const role = user.getRole();
   const buttonClass = classNames({
     btn: true,
     isPublished: publish,
   });
+  
+  useEffect(() => {
+    getNewWeek(new Date(props.mon - 86400000).toISOString(), new Date(props.sun + 86399999).toISOString());
+  }, [publish, mon]);
+
   const day1 = new Date(props.mon - 86400000).toISOString();
   const day2 = new Date(props.sun + 86399999).toISOString();
+  
+  const checkPublish = () => {
+    const publishCheck = shift[0]
+    if (publishCheck) {
+      if (publishCheck.ispublished === true && publish === false) {
+        setPublish(true)
+        setWording('Unpublish')
+      } else if (publishCheck.ispublished === false && publish === true) {
+        setPublish(false)
+        setWording('Publish')
+      }
+    } else {
+      setPublish(false)
+      setWording('Publish')
+    }
+    console.log('ON PAGE LOAD', publish)
+  }
+  checkPublish();
+
+  const getNewWeek = (day1, day2) => {
+    if (role === 'admin') {
+      axios
+        .get('api/shifts/events/manager', { params: { firstDay: day1.split('T')[0], lastDay: day2.split('T')[0] } })
+        .then((res) => {
+          props.setShift(res.data);
+        })
+        .catch((e) => {
+          console.log('Error from adding shift', e);
+        });
+    } 
+  };
+
   const handleClick = (e) => {
     if (publish === false) {
       axios
@@ -55,7 +95,11 @@ const PublishButton = (props) => {
           console.log('ERROR in AXIOS', e);
         });
     }
+    console.log('IN CLICK', publish)
   };
+
+  
+
   return (
     <main className='secondary__navbar'>
       <div className='left__secondary_navbar'>
