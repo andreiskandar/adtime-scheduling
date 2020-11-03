@@ -13,11 +13,7 @@ const Employee = (props) => {
     new Date(props.thurs - 86400000).toISOString().split('T')[0],
     new Date(props.fri - 86400000).toISOString().split('T')[0],
     new Date(props.sat - 86400000).toISOString().split('T')[0],
-<<<<<<< HEAD
-    new Date(props.sun + 86399999).toISOString().split('T')[0],
-=======
     new Date(props.sun - 86400000).toISOString().split('T')[0],
->>>>>>> master
   ];
   // console.log('new Date(props.sun - 360000).:', new Date(props.sun));
   //2020-11-02T00:00:00.000Z
@@ -147,10 +143,7 @@ const Employee = (props) => {
     const workingShift = testingSlotMap[item].workingShift ? testingSlotMap[item].workingShift.length : 0;
     totalHours += totalEvents + workingShift;
   }
-<<<<<<< HEAD
-=======
   // console.log('testingSlotMap:', testingSlotMap);
->>>>>>> master
   // const totalHours = testingSlotMap ? testingSlotMap.workingShift.length : 0;
   // const totalEvents = testingSlotMap ? testingSlotMap.meetings.length : 0;
 
@@ -178,23 +171,6 @@ const Employee = (props) => {
       />
     );
   });
-<<<<<<< HEAD
-  /*// JOKE FOR DEMO REHEARSAL
-  if (role === 'employee') {
-    return (
-      <>
-      <main className='employee_row'>
-        <EmployeeHeader name={name} 
-        num_event={num_event} 
-        avatar={avatar} num_hours={num_hours} 
-        results = {results} setResults = {setResults} 
-        term= {term} setTerm = {setTerm}/>
-      <img src={'https://raw.githubusercontent.com/andreiskandar/moment/david-fe2/public/images/Bradley.jpg'}/>
-      </main>
-      </>
-    )
-  }*/
-=======
   // JOKE FOR DEMO REHEARSAL
   // if (role === 'employee') {
   //   return (
@@ -210,7 +186,6 @@ const Employee = (props) => {
   //     </>
   //   )
   // }
->>>>>>> master
 
   return (
     <main className='employee_row'>

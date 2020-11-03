@@ -39,25 +39,25 @@ export default () => {
   const dayofWeek = (new Date (currentUTCDate)).getUTCDay()
   switch (dayofWeek) {
     case 0:
-      mondayTime = mondayTime + 7*milisecDay
+      mondayTime = mondayTime - 2*milisecDay
       break;
     case 1:
-      mondayTime = mondayTime + milisecDay
+      mondayTime = mondayTime - milisecDay
       break;
     case 2:
-      mondayTime = mondayTime + 2*milisecDay
+      mondayTime = mondayTime 
       break;
     case 3:
-      mondayTime = mondayTime + 3*milisecDay
+      mondayTime = mondayTime + milisecDay
       break;
     case 4:
-      mondayTime = mondayTime + 4*milisecDay
+      mondayTime = mondayTime + 2*milisecDay
       break;
     case 5:
-      mondayTime = mondayTime + 5*milisecDay
+      mondayTime = mondayTime + 3*milisecDay
       break;
     case 6:
-      mondayTime = mondayTime + 6*milisecDay
+      mondayTime = mondayTime + 4*milisecDay
       break;
   }
   
@@ -74,14 +74,7 @@ export default () => {
   const [shift, setShift] = useState([]);
   const [term, setTerm] = useState('');
   const [results, setResults] = useState([]);
-<<<<<<< HEAD
-  const [copyData, setCopyData] = useState();
-
-=======
   const [copyData, setCopyData] = useState([]);
-  console.log('copyData: from manager index', copyData);
->>>>>>> master
-
   const [users, setUsers] = useState([]);
   const role = user.getRole();
 
@@ -112,11 +105,7 @@ export default () => {
 
   const clickRightCalendar = () => {
     const day1 = new Date(mon + 604800000 - 86400000).toISOString();
-<<<<<<< HEAD
-    const day2 = new Date(sun + 604800000 + 86400000).toISOString();
-=======
     const day2 = new Date(sun + 604800000 + 86399999).toISOString();
->>>>>>> master
     setMon(mon + 604800000);
     setTues(tues + 604800000);
     setWed(wed + 604800000);
@@ -129,11 +118,7 @@ export default () => {
 
   const clickLeftCalendar = () => {
     const day1 = new Date(mon - 604800000 - 86400000).toISOString();
-<<<<<<< HEAD
-    const day2 = new Date(sun - 604800000 + 86400000).toISOString();
-=======
     const day2 = new Date(sun - 604800000 + 86399999).toISOString();
->>>>>>> master
     setMon(mon - 604800000);
     setTues(tues - 604800000);
     setWed(wed - 604800000);

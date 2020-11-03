@@ -14,17 +14,11 @@ import MyCalendar from '../MyCalendar/MyCalendar';
 
 const PublishButton = (props) => {
   // console.log('SECONDARY NAV PROPS:', props)
-<<<<<<< HEAD
-    
-  const {
-    copyData, setCopyData, mon, sun, shift, setShift,
-=======
   const {
     copyData,
     setCopyData,
     mon,
     sun,
->>>>>>> master
     startTimeState,
     setStartTimeState,
     endTimeState,
@@ -44,10 +38,6 @@ const PublishButton = (props) => {
   });
   const day1 = new Date(props.mon - 86400000).toISOString();
   const day2 = new Date(props.sun + 86399999).toISOString();
-<<<<<<< HEAD
-
-=======
->>>>>>> master
   const handleClick = (e) => {
     if (publish === false) {
       axios
@@ -120,67 +110,6 @@ const PublishButton = (props) => {
       {role === 'admin' && (
         <div>
           <PasteButton
-<<<<<<< HEAD
-            {...{
-              onClick: async () => {
-                const monday = new Date(props.mon).toISOString();
-                const tuesday = new Date(props.tues).toISOString();
-                const wednesday = new Date(props.wed).toISOString();
-                const thursday = new Date(props.thurs).toISOString();
-                const friday = new Date(props.fri).toISOString();
-                const saturday = new Date(props.sat).toISOString();
-                const sunday = new Date(props.sun).toISOString();
-
-                if (copyData.length) {
-                  for (const info of copyData) {
-                    const days = (new Date(info.event_date.split('T')[0])).getDay()
-                    
-                    switch (days) {
-                      case 0:
-                        info.event_date = sunday
-                        break;
-                      case 1:
-                        info.event_date = monday
-                        break;
-                      case 2:
-                        info.event_date = tuesday
-                        break;
-                      case 3:
-                        info.event_date = wednesday
-                        break;
-                      case 4:
-                        info.event_date = thursday
-                        break;
-                      case 5:
-                        info.event_date = friday
-                        break;
-                      case 6:
-                        info.event_date = saturday
-                        break;
-                    }
-                    const event_date = info.event_date
-                    const user_id = info.user_id 
-                    const category_id = info.category_id
-                    const shift_id = [info.shift_id]
-
-
-                    console.log("AFTER SWTICH", info.event_date)
-                    await axios.post('/api/events/add', {user_id, event_date, category_id, shift_id})
-                  }
-                  let res;
-                  if (role === "admin") {
-                    res = await axios.get("api/shifts/events/manager", {
-                      params: {
-                        firstDay: day1.split("T")[0],
-                        lastDay: day2.split("T")[0],
-                      },
-                    });
-                    setShift(res.data)
-                  } 
-                }
-              },
-            }}
-=======
             setShift={props.setShift}
             mon={props.mon}
             tues={props.tues}
@@ -191,7 +120,6 @@ const PublishButton = (props) => {
             sun={props.sun}
             copyData={props.copyData}
             setCopyData={props.setCopyData}
->>>>>>> master
           />
           <CopyButton {...{ copyData, setCopyData, mon, sun }} />
           <Button onClick={handleClick} className={buttonClass}>

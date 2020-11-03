@@ -11,13 +11,8 @@ const MiniCalendar = (props) => {
   const milisecDay = 86400000;
 
   useEffect(() => {
-<<<<<<< HEAD
-    getNewWeek(new Date(props.mon - 86400000).toISOString(), new Date(props.sun + 86400000).toISOString());
-  }, [props.mon, props.sun])
-=======
     getNewWeek(new Date(props.mon - 86400000).toISOString(), new Date(props.sun + 86399999).toISOString());
   }, [props.mon, props.sun]);
->>>>>>> master
 
   function onPanelChange(value, mode) {
     console.log(value, mode);

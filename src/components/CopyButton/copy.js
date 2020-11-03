@@ -5,13 +5,8 @@ import { user } from '../../controllers';
 
 export default function CopyButton(props) {
   const role = user.getRole();
-<<<<<<< HEAD
-  const day1 = new Date(props.mon).toISOString();
-  const day2 = new Date(props.sun).toISOString();
-=======
   const day1 = new Date(props.mon - 86400000).toISOString();
   const day2 = new Date(props.sun + 86399999).toISOString();
->>>>>>> master
 
   const handleCopyClick = () => {
     let apiUserShift;
