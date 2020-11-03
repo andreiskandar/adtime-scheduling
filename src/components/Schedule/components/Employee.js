@@ -2,9 +2,12 @@ import React from 'react';
 import EmployeeGrid from './EmployeeGrid';
 import EmployeeHeader from './EmployeeHeader';
 import './employee.scss';
+import { user } from '../../../controllers/';
 
 const Employee = (props) => {
   const { id, name, avatar, shift, color, users, categories, results, setResults, term, setTerm } = props;
+  const role = user.getRole();
+  
 
   const date_from_calendar = [
     new Date(props.mon - 86400000).toISOString().split('T')[0],
@@ -162,21 +165,6 @@ const Employee = (props) => {
       />
     );
   });
-  // JOKE FOR DEMO REHEARSAL
-  // if (role === 'employee') {
-  //   return (
-  //     <>
-  //     <main className='employee_row'>
-  //       <EmployeeHeader name={name}
-  //       num_event={num_event}
-  //       avatar={avatar} num_hours={num_hours}
-  //       results = {results} setResults = {setResults}
-  //       term= {term} setTerm = {setTerm}/>
-  //     <img src={'https://raw.githubusercontent.com/andreiskandar/moment/david-fe2/public/images/Bradley.jpg'}/>
-  //     </main>
-  //     </>
-  //   )
-  // }
 
   return (
     <main className='employee_row'>

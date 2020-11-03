@@ -5,15 +5,21 @@ import Header from '../Schedule/components/Header';
 import Employee from '../Schedule/components/Employee';
 import { user } from '../../controllers/index';
 //import { user } from 'models';
+import { Dialog } from '@material-ui/core';
 import './styles.scss';
 import addShift from 'helpers/addShift';
 import transferShift from 'helpers/transferShift';
 import cancelShift from 'helpers/cancelShift';
+import Unpublished from './components/notPublished/UnpublishedAlert';
 
 export default (props) => {
   const [date, setDate] = useState('');
   const [categories, setCategories] = useState([]);
   const role = user.getRole();
+  const [open, setOpen] = useState(true);
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   useEffect(() => {
     const day1 = new Date(props.mon - 86400000).toISOString();
@@ -194,6 +200,11 @@ export default (props) => {
         />
         {employees}
       </Card>
+      {role === 'employee' && (
+        <Dialog open={open} onClose={handleClose} maxWidth='lg'>
+          <Unpublished handleClose = {handleClose}></Unpublished>
+        </Dialog>
+      )}
     </div>
   );
 };

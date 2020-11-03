@@ -95,7 +95,7 @@ const MyCalendar = (props) => {
           <p className={classes.name}>{username}</p>
           <div className={classes.moreInfo}>
             <p>Total Weekly Hours = {totalHours}</p>
-            <p>Total Weekly Events = {totalEvents}</p>
+            <p>Work Days This Week  = {totalEvents}</p>
           </div>
         </div>
         <div className={classes.weeknav__myCalendar}>
