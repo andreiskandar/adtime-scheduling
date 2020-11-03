@@ -46,7 +46,6 @@ export default () => {
   const [term, setTerm] = useState('');
   const [results, setResults] = useState([]);
   const [copyData, setCopyData] = useState([]);
-  console.log('copyData: from manager index', copyData);
 
   const [users, setUsers] = useState([]);
   const role = user.getRole();
@@ -116,7 +115,6 @@ export default () => {
 
   if (isInitialRender) return null;
 
-  // console.log('SHIFT', JSON.stringify(shift))
   return (
     <>
       <Navbar />

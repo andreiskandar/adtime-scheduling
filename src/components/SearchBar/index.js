@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
-import axios from 'axios';
+import React, { useEffect } from "react";
+import axios from "axios";
 
-import Results from '../SearchBar/Results';
-import SearchBar from '../SearchBar/SearchBar';
+import Results from "../SearchBar/Results";
+import SearchBar from "../SearchBar/SearchBar";
 
 export default function LiveSearch(props) {
   useEffect(() => {

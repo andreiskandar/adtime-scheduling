@@ -26,8 +26,6 @@ export default function CopyButton(props) {
       });
   };
 
-  console.log('Copy Data from copy.js', props.copyData);
-
   return (
     <Button color='primary' onClick={handleCopyClick} variant='contained'>
       Copy

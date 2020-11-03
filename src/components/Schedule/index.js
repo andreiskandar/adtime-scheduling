@@ -135,7 +135,6 @@ export default (props) => {
   const employees = props.users.map((user) => {
     const lowerUserName = user.name.toLowerCase();
     const lowerTermName = props.term.toLowerCase();
-    // console.log('SHIFTING', props.shift)
     return (
       lowerUserName.startsWith(lowerTermName) && (
         <Employee

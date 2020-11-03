@@ -13,7 +13,6 @@ import './styles.scss';
 import MyCalendar from '../MyCalendar/MyCalendar';
 
 const PublishButton = (props) => {
-  // console.log('SECONDARY NAV PROPS:', props)
   const {
     copyData,
     setCopyData,
