@@ -135,13 +135,15 @@ const PublishButton = (props) => {
       />
       {/* copySchedule={copySchedule} */}
       {/* setCopySchedule={setCopySchedule} */}
-      {role === 'employee' && (
+      
+      {//Hidden divs added for styling purposes
+        role === 'employee' && (
         < >
           <div className = 'hidden'>
-            Block 2
+            Styling1
           </div>
           <div className = 'hidden'>
-            Block 3
+            Styling2
           </div>
         </>
       )}
