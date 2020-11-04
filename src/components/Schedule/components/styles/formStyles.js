@@ -47,6 +47,10 @@ const useStyles = makeStyles((theme) => ({
     },
     marginBottom: '8px',
   },
+  joke: {
+    height:'426px'
+  },
 }));
+
 
 export default useStyles;

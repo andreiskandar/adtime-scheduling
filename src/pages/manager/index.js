@@ -31,51 +31,53 @@ export default () => {
     Saturday: 0,
     Sunday: 0,
   });
-  
-  let currentUTCDate = (((new Date (Date.now())).toISOString()).split('T')[0]);
-  currentUTCDate = ((new Date(currentUTCDate)).toUTCString())
+
+  let currentUTCDate = new Date(Date.now()).toISOString().split('T')[0];
+  currentUTCDate = new Date(currentUTCDate).toUTCString();
   const milisecDay = 86400000;
-  let mondayTime = (new Date (currentUTCDate)).getTime()
-  const dayofWeek = (new Date (currentUTCDate)).getUTCDay()
+  let mondayTime = new Date(currentUTCDate).getTime();
+  const dayofWeek = new Date(currentUTCDate).getUTCDay();
   switch (dayofWeek) {
     case 0:
-      mondayTime = mondayTime - 2*milisecDay
+      mondayTime = mondayTime - 4*milisecDay
       break;
     case 1:
-      mondayTime = mondayTime - milisecDay
+      mondayTime = mondayTime - 3*milisecDay
       break;
     case 2:
-      mondayTime = mondayTime 
+      mondayTime = mondayTime - 2*milisecDay
       break;
     case 3:
-      mondayTime = mondayTime + milisecDay
+      mondayTime = mondayTime - milisecDay
       break;
     case 4:
-      mondayTime = mondayTime + 2*milisecDay
+      mondayTime = mondayTime 
       break;
     case 5:
-      mondayTime = mondayTime + 3*milisecDay
+      mondayTime = mondayTime + 2*milisecDay
       break;
     case 6:
-      mondayTime = mondayTime + 4*milisecDay
+      mondayTime = mondayTime + 3*milisecDay
       break;
   }
-  
+
   const [isInitialRender, setIsInitialRender] = useState(true);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [week, setWeek] = useState(2);
   const [mon, setMon] = useState(mondayTime);
   const [tues, setTues] = useState(mondayTime + milisecDay);
-  const [wed, setWed] = useState(mondayTime + 2*milisecDay);
-  const [thurs, setThurs] = useState(mondayTime + 3*milisecDay);
-  const [fri, setFri] = useState(mondayTime + 4*milisecDay);
-  const [sat, setSat] = useState(mondayTime + 5*milisecDay);
-  const [sun, setSun] = useState(mondayTime + 6*milisecDay);
+  const [wed, setWed] = useState(mondayTime + 2 * milisecDay);
+  const [thurs, setThurs] = useState(mondayTime + 3 * milisecDay);
+  const [fri, setFri] = useState(mondayTime + 4 * milisecDay);
+  const [sat, setSat] = useState(mondayTime + 5 * milisecDay);
+  const [sun, setSun] = useState(mondayTime + 6 * milisecDay);
   const [shift, setShift] = useState([]);
   const [term, setTerm] = useState('');
   const [results, setResults] = useState([]);
   const [copyData, setCopyData] = useState([]);
   const [users, setUsers] = useState([]);
+  const [publish, setPublish] = useState(false);
+  const [wording, setWording] = useState('Publish');
   const role = user.getRole();
 
   const getNewWeek = (day1, day2) => {
@@ -177,6 +179,10 @@ export default () => {
         setEndTimeState={setEndTimeState}
         copyData={copyData}
         setCopyData={setCopyData}
+        publish = {publish}
+        setPublish = {setPublish}
+        wording = {wording}
+        setWording = {setWording}
       />
       <Schedule
         users={users}
@@ -205,6 +211,10 @@ export default () => {
         setTerm={setTerm}
         copyData={copyData}
         setCopyData={setCopyData}
+        publish = {publish}
+        setPublish={setPublish}
+        wording={wording}
+        setWording = {setWording}
       />
     </>
   );

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import LiveSearch from '../SearchBar/index';
 import { default as WeekNav } from '../WeekNav';
 import Settings from '../Settings/Settings';
@@ -26,17 +26,44 @@ const PublishButton = (props) => {
     name,
     users,
     setUsers,
+    shift,
+    publish,
+    setPublish,
+    wording,
+    setWording,
   } = props;
-  
-  const [publish, setPublish] = useState(false);
-  const [wording, setWording] = useState('Publish');
+
+  const publishCheck = shift[0];
+  // const [publish, setPublish] = useState(false);
+  // const [wording, setWording] = useState('Publish');
   const role = user.getRole();
   const buttonClass = classNames({
     btn: true,
     isPublished: publish,
   });
+
+  useEffect(() => {
+    checkPublish();
+  }, [shift]);
+
   const day1 = new Date(props.mon - 86400000).toISOString();
   const day2 = new Date(props.sun + 86399999).toISOString();
+
+  const checkPublish = () => {
+    if (publishCheck) {
+      if (publishCheck.ispublished === true && publish === false) {
+        setPublish(true);
+        setWording('Unpublish');
+      } else if (publishCheck.ispublished === false && publish === true) {
+        setPublish(false);
+        setWording('Publish');
+      }
+    } else if (!publishCheck) {
+      setPublish(false);
+      setWording('Publish');
+    }
+  };
+
   const handleClick = (e) => {
     if (publish === false) {
       axios
@@ -46,7 +73,7 @@ const PublishButton = (props) => {
         .catch((e) => {
           console.log('Publish ERROR in AXIOS', e);
         });
-    } else {
+    } else if (publish === true) {
       axios
         .put('/api/events/publish', { publish: false, firstDay: day1.split('T')[0], lastDay: day2.split('T')[0] })
         .then(setPublish(false))
@@ -56,6 +83,7 @@ const PublishButton = (props) => {
         });
     }
   };
+
   return (
     <main className='secondary__navbar'>
       <div className='left__secondary_navbar'>

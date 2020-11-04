@@ -4,15 +4,24 @@ import Card from '@material-ui/core/Card';
 import Header from '../Schedule/components/Header';
 import Employee from '../Schedule/components/Employee';
 import { user } from '../../controllers/index';
+//import { user } from 'models';
+import { Dialog } from '@material-ui/core';
 import './styles.scss';
 import addShift from 'helpers/addShift';
 import transferShift from 'helpers/transferShift';
 import cancelShift from 'helpers/cancelShift';
+import Unpublished from './components/notPublished/UnpublishedAlert';
 
 export default (props) => {
   const [date, setDate] = useState('');
   const [categories, setCategories] = useState([]);
   const role = user.getRole();
+  const [open, setOpen] = useState(true);
+  const [alert, setAlert] = useState(false);
+  const handleClose = () => {
+    setOpen(false);
+    setAlert(false);
+  };
 
   useEffect(() => {
     const day1 = new Date(props.mon - 86400000).toISOString();
@@ -45,7 +54,7 @@ export default (props) => {
       })
       .catch((e) => {
         console.log(e);
-      });
+    });
   }, []);
 
   const submitShift = (user_id, startTime, endTime, event_date, category_id) => {
@@ -129,6 +138,25 @@ export default (props) => {
       });
   };
 
+  const checkPublish = () => {
+    const publishCheck = props.shift[0]
+    if (publishCheck) {
+      if (publishCheck.ispublished === false) {
+        setAlert(true)
+      }
+    } else {
+      setAlert(true)
+    }
+  }
+  useEffect(() => {
+    const check = setTimeout(() => {
+      checkPublish()
+    }, 200);
+    console.log('I RAN')
+    console.log(alert)
+    return () => clearTimeout(check);        
+    }, [props.shift]);
+
   const employees = props.users.map((user) => {
     const lowerUserName = user.name.toLowerCase();
     const lowerTermName = props.term.toLowerCase();
@@ -193,6 +221,13 @@ export default (props) => {
         />
         {employees}
       </Card>
+      <div>
+      {role === 'employee' && alert === true &&(
+        <Dialog open={open} onClose={handleClose} maxWidth='lg'>
+          <Unpublished handleClose = {handleClose}></Unpublished>
+        </Dialog>
+      )}      
+      </div>
     </div>
   );
 };
