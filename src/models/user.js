@@ -14,7 +14,7 @@ async function login(email, password) {
     role: rawUser.name,
     username: rawUser.username,
     avatar: rawUser.avatar,
-    user_id: rawUser.id,
+    user_id: rawUser.user_id,
   };
   return user;
 }

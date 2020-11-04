@@ -86,3 +86,108 @@ body > div.MuiDialog-root > div.MuiDialog-container.MuiDialog-scrollPaper > div 
 
   }
 }
+
+.entire_employee__grid{
+  // position: absolute;
+  // left: 2610px;
+  
+}
+
+
+.employee_grid {
+  display: flex;
+  border-bottom: 1px $border-color-grey solid;
+  
+
+  span {
+    display: inline-block;
+    width: 25.17px;
+    height: 51px;
+    border-left: solid $border-color-grey 1px;
+    border-right: solid $border-color-grey 1px;
+    border-top: none;
+    border-bottom: none;
+    &:hover {
+      border: solid 1px #3f3f3f;
+      cursor: pointer;
+    }
+  }
+  .grid__1{
+    border-left: solid 1px $outer-border-color;
+  }
+  .grid__12{
+    border-right: solid 1px $outer-border-color;
+  }
+  .color {
+    background-color: brown;
+  }
+
+  .unavailable {
+    background-color:#b9baba;
+    display: flex;
+    justify-content: center;
+    &:hover {
+      .hide {
+        visibility: visible;
+      }
+      cursor: default;
+      border-color: $border-color-grey;
+    }
+  }
+
+  .hide {
+    background-color: #757575;
+    border-radius: 3px;
+    font-size: 12px;
+    padding: 3px;
+    margin-top: 54px;
+    height: 15px;
+    z-index: 3;
+    visibility: hidden;
+    color: #fafafa;
+  }
+
+  .shifts{
+    // display: flex;
+    // justify-content: center;
+    &:hover{
+      .events{
+        visibility: visible;
+      }
+    }
+    border-color: $border-color-grey;
+  }
+  .events {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    background-color: #757575;
+    border-radius: 3px;
+    font-size: 12px;
+    padding: 3px;
+    margin-top: 37px;
+    right: 15px;
+    height: 15px;
+    visibility: hidden;
+    color: #fafafa;
+    width: 50px;
+    z-index: 30000;
+  }
+  
+  .grid__badge{
+    position: relative;
+    background-color: red;
+    border-color: red;
+    border-bottom-left-radius: 100%;
+    border-bottom-right-radius: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    width: 10px;
+    margin: -1px 0px 4px 13px;
+    height: 10px;
+    pointer-events: none;
+    top: 0;
+    z-index: 0;
+  
+  }
+}

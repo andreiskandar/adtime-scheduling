@@ -46,21 +46,6 @@ const MyCalendar = (props) => {
   const totalEvents = employeeMoreInfoHelper(groupCategorySlotMap).num_event;
   const totalHours = employeeMoreInfoHelper(groupCategorySlotMap).num_hours;
 
-  const slotMap = props.shift.reduce((acc, cur) => {
-    const currentDate = cur.event_date.split('T')[0];
-    if (cur.name && cur.name === username) {
-      if (!acc[currentDate]) {
-        acc[currentDate] = [];
-        acc[currentDate].push(cur.shift_id);
-      } else {
-        acc[currentDate].push(cur.shift_id);
-      }
-      return acc;
-    } else {
-      return acc;
-    }
-  }, {});
-
   const renderMyCalendarGrid = date_from_calendar.map((date, idx) => {
     return (
       <div key={idx} className='calendar_grid__myCalendar'>
@@ -74,8 +59,7 @@ const MyCalendar = (props) => {
             setUsers={props.setUsers}
             mon={props.mon}
             sun={props.sun}
-            shift={props.shift}
-            shift_id={slotMap[date]}
+            groupCategorySlotMap={groupCategorySlotMap[date]}
             className={classes.calendarGrid__myCalendar}
           />
         </div>
@@ -95,7 +79,7 @@ const MyCalendar = (props) => {
           <p className={classes.name}>{username}</p>
           <div className={classes.moreInfo}>
             <p>Total Weekly Hours = {totalHours}</p>
-            <p>Work Days This Week  = {totalEvents}</p>
+            <p>Work Days This Week = {totalEvents}</p>
           </div>
         </div>
         <div className={classes.weeknav__myCalendar}>
