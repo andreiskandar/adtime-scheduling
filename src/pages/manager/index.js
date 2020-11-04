@@ -212,6 +212,9 @@ export default () => {
         copyData={copyData}
         setCopyData={setCopyData}
         publish = {publish}
+        setPublish={setPublish}
+        wording={wording}
+        setWording = {setWording}
       />
     </>
   );

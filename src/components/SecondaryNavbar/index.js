@@ -32,7 +32,7 @@ const PublishButton = (props) => {
     wording, 
     setWording,
   } = props;
-
+  const publishCheck = shift[0]
   const role = user.getRole();
   const buttonClass = classNames({
     btn: true,
@@ -40,14 +40,13 @@ const PublishButton = (props) => {
   });
   
   useEffect(() => {
-    getNewWeek(new Date(props.mon - 86400000).toISOString(), new Date(props.sun + 86399999).toISOString());
-  }, [publish, mon]);
+    checkPublish();
+  }, [shift]);
 
   const day1 = new Date(props.mon - 86400000).toISOString();
   const day2 = new Date(props.sun + 86399999).toISOString();
   
   const checkPublish = () => {
-    const publishCheck = shift[0]
     if (publishCheck) {
       if (publishCheck.ispublished === true && publish === false) {
         setPublish(true)
@@ -56,26 +55,11 @@ const PublishButton = (props) => {
         setPublish(false)
         setWording('Publish')
       }
-    } else {
+    } else if (!publishCheck) {
       setPublish(false)
       setWording('Publish')
     }
-    console.log('ON PAGE LOAD', publish)
   }
-  checkPublish();
-
-  const getNewWeek = (day1, day2) => {
-    if (role === 'admin') {
-      axios
-        .get('api/shifts/events/manager', { params: { firstDay: day1.split('T')[0], lastDay: day2.split('T')[0] } })
-        .then((res) => {
-          props.setShift(res.data);
-        })
-        .catch((e) => {
-          console.log('Error from adding shift', e);
-        });
-    } 
-  };
 
   const handleClick = (e) => {
     if (publish === false) {
@@ -86,7 +70,7 @@ const PublishButton = (props) => {
         .catch((e) => {
           console.log('Publish ERROR in AXIOS', e);
         });
-    } else {
+    } else if (publish === true) {
       axios
         .put('/api/events/publish', { publish: false, firstDay: day1.split('T')[0], lastDay: day2.split('T')[0] })
         .then(setPublish(false))
@@ -95,7 +79,6 @@ const PublishButton = (props) => {
           console.log('ERROR in AXIOS', e);
         });
     }
-    console.log('IN CLICK', publish)
   };
 
   

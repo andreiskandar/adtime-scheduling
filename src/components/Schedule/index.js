@@ -17,8 +17,10 @@ export default (props) => {
   const [categories, setCategories] = useState([]);
   const role = user.getRole();
   const [open, setOpen] = useState(true);
+  const [alert, setAlert] = useState(false);
   const handleClose = () => {
     setOpen(false);
+    setAlert(false);
   };
 
   useEffect(() => {
@@ -52,7 +54,7 @@ export default (props) => {
       })
       .catch((e) => {
         console.log(e);
-      });
+    });
   }, []);
 
   const submitShift = (user_id, startTime, endTime, event_date, category_id) => {
@@ -136,14 +138,25 @@ export default (props) => {
       });
   };
 
-  let check;
-  const publishCheck = props.shift[0]
-  if (publishCheck) {
-    if (publishCheck.ispublished === false) {
-      check = false;
+  const checkPublish = () => {
+    const publishCheck = props.shift[0]
+    if (publishCheck) {
+      if (publishCheck.ispublished === false) {
+        setAlert(true)
+      }
+    } else {
+      setAlert(true)
     }
   }
-  
+  useEffect(() => {
+    const check = setTimeout(() => {
+      checkPublish()
+    }, 200);
+    console.log('I RAN')
+    console.log(alert)
+    return () => clearTimeout(check);        
+    }, [props.shift]);
+
   const employees = props.users.map((user) => {
     const lowerUserName = user.name.toLowerCase();
     const lowerTermName = props.term.toLowerCase();
@@ -208,11 +221,13 @@ export default (props) => {
         />
         {employees}
       </Card>
-      {role === 'employee' && props.publish === false && (
+      <div>
+      {role === 'employee' && alert === true &&(
         <Dialog open={open} onClose={handleClose} maxWidth='lg'>
           <Unpublished handleClose = {handleClose}></Unpublished>
         </Dialog>
-      )}
+      )}      
+      </div>
     </div>
   );
 };
