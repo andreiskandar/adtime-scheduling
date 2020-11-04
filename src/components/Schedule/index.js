@@ -141,19 +141,19 @@ export default (props) => {
     if (publishCheck) {
       if (publishCheck.ispublished === false) {
         setAlert(true)
+        setOpen(true)
       }
     } else {
       setAlert(true)
+      setOpen(true)
     }
   }
   useEffect(() => {
     const check = setTimeout(() => {
       checkPublish()
-    }, 200);
-    console.log('I RAN')
-    console.log(alert)
+    }, 40);
     return () => clearTimeout(check);        
-    }, [props.shift]);
+  }, [props.shift]);
 
   const employees = props.users.map((user) => {
     const lowerUserName = user.name.toLowerCase();
