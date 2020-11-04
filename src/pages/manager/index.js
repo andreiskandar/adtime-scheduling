@@ -33,31 +33,34 @@ export default () => {
   });
 
   let currentUTCDate = new Date(Date.now()).toISOString().split('T')[0];
+
+  console.log('currentUTCDate:', new Date(Date.now()).toISOString());
+
   currentUTCDate = new Date(currentUTCDate).toUTCString();
   const milisecDay = 86400000;
   let mondayTime = new Date(currentUTCDate).getTime();
   const dayofWeek = new Date(currentUTCDate).getUTCDay();
   switch (dayofWeek) {
     case 0:
-      mondayTime = mondayTime - 4*milisecDay
+      mondayTime = mondayTime - 2 * milisecDay;
       break;
     case 1:
-      mondayTime = mondayTime - 3*milisecDay
+      mondayTime = mondayTime - milisecDay;
       break;
     case 2:
-      mondayTime = mondayTime - 2*milisecDay
+      mondayTime = mondayTime;
       break;
     case 3:
-      mondayTime = mondayTime - milisecDay
+      mondayTime = mondayTime - milisecDay;
       break;
     case 4:
-      mondayTime = mondayTime 
+      mondayTime = mondayTime + 2 * milisecDay;
       break;
     case 5:
-      mondayTime = mondayTime + 2*milisecDay
+      mondayTime = mondayTime + 3 * milisecDay;
       break;
     case 6:
-      mondayTime = mondayTime + 3*milisecDay
+      mondayTime = mondayTime + 4 * milisecDay;
       break;
   }
 
@@ -76,8 +79,6 @@ export default () => {
   const [results, setResults] = useState([]);
   const [copyData, setCopyData] = useState([]);
   const [users, setUsers] = useState([]);
-  const [publish, setPublish] = useState(false);
-  const [wording, setWording] = useState('Publish');
   const role = user.getRole();
 
   const getNewWeek = (day1, day2) => {
@@ -179,10 +180,6 @@ export default () => {
         setEndTimeState={setEndTimeState}
         copyData={copyData}
         setCopyData={setCopyData}
-        publish = {publish}
-        setPublish = {setPublish}
-        wording = {wording}
-        setWording = {setWording}
       />
       <Schedule
         users={users}
@@ -211,10 +208,6 @@ export default () => {
         setTerm={setTerm}
         copyData={copyData}
         setCopyData={setCopyData}
-        publish = {publish}
-        setPublish={setPublish}
-        wording={wording}
-        setWording = {setWording}
       />
     </>
   );
