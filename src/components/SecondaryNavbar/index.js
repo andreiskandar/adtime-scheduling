@@ -34,17 +34,12 @@ const PublishButton = (props) => {
   } = props;
 
   const publishCheck = shift[0];
-  // const [publish, setPublish] = useState(false);
   // const [wording, setWording] = useState('Publish');
   const role = user.getRole();
   const buttonClass = classNames({
     btn: true,
     isPublished: publish,
   });
-
-  useEffect(() => {
-    checkPublish();
-  }, [shift]);
 
   const day1 = new Date(props.mon - 86400000).toISOString();
   const day2 = new Date(props.sun + 86399999).toISOString();
@@ -63,6 +58,10 @@ const PublishButton = (props) => {
       setWording('Publish');
     }
   };
+
+  useEffect(() => {
+    checkPublish();
+  }, [shift]);
 
   const handleClick = (e) => {
     if (publish === false) {

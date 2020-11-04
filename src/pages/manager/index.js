@@ -5,12 +5,10 @@ import { Navbar, SecondaryNavbar, Schedule } from 'components';
 import { user } from 'controllers';
 import axios from 'axios';
 
-/*
-1 hour = 3600000
-1 day = 86400000
-1 week = 604800000
-Subtract 7 hours for timezone fix = -25200000
-*/
+// 1 hour = 3600000
+// 1 day = 86400000
+// 1 week = 604800000
+// Subtract 7 hours for timezone fix = -25200000
 
 export default () => {
   const [startTimeState, setStartTimeState] = useState({
@@ -33,34 +31,31 @@ export default () => {
   });
 
   let currentUTCDate = new Date(Date.now()).toISOString().split('T')[0];
-
-  console.log('currentUTCDate:', new Date(Date.now()).toISOString());
-
   currentUTCDate = new Date(currentUTCDate).toUTCString();
   const milisecDay = 86400000;
   let mondayTime = new Date(currentUTCDate).getTime();
   const dayofWeek = new Date(currentUTCDate).getUTCDay();
   switch (dayofWeek) {
     case 0:
-      mondayTime = mondayTime - 2 * milisecDay;
+      mondayTime = mondayTime - 4 * milisecDay;
       break;
     case 1:
-      mondayTime = mondayTime - milisecDay;
+      mondayTime = mondayTime - 3 * milisecDay;
       break;
     case 2:
-      mondayTime = mondayTime;
+      mondayTime = mondayTime - 2 * milisecDay;
       break;
     case 3:
       mondayTime = mondayTime - milisecDay;
       break;
     case 4:
-      mondayTime = mondayTime + 2 * milisecDay;
+      mondayTime = mondayTime;
       break;
     case 5:
-      mondayTime = mondayTime + 3 * milisecDay;
+      mondayTime = mondayTime + 2 * milisecDay;
       break;
     case 6:
-      mondayTime = mondayTime + 4 * milisecDay;
+      mondayTime = mondayTime + 3 * milisecDay;
       break;
   }
 
@@ -79,8 +74,9 @@ export default () => {
   const [results, setResults] = useState([]);
   const [copyData, setCopyData] = useState([]);
   const [users, setUsers] = useState([]);
+  const [publish, setPublish] = useState(false);
+  const [wording, setWording] = useState('Publish');
   const role = user.getRole();
-
   const getNewWeek = (day1, day2) => {
     if (role === 'admin') {
       axios
@@ -102,10 +98,8 @@ export default () => {
         });
     }
   };
-
   //console.log(props.mon) // Header.js:16 1603670400000  --> 1603756800000
   //console.log(props.sun) // Header.js:17 1604188800000  --> 1604275200000
-
   const clickRightCalendar = () => {
     const day1 = new Date(mon + 604800000 - 86400000).toISOString();
     const day2 = new Date(sun + 604800000 + 86399999).toISOString();
@@ -118,7 +112,6 @@ export default () => {
     setSun(sun + 604800000);
     getNewWeek(day1, day2);
   };
-
   const clickLeftCalendar = () => {
     const day1 = new Date(mon - 604800000 - 86400000).toISOString();
     const day2 = new Date(sun - 604800000 + 86399999).toISOString();
@@ -131,7 +124,6 @@ export default () => {
     setSun(sun - 604800000);
     getNewWeek(day1, day2);
   };
-
   useEffect(() => {
     if (!user.isAuthenticated()) {
       return history.push('/');
@@ -143,9 +135,7 @@ export default () => {
       setIsInitialRender(false);
     }
   });
-
   if (isInitialRender) return null;
-
   return (
     <>
       <Navbar />
@@ -180,6 +170,10 @@ export default () => {
         setEndTimeState={setEndTimeState}
         copyData={copyData}
         setCopyData={setCopyData}
+        publish={publish}
+        setPublish={setPublish}
+        wording={wording}
+        setWording={setWording}
       />
       <Schedule
         users={users}
@@ -208,6 +202,10 @@ export default () => {
         setTerm={setTerm}
         copyData={copyData}
         setCopyData={setCopyData}
+        publish={publish}
+        setPublish={setPublish}
+        wording={wording}
+        setWording={setWording}
       />
     </>
   );
