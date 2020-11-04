@@ -13,6 +13,10 @@ const HOURS_DICT = {
   12: '20:00',
 };
 
+const HOURS_STRING_DICT = ['09a', '10a', '11a', '12p', '01p', '02p', '03p', '04p', '05p', '06p', '07p', '08p'];
+
+const DAYS_DICT = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+
 const ERROR_MESSAGES_DICT = {
   CANNOT_BE_BLANK: 'End time cannot be blank',
   AFTER_9PM: 'End time can not be after 21:00',
@@ -20,4 +24,4 @@ const ERROR_MESSAGES_DICT = {
   TIME_IS_STRING: 'Please enter HH or HH:MM format',
 };
 
-module.exports = { HOURS_DICT, ERROR_MESSAGES_DICT };
+module.exports = { HOURS_DICT, ERROR_MESSAGES_DICT, HOURS_STRING_DICT, DAYS_DICT };

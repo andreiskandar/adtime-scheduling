@@ -1,6 +1,8 @@
 import React from 'react';
 import EmployeeGrid from './EmployeeGrid';
 import EmployeeHeader from './EmployeeHeader';
+import { default as slotMapHelper } from 'helpers/slotMapHelper';
+import { employeeMoreInfoHelper } from 'helpers/helper';
 import './employee.scss';
 
 const Employee = (props) => {
@@ -16,100 +18,7 @@ const Employee = (props) => {
     new Date(props.sun - 86400000).toISOString().split('T')[0],
   ];
 
-  const groupCategorySlotMap = shift.reduce((acc, cur) => {
-    const currentDate = cur.event_date.split('T')[0];
-    if (cur.user_id && cur.user_id === id) {
-      if (!acc[currentDate]) {
-        acc[currentDate] = {};
-        if (cur.category_id === 5 && !acc[currentDate].unavailable) {
-          acc[currentDate].unavailable = [];
-          acc[currentDate].unavailable.push(cur.shift_id);
-          return acc;
-        } else if (cur.category_id === 5) {
-          acc[currentDate].unavailable.push(cur.shift_id);
-          return acc;
-        }
-
-        if (cur.category_id === 1 && !acc[currentDate].workingShift) {
-          acc[currentDate].workingShift = [];
-          acc[currentDate].workingShift.push(cur.shift_id);
-          return acc;
-        } else if (cur.category_id === 1) {
-          acc[currentDate].workingShift.push(cur.shift_id);
-          return acc;
-        }
-
-        if (cur.category_id === 2 && !acc[currentDate].lecture) {
-          acc[currentDate].lecture = [];
-          acc[currentDate].lecture.push(cur.shift_id);
-          return acc;
-        } else if (cur.category_id === 2) {
-          acc[currentDate].lecture.push(cur.shift_id);
-          return acc;
-        }
-
-        if (cur.category_id === 3 && !acc[currentDate].interview) {
-          acc[currentDate].interview = [];
-          acc[currentDate].interview.push(cur.shift_id);
-          return acc;
-        } else if (cur.category_id === 3) {
-          acc[currentDate].interview.push(cur.shift_id);
-          return acc;
-        } else if (!acc[currentDate].breakout) {
-          acc[currentDate].breakout = [];
-          acc[currentDate].breakout.push(cur.shift_id);
-          return acc;
-        } else {
-          acc[currentDate].breakout.push(cur.shift_id);
-          return acc;
-        }
-      } else {
-        if (cur.category_id === 5 && !acc[currentDate].unavailable) {
-          acc[currentDate].unavailable = [];
-          acc[currentDate].unavailable.push(cur.shift_id);
-          return acc;
-        } else if (cur.category_id === 5) {
-          acc[currentDate].unavailable.push(cur.shift_id);
-          return acc;
-        }
-
-        if (cur.category_id === 1 && !acc[currentDate].workingShift) {
-          acc[currentDate].workingShift = [];
-          acc[currentDate].workingShift.push(cur.shift_id);
-          return acc;
-        } else if (cur.category_id === 1) {
-          acc[currentDate].workingShift.push(cur.shift_id);
-          return acc;
-        }
-
-        if (cur.category_id === 2 && !acc[currentDate].lecture) {
-          acc[currentDate].lecture = [];
-          acc[currentDate].lecture.push(cur.shift_id);
-          return acc;
-        } else if (cur.category_id === 2) {
-          acc[currentDate].lecture.push(cur.shift_id);
-          return acc;
-        }
-
-        if (cur.category_id === 3 && !acc[currentDate].interview) {
-          acc[currentDate].interview = [];
-          acc[currentDate].interview.push(cur.shift_id);
-          return acc;
-        } else if (cur.category_id === 3) {
-          acc[currentDate].interview.push(cur.shift_id);
-          return acc;
-        } else if (!acc[currentDate].breakout) {
-          acc[currentDate].breakout = [];
-          acc[currentDate].breakout.push(cur.shift_id);
-          return acc;
-        } else {
-          acc[currentDate].breakout.push(cur.shift_id);
-          return acc;
-        }
-      }
-    }
-    return acc;
-  }, {});
+  const groupCategorySlotMap = shift && id ? slotMapHelper(shift, id) : {};
 
   const slotMap = shift.reduce((acc, cur) => {
     const currentDate = cur.event_date.split('T')[0];
@@ -126,20 +35,8 @@ const Employee = (props) => {
     }
   }, {});
 
-  let totalHours = 0,
-    totalEvents = 0;
-
-  for (const item in groupCategorySlotMap) {
-    const breakout = groupCategorySlotMap[item].breakout ? groupCategorySlotMap[item].breakout.length : 0;
-    const interview = groupCategorySlotMap[item].interview ? groupCategorySlotMap[item].interview.length : 0;
-    const lecture = groupCategorySlotMap[item].lecture ? groupCategorySlotMap[item].lecture.length : 0;
-    totalEvents += breakout + interview + lecture;
-    const workingShift = groupCategorySlotMap[item].workingShift ? groupCategorySlotMap[item].workingShift.length : 0;
-    totalHours += workingShift;
-  }
-  totalHours += totalEvents;
-  const num_hours = totalHours === 1 ? '1 hr' : totalHours > 1 ? `${totalHours} hrs` : '';
-  const num_event = totalEvents === 1 ? '1 event' : totalEvents > 1 ? `${totalEvents} events` : '';
+  const num_hours = employeeMoreInfoHelper(groupCategorySlotMap).num_hours;
+  const num_event = employeeMoreInfoHelper(groupCategorySlotMap).num_event;
 
   const renderEmployeeGridPerDay = date_from_calendar.map((date, idx) => {
     return (

@@ -5,8 +5,12 @@ import './calendarGrid.scss';
 import CalendarGrid from './CalendarGrid';
 import WeekNav from '../WeekNav/index';
 import useStyles from './MyCalendarStyles';
+import { default as slotMapHelper } from 'helpers/slotMapHelper';
+import { employeeMoreInfoHelper } from 'helpers/helper';
+import { HOURS_STRING_DICT as hours, DAYS_DICT as days } from 'helpers/dictionary';
 
 const MyCalendar = (props) => {
+  const { shift } = props;
   const classes = useStyles();
 
   const date_from_calendar = [
@@ -18,10 +22,8 @@ const MyCalendar = (props) => {
     new Date(props.sat - 86400000).toISOString().split('T')[0],
     new Date(props.sun - 86400000).toISOString().split('T')[0],
   ];
-  
-  const hours = ['09a', '10a', '11a', '12p', '01p', '02p', '03p', '04p', '05p', '06p', '07p', '08p'];
-  const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-  const { username, avatar } = JSON.parse(localStorage.user);
+
+  const { username, avatar, user_id } = JSON.parse(localStorage.user);
   const [open, setOpen] = useState(false);
 
   const handleClose = () => {
@@ -39,6 +41,11 @@ const MyCalendar = (props) => {
     );
   });
 
+  const groupCategorySlotMap = shift && user_id ? slotMapHelper(shift, user_id) : {};
+
+  const totalEvents = employeeMoreInfoHelper(groupCategorySlotMap).num_event;
+  const totalHours = employeeMoreInfoHelper(groupCategorySlotMap).num_hours;
+
   const slotMap = props.shift.reduce((acc, cur) => {
     const currentDate = cur.event_date.split('T')[0];
     if (cur.name && cur.name === username) {
@@ -53,13 +60,6 @@ const MyCalendar = (props) => {
       return acc;
     }
   }, {});
-
-  let totalHours = 0,
-    totalEvents = 0;
-  for (const item in slotMap) {
-    totalEvents++;
-    totalHours += slotMap[item].length;
-  }
 
   const renderMyCalendarGrid = date_from_calendar.map((date, idx) => {
     return (
