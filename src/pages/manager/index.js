@@ -40,12 +40,18 @@ export default () => {
   const milisecDay = 86400000;
   let mondayTime = new Date(currentUTCDate).getTime();
   const dayofWeek = new Date(currentUTCDate).getUTCDay();
+  console.log('fix this!!!!')
   switch (dayofWeek) {
     case 0:
       mondayTime = mondayTime - 2 * milisecDay;
       break;
     case 1:
+<<<<<<< HEAD
       mondayTime = mondayTime - milisecDay;
+=======
+      console.log('fix this!!!!')
+      mondayTime = mondayTime - 3*milisecDay
+>>>>>>> david-fe2
       break;
     case 2:
       mondayTime = mondayTime;
