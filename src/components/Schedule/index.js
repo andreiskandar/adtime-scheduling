@@ -222,7 +222,7 @@ export default (props) => {
       <div>
       {role === 'employee' && alert === true && (
         <Dialog open={open} onClose={handleClose} maxWidth='lg'>
-          <Unpublished handleClose = {handleClose}></Unpublished>
+          <Unpublished mon = {props.mon} sun = {props.sun} handleClose = {handleClose}></Unpublished>
         </Dialog>
       )}      
       </div>

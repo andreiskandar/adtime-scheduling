@@ -23,6 +23,17 @@ export default function Unpublished(props) {
       marginBottom: '12px',
     }
   }));
+  const options = { weekday: 'short', year: 'numeric', month: 'short', day: '2-digit' };
+
+  let MondaySelectedNoTime = new Date(props.mon).toISOString().substr(0, 10);
+  let Monstring = MondaySelectedNoTime.toString() + 'T00:00:00.000Z';
+  Monstring = new Date(Monstring).toLocaleDateString('en-US', options);
+  Monstring = Monstring.substr(5, 6);
+
+  let SundaySelectedNoTime = new Date(props.sun).toISOString().substr(0, 10);
+  let Sunstring = SundaySelectedNoTime.toString() + 'T00:00:00.000Z';
+  Sunstring = new Date(Sunstring).toLocaleDateString('en-US', options);
+  Sunstring = Sunstring.substr(5, 12);
 
   const classes = useStyles();
   
@@ -35,7 +46,7 @@ export default function Unpublished(props) {
           </main>
         </>)*/
       }
-      <Alert severity="warning" variant="filled" className={classes.root} >This Week's Schedule is not Published Yet</Alert>
+      <Alert severity="warning" variant="filled" className={classes.root} >The schedule for the week of {Monstring} - {Sunstring} is not published yet.</Alert>
       <section className={classes.spacing}>
         <Button size="small"
           variant="contained" 
