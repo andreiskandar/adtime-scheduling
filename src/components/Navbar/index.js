@@ -26,7 +26,7 @@ export default (props) => {
       <div className='navbar links__navbar'>
         <Typography variant='h4'>
           <a href='/manager' src='' className='navbar logo__navbar'>
-            <img src='images/logo.png' alt='' className='logo_img__navbar'></img>
+            <img src='images/logo_navbar.png' alt='' className='logo_img__navbar'></img>
           </a>
         </Typography>
         <div className='navbar right_links__navbar'>
