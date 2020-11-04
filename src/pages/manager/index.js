@@ -60,7 +60,7 @@ export default () => {
       mondayTime = mondayTime + 3*milisecDay
       break;
   }
-
+ console.log('fix this!!!!')
   const [isInitialRender, setIsInitialRender] = useState(true);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [week, setWeek] = useState(2);
