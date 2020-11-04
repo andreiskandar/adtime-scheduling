@@ -13,6 +13,7 @@ import classNames from 'classnames';
 
 const EmployeeGrid = (props) => {
   const role = user.getRole();
+  const { user_id } = JSON.parse(localStorage.user);
   const classes = useStyles();
   const { shift_id, users, date, categories, groupCategorySlotMap } = props;
   const event_date = date;
@@ -31,7 +32,7 @@ const EmployeeGrid = (props) => {
     const start_time = HOURS_DICT[grid_id];
     setStartTime(start_time);
     if (shift_id && shift_id.includes(grid_id)) {
-      setError(ERROR_MESSAGES_DICT['DOUBLE_BOOKED']);
+      setError(`${ERROR_MESSAGES_DICT['DOUBLE_BOOKED']} at ${grid_id + 8}:00`);
       return;
     }
   };
@@ -63,7 +64,7 @@ const EmployeeGrid = (props) => {
     const endTimeShiftId = parseInt(endTime) - 8;
     // // FIX THIS LATER. BUG EXISTS
     if (!selected && shift_id && shift_id.includes(endTimeShiftId - 1)) {
-      setError(ERROR_MESSAGES_DICT['DOUBLE_BOOKED']);
+      setError(`${ERROR_MESSAGES_DICT['DOUBLE_BOOKED']} at ${endTimeShiftId + 8}:00`);
       return;
     }
 
@@ -282,7 +283,7 @@ const EmployeeGrid = (props) => {
             setCategorySelected={setCategorySelected}
             categorySelected={categorySelected}
           />
-          {error && (
+          {((error && props.id === user_id) || role === 'admin') && (
             <TransferShiftMenuButton
               users={users}
               setSelected={setSelected}
@@ -290,9 +291,6 @@ const EmployeeGrid = (props) => {
             />
           )}
 
-          {/* {role !== 'admin' && (
-          <TransferShiftMenuButton users={users} setSelected={setSelected} setCategorySelected={categorySelected.id} />
-          )} */}
           <Button onClick={reset} variant='contained'>
             Back
           </Button>
