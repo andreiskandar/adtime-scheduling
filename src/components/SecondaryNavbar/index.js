@@ -135,6 +135,16 @@ const PublishButton = (props) => {
       />
       {/* copySchedule={copySchedule} */}
       {/* setCopySchedule={setCopySchedule} */}
+      {role === 'employee' && (
+        < >
+          <div className = 'hidden'>
+            Block 2
+          </div>
+          <div className = 'hidden'>
+            Block 3
+          </div>
+        </>
+      )}
       {role === 'admin' && (
         <div>
           <PasteButton
