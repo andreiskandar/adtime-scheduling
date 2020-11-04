@@ -39,25 +39,25 @@ export default () => {
   const dayofWeek = (new Date (currentUTCDate)).getUTCDay()
   switch (dayofWeek) {
     case 0:
-      mondayTime = mondayTime - 2*milisecDay
+      mondayTime = mondayTime - 4*milisecDay
       break;
     case 1:
-      mondayTime = mondayTime - milisecDay
+      mondayTime = mondayTime - 3*milisecDay
       break;
     case 2:
-      mondayTime = mondayTime 
+      mondayTime = mondayTime - 2*milisecDay
       break;
     case 3:
-      mondayTime = mondayTime + milisecDay
+      mondayTime = mondayTime - milisecDay
       break;
     case 4:
-      mondayTime = mondayTime + 2*milisecDay
+      mondayTime = mondayTime 
       break;
     case 5:
-      mondayTime = mondayTime + 3*milisecDay
+      mondayTime = mondayTime + 2*milisecDay
       break;
     case 6:
-      mondayTime = mondayTime + 4*milisecDay
+      mondayTime = mondayTime + 3*milisecDay
       break;
   }
   
