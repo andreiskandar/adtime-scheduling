@@ -1,15 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import './styles.scss';
 import { user } from 'controllers';
-import { Button, Grid, InputAdornment, TextField } from '@material-ui/core';
-import { Email, LockRounded } from '@material-ui/icons';
+import { Button, Grid, IconButton, InputAdornment, TextField } from '@material-ui/core';
+import { Email, LockRounded, } from '@material-ui/icons';
+import Alert from '@material-ui/lab/Alert';
 import history from 'app/history'
+import Collapse from '@material-ui/core/Collapse';
+import CloseIcon from '@material-ui/icons/Close';
 
 export default () => {
   const [isInitialRender, setIsInitialRender] = useState(true)
   const [isAuthenticated, setIsAuthenticated] = useState(false)
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('password');
+  const [errorMsg, setErrorMessage] = useState(false)
+  const [open, setOpen] = useState(true);
+
 
   useEffect(() => {
     if (user.isAuthenticated()) {
@@ -30,7 +36,7 @@ export default () => {
       <Grid container style={{ minHeight: '100vh' }}>
         <Grid item xs={12} sm={6}>
           <img
-            src='https://gearheart.io/media/images/shutterstock_1523635688.original.jpg'
+            src='/images/scheduler.jpeg'
             style={{ width: '100%', height: '100%', objectFit: 'cover' }}
             alt=''
           />
@@ -49,11 +55,29 @@ export default () => {
           <div style={{ display: 'flex', flexDirection: 'column', madWidth: 400, minWidth: 300 }}>
             <Grid container justify='center'>
               <img
-                src='https://www.freelogodesign.org/file/app/client/thumb/2b85f52d-3340-40ad-8a46-23d120211f28_200x200.png?1604299448064'
+                src='https://www.freelogodesign.org/file/app/client/thumb/2b85f52d-3340-40ad-8a46-23d120211f28_200x200.png?1604299448064g'
                 width={250}
                 alt='logo'
               />
             </Grid>
+            {errorMsg && (
+                // <Alert severity="error" isOpen={visible} onClick={()=> onDismiss}>Your Credentials Do Not Match!</Alert>
+              <Collapse in={open}>
+                <Alert action={
+                  <IconButton
+                    aria-label="close"
+                    onClick={() => {
+                      setOpen(false)
+                    }}
+                    >
+                      <CloseIcon fontSize="small" />
+                    </IconButton>
+                }
+                >
+                  Your Credentials Do Not Match!
+                </Alert>
+              </Collapse>
+            )}
             <TextField
               label='Email'
               for='emailInput'
@@ -100,6 +124,7 @@ export default () => {
                     setIsAuthenticated(true)
                   } catch(err) {
                     console.error(err)
+                    setErrorMessage(true)
                   }
                 },
                 type: 'submit',
@@ -117,7 +142,7 @@ export default () => {
               </Button>
             </Grid>
             <Grid item>
-              <Button variant='outlined'>Forgot pasword?</Button>
+              {/* <Button variant='outlined'>Forgot pasword?</Button> */}
             </Grid>
           </Grid>
         </Grid>
