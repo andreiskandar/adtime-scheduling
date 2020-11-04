@@ -35,13 +35,21 @@ export default () => {
   const milisecDay = 86400000;
   let mondayTime = new Date(currentUTCDate).getTime();
   const dayofWeek = new Date(currentUTCDate).getUTCDay();
+<<<<<<< HEAD
   console.log('fix this!!!!');
+=======
+  
+>>>>>>> david-fe2
   switch (dayofWeek) {
     case 0:
       mondayTime = mondayTime - 4 * milisecDay;
       break;
     case 1:
+<<<<<<< HEAD
       mondayTime = mondayTime - 3 * milisecDay;
+=======
+      mondayTime = mondayTime - 3*milisecDay
+>>>>>>> david-fe2
       break;
     case 2:
       mondayTime = mondayTime - 2 * milisecDay;
@@ -59,7 +67,11 @@ export default () => {
       mondayTime = mondayTime + 3 * milisecDay;
       break;
   }
+<<<<<<< HEAD
   console.log('fix this!!!!');
+=======
+
+>>>>>>> david-fe2
   const [isInitialRender, setIsInitialRender] = useState(true);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [week, setWeek] = useState(2);

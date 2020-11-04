@@ -16,7 +16,7 @@ export default (props) => {
   const [date, setDate] = useState('');
   const [categories, setCategories] = useState([]);
   const role = user.getRole();
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
   const [alert, setAlert] = useState(false);
   const handleClose = () => {
     setOpen(false);
@@ -141,19 +141,19 @@ export default (props) => {
     if (publishCheck) {
       if (publishCheck.ispublished === false) {
         setAlert(true)
+        setOpen(true)
       }
     } else {
       setAlert(true)
+      setOpen(true)
     }
   }
   useEffect(() => {
     const check = setTimeout(() => {
       checkPublish()
-    }, 200);
-    console.log('I RAN')
-    console.log(alert)
+    }, 50);
     return () => clearTimeout(check);        
-    }, [props.shift]);
+  }, [props.shift]);
 
   const employees = props.users.map((user) => {
     const lowerUserName = user.name.toLowerCase();
@@ -220,9 +220,9 @@ export default (props) => {
         {employees}
       </Card>
       <div>
-      {role === 'employee' && alert === true &&(
+      {role === 'employee' && alert === true && (
         <Dialog open={open} onClose={handleClose} maxWidth='lg'>
-          <Unpublished handleClose = {handleClose}></Unpublished>
+          <Unpublished mon = {props.mon} sun = {props.sun} handleClose = {handleClose}></Unpublished>
         </Dialog>
       )}      
       </div>
