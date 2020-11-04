@@ -137,7 +137,6 @@ const EmployeeGrid = (props) => {
         (groupCategorySlotMap && groupCategorySlotMap.breakout && groupCategorySlotMap.breakout.includes(i + 1)),
     });
 
-    console.log('gridClassNames:', gridClassNames);
     // check if availability
     if (groupCategorySlotMap) {
       if (groupCategorySlotMap.unavailable && groupCategorySlotMap.unavailable.includes(i + 1)) {

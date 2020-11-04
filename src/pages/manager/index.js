@@ -33,6 +33,7 @@ export default () => {
   });
 
   let currentUTCDate = new Date(Date.now()).toISOString().split('T')[0];
+  console.log('currentUTCDate:', new Date(Date.now()).toISOString());
   currentUTCDate = new Date(currentUTCDate).toUTCString();
   const milisecDay = 86400000;
   let mondayTime = new Date(currentUTCDate).getTime();
@@ -48,7 +49,7 @@ export default () => {
       mondayTime = mondayTime;
       break;
     case 3:
-      mondayTime = mondayTime + milisecDay;
+      mondayTime = mondayTime - milisecDay;
       break;
     case 4:
       mondayTime = mondayTime + 2 * milisecDay;
