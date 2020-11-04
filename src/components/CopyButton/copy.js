@@ -2,8 +2,10 @@ import React from 'react';
 import Button from '@material-ui/core/Button';
 import axios from 'axios';
 import { user } from '../../controllers';
+import useStyles from '../styles';
 
 export default function CopyButton(props) {
+  const classes = useStyles();
   const role = user.getRole();
   const day1 = new Date(props.mon - 86400000).toISOString();
   const day2 = new Date(props.sun + 86399999).toISOString();
@@ -27,7 +29,8 @@ export default function CopyButton(props) {
   };
 
   return (
-    <Button color='primary' onClick={handleCopyClick} variant='contained'>
+    <Button color='primary' onClick={handleCopyClick} variant='contained' className={classes.button__secondary_navbar}>
+      <img src='images/copy.png' alt='copy icon' className={classes.icon__secondary_navbar}></img>
       Copy
     </Button>
   );

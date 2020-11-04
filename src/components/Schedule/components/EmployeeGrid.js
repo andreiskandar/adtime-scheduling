@@ -9,6 +9,7 @@ import useVisualMode from '../../../hooks/useVisualMode';
 import Transfer from '../../Schedule/components/confirm/Confirmtransfer';
 import Delete from '../../Schedule/components/confirm/Confirmdelete';
 import { user } from '../../../controllers';
+import classNames from 'classnames';
 
 const EmployeeGrid = (props) => {
   const role = user.getRole();
@@ -125,11 +126,28 @@ const EmployeeGrid = (props) => {
   };
 
   const renderSpan = Array.from({ length: 12 }, (x, i) => {
+    const gridClassNames = classNames({
+      [`grid__${i + 1}`]: true || (groupCategorySlotMap && groupCategorySlotMap.workingShift),
+      second_child_margin_left: i === 1,
+      unavailable:
+        groupCategorySlotMap && groupCategorySlotMap.unavailable && groupCategorySlotMap.unavailable.includes(i + 1),
+      shifts:
+        (groupCategorySlotMap && groupCategorySlotMap.interview && groupCategorySlotMap.interview.includes(i + 1)) ||
+        (groupCategorySlotMap && groupCategorySlotMap.lecture && groupCategorySlotMap.lecture.includes(i + 1)) ||
+        (groupCategorySlotMap && groupCategorySlotMap.breakout && groupCategorySlotMap.breakout.includes(i + 1)),
+    });
+
+    console.log('gridClassNames:', gridClassNames);
     // check if availability
     if (groupCategorySlotMap) {
       if (groupCategorySlotMap.unavailable && groupCategorySlotMap.unavailable.includes(i + 1)) {
         return (
-          <span key={i} className={`grid__${i + 1} unavailable`} data-id={i}>
+          <span
+            key={i}
+            className={gridClassNames}
+            // className={`grid__${i + 1} unavailable`}
+            data-id={i}
+          >
             <p className='hide'>unavailable</p>
           </span>
         );
@@ -142,7 +160,8 @@ const EmployeeGrid = (props) => {
         return (
           <span
             key={i}
-            className={`grid__${i + 1} shifts`}
+            className={gridClassNames}
+            // className={`grid__${i + 1} shifts`}
             data-id={i}
             onClick={clickGrid}
             style={{ backgroundColor: `${background}` }}
@@ -156,7 +175,8 @@ const EmployeeGrid = (props) => {
         return (
           <span
             key={i}
-            className={`grid__${i + 1} shifts`}
+            className={gridClassNames}
+            // className={`grid__${i + 1} shifts`}
             data-id={i}
             onClick={clickGrid}
             style={{ backgroundColor: `${background}` }}
@@ -174,7 +194,8 @@ const EmployeeGrid = (props) => {
         return (
           <span
             key={i}
-            className={`grid__${i + 1} shifts`}
+            className={gridClassNames}
+            // className={`grid__${i + 1} shifts`}
             data-id={i}
             onClick={clickGrid}
             style={{ backgroundColor: `${background}` }}
@@ -191,7 +212,8 @@ const EmployeeGrid = (props) => {
         return (
           <span
             key={i}
-            className={`grid__${i + 1}`}
+            className={gridClassNames}
+            // className={`grid__${i + 1}`}
             data-id={i}
             onClick={clickGrid}
             style={{ backgroundColor: `${background}` }}
@@ -203,7 +225,8 @@ const EmployeeGrid = (props) => {
       return (
         <span
           key={i}
-          className={`grid__${i + 1}`}
+          className={gridClassNames}
+          // className={`grid__${i + 1}`}
           data-id={i}
           onClick={clickGrid}
           style={{ backgroundColor: `${background}` }}
