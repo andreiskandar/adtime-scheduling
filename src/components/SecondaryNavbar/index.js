@@ -27,39 +27,42 @@ const PublishButton = (props) => {
     users,
     setUsers,
     shift,
-    publish, 
+    publish,
     setPublish,
-    wording, 
+    wording,
     setWording,
   } = props;
-  const publishCheck = shift[0]
+
+  const publishCheck = shift[0];
+  // const [publish, setPublish] = useState(false);
+  // const [wording, setWording] = useState('Publish');
   const role = user.getRole();
   const buttonClass = classNames({
     btn: true,
     isPublished: publish,
   });
-  
+
   useEffect(() => {
     checkPublish();
   }, [shift]);
 
   const day1 = new Date(props.mon - 86400000).toISOString();
   const day2 = new Date(props.sun + 86399999).toISOString();
-  
+
   const checkPublish = () => {
     if (publishCheck) {
       if (publishCheck.ispublished === true && publish === false) {
-        setPublish(true)
-        setWording('Unpublish')
+        setPublish(true);
+        setWording('Unpublish');
       } else if (publishCheck.ispublished === false && publish === true) {
-        setPublish(false)
-        setWording('Publish')
+        setPublish(false);
+        setWording('Publish');
       }
     } else if (!publishCheck) {
-      setPublish(false)
-      setWording('Publish')
+      setPublish(false);
+      setWording('Publish');
     }
-  }
+  };
 
   const handleClick = (e) => {
     if (publish === false) {
@@ -80,8 +83,6 @@ const PublishButton = (props) => {
         });
     }
   };
-
-  
 
   return (
     <main className='secondary__navbar'>

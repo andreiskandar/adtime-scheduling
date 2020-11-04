@@ -1,6 +1,6 @@
 @import '../../styles/variables.scss';
 .schedule {
-  margin: 0 10px;
+  margin: 0;
   border: 2px solid $outer-border-color;
   border-radius: 5px;
   min-width: 2440px;
@@ -8,6 +8,6 @@
 }
 .scroll {
 
-  overflow-x: scroll;
+  overflow-x: auto;
   overflow-y: scroll;
 }
