@@ -25,9 +25,7 @@ export default (props) => {
 
   useEffect(() => {
     const day1 = new Date(props.mon - 86400000).toISOString();
-    // const day2 = new Date(props.sun - 86400000).toISOString();
     const day2 = new Date(props.sun + 86399999).toISOString();
-    // const day2 = new Date(props.sun).toISOString();
     cancelShift();
     let apiUserShift;
     const apiUsers = axios.get('/api/users');
