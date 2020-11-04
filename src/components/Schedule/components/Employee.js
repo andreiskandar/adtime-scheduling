@@ -8,8 +8,6 @@ import { user } from '../../../controllers/';
 
 const Employee = (props) => {
   const { id, name, avatar, shift, color, users, categories, results, setResults, term, setTerm } = props;
-  const role = user.getRole();
-  
 
   const date_from_calendar = [
     new Date(props.mon - 86400000).toISOString().split('T')[0],
