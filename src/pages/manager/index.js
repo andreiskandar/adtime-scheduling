@@ -58,6 +58,8 @@ export default () => {
     case 6:
       mondayTime = mondayTime + 3 * milisecDay;
       break;
+    default:
+      break;
   }
   const [isInitialRender, setIsInitialRender] = useState(true);
   const [isAuthenticated, setIsAuthenticated] = useState(false);

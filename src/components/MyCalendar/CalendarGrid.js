@@ -1,7 +1,6 @@
 import React from 'react';
 import './calendarGrid.scss';
 import Container from '@material-ui/core/Container';
-import classNames from 'classnames';
 
 const CalendarGrid = (props) => {
   const { groupCategorySlotMap } = props;

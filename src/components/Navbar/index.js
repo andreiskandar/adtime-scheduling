@@ -17,9 +17,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-{
-  /* <AccountCircleOutlinedIcon className='icon icon__navbar' /> */
-}
 export default (props) => {
   const classes = useStyles();
   const { username, avatar } = JSON.parse(localStorage.user);

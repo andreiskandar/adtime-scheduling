@@ -1,10 +1,8 @@
 import React from 'react';
 import { Button } from '@material-ui/core';
 // import useStyles from '../styles/formStyles';
-import { makeStyles  } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Alert from '@material-ui/lab/Alert';
-import { red } from '@material-ui/core/colors';
-
 
 export default function Unpublished(props) {
   const useStyles = makeStyles((theme) => ({
@@ -21,7 +19,7 @@ export default function Unpublished(props) {
       display: 'flex',
       justifyContent: 'space-evenly',
       marginBottom: '12px',
-    }
+    },
   }));
   const options = { weekday: 'short', year: 'numeric', month: 'short', day: '2-digit' };
 
@@ -36,7 +34,7 @@ export default function Unpublished(props) {
   Sunstring = Sunstring.substr(5, 12);
 
   const classes = useStyles();
-  
+
   return (
     <main className={classes.root}>
       {/*(//JOKE for DEMO 
@@ -44,15 +42,12 @@ export default function Unpublished(props) {
           <main className='joke'>
             <img src={'https://raw.githubusercontent.com/andreiskandar/moment/david-fe2/public/images/Bradley.jpg'}/>
           </main>
-        </>)*/
-      }
-      <Alert severity="warning" variant="filled" className={classes.root} >The schedule for the week of {Monstring} - {Sunstring} is not published yet.</Alert>
+        </>)*/}
+      <Alert severity='warning' variant='filled' className={classes.root}>
+        The schedule for the week of {Monstring} - {Sunstring} is not published yet.
+      </Alert>
       <section className={classes.spacing}>
-        <Button size="small"
-          variant="contained" 
-          color="primary" 
-          onClick={props.handleClose}
-        >
+        <Button size='small' variant='contained' color='primary' onClick={props.handleClose}>
           Close
         </Button>
       </section>
