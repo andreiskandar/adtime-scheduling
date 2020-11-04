@@ -11,6 +11,7 @@ import CopyButton from '../CopyButton/copy';
 import PasteButton from '../PasteButton/paste';
 import './styles.scss';
 import MyCalendar from '../MyCalendar/MyCalendar';
+import useStyles from '../styles';
 
 const PublishButton = (props) => {
   const {
@@ -37,6 +38,7 @@ const PublishButton = (props) => {
   // const [publish, setPublish] = useState(false);
   // const [wording, setWording] = useState('Publish');
   const role = user.getRole();
+  const classes = useStyles();
   const buttonClass = classNames({
     btn: true,
     isPublished: publish,
@@ -149,8 +151,13 @@ const PublishButton = (props) => {
             setCopyData={props.setCopyData}
           />
           <CopyButton {...{ copyData, setCopyData, mon, sun }} />
-          <Button onClick={handleClick} className={buttonClass}>
-            <CheckIcon className='icon icon__secondary_navbar' />
+          <Button onClick={handleClick} variant='contained' className={classes.button__secondary_navbar}>
+          {wording === 'Publish' && (
+          <img src='images/mail.png' alt='copy icon' className={classes.icon__secondary_navbar}></img>
+          )}
+          {wording === 'Unpublish' && (
+          <img src='images/return-box.png' alt='copy icon' className={classes.icon__secondary_navbar}></img>
+          )}
             {wording}
           </Button>
         </div>

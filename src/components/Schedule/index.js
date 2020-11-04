@@ -16,7 +16,7 @@ export default (props) => {
   const [date, setDate] = useState('');
   const [categories, setCategories] = useState([]);
   const role = user.getRole();
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
   const [alert, setAlert] = useState(false);
   const handleClose = () => {
     setOpen(false);
@@ -151,7 +151,7 @@ export default (props) => {
   useEffect(() => {
     const check = setTimeout(() => {
       checkPublish()
-    }, 40);
+    }, 50);
     return () => clearTimeout(check);        
   }, [props.shift]);
 
