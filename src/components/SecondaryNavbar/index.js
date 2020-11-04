@@ -135,6 +135,16 @@ const PublishButton = (props) => {
       />
       {/* copySchedule={copySchedule} */}
       {/* setCopySchedule={setCopySchedule} */}
+
+      {
+        //Hidden divs added for styling purposes
+        role === 'employee' && (
+          <>
+            <div className='hidden'>Styling1</div>
+            <div className='hidden'>Styling2</div>
+          </>
+        )
+      }
       {role === 'admin' && (
         <div>
           <PasteButton
@@ -151,12 +161,12 @@ const PublishButton = (props) => {
           />
           <CopyButton {...{ copyData, setCopyData, mon, sun }} />
           <Button onClick={handleClick} variant='contained' className={classes.button__secondary_navbar}>
-          {wording === 'Publish' && (
-          <img src='images/mail.png' alt='copy icon' className={classes.icon__secondary_navbar}></img>
-          )}
-          {wording === 'Unpublish' && (
-          <img src='images/return-box.png' alt='copy icon' className={classes.icon__secondary_navbar}></img>
-          )}
+            {wording === 'Publish' && (
+              <img src='images/mail.png' alt='copy icon' className={classes.icon__secondary_navbar}></img>
+            )}
+            {wording === 'Unpublish' && (
+              <img src='images/return-box.png' alt='copy icon' className={classes.icon__secondary_navbar}></img>
+            )}
             {wording}
           </Button>
         </div>

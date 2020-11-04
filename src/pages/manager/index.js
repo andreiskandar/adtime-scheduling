@@ -35,13 +35,12 @@ export default () => {
   const milisecDay = 86400000;
   let mondayTime = new Date(currentUTCDate).getTime();
   const dayofWeek = new Date(currentUTCDate).getUTCDay();
-  
   switch (dayofWeek) {
     case 0:
       mondayTime = mondayTime - 4 * milisecDay;
       break;
     case 1:
-      mondayTime = mondayTime - 3*milisecDay
+      mondayTime = mondayTime - 3 * milisecDay;
       break;
     case 2:
       mondayTime = mondayTime - 2 * milisecDay;
@@ -57,6 +56,8 @@ export default () => {
       break;
     case 6:
       mondayTime = mondayTime + 3 * milisecDay;
+      break;
+    default:
       break;
   }
   const [isInitialRender, setIsInitialRender] = useState(true);

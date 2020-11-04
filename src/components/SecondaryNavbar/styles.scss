@@ -50,11 +50,8 @@
         align-items: center;
       }
 
-  // .isPending {
-  //   color: #717171;
-  //   background-color: yellow;
-  //   &:hover {
-  //     opacity: 0.8;
-  //   }
-  // }
+  .hidden {
+    margin-right: -112px;
+    color: $background-color-grey
+  }
 }
