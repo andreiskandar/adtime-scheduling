@@ -220,7 +220,7 @@ export default (props) => {
         {employees}
       </Card>
       <div>
-      {role === 'employee' && alert === true &&(
+      {role === 'employee' && alert === true && (
         <Dialog open={open} onClose={handleClose} maxWidth='lg'>
           <Unpublished handleClose = {handleClose}></Unpublished>
         </Dialog>
