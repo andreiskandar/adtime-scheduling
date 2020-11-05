@@ -52,7 +52,7 @@ export default () => {
       mondayTime = mondayTime - 2*milisecDay; 
       break;
     case 5:
-      mondayTime = mondayTime ;
+      mondayTime = mondayTime - 3*milisecDay;
       break;
     case 6:
       mondayTime = mondayTime + milisecDay;
