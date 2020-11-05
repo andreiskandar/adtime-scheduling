@@ -12,7 +12,7 @@ export default () => {
   const [isInitialRender, setIsInitialRender] = useState(true);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('adtscheduling');
+  const [password, setPassword] = useState('');
   const [errorMsg, setErrorMessage] = useState(false);
   const [open, setOpen] = useState(true);
 
