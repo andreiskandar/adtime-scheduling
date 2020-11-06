@@ -30,33 +30,81 @@ export default () => {
     Sunday: 0,
   });
 
-  let currentUTCDate = new Date(Date.now()).toISOString().split('T')[0];
-  currentUTCDate = new Date(currentUTCDate).toUTCString();
+  let mondayTime, tuesdayTime, wednesdayTime, thursdayTime, fridayTime, saturdayTime, sundayTime;
+  let currentUTCDate = new Date(Date.now()).toISOString().split('T')[0]; //2020-11-06
+  // console.log('currentUTCDate: before', currentUTCDate);
+  currentUTCDate = new Date(currentUTCDate).toUTCString(); // Fri 06 Nov 2020 GMT 0000000
+  // console.log('currentUTCDate:', currentUTCDate);
   const milisecDay = 86400000;
-  let mondayTime = new Date(currentUTCDate).getTime();
-  const dayofWeek = new Date(currentUTCDate).getUTCDay();
+  let currentUTCTime = new Date(currentUTCDate).getTime() + milisecDay; // 160423042049234029
+  // console.log('mondayTime:', mondayTime);
+  const dayofWeek = new Date(currentUTCDate).getUTCDay(); // 5 (ranges from 0)
+  console.log('dayofWeek:', dayofWeek);
   switch (dayofWeek) {
     case 0:
-      mondayTime = mondayTime - 4 * milisecDay;
+      mondayTime = currentUTCTime + milisecDay;
+      tuesdayTime = currentUTCTime + 2 * milisecDay;
+      wednesdayTime = currentUTCTime + 3 * milisecDay;
+      thursdayTime = currentUTCTime + 4 * milisecDay;
+      fridayTime = currentUTCTime + 5 * milisecDay;
+      saturdayTime = currentUTCTime + 6 * milisecDay;
+      sundayTime = currentUTCTime;
       break;
     case 1:
-      mondayTime = mondayTime - 3 * milisecDay;
+      mondayTime = currentUTCTime;
+      tuesdayTime = currentUTCTime + milisecDay;
+      wednesdayTime = currentUTCTime + 2 * milisecDay;
+      thursdayTime = currentUTCTime + 3 * milisecDay;
+      fridayTime = currentUTCTime + 4 * milisecDay;
+      saturdayTime = currentUTCTime + 5 * milisecDay;
+      sundayTime = currentUTCTime + 6 * milisecDay;
       break;
     case 2:
-      mondayTime = mondayTime - 2 * milisecDay;
+      mondayTime = currentUTCTime - milisecDay;
+      tuesdayTime = currentUTCTime;
+      wednesdayTime = currentUTCTime + milisecDay;
+      thursdayTime = currentUTCTime + 2 * milisecDay;
+      fridayTime = currentUTCTime + 3 * milisecDay;
+      saturdayTime = currentUTCTime + 4 * milisecDay;
+      sundayTime = currentUTCTime + 5 * milisecDay;
       break;
     case 3:
-      mondayTime = mondayTime - milisecDay;
+      mondayTime = currentUTCTime - 2 * milisecDay;
+      tuesdayTime = currentUTCTime - milisecDay;
+      wednesdayTime = currentUTCTime;
+      thursdayTime = currentUTCTime + 2 * milisecDay;
+      fridayTime = currentUTCTime + 3 * milisecDay;
+      saturdayTime = currentUTCTime + 4 * milisecDay;
+      sundayTime = currentUTCTime - 5 * milisecDay;
       break;
     case 4:
-      mondayTime = mondayTime - 2*milisecDay; 
+      mondayTime = currentUTCTime - 3 * milisecDay;
+      tuesdayTime = currentUTCTime - 2 * milisecDay;
+      wednesdayTime = currentUTCTime - milisecDay;
+      thursdayTime = currentUTCTime;
+      fridayTime = currentUTCTime + milisecDay;
+      saturdayTime = currentUTCTime + 2 * milisecDay;
+      sundayTime = currentUTCTime + 3 * milisecDay;
       break;
     case 5:
-      mondayTime = mondayTime ;
+      mondayTime = currentUTCTime - 4 * milisecDay;
+      tuesdayTime = currentUTCTime - 3 * milisecDay;
+      wednesdayTime = currentUTCTime - 2 * milisecDay;
+      thursdayTime = currentUTCTime - milisecDay;
+      fridayTime = currentUTCTime;
+      saturdayTime = currentUTCTime + milisecDay;
+      sundayTime = currentUTCTime + 2 * milisecDay;
       break;
     case 6:
-      mondayTime = mondayTime + milisecDay;
+      mondayTime = currentUTCTime + 5 * milisecDay;
+      tuesdayTime = currentUTCTime + 4 * milisecDay;
+      wednesdayTime = currentUTCTime + 3 * milisecDay;
+      thursdayTime = currentUTCTime + 2 * milisecDay;
+      fridayTime = currentUTCTime - milisecDay;
+      saturdayTime = currentUTCTime;
+      sundayTime = currentUTCTime + milisecDay;
       break;
+
     default:
       break;
   }
@@ -64,12 +112,12 @@ export default () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [week, setWeek] = useState(2);
   const [mon, setMon] = useState(mondayTime);
-  const [tues, setTues] = useState(mondayTime + milisecDay);
-  const [wed, setWed] = useState(mondayTime + 2 * milisecDay);
-  const [thurs, setThurs] = useState(mondayTime + 3 * milisecDay);
-  const [fri, setFri] = useState(mondayTime + 4 * milisecDay);
-  const [sat, setSat] = useState(mondayTime + 5 * milisecDay);
-  const [sun, setSun] = useState(mondayTime + 6 * milisecDay);
+  const [tues, setTues] = useState(tuesdayTime);
+  const [wed, setWed] = useState(wednesdayTime);
+  const [thurs, setThurs] = useState(thursdayTime);
+  const [fri, setFri] = useState(fridayTime);
+  const [sat, setSat] = useState(saturdayTime);
+  const [sun, setSun] = useState(sundayTime);
   const [shift, setShift] = useState([]);
   const [term, setTerm] = useState('');
   const [results, setResults] = useState([]);
