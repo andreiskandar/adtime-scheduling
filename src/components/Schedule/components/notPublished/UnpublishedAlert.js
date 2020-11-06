@@ -37,12 +37,12 @@ export default function Unpublished(props) {
 
   return (
     <main className={classes.root}>
-      {/*(//JOKE for DEMO 
+      {(//JOKE for DEMO 
         <>
           <main className='joke'>
             <img src={'https://raw.githubusercontent.com/andreiskandar/moment/david-fe2/public/images/Bradley.jpg'}/>
           </main>
-        </>)*/}
+      </>)}
       <Alert severity='warning' variant='filled' className={classes.root}>
         The schedule for the week of {Monstring} - {Sunstring} is not published yet.
       </Alert>
