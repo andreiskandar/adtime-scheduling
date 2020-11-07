@@ -5,9 +5,9 @@ import { Navbar, SecondaryNavbar, Schedule } from 'components';
 import { user } from 'controllers';
 import axios from 'axios';
 
-// 1 hour = 3600000
-// 1 day = 86400000
-// 1 week = 604800000
+const ONE_HOUR_milliseconds = 3600000;
+const ONE_DAY_milliseconds = 86400000;
+const ONE_WEEK_milliseconds = 604800000;
 // Subtract 7 hours for timezone fix = -25200000
 
 export default () => {
@@ -32,77 +32,77 @@ export default () => {
 
   let mondayTime, tuesdayTime, wednesdayTime, thursdayTime, fridayTime, saturdayTime, sundayTime;
   let currentUTCDate = new Date(Date.now()).toISOString().split('T')[0]; //2020-11-06
+  console.log('currentUTCDate:', currentUTCDate);
   // console.log('currentUTCDate: before', currentUTCDate);
   currentUTCDate = new Date(currentUTCDate).toUTCString(); // Fri 06 Nov 2020 GMT 0000000
-  // console.log('currentUTCDate:', currentUTCDate);
-  const milisecDay = 86400000;
-  let currentUTCTime = new Date(currentUTCDate).getTime() + milisecDay; // 160423042049234029
-  // console.log('mondayTime:', mondayTime);
+  console.log('currentUTCDate:', currentUTCDate);
+  let currentUTCTime = new Date(currentUTCDate).getTime() + ONE_DAY_milliseconds; // 160423042049234029
+  console.log('currentUTCTime:', currentUTCTime);
   const dayofWeek = new Date(currentUTCDate).getUTCDay(); // 5 (ranges from 0)
   console.log('dayofWeek:', dayofWeek);
   switch (dayofWeek) {
     case 0:
-      mondayTime = currentUTCTime + milisecDay;
-      tuesdayTime = currentUTCTime + 2 * milisecDay;
-      wednesdayTime = currentUTCTime + 3 * milisecDay;
-      thursdayTime = currentUTCTime + 4 * milisecDay;
-      fridayTime = currentUTCTime + 5 * milisecDay;
-      saturdayTime = currentUTCTime + 6 * milisecDay;
+      mondayTime = currentUTCTime + ONE_DAY_milliseconds;
+      tuesdayTime = currentUTCTime + 2 * ONE_DAY_milliseconds;
+      wednesdayTime = currentUTCTime + 3 * ONE_DAY_milliseconds;
+      thursdayTime = currentUTCTime + 4 * ONE_DAY_milliseconds;
+      fridayTime = currentUTCTime + 5 * ONE_DAY_milliseconds;
+      saturdayTime = currentUTCTime + 6 * ONE_DAY_milliseconds;
       sundayTime = currentUTCTime;
       break;
     case 1:
       mondayTime = currentUTCTime;
-      tuesdayTime = currentUTCTime + milisecDay;
-      wednesdayTime = currentUTCTime + 2 * milisecDay;
-      thursdayTime = currentUTCTime + 3 * milisecDay;
-      fridayTime = currentUTCTime + 4 * milisecDay;
-      saturdayTime = currentUTCTime + 5 * milisecDay;
-      sundayTime = currentUTCTime + 6 * milisecDay;
+      tuesdayTime = currentUTCTime + ONE_DAY_milliseconds;
+      wednesdayTime = currentUTCTime + 2 * ONE_DAY_milliseconds;
+      thursdayTime = currentUTCTime + 3 * ONE_DAY_milliseconds;
+      fridayTime = currentUTCTime + 4 * ONE_DAY_milliseconds;
+      saturdayTime = currentUTCTime + 5 * ONE_DAY_milliseconds;
+      sundayTime = currentUTCTime + 6 * ONE_DAY_milliseconds;
       break;
     case 2:
-      mondayTime = currentUTCTime - milisecDay;
+      mondayTime = currentUTCTime - ONE_DAY_milliseconds;
       tuesdayTime = currentUTCTime;
-      wednesdayTime = currentUTCTime + milisecDay;
-      thursdayTime = currentUTCTime + 2 * milisecDay;
-      fridayTime = currentUTCTime + 3 * milisecDay;
-      saturdayTime = currentUTCTime + 4 * milisecDay;
-      sundayTime = currentUTCTime + 5 * milisecDay;
+      wednesdayTime = currentUTCTime + ONE_DAY_milliseconds;
+      thursdayTime = currentUTCTime + 2 * ONE_DAY_milliseconds;
+      fridayTime = currentUTCTime + 3 * ONE_DAY_milliseconds;
+      saturdayTime = currentUTCTime + 4 * ONE_DAY_milliseconds;
+      sundayTime = currentUTCTime + 5 * ONE_DAY_milliseconds;
       break;
     case 3:
-      mondayTime = currentUTCTime - 2 * milisecDay;
-      tuesdayTime = currentUTCTime - milisecDay;
+      mondayTime = currentUTCTime - 2 * ONE_DAY_milliseconds;
+      tuesdayTime = currentUTCTime - ONE_DAY_milliseconds;
       wednesdayTime = currentUTCTime;
-      thursdayTime = currentUTCTime + 2 * milisecDay;
-      fridayTime = currentUTCTime + 3 * milisecDay;
-      saturdayTime = currentUTCTime + 4 * milisecDay;
-      sundayTime = currentUTCTime - 5 * milisecDay;
+      thursdayTime = currentUTCTime + 2 * ONE_DAY_milliseconds;
+      fridayTime = currentUTCTime + 3 * ONE_DAY_milliseconds;
+      saturdayTime = currentUTCTime + 4 * ONE_DAY_milliseconds;
+      sundayTime = currentUTCTime - 5 * ONE_DAY_milliseconds;
       break;
     case 4:
-      mondayTime = currentUTCTime - 3 * milisecDay;
-      tuesdayTime = currentUTCTime - 2 * milisecDay;
-      wednesdayTime = currentUTCTime - milisecDay;
+      mondayTime = currentUTCTime - 3 * ONE_DAY_milliseconds;
+      tuesdayTime = currentUTCTime - 2 * ONE_DAY_milliseconds;
+      wednesdayTime = currentUTCTime - ONE_DAY_milliseconds;
       thursdayTime = currentUTCTime;
-      fridayTime = currentUTCTime + milisecDay;
-      saturdayTime = currentUTCTime + 2 * milisecDay;
-      sundayTime = currentUTCTime + 3 * milisecDay;
+      fridayTime = currentUTCTime + ONE_DAY_milliseconds;
+      saturdayTime = currentUTCTime + 2 * ONE_DAY_milliseconds;
+      sundayTime = currentUTCTime + 3 * ONE_DAY_milliseconds;
       break;
     case 5:
-      mondayTime = currentUTCTime - 4 * milisecDay;
-      tuesdayTime = currentUTCTime - 3 * milisecDay;
-      wednesdayTime = currentUTCTime - 2 * milisecDay;
-      thursdayTime = currentUTCTime - milisecDay;
+      mondayTime = currentUTCTime - 4 * ONE_DAY_milliseconds;
+      tuesdayTime = currentUTCTime - 3 * ONE_DAY_milliseconds;
+      wednesdayTime = currentUTCTime - 2 * ONE_DAY_milliseconds;
+      thursdayTime = currentUTCTime - ONE_DAY_milliseconds;
       fridayTime = currentUTCTime;
-      saturdayTime = currentUTCTime + milisecDay;
-      sundayTime = currentUTCTime + 2 * milisecDay;
+      saturdayTime = currentUTCTime + ONE_DAY_milliseconds;
+      sundayTime = currentUTCTime + 2 * ONE_DAY_milliseconds;
       break;
     case 6:
-      mondayTime = currentUTCTime + 5 * milisecDay;
-      tuesdayTime = currentUTCTime + 4 * milisecDay;
-      wednesdayTime = currentUTCTime + 3 * milisecDay;
-      thursdayTime = currentUTCTime + 2 * milisecDay;
-      fridayTime = currentUTCTime - milisecDay;
+      mondayTime = currentUTCTime - 5 * ONE_DAY_milliseconds;
+      tuesdayTime = currentUTCTime - 4 * ONE_DAY_milliseconds;
+      wednesdayTime = currentUTCTime - 3 * ONE_DAY_milliseconds;
+      thursdayTime = currentUTCTime - 2 * ONE_DAY_milliseconds;
+      fridayTime = currentUTCTime - ONE_DAY_milliseconds;
       saturdayTime = currentUTCTime;
-      sundayTime = currentUTCTime + milisecDay;
+      sundayTime = currentUTCTime + ONE_DAY_milliseconds;
       break;
 
     default:
@@ -126,6 +126,7 @@ export default () => {
   const [publish, setPublish] = useState(false);
   const [wording, setWording] = useState('Publish');
   const role = user.getRole();
+
   const getNewWeek = (day1, day2) => {
     if (role === 'admin') {
       axios
@@ -149,29 +150,34 @@ export default () => {
   };
   //console.log(props.mon) // Header.js:16 1603670400000  --> 1603756800000
   //console.log(props.sun) // Header.js:17 1604188800000  --> 1604275200000
+
   const clickRightCalendar = () => {
-    const day1 = new Date(mon + 604800000 - 86400000).toISOString();
-    const day2 = new Date(sun + 604800000 + 86399999).toISOString();
-    setMon(mon + 604800000);
-    setTues(tues + 604800000);
-    setWed(wed + 604800000);
-    setThurs(thurs + 604800000);
-    setFri(fri + 604800000);
-    setSat(sat + 604800000);
-    setSun(sun + 604800000);
-    getNewWeek(day1, day2);
+    // const day1 = new Date(mon + 604800000 - 86400000).toISOString();
+    // const day2 = new Date(sun + 604800000 + 86399999).toISOString();
+    const monday = new Date(mon + ONE_WEEK_milliseconds - ONE_DAY_milliseconds).toISOString();
+    const sunday = new Date(sun + ONE_WEEK_milliseconds + ONE_DAY_milliseconds - 1).toISOString();
+    setMon(mon + ONE_WEEK_milliseconds);
+    setTues(tues + ONE_WEEK_milliseconds);
+    setWed(wed + ONE_WEEK_milliseconds);
+    setThurs(thurs + ONE_WEEK_milliseconds);
+    setFri(fri + ONE_WEEK_milliseconds);
+    setSat(sat + ONE_WEEK_milliseconds);
+    setSun(sun + ONE_WEEK_milliseconds);
+    getNewWeek(monday, sunday);
   };
   const clickLeftCalendar = () => {
-    const day1 = new Date(mon - 604800000 - 86400000).toISOString();
-    const day2 = new Date(sun - 604800000 + 86399999).toISOString();
-    setMon(mon - 604800000);
-    setTues(tues - 604800000);
-    setWed(wed - 604800000);
-    setThurs(thurs - 604800000);
-    setFri(fri - 604800000);
-    setSat(sat - 604800000);
-    setSun(sun - 604800000);
-    getNewWeek(day1, day2);
+    const day1 = new Date(mon - ONE_WEEK_milliseconds - 86400000).toISOString();
+    const day2 = new Date(sun - ONE_WEEK_milliseconds + 86399999).toISOString();
+    const monday = new Date(mon - ONE_WEEK_milliseconds - ONE_DAY_milliseconds).toISOString();
+    const sunday = new Date(sun - ONE_WEEK_milliseconds + ONE_DAY_milliseconds - 1).toISOString();
+    setMon(mon - ONE_WEEK_milliseconds);
+    setTues(tues - ONE_WEEK_milliseconds);
+    setWed(wed - ONE_WEEK_milliseconds);
+    setThurs(thurs - ONE_WEEK_milliseconds);
+    setFri(fri - ONE_WEEK_milliseconds);
+    setSat(sat - ONE_WEEK_milliseconds);
+    setSun(sun - ONE_WEEK_milliseconds);
+    getNewWeek(monday, sunday);
   };
   useEffect(() => {
     if (!user.isAuthenticated()) {
