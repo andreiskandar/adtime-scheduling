@@ -8,9 +8,8 @@ For a live running version of the application please visit: https://adtime-sched
 
 Login info for sample users:
 
-Administrator/Manager: alice@email.com / Password: password
-
-User/Employee: kira@email.com / Password: password
+- Administrator/Manager: alice@email.com / Password: password
+- User/Employee: kira@email.com / Password: password
 
 This repo contains the front-end of the app. The back-end is available here: https://github.com/andreiskandar/moment-api
  
@@ -20,8 +19,8 @@ Start both the back-end and front-end servers with ```npm start```.
 
 # Tech Stack
 
-Front-end: React, Axios, Material-UI, SCSS. 
-Back-end: Node, Express, PostgreSQL. 
+- Front-end: React, Axios, Material-UI, SCSS.
+- Back-end: Node, Express, PostgreSQL. 
 
 # Screenshots 
 
