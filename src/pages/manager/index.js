@@ -31,15 +31,10 @@ export default () => {
   });
 
   let mondayTime, tuesdayTime, wednesdayTime, thursdayTime, fridayTime, saturdayTime, sundayTime;
-  let currentUTCDate = new Date(Date.now()).toISOString().split('T')[0]; //2020-11-06
-  console.log('currentUTCDate:', currentUTCDate);
-  // console.log('currentUTCDate: before', currentUTCDate);
-  currentUTCDate = new Date(currentUTCDate).toUTCString(); // Fri 06 Nov 2020 GMT 0000000
-  console.log('currentUTCDate:', currentUTCDate);
-  let currentUTCTime = new Date(currentUTCDate).getTime() + ONE_DAY_milliseconds; // 160423042049234029
-  console.log('currentUTCTime:', currentUTCTime);
-  const dayofWeek = new Date(currentUTCDate).getUTCDay(); // 5 (ranges from 0)
-  console.log('dayofWeek:', dayofWeek);
+  let currentUTCDate = new Date(Date.now()).toISOString().split('T')[0];
+  currentUTCDate = new Date(currentUTCDate).toUTCString();
+  let currentUTCTime = new Date(currentUTCDate).getTime() + ONE_DAY_milliseconds;
+  const dayofWeek = new Date(currentUTCDate).getUTCDay();
   switch (dayofWeek) {
     case 0:
       mondayTime = currentUTCTime + ONE_DAY_milliseconds;
@@ -148,12 +143,8 @@ export default () => {
         });
     }
   };
-  //console.log(props.mon) // Header.js:16 1603670400000  --> 1603756800000
-  //console.log(props.sun) // Header.js:17 1604188800000  --> 1604275200000
 
   const clickRightCalendar = () => {
-    // const day1 = new Date(mon + 604800000 - 86400000).toISOString();
-    // const day2 = new Date(sun + 604800000 + 86399999).toISOString();
     const monday = new Date(mon + ONE_WEEK_milliseconds - ONE_DAY_milliseconds).toISOString();
     const sunday = new Date(sun + ONE_WEEK_milliseconds + ONE_DAY_milliseconds - 1).toISOString();
     setMon(mon + ONE_WEEK_milliseconds);
