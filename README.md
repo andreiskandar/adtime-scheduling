@@ -1,68 +1,43 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# ADTime Scheduling
 
-## Available Scripts
+ADTime Scheduling is a scheduler that implements easy to follow features where admins can create, edit, delete, and transfer shifts between employees. Also where employees have easy access to their personal schedule and can transfer shifts between themselves and other employees. 
 
-In the project directory, you can run:
+# Installation and Running the Application
 
-### `npm start`
+For a live running version of the application please visit: https://adtime-scheduling.herokuapp.com
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Login info for sample users:
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+- Administrator/Manager: alice@email.com / Password: password
+- User/Employee: kira@email.com / Password: password
 
-### `npm test`
+This repo contains the front-end of the app. The back-end is available here: https://github.com/andreiskandar/moment-api
+ 
+In order to run the application locally, clone both this repo and the back-end repo. Run ```npm install``` on each respective directory to have all dependencies installed.  
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Start both the back-end and front-end servers with ```npm start```. 
 
-### `npm run build`
+# Tech Stack
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Front-end: React, Axios, Material-UI, SCSS.
+- Back-end: Node, Express, PostgreSQL. 
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+# Screenshots 
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Login Page:
+!["Login Page"](https://github.com/andreiskandar/moment/blob/60b8a84bac286d2eeff4b566d3b16f2864845062/public/images/screenshots/Login.png?raw=true)
 
-### `npm run eject`
+Main Schedule View:
+!["Main Schedule"](https://github.com/andreiskandar/moment/blob/60b8a84bac286d2eeff4b566d3b16f2864845062/public/images/screenshots/MainSchedule.png?raw=true)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Shift Form:
+!["Shift Form"](https://github.com/andreiskandar/moment/blob/60b8a84bac286d2eeff4b566d3b16f2864845062/public/images/screenshots/ShiftForm.png?raw=true)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+My Calendar View:
+!["My Calendar"](https://github.com/andreiskandar/moment/blob/60b8a84bac286d2eeff4b566d3b16f2864845062/public/images/screenshots/MyCalendar.png?raw=true)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Mini Calendar Navigation:
+!["Mini Calendar"](https://github.com/andreiskandar/moment/blob/60b8a84bac286d2eeff4b566d3b16f2864845062/public/images/screenshots/MiniCalendar.png?raw=true)
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify

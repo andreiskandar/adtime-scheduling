@@ -12,8 +12,14 @@ export default function Unpublished(props) {
       alignItems: 'flex-end',
       width: 'auto',
       '& > * + *': {
-        marginTop: theme.spacing(2),
+        marginTop: theme.spacing(1),
       },
+    },
+    joke: {
+      display: 'flex',
+      justifyContent: 'center',
+      marginTop: '20px',
+      marginBottom: '0px'
     },
     spacing: {
       display: 'flex',
@@ -37,12 +43,12 @@ export default function Unpublished(props) {
 
   return (
     <main className={classes.root}>
-      {/*(//JOKE for DEMO 
+      {(//JOKE for DEMO 
         <>
-          <main className='joke'>
-            <img src={'https://raw.githubusercontent.com/andreiskandar/moment/david-fe2/public/images/Bradley.jpg'}/>
+          <main className={classes.joke}>
+            <img src={'/images/Bradley2.jpg'}/>
           </main>
-        </>)*/}
+      </>)}
       <Alert severity='warning' variant='filled' className={classes.root}>
         The schedule for the week of {Monstring} - {Sunstring} is not published yet.
       </Alert>
