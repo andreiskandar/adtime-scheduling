@@ -91,7 +91,6 @@ export default () => {
       sundayTime = currentUTCTime + 2 * ONE_DAY_milliseconds;
       break;
     case 6:
-<<<<<<< HEAD
       mondayTime = currentUTCTime - 5 * ONE_DAY_milliseconds;
       tuesdayTime = currentUTCTime - 4 * ONE_DAY_milliseconds;
       wednesdayTime = currentUTCTime - 3 * ONE_DAY_milliseconds;
@@ -99,9 +98,6 @@ export default () => {
       fridayTime = currentUTCTime - ONE_DAY_milliseconds;
       saturdayTime = currentUTCTime;
       sundayTime = currentUTCTime + ONE_DAY_milliseconds;
-=======
-      mondayTime = mondayTime -4*milisecDay;
->>>>>>> david-demo
       break;
 
     default:
