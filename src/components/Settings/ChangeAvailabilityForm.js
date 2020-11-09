@@ -57,8 +57,8 @@ const ChangeAvailibilityForm = (props) => {
         <Avatar src={avatar} alt={username} />
         <p className={classes.name}>{username}</p>
       </div>
-      <p className={classes.info}>Shift is available from 9am to 9pm</p>
-      <p className={classes.info}>This availability will be affected for next 4 weeks</p>
+      <p className={classes.info}>Shift are available from 9:00AM to 21:00PM</p>
+      <p className={classes.info}>Availability changes will affect the following 4 weeks</p>
       <div className={classes.availability__form}>{formElement}</div>
       <DialogActions>
         <Button onClick={props.handleClose} color='default' variant='contained'>
