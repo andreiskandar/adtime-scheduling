@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-import './MiniCalendar.css';
-import './index.css';
+import './MiniCalendar.scss';
+import 'antd/dist/antd.css';
 import { Calendar } from 'antd';
 import axios from 'axios';
 import Button from '@material-ui/core/Button';
