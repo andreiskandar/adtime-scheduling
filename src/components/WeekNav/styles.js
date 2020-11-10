@@ -22,6 +22,7 @@ const useStyles = makeStyles((theme) => ({
   weekCalendar: {
     height: 25,
   },
+  
 }));
 
 export default useStyles;
