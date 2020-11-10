@@ -69,6 +69,11 @@
  
 }
 
+*, :after, :before {
+  -webkit-box-sizing: content-box; 
+  box-sizing: content-box;
+}
+
 .employee:first-of-type + .entire_employee__grid{
   margin-left: 158px;
   
