@@ -11,3 +11,8 @@
     display: flex;
     justify-content: center;
   }
+
+*, :after, :before {
+    -webkit-box-sizing: content-box; 
+    box-sizing: content-box;
+}

@@ -13,3 +13,7 @@ body {
   padding-right: 3px;
   font-size: 1em;
 }
+*, :after, :before {
+  -webkit-box-sizing: content-box; 
+  box-sizing: content-box;
+}

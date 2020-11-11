@@ -26,4 +26,8 @@
   height: 22px;
   width: 22px;
 }
+*, :after, :before {
+  -webkit-box-sizing: content-box; 
+  box-sizing: content-box;
+}
 
