@@ -44,7 +44,7 @@ export default () => {
       thursdayTime = currentUTCTime + 4 * ONE_DAY_milliseconds;
       fridayTime = currentUTCTime + 5 * ONE_DAY_milliseconds;
       saturdayTime = currentUTCTime + 6 * ONE_DAY_milliseconds;
-      sundayTime = currentUTCTime;
+      sundayTime = currentUTCTime + 7 * ONE_DAY_milliseconds;
       break;
     case 1:
       mondayTime = currentUTCTime;
