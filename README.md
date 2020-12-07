@@ -8,7 +8,7 @@ For a live running version of the application please visit: https://adtime-sched
 
 Login info for sample users:
 
-- Administrator/Manager: test@email.com / Password: testspassword
+- Administrator/Manager: test@email.com / Password: testpassword
 - User/Employee: bonnie@email.com / Password: password
 
 This repo contains the front-end of the app. The back-end is available here: https://github.com/andreiskandar/moment-api
