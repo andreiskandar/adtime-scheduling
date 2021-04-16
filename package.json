@@ -13,7 +13,7 @@
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
     "antd": "^4.8.2",
-    "axios": "^0.20.0",
+    "axios": "^0.21.1",
     "classnames": "^2.2.6",
     "moment": "^2.29.1",
     "node-sass": "^4.14.1",
@@ -43,5 +43,6 @@
       "last 1 safari version"
     ]
   },
+  "_proxy": "http://localhost:3001/",
   "proxy": "https://adtime-api.herokuapp.com/"
 }

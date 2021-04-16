@@ -6,7 +6,6 @@ import classNames from 'classnames';
 import axios from 'axios';
 import { user } from '../../controllers';
 import Button from '@material-ui/core/Button';
-import CheckIcon from '@material-ui/icons/Check';
 import CopyButton from '../CopyButton/copy';
 import PasteButton from '../PasteButton/paste';
 import './styles.scss';

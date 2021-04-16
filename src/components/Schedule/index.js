@@ -26,8 +26,10 @@ export default (props) => {
   useEffect(() => {
     const day1 = new Date(props.mon - 86400000).toISOString();
     const day2 = new Date(props.sun + 86399999).toISOString();
-    cancelShift();
+
+    // cancelShift();
     let apiUserShift;
+
     const apiUsers = axios.get('/api/users');
     if (role === 'admin') {
       apiUserShift = axios.get('api/shifts/events/manager', {
@@ -52,7 +54,7 @@ export default (props) => {
       })
       .catch((e) => {
         console.log(e);
-    });
+      });
   }, []);
 
   const submitShift = (user_id, startTime, endTime, event_date, category_id) => {
@@ -137,22 +139,22 @@ export default (props) => {
   };
 
   const checkPublish = () => {
-    const publishCheck = props.shift[0]
+    const publishCheck = props.shift[0];
     if (publishCheck) {
       if (publishCheck.ispublished === false) {
-        setAlert(true)
-        setOpen(true)
+        setAlert(true);
+        setOpen(true);
       }
     } else {
-      setAlert(true)
-      setOpen(true)
+      setAlert(true);
+      setOpen(true);
     }
-  }
+  };
   useEffect(() => {
     const check = setTimeout(() => {
-      checkPublish()
+      checkPublish();
     }, 50);
-    return () => clearTimeout(check);        
+    return () => clearTimeout(check);
   }, [props.shift]);
 
   const employees = props.users.map((user) => {
@@ -220,11 +222,11 @@ export default (props) => {
         {employees}
       </Card>
       <div>
-      {role === 'employee' && alert === true && (
-        <Dialog open={open} onClose={handleClose} maxWidth='lg'>
-          <Unpublished mon = {props.mon} sun = {props.sun} handleClose = {handleClose}></Unpublished>
-        </Dialog>
-      )}      
+        {role === 'employee' && alert === true && (
+          <Dialog open={open} onClose={handleClose} maxWidth='lg'>
+            <Unpublished mon={props.mon} sun={props.sun} handleClose={handleClose}></Unpublished>
+          </Dialog>
+        )}
       </div>
     </div>
   );

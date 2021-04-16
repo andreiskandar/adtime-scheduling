@@ -155,11 +155,10 @@ export default () => {
     setFri(fri + ONE_WEEK_milliseconds);
     setSat(sat + ONE_WEEK_milliseconds);
     setSun(sun + ONE_WEEK_milliseconds);
+
     getNewWeek(monday, sunday);
   };
   const clickLeftCalendar = () => {
-    const day1 = new Date(mon - ONE_WEEK_milliseconds - 86400000).toISOString();
-    const day2 = new Date(sun - ONE_WEEK_milliseconds + 86399999).toISOString();
     const monday = new Date(mon - ONE_WEEK_milliseconds - ONE_DAY_milliseconds).toISOString();
     const sunday = new Date(sun - ONE_WEEK_milliseconds + ONE_DAY_milliseconds - 1).toISOString();
     setMon(mon - ONE_WEEK_milliseconds);
@@ -169,8 +168,10 @@ export default () => {
     setFri(fri - ONE_WEEK_milliseconds);
     setSat(sat - ONE_WEEK_milliseconds);
     setSun(sun - ONE_WEEK_milliseconds);
+
     getNewWeek(monday, sunday);
   };
+
   useEffect(() => {
     if (!user.isAuthenticated()) {
       return history.push('/');
@@ -182,6 +183,7 @@ export default () => {
       setIsInitialRender(false);
     }
   });
+
   if (isInitialRender) return null;
   return (
     <>
