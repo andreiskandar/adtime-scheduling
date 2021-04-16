@@ -110,6 +110,7 @@ export default () => {
               {...{
                 onClick: async () => {
                   try {
+                    console.log(email, password);
                     await user.login(email, password);
                     setIsAuthenticated(true);
                   } catch (err) {
