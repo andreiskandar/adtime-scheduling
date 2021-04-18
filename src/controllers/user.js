@@ -36,7 +36,6 @@ function isAuthenticated() {
 
 async function login(email, password) {
   const user = await userModel.login(email, password);
-  console.log('user:', user);
   localStorage.setItem('user', JSON.stringify(user));
 }
 

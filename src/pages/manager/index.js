@@ -35,7 +35,6 @@ export default () => {
   currentUTCDate = new Date(currentUTCDate).toUTCString();
   let currentUTCTime = new Date(currentUTCDate).getTime() + ONE_DAY_milliseconds;
   const dayofWeek = new Date(currentUTCDate).getUTCDay();
-  console.log('dayofWeek:', dayofWeek);
   switch (dayofWeek) {
     case 0:
       mondayTime = currentUTCTime + ONE_DAY_milliseconds;
